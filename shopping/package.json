@@ -1,0 +1,14 @@
+{
+  "name": "shopping",
+  "version": "1.0.0",
+  "description": "Shopping MOCK",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server -p 3001 -w rates.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.14.2"
+  }
+}
