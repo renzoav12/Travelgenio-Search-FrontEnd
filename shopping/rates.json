@@ -1,0 +1,16 @@
+{
+  "rates": [
+    {
+      "name": "Hotel Faena Buenos Aires",
+      "id": 1
+    },
+    {
+      "name": "Hotel Iberostar",
+      "id": 2
+    },
+    {
+      "name": "Hotel Pennsylvania",
+      "id": 3
+    }
+  ]
+}
