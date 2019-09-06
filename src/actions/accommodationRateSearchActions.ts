@@ -26,13 +26,20 @@ interface FetchAccommodationRateSearchFailed {
     type: AccommodationRateSearchActionTypes.FETCH_FAILED;
 }
 
+export interface SearchParameters {
+    readonly type: string
+    readonly value: string    
+    readonly checkIn: string
+    readonly checkOut: string
+    readonly occupancy: string
+}
 
 
-export const fetchAccommodationRateSearch = (): ThunkResult<void> => async dispatch => {
+export const fetchAccommodationRateSearch = (parameters: SearchParameters): ThunkResult<void> => async dispatch => {
     handleFetchAccommodationRateSearch(dispatch);
 
     try {
-        const response: AxiosResponse<AccommodationRateModel[]> = await search.get('/rates');
+        const response: AxiosResponse<AccommodationRateModel[]> = await search.get('/rates', {params: parameters});
         handleAccommodationRateSearchSuccess(dispatch, response.data);
     } catch (e) {
         handleAccommodationRateSearchFailed(dispatch);

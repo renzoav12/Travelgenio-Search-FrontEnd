@@ -5,7 +5,7 @@ interface AccommodationRateProps {
     rate: AccommodationRateModel;
 };
 
-const AccommodationRate = ({ rate }: AccommodationRateProps) => (
+const SearchCard = ({ rate }: AccommodationRateProps) => (
     <div className="card">
         <div className="image">
             <img src="https://picsum.photos/150/100/?random" alt="none" />
@@ -23,4 +23,4 @@ const AccommodationRate = ({ rate }: AccommodationRateProps) => (
     </div>
 );
 
-export default AccommodationRate;
+export default SearchCard;
