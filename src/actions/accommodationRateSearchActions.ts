@@ -28,7 +28,7 @@ interface FetchAccommodationRateSearchFailed {
 
 export interface SearchParameters {
     readonly type: string
-    readonly value: string    
+    readonly code: string    
     readonly checkIn: string
     readonly checkOut: string
     readonly occupancy: string

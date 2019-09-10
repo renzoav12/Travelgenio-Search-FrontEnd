@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import StayPicker from '../StayPicker/StayPicker';
 import moment, { Moment } from 'moment'
 import 'react-dates/lib/css/_datepicker.css';
+import Autocomplete, { SuggestionEntry } from '../Autocomplete/Autocomplete';
 
 interface SearchBoxProps {
-    onClick: (asd: String) => any;
+    onClick: (state: SearchBoxState) => void;
 }
 
-interface SearchBoxState {
+export interface SearchBoxState {
     type: string,
     code: string,
     from: Moment,
@@ -27,6 +28,7 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleAutocompleteChange = this.handleAutocompleteChange.bind(this);
     }
 
     handleChange(event: any) {
@@ -35,18 +37,25 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
     handleSubmit(event: any) {
         //alert('A name was submitted: ' + this.state);
         event.preventDefault();
-        this.props.onClick('hola');
+        this.props.onClick(this.state);
     }
 
     handleStayPickerChange = (dates) => {
         this.setState({ from: dates.startDate, to: dates.endDate });
     }
 
+    handleAutocompleteChange(suggestionEntry: SuggestionEntry) {
+        this.setState({
+            type: suggestionEntry.type,
+            code: suggestionEntry.code
+        });
+    }
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor="searchBox_code">
-                    Search:<input id="searchBox_code" type="text" value={this.state.code} />
+                    <Autocomplete onChange={this.handleAutocompleteChange} value={""}></Autocomplete>
                 </label>
                 <StayPicker calendars={2} startDate={this.state.from} endDate={this.state.to} onChange={this.handleStayPickerChange}></StayPicker>
                 <label>
