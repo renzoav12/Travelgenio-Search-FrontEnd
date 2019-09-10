@@ -1,0 +1,12 @@
+.searchOccupancy {
+  height: 48px;
+}
+
+.searchOccupancySummary {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+}

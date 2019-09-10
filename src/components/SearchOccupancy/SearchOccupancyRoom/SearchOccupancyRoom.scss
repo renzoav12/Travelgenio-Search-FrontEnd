@@ -1,0 +1,14 @@
+.searchOccupancyRoom {
+  margin-top: 10px;
+  padding-top: 5px;
+  border-top: 1px solid grey;
+}
+
+.searchOccupancyRoomHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchOccupancyRoomHeaderDelete {
+  cursor: pointer;
+}

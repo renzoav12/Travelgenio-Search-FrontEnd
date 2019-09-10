@@ -3,6 +3,7 @@ import StayPicker from '../StayPicker/StayPicker';
 import moment, { Moment } from 'moment'
 import 'react-dates/lib/css/_datepicker.css';
 import Autocomplete, { SuggestionEntry } from '../Autocomplete/Autocomplete';
+import SearchOccupancy,  { RoomOccupancy } from '../SearchOccupancy/SearchOccupancy';
 
 interface SearchBoxProps {
     onClick: (state: SearchBoxState) => void;
@@ -13,7 +14,7 @@ export interface SearchBoxState {
     code: string,
     from: Moment,
     to: Moment,
-    occupancy: string;
+    occupancy: Array<RoomOccupancy>;
 }
 
 class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
@@ -24,7 +25,7 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
             code: '123',
             from: moment(),
             to: moment(),
-            occupancy: '2-1-1'
+            occupancy: [{adults:2, childrenAges:[]}]
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -58,9 +59,7 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
                     <Autocomplete onChange={this.handleAutocompleteChange} value={""}></Autocomplete>
                 </label>
                 <StayPicker calendars={2} startDate={this.state.from} endDate={this.state.to} onChange={this.handleStayPickerChange}></StayPicker>
-                <label>
-                    Occupancy:<input type="text" value={this.state.occupancy} />
-                </label>
+                <SearchOccupancy occupancy={this.state.occupancy}></SearchOccupancy>
                 <input type="submit" value="Submit" />
             </form>
         )
