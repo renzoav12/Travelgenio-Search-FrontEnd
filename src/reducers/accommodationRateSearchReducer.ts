@@ -1,31 +1,30 @@
 import _ from 'lodash';
 import { AccommodationRateSearchAction, AccommodationRateSearchActionTypes } from '../actions/accommodationRateSearchActions';
 import { Reducer } from 'redux';
+import { SearchCardListProps } from '../components/SearchCardList/SearchCardList';
+import { SearchCardProps } from '../components/SearchCard/SearchCard';
 
-export interface AccommodationRateModel {
-    id: number;
-    name: string;
+export interface SearchResponse {
+    accommodations: SearchCardProps[];
 }
 
-export interface AccommodationRateModels {
-    [id: number]: AccommodationRateModel;
-}
-
-export interface AccommodationRateSearchState {
-    items: AccommodationRateModels;
+export interface SearchRequest {
+    data: SearchResponse;
     loading: boolean;
     error: String | null
 }
 
 const initialState = {
-    items: {},
+    data: {
+        accommodations: []
+    },
     loading: false,
     error: null
 };
 
-export const accommodationRateSearchReducer: Reducer<AccommodationRateSearchState, AccommodationRateSearchAction> = (
-    state = initialState,
-    action 
+export const accommodationRateSearchReducer: Reducer<SearchRequest, AccommodationRateSearchAction> = (
+    state = initialState, 
+    action
 ) => {
     switch (action.type) {
         case AccommodationRateSearchActionTypes.FETCH:
@@ -33,8 +32,24 @@ export const accommodationRateSearchReducer: Reducer<AccommodationRateSearchStat
         case AccommodationRateSearchActionTypes.FETCH_FAILED:
             return { ...state, loading: false };
         case AccommodationRateSearchActionTypes.FETCH_SUCCESS:
-            return {...state, items: { ...state.items, ..._.mapKeys(action.payload, 'id') }, loading: false };
+            return {
+                ...state,
+                data: {...state.data, ...convert(action.payload)},
+                loading: false
+            };
         default:
             return state;
     }
 };
+
+
+const convert = (searchResponse: SearchResponse): SearchResponse => {
+    return searchResponse;
+    /*
+    alert(JSON.stringify(searchResponse));
+    return [{
+        content: {id: 'asd', title: '111', images: ['http://asd']}
+    }]
+    */
+}
+

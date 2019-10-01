@@ -25,11 +25,13 @@ class SearchBoxContainer extends Component<SearchBoxContainerProps> {
     handleSearch(searchRequest: SearchBoxState) {
         this.props.fetchAccommodationRateSearch(
             {
-                type: searchRequest.type,
-                code: searchRequest.code,
+                searchType: searchRequest.searchType,
+                searchCode: searchRequest.searchCode,
                 checkIn: searchRequest.from.toISOString().substring(0, 10),
                 checkOut: searchRequest.to.toISOString().substring(0, 10),
-                occupancy: this.convertOccupancy(searchRequest.occupancy)
+                occupancy: this.convertOccupancy(searchRequest.occupancy),
+                country: 'US',
+                language: 'en'
             }
         )
     }

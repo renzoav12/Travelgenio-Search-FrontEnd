@@ -2,22 +2,19 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { RootState } from '../../store';
-import { AccommodationRateModel } from '../../reducers/accommodationRateSearchReducer';
 import SearchCardList from '../../components/SearchCardList';
+import { SearchCardListProps } from '../../components/SearchCardList/SearchCardList';
 
-export interface AccommodationRateSearchProps {
-    models: AccommodationRateModel[];
-}
-
-class SearchCardListContainer extends Component<AccommodationRateSearchProps> {
+class SearchCardListContainer extends Component<SearchCardListProps> {
     render() {
-        return <SearchCardList models={this.props.models}></SearchCardList>
+        return <SearchCardList accommodations={this.props.accommodations}></SearchCardList>
     }
 }
 
-const mapStateToProps = (state: RootState) => {
+const mapStateToProps = (rootState: RootState) => {
+    alert(JSON.stringify(rootState.search));
     return {
-        models: _.values(state.search.items)
+        accommodations: rootState.search.data.accommodations
     };
 };
 

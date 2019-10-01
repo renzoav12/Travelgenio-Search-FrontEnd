@@ -2,11 +2,11 @@ import { createStore, combineReducers, applyMiddleware, /* compose */ } from 're
 import reduxThunk, { ThunkMiddleware } from 'redux-thunk';
 //import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { accommodationRateSearchReducer, AccommodationRateSearchState } from './reducers/accommodationRateSearchReducer';
+import { accommodationRateSearchReducer, SearchRequest } from './reducers/accommodationRateSearchReducer';
 import { AccommodationRateSearchAction } from './actions/accommodationRateSearchActions';
 
 export interface RootState {
-    readonly search: AccommodationRateSearchState;
+    readonly search: SearchRequest;
 }
 
 const rootReducer = combineReducers<RootState>({

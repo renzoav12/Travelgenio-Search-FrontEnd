@@ -2,7 +2,7 @@ import search from '../api';
 import { ThunkAction } from 'redux-thunk';
 import { Dispatch } from 'redux';
 import { RootState, RootActions } from '../store';
-import { AccommodationRateModel, AccommodationRateModels } from '../reducers/accommodationRateSearchReducer';
+import { SearchResponse} from '../reducers/accommodationRateSearchReducer';
 import { AxiosResponse } from 'axios';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootActions>;
@@ -19,7 +19,7 @@ interface FetchAccommodationRateSearch {
 
 interface FetchAccommodationRateSearchSuccess {
     type: AccommodationRateSearchActionTypes.FETCH_SUCCESS;
-    payload: AccommodationRateModels;
+    payload: SearchResponse;
 }
 
 interface FetchAccommodationRateSearchFailed {
@@ -27,19 +27,31 @@ interface FetchAccommodationRateSearchFailed {
 }
 
 export interface SearchParameters {
-    readonly type: string
-    readonly code: string    
-    readonly checkIn: string
-    readonly checkOut: string
-    readonly occupancy: string
+    readonly searchType: string,
+    readonly searchCode: string,   
+    readonly checkIn: string,
+    readonly checkOut: string,
+    readonly occupancy: string,
+    readonly language: string,
+    readonly country: string
+}
+
+export interface SearchHeaderParameters {
+    readonly country: string
 }
 
 
-export const fetchAccommodationRateSearch = (parameters: SearchParameters): ThunkResult<void> => async dispatch => {
+export const fetchAccommodationRateSearch = (queryParameters: SearchParameters): ThunkResult<void> => async dispatch => {
     handleFetchAccommodationRateSearch(dispatch);
 
     try {
-        const response: AxiosResponse<AccommodationRateModel[]> = await search.get('/rates', {params: parameters});
+        const response: AxiosResponse<SearchResponse> = await search.get('/search', {
+            params: queryParameters,
+            headers: {
+                language: queryParameters.language,
+                country: queryParameters.country
+            }
+        });
         handleAccommodationRateSearchSuccess(dispatch, response.data);
     } catch (e) {
         handleAccommodationRateSearchFailed(dispatch);
@@ -56,7 +68,7 @@ export const handleFetchAccommodationRateSearch = (dispatch: Dispatch<FetchAccom
 
 export const handleAccommodationRateSearchSuccess = (
     dispatch: Dispatch<FetchAccommodationRateSearchSuccess>,
-    response: AccommodationRateModels
+    response: SearchResponse
 ) => {
     dispatch({
         type: AccommodationRateSearchActionTypes.FETCH_SUCCESS,

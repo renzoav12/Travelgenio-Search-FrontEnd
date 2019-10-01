@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import SearchCard from '../../components/SearchCard';
-import { AccommodationRateModel } from '../../reducers/accommodationRateSearchReducer';
+import { SearchCardProps } from '../SearchCard/SearchCard';
 
 export interface SearchCardListProps {
-    models: AccommodationRateModel[];
+    accommodations: SearchCardProps[];
 }
 
 class SearchCardList extends Component<SearchCardListProps> {
     renderAll(): JSX.Element[] | null {
-        const { models } = this.props;
-        if (!models) {
+        const { accommodations: accommodations } = this.props;
+        if (!accommodations) {
             return null;
         }
-        return models.map((accommodationRateModel: AccommodationRateModel) => {
-            return <SearchCard rate={accommodationRateModel} key={accommodationRateModel.id} />;
+        return accommodations.map((accommodation: SearchCardProps) => {
+            return <SearchCard content={accommodation.content} key={accommodation.content.id}/>;
         });
     }
 

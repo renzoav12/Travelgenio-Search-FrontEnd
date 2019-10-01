@@ -1,17 +1,9 @@
 import * as serviceWorker from './serviceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-
-import App from './init/App';
-
 import { store } from './store';
+import Root from './components/Root/root';
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
-);
+ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 
 serviceWorker.unregister();

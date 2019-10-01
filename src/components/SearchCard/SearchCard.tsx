@@ -1,17 +1,26 @@
 import React from 'react';
-import { AccommodationRateModel } from '../../reducers/accommodationRateSearchReducer';
 
-interface AccommodationRateProps {
-    rate: AccommodationRateModel;
+export interface SearchCardProps {
+    content: SearchCardContent;
 };
 
-const SearchCard = ({ rate }: AccommodationRateProps) => (
+export interface SearchCardContent {
+    id: string;
+    title: string;
+    images: SearchCardContentImage[];
+};
+
+export interface SearchCardContentImage {
+    url: string;
+};
+
+const SearchCard = ({content}: SearchCardProps) => (
     <div className="card">
         <div className="image">
-            <img src="https://picsum.photos/150/100/?random" alt="none" />
+            <img height="100" width="140" src={content.images[0].url} alt="none" />
         </div>
         <div className="content">
-            <div className="header">{rate.name}</div>
+            <div className="header">{content.title}</div>
             <div className="meta">
                 <span className="category">*****</span>
             </div>
@@ -19,7 +28,6 @@ const SearchCard = ({ rate }: AccommodationRateProps) => (
                 <p></p>
             </div>
         </div>
-
     </div>
 );
 

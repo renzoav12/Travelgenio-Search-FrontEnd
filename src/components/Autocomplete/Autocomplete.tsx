@@ -21,8 +21,8 @@ export interface AutocompleteProps {
 const languages: Array<SuggestionEntry> = [
   {
     code: '1',
-    type: 'accommodation',
-    name: 'Hotel Faena Buenos Aires'
+    type: 'CITY',
+    name: 'Miami'
   }
 ];
 
