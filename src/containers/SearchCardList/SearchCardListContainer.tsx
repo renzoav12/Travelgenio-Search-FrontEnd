@@ -12,7 +12,6 @@ class SearchCardListContainer extends Component<SearchCardListProps> {
 }
 
 const mapStateToProps = (rootState: RootState) => {
-    alert(JSON.stringify(rootState.search));
     return {
         accommodations: rootState.search.data.accommodations
     };

@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import { AccommodationRateSearchAction, AccommodationRateSearchActionTypes } from '../actions/accommodationRateSearchActions';
 import { Reducer } from 'redux';
-import { SearchCardListProps } from '../components/SearchCardList/SearchCardList';
 import { SearchCardProps } from '../components/SearchCard/SearchCard';
 
 export interface SearchResponse {
