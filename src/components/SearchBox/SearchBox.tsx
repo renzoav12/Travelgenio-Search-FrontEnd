@@ -4,6 +4,7 @@ import moment, { Moment } from 'moment'
 import 'react-dates/lib/css/_datepicker.css';
 import Autocomplete, { SuggestionEntry } from '../Autocomplete/Autocomplete';
 import SearchOccupancy,  { RoomOccupancy } from '../SearchOccupancy/SearchOccupancy';
+import './SearchBox.scss';
 
 interface SearchBoxProps {
     onClick: (state: SearchBoxState) => void;
@@ -54,14 +55,23 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label htmlFor="searchBox_code">
-                    <Autocomplete onChange={this.handleAutocompleteChange} value={""}></Autocomplete>
-                </label>
-                <StayPicker calendars={2} startDate={this.state.from} endDate={this.state.to} onChange={this.handleStayPickerChange}></StayPicker>
-                <SearchOccupancy occupancy={this.state.occupancy}></SearchOccupancy>
-                <input type="submit" value="Submit" />
-            </form>
+            <div className="search-box otravo-box">
+                <form onSubmit={this.handleSubmit}>
+                    <div className="otravo-title">Modificar búsqueda</div>
+                    <div className="search-box-element">
+                        <Autocomplete onChange={this.handleAutocompleteChange} value={""}></Autocomplete>
+                    </div>
+                    <div className="search-box-element">
+                        <StayPicker calendars={2} startDate={this.state.from} endDate={this.state.to} onChange={this.handleStayPickerChange}></StayPicker>
+                    </div>
+                    <div className="search-box-element">
+                        <SearchOccupancy occupancy={this.state.occupancy}></SearchOccupancy>
+                    </div>
+                    <div className="search-box-element">
+                        <input type="submit" value="Buscar" />
+                    </div>
+                </form>
+            </div>
         )
     }
 }

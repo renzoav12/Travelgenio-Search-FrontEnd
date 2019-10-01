@@ -1,3 +1,5 @@
+@import "../../styles/global.scss";
+
 body {
   font-family: Helvetica, sans-serif;
 }
@@ -8,13 +10,6 @@ body {
 
 .react-autosuggest__input {
   width: 240px;
-  height: 30px;
-  padding: 10px 20px;
-  font-family: Helvetica, sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
 }
 
 .react-autosuggest__input--focused {
