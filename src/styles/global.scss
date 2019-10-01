@@ -38,7 +38,13 @@ input[type=submit]:hover {
   font-size: $titleFontSize;
   font-weight: $titleFontWeight;
   color: $textColor;
-  margin-bottom: 10px;
+}
+
+.otravo-title-2 {
+  font-family: $title2FontFamily;
+  font-size: $title2FontSize;
+  font-weight: $title2FontWeight;
+  color: $textColor;
 }
 
 .otravo-label {
@@ -46,6 +52,24 @@ input[type=submit]:hover {
   font-size: $labelFontSize;
   color: $textColor;
   margin: 0px;
+}
+
+.otravo-small-button {
+  font-family: $labelFontFamily;
+  font-size: $labelFontSize;
+  color: $primaryColor;
+  margin: 0px;
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+.otravo-small-button:hover {
+  color: $buttonBackgroundHoverColor;
 }
 
 .otravo-info {
@@ -56,6 +80,15 @@ input[type=submit]:hover {
 }
 
 .otravo-box {
+  border: none;
+  border-radius: 3px;
+  background: $boxBackgroundColor;
+  width: 100%;
+  margin: 10px;
+  padding: 25px;
+}
+
+.otravo-box-with-border {
   border: 1px solid $boxBorderColor;
   border-radius: 3px;
   background: $boxBackgroundColor;

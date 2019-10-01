@@ -44,9 +44,9 @@ class SearchOccupancyQuantity extends Component<OccupancyQuantityProp> {
         <div className="SearchOccupancyQuantitySubtitle">{this.props.subtitle}</div>
       </div>
       <div className="SearchOccupancyQuantityNumbers">
-        <div className="SearchOccupancyQuantityDecrease" onClick={this.decrease}>-</div>
+        <div className="SearchOccupancyQuantityButton" onClick={this.decrease}>-</div>
         <div>{this.props.quantity}</div>
-        <div className="SearchOccupancyQuantityIncrease" onClick={this.increase}>+</div>
+        <div className="SearchOccupancyQuantityButton" onClick={this.increase}>+</div>
       </div>
     </div>;
   } 

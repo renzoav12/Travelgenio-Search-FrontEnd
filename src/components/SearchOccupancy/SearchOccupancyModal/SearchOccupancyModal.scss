@@ -1,26 +1,16 @@
 @import "../../../styles/global.scss";
 
 .searchOccupancyModal {
-//  display: inline-block;
   position: relative;
-  top: -274px;
-  left: 290px;
-  border: 1px solid black;
-  padding: 10px;
-  min-width: 270px;
+  top: 0px;
+  left: -10px;
+  width: 100%;
   background-color: white;
   z-index: 1;
+  padding: 10px !important;
 }
 
-.searchOccupancyModalHeader {
+.searchOccupancyModalFooter {
   display: flex;
   justify-content: space-between;
-}
-
-.searchOccupancyModalHeaderClose {
-  cursor: pointer;
-}
-
-.searchOccupancyModalHeaderAddRoom {
-  cursor: pointer;
 }

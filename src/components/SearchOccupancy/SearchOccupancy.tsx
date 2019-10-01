@@ -1,10 +1,11 @@
-import React, { Component, MouseEvent } from 'react';
+import React, { Component, MouseEvent, DOMElement } from 'react';
 import './SearchOccupancy.scss';
 import SearchOccupancyModal from './SearchOccupancyModal';
+import { JSXElement } from '@babel/types';
 
 const bedIcon = require('../../assets/images/icons/bed_icon.svg')
 const adultIcon = require('../../assets/images/icons/adult_icon.svg')
-const childIcon = require('../../assets/images/icons/adult_icon.svg')
+const childIcon = require('../../assets/images/icons/child_icon.svg')
 
 interface Props {
   occupancy: Array<RoomOccupancy>
@@ -22,6 +23,8 @@ export interface RoomOccupancy {
 
 class SearchOccupancy extends Component<Props, State> {
 
+  node: any;
+
   constructor(props: Props) {
     super(props);
     this.state = {showModal: false, occupancy: this.props.occupancy};
@@ -33,9 +36,22 @@ class SearchOccupancy extends Component<Props, State> {
     this.deleteRoom = this.deleteRoom.bind(this);
     this.addRoom = this.addRoom.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
+  componentWillMount() {
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
 
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClick, false);
+  }
+
+  handleClick = (event) => {
+    if(!this.node.contains(event.target)) {
+      this.closeModal();
+    }
+  }
 
   increaseAdults = (index: number): void => {
     this.setState((prevState: State) => {      
@@ -112,18 +128,18 @@ class SearchOccupancy extends Component<Props, State> {
   };
 
   render() {
-    return <div className="search-occupancy">
+    return <div ref={node => this.node = node} className="searchSccupancy">
       <label className="otravo-label">Habitaciones:</label>
-      <div className="search-occupancy-summary" onClick={this.toggleModal}>
-        <div className="search-occupancy-summary-info otravo-info">
+      <div className="searchOccupancySummary" onClick={this.toggleModal}>
+        <div className="searchOccupancySummaryInfo otravo-info">
           <div><img src={bedIcon}/></div>
           <div>{this.state.occupancy.length}</div>
         </div>
-        <div className="search-occupancy-summary-info otravo-info">
+        <div className="searchOccupancySummaryInfo otravo-info">
         <div><img src={adultIcon}/></div>
           <div>{this.sumAdults()}</div>
         </div>
-        <div className="search-occupancy-summary-info otravo-info">
+        <div className="searchOccupancySummaryInfo otravo-info">
           <div><img src={childIcon}/></div>
           <div>{this.sumChildren()}</div>
         </div>
@@ -136,6 +152,7 @@ class SearchOccupancy extends Component<Props, State> {
                 decreaseChildren={this.decreaseChildren} 
                 deleteRoom={this.deleteRoom}
                 occupancy={this.state.occupancy}
+                maxRooms = {4}
                 close={this.closeModal}
                 addRoom={this.addRoom}
                 changeAges={this.changeAges}>

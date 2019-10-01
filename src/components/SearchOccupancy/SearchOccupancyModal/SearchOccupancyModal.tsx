@@ -6,14 +6,15 @@ import { JSXElement } from '@babel/types';
 
 interface Props {
   occupancy: Array<RoomOccupancy>
-  increaseAdults: any;
-  decreaseAdults: any;
-  increaseChildren: any;
-  decreaseChildren: any;
-  deleteRoom: any;
-  close: any;
-  addRoom: any;
-  changeAges: any;
+  maxRooms: number,
+  increaseAdults: any,
+  decreaseAdults: any,
+  increaseChildren: any,
+  decreaseChildren: any,
+  deleteRoom: any,
+  close: any,
+  addRoom: any,
+  changeAges: any
 }
 
 class SearchOccupancyModal extends Component<Props> {
@@ -82,13 +83,14 @@ class SearchOccupancyModal extends Component<Props> {
   render() {
     const rooms = this.props.occupancy.map(this.createRoom);
   
-    return <div className="searchOccupancyModal otravo-box">
-      <div className="searchOccupancyModalHeader">
-        <div className="searchOccupancyModalHeaderAddRoom" onClick={this.addRoom}>Add Room</div>
-        <div className="searchOccupancyModalHeaderClose" onClick={this.close}>Close</div>
-      </div>
+    return <div className="otravo-box-with-border searchOccupancyModal">
       <div>
         {rooms}
+      </div>
+      <div className="searchOccupancyModalFooter">
+        {this.props.maxRooms > this.props.occupancy.length
+        ? <div className="otravo-small-button" onClick={this.addRoom}>Añadir habitación</div>
+        : null }
       </div>
     </div>;
   } 

@@ -57,8 +57,8 @@ class SearchOccupancyRoom extends Component<Props> {
 
   createChildAge = (childAge: number, index: number) => {
     return <SearchOccupancyAge
-        title = {"Child age"}
-        subtitle = {"When ending the trip"}
+        title = {"Edad del Niño"}
+        subtitle = {"Al finalizar viaje"}
         age = {childAge}
         index = {index}
         changeAge = {this.changeAge}
@@ -69,8 +69,8 @@ class SearchOccupancyRoom extends Component<Props> {
 
   render() {
     const adults = <SearchOccupancyQuantity
-        title={"Adults"}
-        subtitle={"18+ years old"}
+        title={"Adultos"}
+        subtitle={"+18 años"}
         quantity={this.props.room.adults}
         min={1}
         max={4}
@@ -80,8 +80,8 @@ class SearchOccupancyRoom extends Component<Props> {
     </SearchOccupancyQuantity>;
 
     const children = <SearchOccupancyQuantity
-        title={"Childrens"}
-        subtitle={"Up to 17 years old"}
+        title={"Niños"}
+        subtitle={"-17 años al finalizar el viaje."}
         quantity={this.props.room.childrenAges.length}
         min={0}
         max={6}
@@ -94,8 +94,10 @@ class SearchOccupancyRoom extends Component<Props> {
 
     return <div className="searchOccupancyRoom">
       <div className="searchOccupancyRoomHeader">
-        <div>Room {this.props.index + 1}</div>
-        <div className="searchOccupancyRoomHeaderDelete" onClick={this.delete}>Delete</div>
+        <div className="otravo-title-2">Habitación {this.props.index + 1}</div>
+        {this.props.index > 0 
+          ? <div className="otravo-small-button" onClick={this.delete}>Eliminar</div>
+          : null}
       </div>
       <div>
         {adults}

@@ -1,17 +1,17 @@
 @import "../../styles/global.scss";
 
-.search-occupancy {
+.searchOccupancy {
   height: 50px;
 }
 
-.search-occupancy-summary {
+.searchOccupancySummary {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   cursor: pointer;
 }
 
-.search-occupancy-summary-info {
+.searchOccupancySummaryInfo {
   display: flex;
   justify-content: space-between;
   width: 45px;
