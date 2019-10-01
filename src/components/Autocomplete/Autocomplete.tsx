@@ -88,19 +88,21 @@ class Autocomplete extends Component<AutocompleteProps, AutocompleteState> {
     }
 
     return (
-      <Autosuggest
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        onSuggestionSelected={this.onSuggestionSelected}
-        focusInputOnSuggestionClick={false}
-        highlightFirstSuggestion={true}
-        getSuggestionValue={this.getSuggestionName}
-        shouldRenderSuggestions={this.shouldRenderSuggestions}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-        id={"asd"}
-      />
+      <div>
+        <label htmlFor={"asd"} className="otravo-label">Destino / Nombre del alojamiento:</label>
+        <Autosuggest
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          onSuggestionSelected={this.onSuggestionSelected}
+          focusInputOnSuggestionClick={false}
+          highlightFirstSuggestion={true}
+          getSuggestionValue={this.getSuggestionName}
+          shouldRenderSuggestions={this.shouldRenderSuggestions}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+          id={"asd"}/>
+      </div>
     )
   }
 }

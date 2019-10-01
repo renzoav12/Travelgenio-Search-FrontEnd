@@ -82,7 +82,7 @@ class SearchOccupancyModal extends Component<Props> {
   render() {
     const rooms = this.props.occupancy.map(this.createRoom);
   
-    return <div className="searchOccupancyModal">
+    return <div className="searchOccupancyModal otravo-box">
       <div className="searchOccupancyModalHeader">
         <div className="searchOccupancyModalHeaderAddRoom" onClick={this.addRoom}>Add Room</div>
         <div className="searchOccupancyModalHeaderClose" onClick={this.close}>Close</div>

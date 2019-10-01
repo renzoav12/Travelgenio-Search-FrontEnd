@@ -2,6 +2,10 @@ import React, { Component, MouseEvent } from 'react';
 import './SearchOccupancy.scss';
 import SearchOccupancyModal from './SearchOccupancyModal';
 
+const bedIcon = require('../../assets/images/icons/bed_icon.svg')
+const adultIcon = require('../../assets/images/icons/adult_icon.svg')
+const childIcon = require('../../assets/images/icons/adult_icon.svg')
+
 interface Props {
   occupancy: Array<RoomOccupancy>
 }
@@ -95,17 +99,34 @@ class SearchOccupancy extends Component<Props, State> {
     this.setState((prevState) => { return {showModal: !prevState.showModal}});
   }
 
-  sumGuests = ():number => {
+  sumAdults = ():number => {
     return this.state.occupancy
         .map(room => room.adults + room.childrenAges.length)
         .reduce((sum, current) => sum + current, 0);
   };
 
+  sumChildren = ():number => {
+    return this.state.occupancy
+        .map(room => room.childrenAges.length)
+        .reduce((sum, current) => sum + current, 0);
+  };
+
   render() {
-    return <div className="searchOccupancy">
-      <div className="searchOccupancySummary" onClick={this.toggleModal}>
-        <div>Rooms: {this.state.occupancy.length}</div>
-        <div>Guests: {this.sumGuests()}</div>
+    return <div className="search-occupancy">
+      <label className="otravo-label">Habitaciones:</label>
+      <div className="search-occupancy-summary" onClick={this.toggleModal}>
+        <div className="search-occupancy-summary-info otravo-info">
+          <div><img src={bedIcon}/></div>
+          <div>{this.state.occupancy.length}</div>
+        </div>
+        <div className="search-occupancy-summary-info otravo-info">
+        <div><img src={adultIcon}/></div>
+          <div>{this.sumAdults()}</div>
+        </div>
+        <div className="search-occupancy-summary-info otravo-info">
+          <div><img src={childIcon}/></div>
+          <div>{this.sumChildren()}</div>
+        </div>
       </div>
       { this.state.showModal 
           ? <SearchOccupancyModal 

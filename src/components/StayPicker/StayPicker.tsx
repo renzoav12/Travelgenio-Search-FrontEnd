@@ -4,6 +4,8 @@ import { Moment } from 'moment'
 import React from 'react'
 import { DateRangePicker } from 'react-dates'
 
+import './StayPicker.scss';
+
 export enum FocusedField {
   START_DATE = 'startDate',
   END_DATE = 'endDate',
@@ -55,22 +57,29 @@ class StayPicker extends React.Component<Props, State> {
     const { focusedInput } = this.state
     return (
       <div>
-        <DateRangePicker
-          startDateId="stayPicker_startDate"
-          endDateId="stayPicker_endDate"
-          startDate={this.props.startDate}
-          endDate={this.props.endDate}
-          onDatesChange={this.handleDatesChange}
-          focusedInput={focusedInput}
-          onFocusChange={this.handleFocusChange}
-          hideKeyboardShortcutsPanel={true}
-          //navNext={<Icon type="rightArrow" />}
-          //navPrev={<Icon type="leftArrow" />}
-          noBorder={false}
-          numberOfMonths={calendars}
-          minimumNights={0}
-          isOutsideRange={this.isOutsideRange}
-        />
+        <div className="stay-picker-labels">
+          <div className="stay-picker-label"><label className="otravo-label">Entrada:</label></div>
+          <div className="stay-picker-label"><label className="otravo-label">Salida:</label></div>
+        </div>
+        <div>
+          <DateRangePicker
+            startDateId="stayPicker_startDate"
+            endDateId="stayPicker_endDate"
+            startDate={this.props.startDate}
+            endDate={this.props.endDate}
+            onDatesChange={this.handleDatesChange}
+            focusedInput={focusedInput}
+            onFocusChange={this.handleFocusChange}
+            hideKeyboardShortcutsPanel={true}
+            //navNext={<Icon type="rightArrow" />}
+            //navPrev={<Icon type="leftArrow" />}
+            noBorder={true}
+            numberOfMonths={calendars}
+            minimumNights={0}
+            isOutsideRange={this.isOutsideRange}
+            customArrowIcon = {" "}
+          />
+        </div>
       </div>
 
     )

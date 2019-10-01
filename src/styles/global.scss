@@ -1,0 +1,65 @@
+@import "./fonts/fonts";
+@import "./variables/variables";
+
+body {
+  background-color: $backgroundColor;
+  color: $textColor;
+  font-family: Open Sans;
+}
+
+input[type=text] {
+  border: none;
+  border-bottom: 2px solid $primaryColor;
+  padding: 0px;
+  font-family: $inputTextFontFamily;
+  font-size: $inputTextFontSize;
+  font-weight: $inputTextFontWeight;
+  width: 100%;
+  color: $textColor;
+}
+
+input[type=submit] {
+  border: 1px solid $primaryColor;
+  border-radius: 3px;
+  color: $buttonLabelColor;
+  background-color: $primaryColor;
+  width: 100%;
+  height: 40px;
+  font-family: $buttonTextFontFamily;
+  font-size: $buttonTextFontSize;
+}
+
+input[type=submit]:hover {
+  background-color: $buttonBackgroundHoverColor;
+}
+
+.otravo-title {
+  font-family: $titleFontFamily;
+  font-size: $titleFontSize;
+  font-weight: $titleFontWeight;
+  color: $textColor;
+  margin-bottom: 10px;
+}
+
+.otravo-label {
+  font-family: $labelFontFamily;
+  font-size: $labelFontSize;
+  color: $textColor;
+  margin: 0px;
+}
+
+.otravo-info {
+  font-family: $infoFontFamily;
+  font-size: $infoFontSize;
+  font-weight: $infoFontWeight;
+  color: $textColor;
+}
+
+.otravo-box {
+  border: 1px solid $boxBorderColor;
+  border-radius: 3px;
+  background: $boxBackgroundColor;
+  width: 100%;
+  margin: 10px;
+  padding: 25px;
+}
