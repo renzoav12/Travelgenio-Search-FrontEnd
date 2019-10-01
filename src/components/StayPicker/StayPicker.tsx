@@ -28,11 +28,14 @@ interface State {
 
 class StayPicker extends React.Component<Props, State> {
   state = {
-    focusedInput: FocusedField.START_DATE,
+    focusedInput: FocusedField.START_DATE
   }
+  private focused: any = null;
 
   handleFocusChange = focusedInput => {
+    console.info(focusedInput);
     this.setState({ focusedInput })
+    this.focused = focusedInput;
   }
 
   handleDatesChange = ({ startDate, endDate }) => {
@@ -68,7 +71,7 @@ class StayPicker extends React.Component<Props, State> {
             startDate={this.props.startDate}
             endDate={this.props.endDate}
             onDatesChange={this.handleDatesChange}
-            focusedInput={focusedInput}
+            focusedInput={this.focused}
             onFocusChange={this.handleFocusChange}
             hideKeyboardShortcutsPanel={true}
             //navNext={<Icon type="rightArrow" />}
@@ -78,6 +81,9 @@ class StayPicker extends React.Component<Props, State> {
             minimumNights={0}
             isOutsideRange={this.isOutsideRange}
             customArrowIcon = {" "}
+            displayFormat = {"DD MMM YYYY"}
+            startDatePlaceholderText = {"Check In"}
+            endDatePlaceholderText = {"Check Out"}
           />
         </div>
       </div>
