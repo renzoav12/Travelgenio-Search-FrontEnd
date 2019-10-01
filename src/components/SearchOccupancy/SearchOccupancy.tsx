@@ -117,7 +117,7 @@ class SearchOccupancy extends Component<Props, State> {
 
   sumAdults = ():number => {
     return this.state.occupancy
-        .map(room => room.adults + room.childrenAges.length)
+        .map(room => room.adults)
         .reduce((sum, current) => sum + current, 0);
   };
 
