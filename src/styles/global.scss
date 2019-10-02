@@ -33,6 +33,21 @@ input[type=submit]:hover {
   background-color: $buttonBackgroundHoverColor;
 }
 
+button {
+  border: 1px solid $primaryColor;
+  border-radius: 3px;
+  color: $buttonLabelColor;
+  background-color: $primaryColor;
+  width: 100%;
+  height: 40px;
+  font-family: $buttonTextFontFamily;
+  font-size: $buttonTextFontSize;
+}
+
+button:hover {
+  background-color: $buttonBackgroundHoverColor;
+}
+
 .otravo-title {
   font-family: $titleFontFamily;
   font-size: $titleFontSize;

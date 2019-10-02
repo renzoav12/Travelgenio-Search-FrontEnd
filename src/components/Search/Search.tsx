@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchCardListContainer from '../../containers/SearchCardList';
 import SearchBoxContainer from '../../containers/SearchBox';
+import DummyCard from '../DummyCard/DummyCard';
 
 const Search = () => {
     return (
@@ -11,6 +12,7 @@ const Search = () => {
                 </aside>
 
                 <div className="col-9">
+                    <DummyCard></DummyCard>
                     <SearchCardListContainer></SearchCardListContainer>
                 </div>
             </div>

@@ -1,0 +1,76 @@
+@import "../../styles/global.scss";
+
+.otravo-card {
+  border-color: $primaryColor;
+  display: flex;
+  padding: 0px;
+}
+
+.otravo-card-image {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.otravo-card-image figure {
+  height: 270px;
+  width: 160px;
+  overflow: hidden;
+  margin: 0;
+}
+
+figure img{
+  display:block;
+  width: auto;
+  height: 270px;
+  margin-left: -50%;
+}
+
+.otravo-card-info {
+  flex-grow: 2;
+  padding: 10px;
+}
+
+.otravo-card-star {
+  margin-right: 5px;
+}
+
+.otravo-card-pricing {
+  border-left: 1px solid $boxBorderColor;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.otravo-card-description {
+  margin-top: 10px;
+  color: $primaryColor;
+}
+
+.otravo-card-amenity {
+  margin-right: 5px;
+}
+
+.otravo-card-ammenities {
+  margin-top: 10px;
+}
+
+.otra-card-others {
+  margin-top: 10px;
+  color: $accommodationOtherTextColor;
+}
+
+.otravo-card-stay-price {
+  color: $primaryColor;
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+.otravo-card-strikeout-price {
+  text-decoration: line-through;
+}
+
+.otravo-margin-top-30 {
+  margin-top: 30px;
+}
+
+
