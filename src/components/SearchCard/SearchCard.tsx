@@ -1,32 +1,22 @@
 import React from 'react';
+import SearchCardPricing, { SearchCardPricingProps } from '../SearchCardPricing/SearchCardPricing';
+import SearchCardContent, { SearchCardContentProps } from '../SearchCardContent/SearchCardContent';
+import { addLeadingSlash } from 'history/PathUtils';
 
 export interface SearchCardProps {
-    content: SearchCardContent;
+    id: string,
+    content: SearchCardContentProps;
+    pricing: SearchCardPricingProps;
 };
 
-export interface SearchCardContent {
-    id: string;
-    title: string;
-    images: SearchCardContentImage[];
-};
-
-export interface SearchCardContentImage {
-    url: string;
-};
-
-const SearchCard = ({content}: SearchCardProps) => (
+const SearchCard = ({id, content, pricing}: SearchCardProps) => (
     <div className="card">
-        <div className="image">
-            <img height="100" width="140" src={content.images[0].url} alt="none" />
+        id: {id}
+        <div>
+            <SearchCardContent id={id} {...content}></SearchCardContent>
         </div>
-        <div className="content">
-            <div className="header">{content.title}</div>
-            <div className="meta">
-                <span className="category">*****</span>
-            </div>
-            <div className="description">
-                <p></p>
-            </div>
+        <div>
+            <SearchCardPricing {...pricing}></SearchCardPricing>
         </div>
     </div>
 );
