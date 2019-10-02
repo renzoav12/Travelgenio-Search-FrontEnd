@@ -3,9 +3,9 @@ import './SearchOccupancy.scss';
 import SearchOccupancyModal from './SearchOccupancyModal';
 import { JSXElement } from '@babel/types';
 
-const bedIcon = require('../../assets/images/icons/bed_icon.svg')
-const adultIcon = require('../../assets/images/icons/adult_icon.svg')
-const childIcon = require('../../assets/images/icons/child_icon.svg')
+const bedIcon = require('../../assets/images/icons/bed_icon.svg');
+const adultIcon = require('../../assets/images/icons/adult_icon.svg');
+const childIcon = require('../../assets/images/icons/child_icon.svg');
 
 interface Props {
   occupancy: Array<RoomOccupancy>

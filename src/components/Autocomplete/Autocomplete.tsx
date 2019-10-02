@@ -1,7 +1,7 @@
 import React, { Component, SFC } from 'react'
 import Autosuggest, { InputProps, SuggestionsFetchRequestedParams } from 'react-autosuggest'
 
-import styles from './Autocomplete.scss'
+import './Autocomplete.scss'
 
 export interface SuggestionEntry {
   code: string
@@ -18,17 +18,31 @@ export interface AutocompleteProps {
   value: string
   onChange(suggestionEntry: SuggestionEntry): void
 }
+
 const languages: Array<SuggestionEntry> = [
-  {
-    code: '1',
-    type: 'CITY',
-    name: 'Miami'
-  }
+  { code: '1', type: 'CITY', name: 'Miami' } ,
+  { code: '2', type: 'AIRPORT', name: 'Miami 2' } ,
+  { code: '3', type: 'POI', name: 'Miami 3' } ,
+  { code: '4', type: 'ACCOMMODATION', name: 'Miami 4' } 
 ];
 
+const cityIcon = require('../../assets/images/icons/location_icon.svg');
+const accommodationIcon = require('../../assets/images/icons/building_icon.svg');
+const airportIcon = require('../../assets/images/icons/airport_icon.svg');
+const poiIcon = require('../../assets/images/icons/point-of-interest_icon.svg');
+
+const icons:Map<string, string> = new Map(
+  [
+    ["CITY", cityIcon], 
+    ["ACCOMMODATION", accommodationIcon], 
+    ["AIRPORT", airportIcon],
+    ["POI", poiIcon]
+  ]);
+
 const renderSuggestion: SFC<SuggestionEntry> = (suggestion: SuggestionEntry) => (
-  <div className={styles.suggestionInside}>
-    <span className={suggestion.type} />{suggestion.name}
+  <div className={"otravo-suggestion"}>
+    <div className="otravo-suggestion-type"><img className="otravo-suggestion-icon" src={icons.get(suggestion.type)}/></div>
+    <div className="otravo-suggestion-name">{suggestion.name}</div>
   </div>
 )
 
@@ -83,8 +97,8 @@ class Autocomplete extends Component<AutocompleteProps, AutocompleteState> {
     const { suggestions, inputValue } = this.state
     
     const inputProps: InputProps<SuggestionEntry> = {
-    onChange: this.onChangeInputValue,
-       value: inputValue && inputValue.length > 0 ? inputValue : value,
+      onChange: this.onChangeInputValue,
+      value: inputValue && inputValue.length > 0 ? inputValue : value,
     }
 
     return (

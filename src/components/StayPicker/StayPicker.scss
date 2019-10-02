@@ -45,12 +45,12 @@
 }
 
 .CalendarDay__selected_span {
-  background-color: $backgroundSelectedDays !important;
+  background-color: $backgroundSelected !important;
   color: $primaryColor !important;
 }
 
 .CalendarDay__hovered_span {
-  background-color: $backgroundSelectedDays !important;
+  background-color: $backgroundSelected !important;
   color: $primaryColor !important;
 }
 
