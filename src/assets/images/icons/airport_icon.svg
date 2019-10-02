@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="15px" height="13px" viewBox="0 0 15 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
-    <title></title>
+    <title>plane-solid</title>
     <desc>Created with Sketch.</desc>
-    <g id="Propuesta-3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="FontAwesome" font-size="16" font-weight="normal">
-        <text id="" transform="translate(6.500000, 8.000000) rotate(45.000000) translate(-6.500000, -8.000000) " fill="#657182">
-            <tspan x="0" y="14"></tspan>
-        </text>
+    <g id="Propuesta-3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="plane-solid" fill="#657182" fill-rule="nonzero">
+            <path d="M12.4999885,4.875 L9.52367271,4.875 L6.78668094,0.204648438 C6.71239103,0.0780785798 6.57426996,0 6.42470011,0 L4.71896309,0 C4.4421389,0 4.24239839,0.258222656 4.31844041,0.517714844 L5.59526921,4.875 L2.91661104,4.875 L1.79160586,3.4125 C1.71295967,3.31017578 1.58926118,3.25 1.45827099,3.25 L0.41685995,3.25 C0.145764952,3.25 -0.0531942968,3.49832031 0.0126914232,3.75476563 L0.833268117,6.5 L0.0126914232,9.24523438 C-0.0531942968,9.50167969 0.145764952,9.75 0.41685995,9.75 L1.45827099,9.75 C1.5895216,9.75 1.71295967,9.68982422 1.79160586,9.5875 L2.91661104,8.125 L5.59526921,8.125 L4.31844041,12.4820313 C4.24239839,12.7415234 4.4421389,13 4.71896309,13 L6.42470011,13 C6.57417996,13 6.71220143,12.9217969 6.78642052,12.7953516 L9.52367271,8.125 L12.4999885,8.125 C13.4205656,8.125 15,7.39755859 15,6.5 C15,5.60244141 13.4205656,4.875 12.4999885,4.875 Z" id="Path"></path>
+        </g>
     </g>
 </svg>
