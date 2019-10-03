@@ -14,7 +14,7 @@ class SearchCardList extends Component<SearchCardListProps> {
             return null;
         }
         return accommodations.map((accommodation: SearchCardProps) => {
-            return <SearchCard id={accommodation.id} content={accommodation.content} pricing={accommodation.pricing}/>;
+            return <SearchCard key={accommodation.id} id={accommodation.id} content={accommodation.content} pricing={accommodation.pricing}/>;
         });
     }
 
