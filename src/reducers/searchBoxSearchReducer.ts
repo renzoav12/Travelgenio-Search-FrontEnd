@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { AccommodationRateSearchAction, AccommodationRateSearchActionTypes } from '../actions/accommodationRateSearchActions';
+import { AccommodationRateSearchAction, AccommodationRateSearchActionTypes } from '../actions/searchBoxSearchActions';
 import { Reducer } from 'redux';
 import { SearchCardProps } from '../components/SearchCard/SearchCard';
 
@@ -21,7 +21,7 @@ const initialState = {
     error: null
 };
 
-export const accommodationRateSearchReducer: Reducer<SearchRequest, AccommodationRateSearchAction> = (
+export const searchBoxSearchReducer: Reducer<SearchRequest, AccommodationRateSearchAction> = (
     state = initialState, 
     action
 ) => {

@@ -1,5 +1,5 @@
-import axios from '../api';
-import { SearchResponse } from '../reducers/accommodationRateSearchReducer';
+import axios from '../api/search/search';
+import { SearchResponse } from '../reducers/searchBoxSearchReducer';
 
 export interface ShoppingService {
     search(checkIn: String): Promise<Array<SearchResponse>>;

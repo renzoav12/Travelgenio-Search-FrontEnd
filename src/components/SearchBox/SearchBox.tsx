@@ -8,6 +8,11 @@ import './SearchBox.scss';
 
 interface SearchBoxProps {
     onClick: (state: SearchBoxState) => void;
+    onChangeSuggestion: (state: SearchBoxSuggestionState) => void;
+}
+
+export interface SearchBoxSuggestionState {
+    hint: string;
 }
 
 export interface SearchBoxState {
