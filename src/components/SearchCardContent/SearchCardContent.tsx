@@ -1,9 +1,9 @@
 import React from 'react';
 import SearchCardContentImage, { SearchCardContentImageProps } from '../SearchCardContentImage/SearchCardContentImage';
+import SearchCardContentCategory, { SearchCardContentCategoryProps } from '../SearchCardContentCategory/SearchCardContentCategory';
 
 import './SearchCardContent.scss';
 
-const starIcon = require("../../assets/images/icons/star_icon.svg");
 const foodIcon = require("../../assets/images/icons/food_icon.svg");
 
 export interface SearchCardContentProps {
@@ -12,11 +12,6 @@ export interface SearchCardContentProps {
     category: SearchCardContentCategoryProps;
     amenities: SearchCardContentAmenityProps[];
     images: SearchCardContentImageProps;
-};
-
-interface SearchCardContentCategoryProps {
-    id: string;
-    code: string;
 };
 
 interface SearchCardContentAmenityProps {
@@ -31,13 +26,8 @@ const SearchCardContent = ({id, category, amenities, name, images}: SearchCardCo
         </div>
         <div className="otravo-card-info">
             <div className="otravo-title">{name}</div>
-            {category.code} {category.id}
             <div>
-                <img className="otravo-card-star" src={starIcon}/>
-                <img className="otravo-card-star" src={starIcon}/>
-                <img className="otravo-card-star" src={starIcon}/>
-                <img className="otravo-card-star" src={starIcon}/>
-                <img className="otravo-card-star" src={starIcon}/>
+                <SearchCardContentCategory {...category}></SearchCardContentCategory>
             </div>
             <div className="otravo-card-ammenities">
                 <img className="otravo-card-amenity" src={foodIcon}/>
