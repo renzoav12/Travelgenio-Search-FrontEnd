@@ -16,8 +16,8 @@ export interface SearchBoxSuggestionState {
 }
 
 export interface SearchBoxState {
-    searchType: string,
-    searchCode: string,
+    locationType: string,
+    locationCode: string,
     from: Moment,
     to: Moment,
     occupancy: Array<RoomOccupancy>;
@@ -27,8 +27,8 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
     constructor(props: SearchBoxProps) {
         super(props);
         this.state = {
-            searchType: 'CITY',
-            searchCode: '123',
+            locationType: 'ACCOMMODATION',
+            locationCode: '18138',
             from: moment(),
             to: moment(),
             occupancy: [{adults:2, childrenAges:[]}]
@@ -53,8 +53,8 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
 
     handleAutocompleteChange(suggestionEntry: SuggestionEntry) {
         this.setState({
-            searchType: suggestionEntry.type,
-            searchCode: suggestionEntry.code
+            locationType: suggestionEntry.type,
+            locationCode: suggestionEntry.code
         });
     }
 
