@@ -10,6 +10,7 @@ export interface SearchCardContentProps {
     id: string;
     name: string;
     category: SearchCardContentCategoryProps;
+    location: SearchCardContentLocationProps;
     amenities: SearchCardContentAmenityProps[];
     images: SearchCardContentImageProps;
 };
@@ -19,7 +20,19 @@ interface SearchCardContentAmenityProps {
     name: string;
 };
 
-const SearchCardContent = ({id, category, amenities, name, images}: SearchCardContentProps) => (
+interface SearchCardContentLocationProps {
+    address: SearchCardContentLocationAddressProps;
+};
+
+interface SearchCardContentLocationAddressProps {
+    city: string;
+    state: string;
+    street: string;
+    streetNumber: string;
+    country: string;
+};
+
+const SearchCardContent = ({id, category, amenities, name, images, location}: SearchCardContentProps) => (
     <div className="otravo-card-content">
         <div className="otravo-card-image-section">
             <SearchCardContentImage {...images}></SearchCardContentImage>
@@ -27,6 +40,7 @@ const SearchCardContent = ({id, category, amenities, name, images}: SearchCardCo
         <div className="otravo-card-info">
             <div className="otravo-title">{name}</div>
             <div>
+                {location.address.city},{location.address.state}
                 <SearchCardContentCategory {...category}></SearchCardContentCategory>
             </div>
             <div className="otravo-card-ammenities">
