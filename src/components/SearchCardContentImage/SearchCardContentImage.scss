@@ -1,0 +1,21 @@
+@import "../../styles/global.scss";
+
+.otravo-card-image {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.otravo-card-image figure {
+  height: 200px;
+  width: 160px;
+  overflow: hidden;
+  margin: 0;
+}
+
+figure img {
+  display:block;
+  width: auto;
+  height: 100%;
+  margin-left: -50%;
+}

@@ -1,0 +1,17 @@
+@import "../../styles/global.scss";
+
+.otravo-card {
+  border-color: $primaryColor !important;
+  padding: 0 !important;
+  display: flex;
+}
+
+.otravo-card-content-section {
+  width: 70%;
+}
+
+
+.otravo-card-pricing-section {
+  border-left: 1px solid $boxBorderColor;
+  width: 30%;
+}

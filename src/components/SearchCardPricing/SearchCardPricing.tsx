@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './SearchCardPricing.scss';
+
 export interface SearchCardPricingProps {
     nightlyPrice: Price;
     stayPrice: Price;
@@ -12,17 +14,18 @@ interface Price {
 };
 
 const SearchCardPricing = ({ nightlyPrice, stayPrice, strikethroughPrice }: SearchCardPricingProps) => (
-    <div>
-        <div className="">
-            Nightly: {nightlyPrice.currency} {nightlyPrice.amount}
+    <div className="otravo-card-pricing">
+        <div className="otravo-card-strikeout-price">
+            {strikethroughPrice.amount} {strikethroughPrice.currency} 
         </div>
-
-        <div className="">
-            stay: {stayPrice.currency} {stayPrice.amount}
+        <div className="otravo-card-stay-price">
+            {stayPrice.amount} {stayPrice.currency} 
         </div>
-
-        <div className="">
-            discount: {strikethroughPrice.currency} {strikethroughPrice.amount}
+        <div className="otravo-label">
+            {nightlyPrice.amount} {nightlyPrice.currency} por noche.
+        </div>
+        <div className="otravo-margin-top-30">
+            <button>Ver detalle</button>
         </div>
     </div>
 );

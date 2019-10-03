@@ -12,7 +12,6 @@ const Search = () => {
                 </aside>
 
                 <div className="col-9">
-                    <DummyCard></DummyCard>
                     <SearchCardListContainer></SearchCardListContainer>
                 </div>
             </div>

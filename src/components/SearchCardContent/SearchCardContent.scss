@@ -1,0 +1,27 @@
+@import "../../styles/global.scss";
+
+.otravo-card-content {
+  display: flex;
+  padding: 10px;
+  height: 100%;
+}
+
+.otravo-card-image-section {
+  width: 30%;
+}
+
+.otravo-card-info {
+  width: 70%;
+}
+
+.otravo-card-star {
+  margin-right: 5px;
+}
+
+.otravo-card-amenity {
+  margin-right: 5px;
+}
+
+.otravo-card-ammenities {
+  margin-top: 10px;
+}
