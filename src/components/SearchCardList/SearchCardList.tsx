@@ -19,7 +19,7 @@ class SearchCardList extends Component<SearchCardListProps> {
     }
 
     render() {
-        return <div className="ui horizontal cards">{this.renderAll()}</div>;
+        return <div>{this.renderAll()}</div>;
     }
 }
 

@@ -5,9 +5,16 @@ import { RootState } from '../../store';
 import SearchCardList from '../../components/SearchCardList';
 import { SearchCardListProps } from '../../components/SearchCardList/SearchCardList';
 
+import './SearchCardListContainer.scss';
+
 class SearchCardListContainer extends Component<SearchCardListProps> {
     render() {
-        return <SearchCardList accommodations={this.props.accommodations}></SearchCardList>
+        return <div className="otravo-serach-card-list-container">
+                <div className="otravo-serach-card-list-counter">
+                    <div>{this.props.accommodations.length} alojamientos encontrados</div>
+                </div>
+                <SearchCardList accommodations={this.props.accommodations}></SearchCardList>
+            </div>
     }
 }
 

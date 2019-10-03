@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchCardContentImage, { SearchCardContentImageProps } from '../SearchCardContentImage/SearchCardContentImage';
 import SearchCardContentCategory, { SearchCardContentCategoryProps } from '../SearchCardContentCategory/SearchCardContentCategory';
+import SearchCardContentAddress, { SearchCardContentLocationAddressProps } from '../SearchCardContentAddress/SearchCardContentAddress';
 
 import './SearchCardContent.scss';
 
@@ -24,13 +25,6 @@ interface SearchCardContentLocationProps {
     address: SearchCardContentLocationAddressProps;
 };
 
-interface SearchCardContentLocationAddressProps {
-    city: string;
-    state: string;
-    street: string;
-    streetNumber: string;
-    country: string;
-};
 
 const SearchCardContent = ({id, category, amenities, name, images, location}: SearchCardContentProps) => (
     <div className="otravo-card-content">
@@ -39,9 +33,11 @@ const SearchCardContent = ({id, category, amenities, name, images, location}: Se
         </div>
         <div className="otravo-card-info">
             <div className="otravo-title">{name}</div>
-            <div>
-                {location.address.city},{location.address.state}
+            <div className="otravo-card-category-section">
                 <SearchCardContentCategory {...category}></SearchCardContentCategory>
+            </div>
+            <div className="otravo-card-address-section">
+                <SearchCardContentAddress {...location.address}></SearchCardContentAddress>
             </div>
             <div className="otravo-card-ammenities">
                 <img className="otravo-card-amenity" src={foodIcon}/>
