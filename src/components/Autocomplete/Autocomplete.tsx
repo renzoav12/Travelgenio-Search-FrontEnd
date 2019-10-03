@@ -1,4 +1,5 @@
 import React, { Component, SFC } from 'react'
+import suggestionApi from '../../api/suggestions/suggestions'
 import Autosuggest, { InputProps, SuggestionsFetchRequestedParams } from 'react-autosuggest'
 
 import './Autocomplete.scss'
@@ -18,13 +19,6 @@ export interface AutocompleteProps {
   value: string
   onChange(suggestionEntry: SuggestionEntry): void
 }
-
-const languages: Array<SuggestionEntry> = [
-  { code: '1', type: 'CITY', name: 'Miami' } ,
-  { code: '2', type: 'AIRPORT', name: 'Miami 2' } ,
-  { code: '3', type: 'POI', name: 'Miami 3' } ,
-  { code: '4', type: 'ACCOMMODATION', name: 'Miami 4' } 
-];
 
 const cityIcon = require('../../assets/images/icons/location_icon.svg');
 const accommodationIcon = require('../../assets/images/icons/building_icon.svg');
@@ -46,20 +40,25 @@ const renderSuggestion: SFC<SuggestionEntry> = (suggestion: SuggestionEntry) => 
   </div>
 )
 
-const getSuggestions = (value: String) => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-
-  var suggestion = inputLength === 0 ? [] : languages.filter(lang =>
-    lang.name.toLowerCase().slice(0, inputLength) === inputValue
-  );
-  return suggestion;
-};
-
 class Autocomplete extends Component<AutocompleteProps, AutocompleteState> {
   state = {
     suggestions: [],
     inputValue: this.props.value
+  }
+
+  getSuggestions2(value: String) {
+
+    try {
+      suggestionApi.get('/suggestions', {
+        params: {hint: value}
+      }).then((response) => {
+        this.setState({
+          suggestions: response.data
+        })
+      });
+    } catch(e) {
+      console.log(e);
+    }
   }
 
   onSuggestionsClearRequested = (): void => {
@@ -79,13 +78,11 @@ class Autocomplete extends Component<AutocompleteProps, AutocompleteState> {
   }
 
   onSuggestionsFetchRequested = (params: SuggestionsFetchRequestedParams) => {
-    this.setState({
-      suggestions: getSuggestions(params.value)
-    });
+    this.getSuggestions2(params.value);
   };
 
   shouldRenderSuggestions = (input: string): boolean => {
-    return input.trim().length > 1
+    return input.trim().length > 2
   }
 
   getSuggestionName(suggestion: SuggestionEntry) {
@@ -103,7 +100,7 @@ class Autocomplete extends Component<AutocompleteProps, AutocompleteState> {
 
     return (
       <div>
-        <label htmlFor={"asd"} className="otravo-label">Destino / Nombre del alojamiento:</label>
+        <label htmlFor={"asd"} className="otravo-label">Destino / Alojamiento:</label>
         <Autosuggest
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}

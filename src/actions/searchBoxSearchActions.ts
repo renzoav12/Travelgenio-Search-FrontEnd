@@ -1,8 +1,8 @@
-import search from '../api';
+import search from '../api/search/search';
 import { ThunkAction } from 'redux-thunk';
 import { Dispatch } from 'redux';
 import { RootState, RootActions } from '../store';
-import { SearchResponse} from '../reducers/accommodationRateSearchReducer';
+import { SearchResponse} from '../reducers/searchBoxSearchReducer';
 import { AxiosResponse } from 'axios';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootActions>;
@@ -13,16 +13,16 @@ export enum AccommodationRateSearchActionTypes {
     FETCH_FAILED = 'FETCH_ACCOMMODATION_RATE_SEARCH_FAILED'
 }
 
-interface FetchAccommodationRateSearch {
+interface FetchSearchBoxSearch {
     type: AccommodationRateSearchActionTypes.FETCH;
 }
 
-interface FetchAccommodationRateSearchSuccess {
+interface FetchSearchBoxSearchSuccess {
     type: AccommodationRateSearchActionTypes.FETCH_SUCCESS;
     payload: SearchResponse;
 }
 
-interface FetchAccommodationRateSearchFailed {
+interface FetchSearchBoxSearchFailed {
     type: AccommodationRateSearchActionTypes.FETCH_FAILED;
 }
 
@@ -41,8 +41,8 @@ export interface SearchHeaderParameters {
 }
 
 
-export const fetchAccommodationRateSearch = (queryParameters: SearchParameters): ThunkResult<void> => async dispatch => {
-    handleFetchAccommodationRateSearch(dispatch);
+export const fetchSearchBoxSearch = (queryParameters: SearchParameters): ThunkResult<void> => async dispatch => {
+    handleFetchSearchBoxSearch(dispatch);
 
     try {
         const response: AxiosResponse<SearchResponse> = await search.get('/search', {
@@ -52,22 +52,22 @@ export const fetchAccommodationRateSearch = (queryParameters: SearchParameters):
                 country: queryParameters.country
             }
         });
-        handleAccommodationRateSearchSuccess(dispatch, response.data);
+        handleFetchSearchBoxSearchSuccess(dispatch, response.data);
     } catch (e) {
-        handleAccommodationRateSearchFailed(dispatch);
+        handleFetchSearchBoxSearchFailed(dispatch);
     }
 };
 
 
 
-export const handleFetchAccommodationRateSearch = (dispatch: Dispatch<FetchAccommodationRateSearch>) => {
+export const handleFetchSearchBoxSearch = (dispatch: Dispatch<FetchSearchBoxSearch>) => {
     dispatch({
         type: AccommodationRateSearchActionTypes.FETCH
     });
 };
 
-export const handleAccommodationRateSearchSuccess = (
-    dispatch: Dispatch<FetchAccommodationRateSearchSuccess>,
+export const handleFetchSearchBoxSearchSuccess = (
+    dispatch: Dispatch<FetchSearchBoxSearchSuccess>,
     response: SearchResponse
 ) => {
     dispatch({
@@ -76,13 +76,13 @@ export const handleAccommodationRateSearchSuccess = (
     });
 };
 
-export const handleAccommodationRateSearchFailed = (dispatch: Dispatch<FetchAccommodationRateSearchFailed>) => {
+export const handleFetchSearchBoxSearchFailed = (dispatch: Dispatch<FetchSearchBoxSearchFailed>) => {
     dispatch({
         type: AccommodationRateSearchActionTypes.FETCH_FAILED
     });
 };
 
 export type AccommodationRateSearchAction = 
-    | FetchAccommodationRateSearch 
-    | FetchAccommodationRateSearchSuccess 
-    | FetchAccommodationRateSearchFailed;
+    | FetchSearchBoxSearch 
+    | FetchSearchBoxSearchSuccess 
+    | FetchSearchBoxSearchFailed;

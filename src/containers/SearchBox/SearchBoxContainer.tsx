@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
-import {fetchAccommodationRateSearch, SearchParameters} from '../../actions/accommodationRateSearchActions';
+import {fetchSearchBoxSearch, SearchParameters} from '../../actions/searchBoxSearchActions';
 import SearchBox from '../../components/SearchBox';
-import { SearchBoxState } from '../../components/SearchBox/SearchBox';
+import { SearchBoxState, SearchBoxSuggestionState } from '../../components/SearchBox/SearchBox';
 import { RoomOccupancy } from '../../components/SearchOccupancy/SearchOccupancy';
+import { fetchSearchSuggestion, SearchSuggestionParameters } from '../../actions/searchBoxSuggestionAction';
 
 export interface SearchBoxContainerProps {
     fetchAccommodationRateSearch: (parameters: SearchParameters) => void;
+    fetchSuggestions: (parameters: SearchSuggestionParameters) => void;
 }
 
 class SearchBoxContainer extends Component<SearchBoxContainerProps> {
@@ -15,6 +17,7 @@ class SearchBoxContainer extends Component<SearchBoxContainerProps> {
         super(props);
 
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleSuggestions = this.handleSuggestions.bind(this);
         this.convertOccupancy = this.convertOccupancy.bind(this);
     }
 
@@ -36,9 +39,17 @@ class SearchBoxContainer extends Component<SearchBoxContainerProps> {
         )
     }
 
+    handleSuggestions(searchBoxSuggestionState: SearchBoxSuggestionState) {
+        this.props.fetchSuggestions(
+            {
+                hint: searchBoxSuggestionState.hint
+            }
+        )
+    }    
+
     render() {
-        return <SearchBox onClick={this.handleSearch}></SearchBox>;
+        return <SearchBox onChangeSuggestion={this.handleSuggestions} onClick={this.handleSearch}></SearchBox>;
     }
 }
 
-export default connect(null, {fetchAccommodationRateSearch})(SearchBoxContainer);
+export default connect(null, {fetchAccommodationRateSearch: fetchSearchBoxSearch, fetchSuggestions: fetchSearchSuggestion})(SearchBoxContainer);
