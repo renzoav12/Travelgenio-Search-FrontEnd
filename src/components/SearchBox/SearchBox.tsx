@@ -27,8 +27,8 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
     constructor(props: SearchBoxProps) {
         super(props);
         this.state = {
-            locationType: 'ACCOMMODATION',
-            locationCode: '18138',
+            locationType: '',
+            locationCode: '',
             from: moment(),
             to: moment(),
             occupancy: [{adults:2, childrenAges:[]}]
