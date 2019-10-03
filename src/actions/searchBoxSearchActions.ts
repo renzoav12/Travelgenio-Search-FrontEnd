@@ -27,8 +27,8 @@ interface FetchSearchBoxSearchFailed {
 }
 
 export interface SearchParameters {
-    readonly searchType: string,
-    readonly searchCode: string,   
+    readonly locationType: string,
+    readonly locationCode: string,   
     readonly checkIn: string,
     readonly checkOut: string,
     readonly occupancy: string,
