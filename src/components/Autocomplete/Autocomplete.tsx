@@ -3,7 +3,6 @@ import suggestionApi from '../../api/suggestions/suggestions'
 import Autosuggest, { InputProps, SuggestionsFetchRequestedParams } from 'react-autosuggest'
 
 import './Autocomplete.scss'
-import { AxiosResponse } from 'axios';
 
 export interface SuggestionEntry {
   code: string
@@ -83,7 +82,7 @@ class Autocomplete extends Component<AutocompleteProps, AutocompleteState> {
   };
 
   shouldRenderSuggestions = (input: string): boolean => {
-    return input.trim().length > 1
+    return input.trim().length > 2
   }
 
   getSuggestionName(suggestion: SuggestionEntry) {
