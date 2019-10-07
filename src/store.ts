@@ -2,18 +2,20 @@ import { createStore, combineReducers, applyMiddleware, /* compose */ } from 're
 import reduxThunk, { ThunkMiddleware } from 'redux-thunk';
 //import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { searchBoxSearchReducer, SearchRequest } from './reducers/searchBoxSearchReducer';
-import { AccommodationRateSearchAction } from './actions/searchBoxSearchActions';
+import { searchReducer } from './reducers/searchReducer';
+import { SearchAction } from './actions/search/search.action';
+
+import { Search } from './model/search';
 
 export interface RootState {
-    readonly search: SearchRequest;
+    readonly search: Search;
 }
 
 const rootReducer = combineReducers<RootState>({
-    search: searchBoxSearchReducer
+    search: searchReducer
 });
 
-export type RootActions = AccommodationRateSearchAction; // | OtherAction | etc.
+export type RootActions = SearchAction; // | OtherAction | etc.
 
 export const store = createStore(
     rootReducer,

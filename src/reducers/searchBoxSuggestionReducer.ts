@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { Reducer } from 'redux';
 import { SearchCardProps } from '../components/SearchCard/SearchCard';
-import { SearchSuggestionAction, SearchSuggestionsActionTypes } from '../actions/searchBoxSuggestionAction';
+import { SearchSuggestionAction, SearchSuggestionsActionTypes } from '../actions/search/searchBoxSuggestionAction';
 
 export interface SearchSuggestionResponse {
     accommodations: SearchCardProps[];

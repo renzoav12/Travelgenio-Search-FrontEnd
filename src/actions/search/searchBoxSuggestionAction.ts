@@ -1,9 +1,9 @@
-import search from '../api/suggestions/suggestions';
+import search from '../../api/suggestions/suggestions';
 import { ThunkAction } from 'redux-thunk';
 import { Dispatch } from 'redux';
-import { RootState, RootActions } from '../store';
+import { RootState, RootActions } from '../../store';
 import { AxiosResponse } from 'axios';
-import { SearchSuggestionResponse } from '../reducers/searchBoxSuggestionReducer';
+import { SearchSuggestionResponse } from '../../reducers/searchBoxSuggestionReducer';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootActions>;
 

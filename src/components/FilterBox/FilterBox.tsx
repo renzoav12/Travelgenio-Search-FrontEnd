@@ -4,7 +4,7 @@ import RangeFilter, { RangeFilterProp, RangeProp } from './RangeFilter/RangeFilt
 import ValueFilter, { ValueFilterProp } from './ValueFilter/ValueFilter';
 import './FilterBox.scss';
 
-export interface Props {
+interface FilterBoxProps {
   filters: Map<string, ValueFilterProp 
   | RangeFilterProp 
   | SingleOptionFilterProp>;
@@ -17,7 +17,10 @@ export enum FilterType {
   Option = "option"
 }
 
-class FilterBox extends Component<Props> {
+class FilterBox extends Component<FilterBoxProps> {
+  constructor(props: FilterBoxProps) {
+    super(props);
+  }
 
   onChangeValue = (field: string, value: string): void => {
     this.sendOnChangeEvent(field, FilterType.Value, [value]);

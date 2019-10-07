@@ -13,7 +13,7 @@ export enum FocusedField {
 
 type OnChangeHandler = (dates: { startDate?: Moment; endDate?: Moment }) => void
 
-interface Props {
+interface StayPickerProps {
   calendars: 1 | 2
   startDate: Moment
   endDate: Moment
@@ -22,11 +22,11 @@ interface Props {
   onChange: OnChangeHandler
 }
 
-interface State {
+interface StayPickerState {
   focusedInput?: FocusedField
 }
 
-class StayPicker extends React.Component<Props, State> {
+class StayPicker extends React.Component<StayPickerProps, StayPickerState> {
   state = {
     focusedInput: FocusedField.START_DATE
   }
