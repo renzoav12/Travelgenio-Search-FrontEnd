@@ -1,14 +1,12 @@
 import React, { Component, MouseEvent, DOMElement } from 'react';
 import './SearchOccupancy.scss';
 import SearchOccupancyModal from './SearchOccupancyModal';
-import { JSXElement } from '@babel/types';
-
-const bedIcon = require('../../assets/images/icons/bed_icon.svg');
-const adultIcon = require('../../assets/images/icons/adult_icon.svg');
-const childIcon = require('../../assets/images/icons/child_icon.svg');
+import {Hotel, Person, Face}  from '@material-ui/icons';
 
 interface Props {
-  occupancy: Array<RoomOccupancy>
+  occupancy?: Array<RoomOccupancy>;
+  onChange: (roomOccupancy: Array<RoomOccupancy>) => void;
+  onClose: (roomOccupancy: Array<RoomOccupancy>) => void;
 }
 
 interface State {
@@ -27,7 +25,7 @@ class SearchOccupancy extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.state = {showModal: false, occupancy: this.props.occupancy};
+    this.state = {showModal: false, occupancy: this.props.occupancy || [ { adults : 2, childrenAges : [] } ]};
 
     this.increaseAdults = this.increaseAdults.bind(this);
     this.decreaseAdults = this.decreaseAdults.bind(this);
@@ -37,6 +35,8 @@ class SearchOccupancy extends Component<Props, State> {
     this.addRoom = this.addRoom.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.sendOnChangeEvent = this.sendOnChangeEvent.bind(this);
+    this.sendOnCloseEvent = this.sendOnCloseEvent.bind(this);
   }
 
   componentWillMount() {
@@ -53,18 +53,28 @@ class SearchOccupancy extends Component<Props, State> {
     }
   }
 
+  sendOnChangeEvent = (occupancy: Array<RoomOccupancy>):void => {
+    this.props.onChange(occupancy);
+  }
+
+  sendOnCloseEvent = ():void => {
+    this.props.onClose(this.state.occupancy);
+  }
+
   increaseAdults = (index: number): void => {
     this.setState((prevState: State) => {      
       let rooms: Array<RoomOccupancy> = [...prevState.occupancy];
       rooms[index].adults++;
+      this.sendOnChangeEvent(rooms);
       return {occupancy: rooms };
-    });    
+    });
   }
 
   decreaseAdults = (index: number): void => {
     this.setState((prevState: State) => {      
       let rooms: Array<RoomOccupancy> = [...prevState.occupancy];
       rooms[index].adults--;
+      this.sendOnChangeEvent(rooms);
       return {occupancy: rooms };
     });    
   }
@@ -73,42 +83,50 @@ class SearchOccupancy extends Component<Props, State> {
     this.setState((prevState: State) => {      
       let rooms: Array<RoomOccupancy> = [...prevState.occupancy];
       rooms[index].childrenAges.push(-1);
+      this.sendOnChangeEvent(rooms);
       return {occupancy: rooms };
-    });    
+    });
   }
 
   decreaseChildren = (index: number): void => {
     this.setState((prevState: State) => {      
       let rooms: Array<RoomOccupancy> = [...prevState.occupancy];
       rooms[index].childrenAges.pop();
+      this.sendOnChangeEvent(rooms);
       return {occupancy: rooms };
-    });    
+    }); 
   }
 
   deleteRoom = (index: number): void => {
     this.setState((prevState: State) => {      
       let rooms: Array<RoomOccupancy> = [...prevState.occupancy];
-      return {occupancy: rooms.filter((room,roomIndex) => roomIndex !== index) };
-    });    
+      let updatedRooms = rooms.filter((room,roomIndex) => roomIndex !== index);
+      this.sendOnChangeEvent(updatedRooms);
+      return {occupancy: updatedRooms };
+    });
   }
 
   addRoom = (index: number): void => {
     this.setState((prevState: State) => {      
       let rooms: Array<RoomOccupancy> = [...prevState.occupancy];
-      return {occupancy: rooms.concat({adults: 2, childrenAges:[]}) };
-    });    
+      let updatedRooms = rooms.concat({adults: 2, childrenAges:[]});
+      this.sendOnChangeEvent(updatedRooms);
+      return {occupancy:  updatedRooms};
+    });
   }
 
   changeAges = (ages: Array<number>, roomIndex: number): void => {
     this.setState((prevState: State) => {      
       let rooms: Array<RoomOccupancy> = [...prevState.occupancy];
       rooms[roomIndex].childrenAges = ages;
+      this.sendOnChangeEvent(rooms);
       return {occupancy: rooms};
-    });    
+    });
   }
 
   closeModal = (): void => {
-    this.setState({showModal: false});    
+    this.setState({showModal: false});
+    this.sendOnCloseEvent();
   }
 
   toggleModal = (event :MouseEvent<HTMLDivElement>):void => {
@@ -132,15 +150,15 @@ class SearchOccupancy extends Component<Props, State> {
       <label className="otravo-label">Habitaciones:</label>
       <div className="searchOccupancySummary" onClick={this.toggleModal}>
         <div className="searchOccupancySummaryInfo otravo-info">
-          <div><img src={bedIcon}/></div>
+          <div><Hotel/></div>
           <div>{this.state.occupancy.length}</div>
         </div>
         <div className="searchOccupancySummaryInfo otravo-info">
-        <div><img src={adultIcon}/></div>
+        <div><Person/></div>
           <div>{this.sumAdults()}</div>
         </div>
         <div className="searchOccupancySummaryInfo otravo-info">
-          <div><img src={childIcon}/></div>
+          <div><Face/></div>
           <div>{this.sumChildren()}</div>
         </div>
       </div>

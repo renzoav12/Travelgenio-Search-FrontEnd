@@ -4,6 +4,7 @@ import moment, { Moment } from 'moment'
 import 'react-dates/lib/css/_datepicker.css';
 import Autocomplete, { SuggestionEntry } from '../Autocomplete/Autocomplete';
 import SearchOccupancy,  { RoomOccupancy } from '../SearchOccupancy/SearchOccupancy';
+
 import './SearchBox.scss';
 
 interface SearchBoxProps {
@@ -20,7 +21,7 @@ export interface SearchBoxState {
     locationCode: string,
     from: Moment,
     to: Moment,
-    occupancy: Array<RoomOccupancy>;
+    occupancy: Array<RoomOccupancy>
 }
 
 class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
@@ -36,12 +37,14 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleAutocompleteChange = this.handleAutocompleteChange.bind(this);
+        this.handleOccupancyChange = this.handleOccupancyChange.bind(this);
+        this.handleOccupancyClose = this.handleOccupancyClose.bind(this);
     }
 
-    handleChange(event: any) {
+    handleChange = (event: any): void => {
     }
 
-    handleSubmit(event: any) {
+    handleSubmit = (event: any): void => {
         //alert('A name was submitted: ' + this.state);
         event.preventDefault();
         this.props.onClick(this.state);
@@ -51,11 +54,19 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
         this.setState({ from: dates.startDate, to: dates.endDate });
     }
 
-    handleAutocompleteChange(suggestionEntry: SuggestionEntry) {
+    handleAutocompleteChange = (suggestionEntry: SuggestionEntry): void => {
         this.setState({
             locationType: suggestionEntry.type,
             locationCode: suggestionEntry.code
         });
+    }
+
+    handleOccupancyChange = (occupancy: Array<RoomOccupancy>): void => {
+        console.info("---> Change Occupancy :" + JSON.stringify(occupancy));
+    }
+
+    handleOccupancyClose = (occupancy: Array<RoomOccupancy>): void => {
+        console.info("---> Close Occupancy :" + JSON.stringify(occupancy));
     }
 
     render() {
@@ -70,7 +81,10 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
                         <StayPicker calendars={2} startDate={this.state.from} endDate={this.state.to} onChange={this.handleStayPickerChange}></StayPicker>
                     </div>
                     <div className="search-box-element">
-                        <SearchOccupancy occupancy={this.state.occupancy}></SearchOccupancy>
+                        <SearchOccupancy 
+                            onChange = {this.handleOccupancyChange} 
+                            onClose = {this.handleOccupancyClose} 
+                            occupancy = {this.state.occupancy}/>
                     </div>
                     <div className="search-box-element">
                         <input type="submit" value="Buscar" />
