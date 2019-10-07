@@ -48,7 +48,7 @@ class SearchOccupancy extends Component<Props, State> {
   }
 
   handleClick = (event) => {
-    if(!this.node.contains(event.target)) {
+    if(!this.node.contains(event.target) && this.state.showModal) {
       this.closeModal();
     }
   }
