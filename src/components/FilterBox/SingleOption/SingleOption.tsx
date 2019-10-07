@@ -5,13 +5,14 @@ import './SingleOption.scss';
 
 interface Props {
   option: SingleOptionProp;
+  onChange: (selected: boolean) => void;
 }
 
 export interface SingleOptionProp {
   code: string,
   label: string,
   quantity: number,
-  selected: boolean
+  selected: boolean,
 }
 
 class SingleOption extends Component<Props> {
@@ -27,7 +28,8 @@ class SingleOption extends Component<Props> {
           style = {{ backgroundColor: 'transparent' }}
           color = "primary" 
           value = {this.props.option.code} 
-          checked = {this.props.option.selected}/>
+          checked = {this.props.option.selected}
+          onChange = {(event):void => this.props.onChange(event.target.checked)}/>
       </div>
       <div className="otravo-label otravo-filter-option-label">
         {this.props.option.label}
