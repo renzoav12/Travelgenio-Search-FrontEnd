@@ -4,6 +4,7 @@ import './RangeFilter.scss';
 
 interface Props {
   filter: RangeFilterProp;
+  onChange: (field: string, values: RangeProp) => void;
 }
 
 export interface RangeFilterProp {
@@ -23,12 +24,16 @@ interface State {
 
 
 
-class SingleOptionFilter extends Component<Props, State> {
+class RangeFilter extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
   }
 
+  onChange = (event: any, value: any): void => {
+    console.info(value);
+    this.props.onChange(this.props.filter.field, {min: value[0], max: value[1]});
+  }
 
   render() {
     return <div>
@@ -41,10 +46,11 @@ class SingleOptionFilter extends Component<Props, State> {
                   valueLabelDisplay="on"
                   max = {this.props.filter.boundaries.max}
                   min = {this.props.filter.boundaries.min}
-                  defaultValue= {[this.props.filter.values.min, this.props.filter.values.max]}/>
+                  defaultValue = {[this.props.filter.values.min, this.props.filter.values.max]}
+                  onChangeCommitted= {this.onChange} />
               </div>
             </div>;
   } 
 }
 
-export default SingleOptionFilter;
+export default RangeFilter;

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import SingleOptionFilter, { SingleOptionFilterProp } from './SingleOptionFilter/SingleOptionFilter';
-import RangeFilter, { RangeFilterProp } from './RangeFilter/RangeFilter';
+import RangeFilter, { RangeFilterProp, RangeProp } from './RangeFilter/RangeFilter';
 
 import './FilterBox.scss';
 
 interface Props {
   filters?: Array<RangeFilterProp | SingleOptionFilterProp>;
+  onChange: (filters: Array<RangeFilterProp | SingleOptionFilterProp>) => void;
 }
 
 interface State {
@@ -65,8 +66,29 @@ class FilterBox extends Component<Props, State> {
           changedOption.selected = selected;
         }
       }
+
+      this.sendOnChangeEvent(filters);
+      
       return {filters: filters};
     });
+  }
+
+  onChangeRange = (field: string, values: RangeProp) => {
+    this.setState((prevState: State) => {
+      let filters: Array<any> = [...prevState.filters];
+      let changedFilter = filters.find(filter => filter.field === field);
+      if(changedFilter) {
+        changedFilter.values = values;
+      }
+
+      this.sendOnChangeEvent(filters);
+      
+      return {filters: filters};
+    });
+  }
+
+  sendOnChangeEvent = (filters: Array<RangeFilterProp | SingleOptionFilterProp>):void => {
+    this.props.onChange(filters);
   }
 
   isRangeFilter = (filter: any): filter is RangeFilterProp => {
@@ -95,7 +117,7 @@ class FilterBox extends Component<Props, State> {
 
   renderRangeFilter = (filter: any) => {
     return  <div  key = {filter.field} className="otravo-filter">
-              <RangeFilter filter = {filter}/>
+              <RangeFilter filter = {filter} onChange = {this.onChangeRange}/>
             </div>;
   }
 
