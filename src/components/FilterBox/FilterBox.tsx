@@ -29,6 +29,7 @@ class FilterBox extends Component<Props, State> {
             min: 120,
             max: 788
           }
+
         },
         {
           field: 'amenity',

@@ -76,7 +76,6 @@ class SingleOptionFilter extends Component<Props, State> {
     });    
   }
 
-
   render() {
 
     const all = <SingleOption 

@@ -11,7 +11,7 @@ export interface RangeFilterProp {
   field: string;
   label: string;
   boundaries: RangeProp;
-  values: RangeProp;
+  values?: RangeProp;
 }
 
 export interface RangeProp {
@@ -46,7 +46,9 @@ class RangeFilter extends Component<Props, State> {
                   valueLabelDisplay="on"
                   max = {this.props.filter.boundaries.max}
                   min = {this.props.filter.boundaries.min}
-                  defaultValue = {[this.props.filter.values.min, this.props.filter.values.max]}
+                  defaultValue = {(this.props.filter.values) 
+                    ? [this.props.filter.values.min, this.props.filter.values.max]
+                  : [this.props.filter.boundaries.min, this.props.filter.boundaries.max]}
                   onChangeCommitted= {this.onChange} />
               </div>
             </div>;
