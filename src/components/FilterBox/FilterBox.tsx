@@ -73,6 +73,21 @@ class FilterBox extends Component<Props, State> {
     });
   }
 
+  onCleanSelectionSingleOption = (field: string) => {
+    this.setState((prevState: State) => {
+      let filters: Array<any> = [...prevState.filters];
+      let changedFilter = filters.find(filter => filter.field === field);
+      if(changedFilter) {
+        changedFilter.options.forEach(option => option.selected = false);
+      }
+
+      this.sendOnChangeEvent(filters);
+      
+      return {filters: filters};
+    });
+  }
+
+
   onChangeRange = (field: string, values: RangeProp) => {
     this.setState((prevState: State) => {
       let filters: Array<any> = [...prevState.filters];
@@ -126,7 +141,8 @@ class FilterBox extends Component<Props, State> {
             <SingleOptionFilter 
               initialShowQty={2} 
               filter = {filter}
-              onChange = {this.onChangeSingleOption}/>
+              onChange = {this.onChangeSingleOption}
+              onCleanSelection = {this.onCleanSelectionSingleOption}/>
           </div>;
   }
 

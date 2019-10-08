@@ -8,6 +8,7 @@ interface Props {
   filter: SingleOptionFilterProp;
   initialShowQty: number;
   onChange: (field:string, code: string, selected: boolean) => void;
+  onCleanSelection: (field:string) => void;
 }
 
 export interface SingleOptionFilterProp {
@@ -18,7 +19,8 @@ export interface SingleOptionFilterProp {
 
 interface State {
   showAll: boolean;
-  optionsShowQty: number;
+  showOptionsQty: number;
+  optionAll: SingleOptionProp;
 }
 
 
@@ -29,7 +31,13 @@ class SingleOptionFilter extends Component<Props, State> {
     super(props);
     this.state = {
       showAll: false,
-      optionsShowQty: props.initialShowQty 
+      showOptionsQty: props.initialShowQty,
+      optionAll: {
+        code: "",
+        label: "Todos",
+        quantity: this.props.filter.options.map(option => option.quantity).reduce((sum,current) => sum + current, 0),
+        selected: !this.props.filter.options.some(option => option.selected)
+      }
     };
   }
 
@@ -37,19 +45,53 @@ class SingleOptionFilter extends Component<Props, State> {
     this.setState((prevState: State) => {      
       return {
         showAll: !prevState.showAll,
-        optionsShowQty: prevState.showAll ? this.props.initialShowQty : this.props.filter.options.length
+        showOptionsQty: prevState.showAll ? this.props.initialShowQty : this.props.filter.options.length
       };
     });    
   }
 
+  onSelectAll = (selected: boolean) => {
+    this.setSelectAll(true);
+    this.props.onCleanSelection(this.props.filter.field);
+  }
+
+  onChangeSelection = (code: string, selected: boolean) : void => {
+    this.setSelectAll(
+      !selected 
+      && !this.props.filter.options
+        .filter(option => option.code !== code)
+        .some(option => option.selected)
+    );
+
+    this.props.onChange(this.props.filter.field, code, selected);
+  }
+
+  setSelectAll = (selected: boolean): void => {
+    this.setState((prevState: State) => {      
+      
+      let optionAll: SingleOptionProp = prevState.optionAll;
+      optionAll.selected = selected;
+
+      return { optionAll: optionAll };
+    });    
+  }
+
+
   render() {
+
+    const all = <SingleOption 
+                  key={this.state.optionAll.code} 
+                  option={this.state.optionAll} 
+                  onChange={this.onSelectAll}/>
+
+
     const options = this.props.filter.options
-      .slice(0, this.state.optionsShowQty)
+      .slice(0, this.state.showOptionsQty)
       .map(option =>
         <SingleOption 
           key={option.code} 
           option={option} 
-          onChange={(selected: boolean):void => {this.props.onChange(this.props.filter.field, option.code, selected)}}/>
+          onChange={(selected: boolean):void => {this.onChangeSelection(option.code, selected)}}/>
       );
 
     const showMore = this.state.showAll 
@@ -59,6 +101,9 @@ class SingleOptionFilter extends Component<Props, State> {
     return <div>
               <div className="otravo-title-2">
                 {this.props.filter.label}
+              </div>
+              <div>
+                {all}
               </div>
               <div>
                 {options}
