@@ -105,7 +105,7 @@ class SingleOptionFilter extends Component<Props, State> {
       );
 
     const showMore = this.state.showAll 
-    ? <div className="otravo-small-button" onClick={this.toggleShowAll}>Mostrar sólo {this.props.filter.options.length} <KeyboardArrowUp/></div>
+    ? <div className="otravo-small-button" onClick={this.toggleShowAll}>Mostrar sólo {this.props.initialShowQty} <KeyboardArrowUp/></div>
     : <div className="otravo-small-button" onClick={this.toggleShowAll}>Mostrar los {this.props.filter.options.length} <KeyboardArrowDown/></div>;
 
     const filterBody = this.state.display
