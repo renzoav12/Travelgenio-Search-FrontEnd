@@ -5,25 +5,20 @@ import RangeFilter, { RangeFilterProp } from './RangeFilter/RangeFilter';
 import './FilterBox.scss';
 
 interface Props {
-  filter?: Filter;
+  filters?: Array<RangeFilterProp | SingleOptionFilterProp>;
 }
 
 interface State {
-  filter: Filter;
-}
-
-export interface Filter {
-  price: RangeFilterProp;
-  amenity: SingleOptionFilterProp;
-  category: SingleOptionFilterProp;
+  filters: Array<RangeFilterProp | SingleOptionFilterProp>;
 }
 
 class FilterBox extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {filter: this.props.filter ||
-      {   
-        price: {
+    this.state = {filters: this.props.filters ||
+      [   
+        {
+          field: 'price',
           label: 'Price',
           boundaries: {
             min: 10,
@@ -34,74 +29,90 @@ class FilterBox extends Component<Props, State> {
             max: 788
           }
         },
-        amenity:{
-            label:'Amenities', 
-            options:[
-                {code: '1', label: 'Amenity 1', quantity: 10, selected: false},
-                {code: '2', label: 'Amenity 2', quantity: 20, selected: true},
-                {code: '3', label: 'Amenity 3', quantity: 30, selected: false},                  
-                {code: '4', label: 'Amenity 4', quantity: 40, selected: false},                  
-                {code: '5', label: 'Amenity 5', quantity: 50, selected: false}                   
-            ]
+        {
+          field: 'amenity',
+          label:'Amenities', 
+          options:[
+              {code: '1', label: 'Amenity 1', quantity: 10, selected: false},
+              {code: '2', label: 'Amenity 2', quantity: 20, selected: true},
+              {code: '3', label: 'Amenity 3', quantity: 30, selected: false},                  
+              {code: '4', label: 'Amenity 4', quantity: 40, selected: false},                  
+              {code: '5', label: 'Amenity 5', quantity: 50, selected: false}                   
+          ]
         }, 
-        category:{
-            label:'Categories', 
-            options:[
-                {code: '11', label: 'Category 11', quantity: 11, selected: false},
-                {code: '22', label: 'Category 22', quantity: 22, selected: true},
-                {code: '33', label: 'Category 33', quantity: 33, selected: false},
-                {code: '44', label: 'Category 44', quantity: 44, selected: false},
-                {code: '55', label: 'Category 55', quantity: 55, selected: false}
-            ]
+        {
+          field: 'category',
+          label:'Categories', 
+          options:[
+              {code: '11', label: 'Category 11', quantity: 11, selected: false},
+              {code: '22', label: 'Category 22', quantity: 22, selected: true},
+              {code: '33', label: 'Category 33', quantity: 33, selected: false},
+              {code: '44', label: 'Category 44', quantity: 44, selected: false},
+              {code: '55', label: 'Category 55', quantity: 55, selected: false}
+          ]
         }
-    }
+      ]
     };
   }
 
-  onChangeAmenity = (code: string, selected: boolean): void => {
-    this.setState((prevState:State) => {
-      let filter: Filter = prevState.filter;
-      this.changeOption(filter.amenity, code, selected);
-      return {filter: filter};
+  onChangeSingleOption = (field: string, code: string, selected: boolean) => {
+    this.setState((prevState: State) => {
+      let filters: Array<any> = [...prevState.filters];
+      let changedFilter = filters.find(filter => filter.field === field);
+      if(changedFilter) {
+        let changedOption = changedFilter.options.find(option => option.code === code);
+        if(changedOption) {
+          changedOption.selected = selected;
+        }
+      }
+      return {filters: filters};
     });
   }
 
-  onChangeCategory = (code: string, selected: boolean): void => {
-    this.setState((prevState:State) => {
-      let filter: Filter = prevState.filter;
-      this.changeOption(filter.category, code, selected);
-      return {filter: filter};
-    });
+  isRangeFilter = (filter: any): filter is RangeFilterProp => {
+    return 'boundaries' in filter;
   }
 
-  changeOption = (optionFilter: SingleOptionFilterProp, code: string, selected: boolean): void => {
-    let option = optionFilter.options.find(amenity => amenity.code === code);
+  isSingleOptionFilter = (filter: any): filter is SingleOptionFilterProp => {
+    return 'options' in filter;
+  }
 
-    if(option) {
-      option.selected = selected;
+  renderFilters = () => {
+    return this.state.filters.map(filter => this.renderFilter(filter));
+  }
+
+  renderFilter = (filter: any) => {
+    let element: any = null;
+    
+    if(this.isRangeFilter(filter)) {
+      element = this.renderRangeFilter(filter);
+    } else if(this.isSingleOptionFilter(filter)){
+      element = this.renderSingleOptionFilter(filter);
     }
+
+    return element;
   }
 
-  render() {
+  renderRangeFilter = (filter: any) => {
+    return  <div  key = {filter.field} className="otravo-filter">
+              <RangeFilter filter = {filter}/>
+            </div>;
+  }
+
+  renderSingleOptionFilter = (filter: any) => {
+    return <div key = {filter.field} className="otravo-filter">
+            <SingleOptionFilter 
+              initialShowQty={2} 
+              filter = {filter}
+              onChange = {this.onChangeSingleOption}/>
+          </div>;
+  }
+
+  render = () => {
     return  <div className="otravo-box">
               <div className="otravo-title">Filtrar por:</div>
-              <div> 
-                <div className="otravo-filter">
-                  <RangeFilter 
-                    filter = {this.state.filter.price}/>
-                </div>
-                <div className="otravo-filter">
-                  <SingleOptionFilter 
-                    initialShowQty={2} 
-                    filter = {this.state.filter.amenity}
-                    onChange = {this.onChangeAmenity}/>
-                </div>
-                <div className="otravo-filter">
-                  <SingleOptionFilter 
-                    initialShowQty={2} 
-                    filter = {this.state.filter.category}
-                    onChange = {this.onChangeCategory}/>
-                </div>
+              <div>
+                {this.renderFilters()}
               </div>
           </div>;
   } 

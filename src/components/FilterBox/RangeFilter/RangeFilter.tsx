@@ -7,6 +7,7 @@ interface Props {
 }
 
 export interface RangeFilterProp {
+  field: string;
   label: string;
   boundaries: RangeProp;
   values: RangeProp;

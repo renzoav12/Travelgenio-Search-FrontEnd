@@ -7,10 +7,11 @@ import './SingleOptionFilter.scss';
 interface Props {
   filter: SingleOptionFilterProp;
   initialShowQty: number;
-  onChange: (code: string, selected: boolean) => void;
+  onChange: (field:string, code: string, selected: boolean) => void;
 }
 
 export interface SingleOptionFilterProp {
+  field: string;
   label: string;
   options: Array<SingleOptionProp>;
 }
@@ -48,7 +49,7 @@ class SingleOptionFilter extends Component<Props, State> {
         <SingleOption 
           key={option.code} 
           option={option} 
-          onChange={(selected: boolean):void => {this.props.onChange(option.code, selected)}}/>
+          onChange={(selected: boolean):void => {this.props.onChange(this.props.filter.field, option.code, selected)}}/>
       );
 
     const showMore = this.state.showAll 
