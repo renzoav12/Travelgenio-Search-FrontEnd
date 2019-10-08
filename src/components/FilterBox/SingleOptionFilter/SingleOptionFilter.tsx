@@ -1,5 +1,6 @@
 import React, { Component, MouseEvent, DOMElement } from 'react';
 import SingleOption, {SingleOptionProp} from '../SingleOption/SingleOption';
+import FilterHeader from '../FilterHeader/FilterHeader';
 import {KeyboardArrowDown, KeyboardArrowUp}  from '@material-ui/icons';
 
 import './SingleOptionFilter.scss';
@@ -21,6 +22,7 @@ interface State {
   showAll: boolean;
   showOptionsQty: number;
   optionAll: SingleOptionProp;
+  display: boolean;
 }
 
 
@@ -37,7 +39,8 @@ class SingleOptionFilter extends Component<Props, State> {
         label: "Todos",
         quantity: this.props.filter.options.map(option => option.quantity).reduce((sum,current) => sum + current, 0),
         selected: !this.props.filter.options.some(option => option.selected)
-      }
+      },
+      display: true
     };
   }
 
@@ -46,6 +49,14 @@ class SingleOptionFilter extends Component<Props, State> {
       return {
         showAll: !prevState.showAll,
         showOptionsQty: prevState.showAll ? this.props.initialShowQty : this.props.filter.options.length
+      };
+    });    
+  }
+
+  onChangeDisplay = (display: boolean): void => {
+    this.setState((prevState: State) => {      
+      return {
+        display: display
       };
     });    
   }
@@ -97,19 +108,19 @@ class SingleOptionFilter extends Component<Props, State> {
     ? <div className="otravo-small-button" onClick={this.toggleShowAll}>Mostrar sólo {this.props.filter.options.length} <KeyboardArrowUp/></div>
     : <div className="otravo-small-button" onClick={this.toggleShowAll}>Mostrar los {this.props.filter.options.length} <KeyboardArrowDown/></div>;
 
+    const filterBody = this.state.display
+    ? <div>
+        <div> {all} </div>
+        <div> {options} </div>
+        <div className="otravo-show-more-filter-options"> {showMore} </div>
+      </div>
+    : null;
+
     return <div>
-              <div className="otravo-title-2">
-                {this.props.filter.label}
-              </div>
               <div>
-                {all}
+                <FilterHeader label={this.props.filter.label} onChange={this.onChangeDisplay}/>
               </div>
-              <div>
-                {options}
-              </div>
-              <div>
-                {showMore}
-              </div>
+              {filterBody}
             </div>;
   } 
 }
