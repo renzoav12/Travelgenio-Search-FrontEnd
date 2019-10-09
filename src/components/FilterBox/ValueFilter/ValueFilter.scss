@@ -1,0 +1,5 @@
+@import "../../../styles/global.scss";
+
+.otravo-value-filter input[type=text]:hover {
+  border-bottom: 2px solid $primaryColor !important;
+}

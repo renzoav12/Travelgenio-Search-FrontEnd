@@ -3,14 +3,22 @@ import SingleOptionFilter, { SingleOptionFilterProp } from './SingleOptionFilter
 import RangeFilter, { RangeFilterProp, RangeProp } from './RangeFilter/RangeFilter';
 
 import './FilterBox.scss';
+import ValueFilter, { ValueFilterProp } from './ValueFilter/ValueFilter';
 
 interface Props {
-  filters?: Array<RangeFilterProp | SingleOptionFilterProp>;
-  onChange: (filters: Array<RangeFilterProp | SingleOptionFilterProp>) => void;
+  filters?: Array<ValueFilterProp 
+  | RangeFilterProp 
+  | SingleOptionFilterProp>;
+  onChange: (filters: Array<
+    ValueFilterProp
+    | RangeFilterProp 
+    | SingleOptionFilterProp>) => void;
 }
 
 interface State {
-  filters: Array<RangeFilterProp | SingleOptionFilterProp>;
+  filters: Array<RangeFilterProp 
+  | SingleOptionFilterProp
+  | ValueFilterProp>;
 }
 
 class FilterBox extends Component<Props, State> {
@@ -29,7 +37,11 @@ class FilterBox extends Component<Props, State> {
             min: 120,
             max: 788
           }
-
+        },
+        {
+          field: 'hotel',
+          label: 'Hotel',
+          value: 'Berlin Hilton'
         },
         {
           field: 'amenity',
@@ -55,6 +67,34 @@ class FilterBox extends Component<Props, State> {
         }
       ]
     };
+  }
+
+  onChangeValue = (field: string, value: string) => {
+    this.setState((prevState: State) => {
+      let filters: Array<any> = [...prevState.filters];
+      let changedFilter = filters.find(filter => filter.field === field);
+      if(changedFilter) {
+        changedFilter.value = value;
+      }
+
+      this.sendOnChangeEvent(filters);
+      
+      return {filters: filters};
+    });
+  }
+
+  onChangeRange = (field: string, values: RangeProp) => {
+    this.setState((prevState: State) => {
+      let filters: Array<any> = [...prevState.filters];
+      let changedFilter = filters.find(filter => filter.field === field);
+      if(changedFilter) {
+        changedFilter.values = values;
+      }
+
+      this.sendOnChangeEvent(filters);
+      
+      return {filters: filters};
+    });
   }
 
   onChangeSingleOption = (field: string, code: string, selected: boolean) => {
@@ -88,21 +128,6 @@ class FilterBox extends Component<Props, State> {
     });
   }
 
-
-  onChangeRange = (field: string, values: RangeProp) => {
-    this.setState((prevState: State) => {
-      let filters: Array<any> = [...prevState.filters];
-      let changedFilter = filters.find(filter => filter.field === field);
-      if(changedFilter) {
-        changedFilter.values = values;
-      }
-
-      this.sendOnChangeEvent(filters);
-      
-      return {filters: filters};
-    });
-  }
-
   sendOnChangeEvent = (filters: Array<RangeFilterProp | SingleOptionFilterProp>):void => {
     this.props.onChange(filters);
   }
@@ -115,20 +140,33 @@ class FilterBox extends Component<Props, State> {
     return 'options' in filter;
   }
 
+  isValueFilter = (filter: any): filter is ValueFilterProp => {
+    return !this.isSingleOptionFilter(filter) 
+        && !this.isRangeFilter(filter);
+  }
+
   renderFilters = () => {
     return this.state.filters.map(filter => this.renderFilter(filter));
   }
 
   renderFilter = (filter: any) => {
     let element: any = null;
-    
-    if(this.isRangeFilter(filter)) {
+
+    if(this.isValueFilter(filter)) {
+      element = this.renderValueFilter(filter);
+    } else if(this.isRangeFilter(filter)) {
       element = this.renderRangeFilter(filter);
     } else if(this.isSingleOptionFilter(filter)){
       element = this.renderSingleOptionFilter(filter);
     }
 
     return element;
+  }
+
+  renderValueFilter = (filter: any) => {
+    return  <div  key = {filter.field} className="otravo-filter">
+              <ValueFilter filter = {filter} onChange = {this.onChangeValue}/>
+            </div>;
   }
 
   renderRangeFilter = (filter: any) => {

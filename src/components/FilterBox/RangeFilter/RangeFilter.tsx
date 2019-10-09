@@ -41,9 +41,8 @@ class RangeFilter extends Component<Props, State> {
     });    
   }
 
-  onChange = (event: any, value: any): void => {
-    console.info(value);
-    this.props.onChange(this.props.filter.field, {min: value[0], max: value[1]});
+  onChangeRange = (event: any, range: any): void => {
+    this.props.onChange(this.props.filter.field, {min: range[0], max: range[1]});
   }
 
   render() {
@@ -58,7 +57,7 @@ class RangeFilter extends Component<Props, State> {
           defaultValue = {(this.props.filter.values) 
             ? [this.props.filter.values.min, this.props.filter.values.max]
           : [this.props.filter.boundaries.min, this.props.filter.boundaries.max]}
-          onChangeCommitted= {this.onChange} />
+          onChangeCommitted= {this.onChangeRange} />
       </div>
     : null;
 
