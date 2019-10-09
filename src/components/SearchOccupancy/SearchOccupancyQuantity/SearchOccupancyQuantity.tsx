@@ -1,4 +1,5 @@
 import React, { Component, MouseEvent } from 'react';
+import {RemoveCircleOutline, AddCircleOutline}  from '@material-ui/icons';
 import './SearchOccupancyQuantity.scss';
 
 export interface OccupancyQuantityProp {
@@ -7,8 +8,8 @@ export interface OccupancyQuantityProp {
   quantity: number;
   min?: number;
   max?: number;
-  increase: any;
-  decrease: any;
+  increase: () => void;
+  decrease: () => void;
 }
 
 class SearchOccupancyQuantity extends Component<OccupancyQuantityProp> {
@@ -44,9 +45,9 @@ class SearchOccupancyQuantity extends Component<OccupancyQuantityProp> {
         <div className="SearchOccupancyQuantitySubtitle">{this.props.subtitle}</div>
       </div>
       <div className="SearchOccupancyQuantityNumbers">
-        <div className="SearchOccupancyQuantityButton" onClick={this.decrease}>-</div>
+        <div className="SearchOccupancyQuantityButton" onClick={this.decrease}><RemoveCircleOutline/></div>
         <div>{this.props.quantity}</div>
-        <div className="SearchOccupancyQuantityButton" onClick={this.increase}>+</div>
+        <div className="SearchOccupancyQuantityButton" onClick={this.increase}><AddCircleOutline/></div>
       </div>
     </div>;
   } 

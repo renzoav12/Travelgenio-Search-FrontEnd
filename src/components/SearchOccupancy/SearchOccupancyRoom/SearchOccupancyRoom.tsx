@@ -7,12 +7,12 @@ import SearchOccupancyAge from '../SearchOccupancyAge';
 interface Props {
   room: RoomOccupancy;
   index: number;
-  increaseAdults: any;
-  decreaseAdults: any;
-  increaseChildren: any;
-  decreaseChildren: any;
-  delete: any;
-  changeAges: any;
+  increaseAdults: (index: number) => void;
+  decreaseAdults: (index: number) => void;
+  increaseChildren: (index: number) => void;
+  decreaseChildren: (index: number) => void;
+  delete: (index: number) => void;
+  onChangeAges: (ages: Array<number>, index: number) => void;
 }
 
 class SearchOccupancyRoom extends Component<Props> {
@@ -49,10 +49,10 @@ class SearchOccupancyRoom extends Component<Props> {
     this.props.delete(this.props.index);
   }
 
-  changeAge = (age: number, ageIndex: number): void => {
+  onChangeAge = (age: number, ageIndex: number): void => {
     let ages = [...this.props.room.childrenAges];
     ages[ageIndex] = age;
-    this.props.changeAges(ages, this.props.index);
+    this.props.onChangeAges(ages, this.props.index);
   }
 
   createChildAge = (childAge: number, index: number) => {
@@ -61,7 +61,7 @@ class SearchOccupancyRoom extends Component<Props> {
         subtitle = {"Al finalizar viaje"}
         age = {childAge}
         index = {index}
-        changeAge = {this.changeAge}
+        onChangeAge = {this.onChangeAge}
         key = {index}
     >
     </SearchOccupancyAge>

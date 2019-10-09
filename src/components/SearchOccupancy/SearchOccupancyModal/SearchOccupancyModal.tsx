@@ -7,14 +7,14 @@ import { JSXElement } from '@babel/types';
 interface Props {
   occupancy: Array<RoomOccupancy>
   maxRooms: number,
-  increaseAdults: any,
-  decreaseAdults: any,
-  increaseChildren: any,
-  decreaseChildren: any,
-  deleteRoom: any,
-  close: any,
-  addRoom: any,
-  changeAges: any
+  increaseAdults: (index: number) => void,
+  decreaseAdults: (index: number) => void,
+  increaseChildren: (index: number) => void,
+  decreaseChildren: (index: number) => void,
+  deleteRoom: (index: number) => void,
+  close: () => void,
+  addRoom: () => void,
+  onChangeAges: (ages: Array<number>, roomIndex: number) => void
 }
 
 class SearchOccupancyModal extends Component<Props> {
@@ -63,10 +63,6 @@ class SearchOccupancyModal extends Component<Props> {
     this.props.addRoom();
   }
 
-  changeAges = (ages: Array<number>, roomIndex:number): void => {
-    this.props.changeAges(ages, roomIndex);
-  }
-
   createRoom = (room: RoomOccupancy, index:number) => 
     <SearchOccupancyRoom 
         increaseAdults={this.increaseAdults} 
@@ -74,7 +70,7 @@ class SearchOccupancyModal extends Component<Props> {
         increaseChildren={this.increaseChildren} 
         decreaseChildren={this.decreaseChildren} 
         delete={this.deleteRoom}
-        changeAges = {this.changeAges}
+        onChangeAges = {this.props.onChangeAges}
         key={index} 
         room={room} 
         index={index}>

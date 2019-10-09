@@ -1,7 +1,7 @@
-import React, { Component, MouseEvent, DOMElement } from 'react';
-import './SearchOccupancy.scss';
+import React, { Component, MouseEvent } from 'react';
 import SearchOccupancyModal from './SearchOccupancyModal';
 import {Hotel, Person, Face}  from '@material-ui/icons';
+import './SearchOccupancy.scss';
 
 interface Props {
   occupancy?: Array<RoomOccupancy>;
@@ -21,7 +21,7 @@ export interface RoomOccupancy {
 
 class SearchOccupancy extends Component<Props, State> {
 
-  node: any;
+  occupancyNode: any;
 
   constructor(props: Props) {
     super(props);
@@ -48,17 +48,28 @@ class SearchOccupancy extends Component<Props, State> {
   }
 
   handleClick = (event) => {
-    if(!this.node.contains(event.target) && this.state.showModal) {
+
+    let menu = document.getElementById("occupancy-age-selection");
+
+    if(!this.occupancyNode.contains(event.target) 
+        && this.state.showModal
+        && (menu === null || !menu.contains(event.target))) {
       this.closeModal();
     }
   }
 
-  sendOnChangeEvent = (occupancy: Array<RoomOccupancy>):void => {
+  sendOnChangeEvent = (occupancy: Array<RoomOccupancy>): void => {
     this.props.onChange(occupancy);
   }
 
-  sendOnCloseEvent = ():void => {
+  sendOnCloseEvent = (): void => {
     this.props.onClose(this.state.occupancy);
+  }
+
+  isValid = (): boolean => {
+    return !this.state.occupancy
+        .flatMap(room => room.childrenAges)
+        .some(age => age == -1);
   }
 
   increaseAdults = (index: number): void => {
@@ -106,7 +117,7 @@ class SearchOccupancy extends Component<Props, State> {
     });
   }
 
-  addRoom = (index: number): void => {
+  addRoom = (): void => {
     this.setState((prevState: State) => {      
       let rooms: Array<RoomOccupancy> = [...prevState.occupancy];
       let updatedRooms = rooms.concat({adults: 2, childrenAges:[]});
@@ -125,8 +136,10 @@ class SearchOccupancy extends Component<Props, State> {
   }
 
   closeModal = (): void => {
-    this.setState({showModal: false});
-    this.sendOnCloseEvent();
+    if(this.isValid()) {
+      this.setState({showModal: false});
+      this.sendOnCloseEvent();
+    }
   }
 
   toggleModal = (event :MouseEvent<HTMLDivElement>):void => {
@@ -146,7 +159,7 @@ class SearchOccupancy extends Component<Props, State> {
   };
 
   render() {
-    return <div ref={node => this.node = node} className="searchSccupancy">
+    return <div ref={node => this.occupancyNode = node} className="searchOccupancy">
       <label className="otravo-label">Habitaciones:</label>
       <div className="searchOccupancySummary" onClick={this.toggleModal}>
         <div className="searchOccupancySummaryInfo otravo-info">
@@ -173,7 +186,7 @@ class SearchOccupancy extends Component<Props, State> {
                 maxRooms = {4}
                 close={this.closeModal}
                 addRoom={this.addRoom}
-                changeAges={this.changeAges}>
+                onChangeAges={this.changeAges}>
             </SearchOccupancyModal> 
           : null }
     </div>;
