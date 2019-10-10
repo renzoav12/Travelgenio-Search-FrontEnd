@@ -11,6 +11,7 @@ interface Props {
 export interface RangeFilterProp {
   field: string;
   label: string;
+  order: number;
   boundaries: RangeProp;
   values?: RangeProp;
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import SearchCardPricing, { SearchCardPricingProps } from '../SearchCardPricing/SearchCardPricing';
 import SearchCardContent, { SearchCardContentProps } from '../SearchCardContent/SearchCardContent';
-import { addLeadingSlash } from 'history/PathUtils';
-
+import { Grid } from '@material-ui/core';
 import './SearchCard.scss';
+
 
 export interface SearchCardProps {
     id: string,
@@ -12,14 +12,14 @@ export interface SearchCardProps {
 };
 
 const SearchCard = ({id, content, pricing}: SearchCardProps) => (
-    <div className="otravo-box-with-border otravo-card">
-        <div className="otravo-card-content-section">
+    <Grid container className="otravo-box-with-border otravo-card">
+        <Grid item xs={12} sm={6} lg={8} className="otravo-card-content-section">
             <SearchCardContent id={id} {...content}></SearchCardContent>
-        </div>
-        <div className="otravo-card-pricing-section">
+        </Grid>
+        <Grid item xs={12} sm={6} lg={4} className="otravo-card-pricing-section">
             <SearchCardPricing {...pricing}></SearchCardPricing>
-        </div>
-    </div>
+        </Grid>
+    </Grid>
 );
 
 export default SearchCard;

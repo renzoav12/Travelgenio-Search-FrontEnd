@@ -12,7 +12,7 @@ class FilterBoxContainer extends Component<FilterBoxContainerProps> {
         super(props);
     }
 
-    onChange = (filters: Array<
+    onChange = (filters: Map<string, 
         ValueFilterProp
         | RangeFilterProp 
         | SingleOptionFilterProp>): void => {

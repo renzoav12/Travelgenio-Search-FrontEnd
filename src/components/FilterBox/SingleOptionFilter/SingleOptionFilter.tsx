@@ -15,6 +15,7 @@ interface Props {
 export interface SingleOptionFilterProp {
   field: string;
   label: string;
+  order: number;
   options: Array<SingleOptionProp>;
 }
 

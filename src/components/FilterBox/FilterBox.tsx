@@ -6,17 +6,17 @@ import './FilterBox.scss';
 import ValueFilter, { ValueFilterProp } from './ValueFilter/ValueFilter';
 
 interface Props {
-  filters?: Array<ValueFilterProp 
+  filters?: Map<string, ValueFilterProp 
   | RangeFilterProp 
   | SingleOptionFilterProp>;
-  onChange: (filters: Array<
+  onChange: (filters: Map<string, 
     ValueFilterProp
     | RangeFilterProp 
     | SingleOptionFilterProp>) => void;
 }
 
 interface State {
-  filters: Array<RangeFilterProp 
+  filters: Map<string, RangeFilterProp 
   | SingleOptionFilterProp
   | ValueFilterProp>;
 }
@@ -24,28 +24,43 @@ interface State {
 class FilterBox extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {filters: this.props.filters ||
-      [   
-        {
-          field: 'price',
-          label: 'Price',
-          boundaries: {
-            min: 10,
-            max: 1000
-          },
-          values: {
-            min: 120,
-            max: 788
-          }
+    if(this.props.filters) {
+      this.state = {filters: this.props.filters};
+    } else {
+      let filters: Map<string, RangeFilterProp 
+      | SingleOptionFilterProp
+      | ValueFilterProp> = new Map<string, RangeFilterProp 
+      | SingleOptionFilterProp
+      | ValueFilterProp>();
+    
+      filters.set("price", {
+        field: 'price',
+        label: 'Price',
+        order: 1,
+        boundaries: {
+          min: 10,
+          max: 1000
         },
+        values: {
+          min: 120,
+          max: 788
+        }
+      });
+
+      filters.set("hotel", 
         {
           field: 'hotel',
           label: 'Hotel',
+          order: 2,
           value: 'Berlin Hilton'
-        },
+        }
+      );
+
+      filters.set("amenity", 
         {
           field: 'amenity',
           label:'Amenities', 
+          order: 3,
           options:[
               {code: '1', label: 'Amenity 1', quantity: 10, selected: false},
               {code: '2', label: 'Amenity 2', quantity: 20, selected: true},
@@ -53,10 +68,14 @@ class FilterBox extends Component<Props, State> {
               {code: '4', label: 'Amenity 4', quantity: 40, selected: false},                  
               {code: '5', label: 'Amenity 5', quantity: 50, selected: false}                   
           ]
-        }, 
+        }
+      );
+
+      filters.set("category", 
         {
           field: 'category',
           label:'Categories', 
+          order: 4,
           options:[
               {code: '11', label: 'Category 11', quantity: 11, selected: false},
               {code: '22', label: 'Category 22', quantity: 22, selected: true},
@@ -65,14 +84,19 @@ class FilterBox extends Component<Props, State> {
               {code: '55', label: 'Category 55', quantity: 55, selected: false}
           ]
         }
-      ]
-    };
+      );
+
+
+      this.state = {filters: filters};
+    }
   }
 
   onChangeValue = (field: string, value: string) => {
     this.setState((prevState: State) => {
-      let filters: Array<any> = [...prevState.filters];
-      let changedFilter = filters.find(filter => filter.field === field);
+      let filters: Map<string, any> = prevState.filters;
+      
+      let changedFilter = filters.get(field);
+      
       if(changedFilter) {
         changedFilter.value = value;
       }
@@ -85,8 +109,8 @@ class FilterBox extends Component<Props, State> {
 
   onChangeRange = (field: string, values: RangeProp) => {
     this.setState((prevState: State) => {
-      let filters: Array<any> = [...prevState.filters];
-      let changedFilter = filters.find(filter => filter.field === field);
+      let filters: Map<string, any> = prevState.filters;
+      let changedFilter = filters.get(field);
       if(changedFilter) {
         changedFilter.values = values;
       }
@@ -99,8 +123,8 @@ class FilterBox extends Component<Props, State> {
 
   onChangeSingleOption = (field: string, code: string, selected: boolean) => {
     this.setState((prevState: State) => {
-      let filters: Array<any> = [...prevState.filters];
-      let changedFilter = filters.find(filter => filter.field === field);
+      let filters: Map<string, any> = prevState.filters;
+      let changedFilter = filters.get(field);
       if(changedFilter) {
         let changedOption = changedFilter.options.find(option => option.code === code);
         if(changedOption) {
@@ -116,8 +140,8 @@ class FilterBox extends Component<Props, State> {
 
   onCleanSelectionSingleOption = (field: string) => {
     this.setState((prevState: State) => {
-      let filters: Array<any> = [...prevState.filters];
-      let changedFilter = filters.find(filter => filter.field === field);
+      let filters: Map<string, any> = prevState.filters;
+      let changedFilter = filters.get(field);
       if(changedFilter) {
         changedFilter.options.forEach(option => option.selected = false);
       }
@@ -128,7 +152,10 @@ class FilterBox extends Component<Props, State> {
     });
   }
 
-  sendOnChangeEvent = (filters: Array<RangeFilterProp | SingleOptionFilterProp>):void => {
+  sendOnChangeEvent = (filters: Map<string, 
+    ValueFilterProp
+    | RangeFilterProp 
+    | SingleOptionFilterProp >):void => {
     this.props.onChange(filters);
   }
 
@@ -146,7 +173,9 @@ class FilterBox extends Component<Props, State> {
   }
 
   renderFilters = () => {
-    return this.state.filters.map(filter => this.renderFilter(filter));
+    return Array.from(this.state.filters.values())
+        .sort((filter, anotherFilter) => {return filter.order - anotherFilter.order})
+        .map(filter => this.renderFilter(filter));
   }
 
   renderFilter = (filter: any) => {

@@ -11,6 +11,7 @@ interface Props {
 export interface ValueFilterProp {
   field: string;
   label: string;
+  order: number;
   value?: string;
 }
 
