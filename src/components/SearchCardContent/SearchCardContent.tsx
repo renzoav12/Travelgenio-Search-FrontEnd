@@ -4,6 +4,7 @@ import SearchCardContentCategory, { SearchCardContentCategoryProps } from '../Se
 import SearchCardContentAddress, { SearchCardContentLocationAddressProps } from '../SearchCardContentAddress/SearchCardContentAddress';
 
 import './SearchCardContent.scss';
+import { Grid } from '@material-ui/core';
 
 const foodIcon = require("../../assets/images/icons/food_icon.svg");
 
@@ -27,11 +28,11 @@ interface SearchCardContentLocationProps {
 
 
 const SearchCardContent = ({id, category, amenities, name, images, location}: SearchCardContentProps) => (
-    <div className="otravo-card-content">
-        <div className="otravo-card-image-section">
+    <Grid container className="otravo-card-content">
+        <Grid item xs={12} md={4} className="otravo-card-image-section">
             <SearchCardContentImage {...images}></SearchCardContentImage>
-        </div>
-        <div className="otravo-card-info">
+        </Grid>
+        <Grid item xs={12} md={8} className="otravo-card-info">
             <div className="otravo-title">{name}</div>
             <div className="otravo-card-category-section">
                 <SearchCardContentCategory {...category}></SearchCardContentCategory>
@@ -44,8 +45,8 @@ const SearchCardContent = ({id, category, amenities, name, images, location}: Se
                 <img className="otravo-card-amenity" src={foodIcon}/>
                 <img className="otravo-card-amenity" src={foodIcon}/>
             </div>
-        </div>
-    </div>
+        </Grid>
+    </Grid>
 );
 
 export default SearchCardContent;
