@@ -39,7 +39,6 @@ class ValueFilter extends Component<Props, State> {
   }
 
   onChangeValue = (event: any): void => {
-    console.info(event.target.value);
     this.value = event.target.value;
   }
 
