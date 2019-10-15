@@ -45,6 +45,10 @@ class SingleOptionFilter extends Component<Props, State> {
     };
   }
 
+  componentWillReceiveProps(nextProps: Props) {
+    this.setSelectAll(!nextProps.filter.options.some(option => option.selected));      
+  }
+
   toggleShowAll = (): void => {
     this.setState((prevState: State) => {      
       return {
@@ -65,17 +69,6 @@ class SingleOptionFilter extends Component<Props, State> {
   onSelectAll = (selected: boolean) => {
     this.setSelectAll(true);
     this.props.onCleanSelection(this.props.filter.field);
-  }
-
-  onChangeSelection = (code: string, selected: boolean) : void => {
-    this.setSelectAll(
-      !selected 
-      && !this.props.filter.options
-        .filter(option => option.code !== code)
-        .some(option => option.selected)
-    );
-
-    this.props.onChange(this.props.filter.field, code, selected);
   }
 
   setSelectAll = (selected: boolean): void => {
@@ -102,7 +95,7 @@ class SingleOptionFilter extends Component<Props, State> {
         <SingleOption 
           key={option.code} 
           option={option} 
-          onChange={(selected: boolean):void => {this.onChangeSelection(option.code, selected)}}/>
+          onChange={(selected: boolean):void => {this.props.onChange(this.props.filter.field, option.code, selected)}}/>
       );
 
     const showMore = this.state.showAll 
