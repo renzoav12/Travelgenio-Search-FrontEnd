@@ -33,25 +33,6 @@ class FilterBoxContainer extends Component<FilterBoxContainerProps, State> {
 
     onChange = (field: string, filterType: FilterType, values: Array<string>): void => {
         console.info("Filters has changed -> field = " + field + ", type = " + filterType + ", values = " + JSON.stringify(values));
-
-        this.setState((prevState:State) => {
-
-          let filters: Map<string, any> = prevState.filters;
-
-          let filter: any = prevState.filters.get(field);
-
-          if (filterType == FilterType.Value) {
-            filter.value = values[0];
-          } else if (filterType == FilterType.Range) {
-            filter.values.min = parseInt(values[0]);
-            filter.values.max = parseInt(values[1]);
-          } else if (filterType == FilterType.Option) {
-            filter.options.forEach(option => { option.selected = values.indexOf(option.code)>-1});
-          }
-
-          return {filters : filters};
-
-        });
     }
 
     render() {
