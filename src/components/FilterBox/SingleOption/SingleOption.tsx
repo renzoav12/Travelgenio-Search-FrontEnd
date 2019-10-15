@@ -12,33 +12,26 @@ export interface SingleOptionProp {
   code: string,
   label: string,
   quantity: number,
-  selected: boolean,
+  selected: boolean
 }
 
-class SingleOption extends Component<Props> {
-
-  constructor(props: Props) {
-    super(props);
-  }
-
-  render() {
+const SingleOption = (props: Props) => {
     return <div className="otravo-filter-option">
       <div className="otravo-filter-option-checkbox">
         <Checkbox 
           style = {{ backgroundColor: 'transparent' }}
           color = "primary" 
-          value = {this.props.option.code} 
-          checked = {this.props.option.selected}
-          onChange = {(event):void => this.props.onChange(event.target.checked)}/>
+          value = {props.option.code} 
+          checked = {props.option.selected}
+          onChange = {(event):void => props.onChange(event.target.checked)}/>
       </div>
       <div className="otravo-label otravo-filter-option-label">
-        {this.props.option.label}
+        {props.option.label}
       </div>
       <div className="otravo-label otravo-filter-option-quantity">
-        {this.props.option.quantity}
+        {props.option.quantity}
       </div>
     </div>;
-  } 
 }
 
 export default SingleOption;

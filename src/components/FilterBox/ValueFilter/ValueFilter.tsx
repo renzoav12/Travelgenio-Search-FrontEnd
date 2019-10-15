@@ -55,7 +55,8 @@ class ValueFilter extends Component<Props, State> {
             type = {"text"} 
             defaultValue = {(this.props.filter.value) ? this.props.filter.value : null} 
             fullWidth = {true}
-            onChange = {this.onChangeValue}/>
+            onChange = {this.onChangeValue}
+            placeholder = {"Hotel"}/>
         </div>
         <div className="otravo-value-filter-button-section">
           <button className="otravo-value-filter-button" onClick={this.onApply}>Aplicar</button>
