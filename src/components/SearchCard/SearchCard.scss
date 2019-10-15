@@ -3,16 +3,15 @@
 .otravo-card {
   border-color: $primaryColor !important;
   padding: 0 !important;
-  //display: flex;
   margin-left: 0 !important;
 }
 
-.otravo-card-content-section {
-  //width: 75%;
-}
-
-
 .otravo-card-pricing-section {
-  border-left: 1px solid $boxBorderColor;
-  //width: 25%;
+  @media (max-width: $screen-sm) {
+    border-top: 1px solid $boxBorderColor;;
+  }
+
+  @media (min-width: $screen-sm) {
+    border-left: 1px solid $boxBorderColor;;
+  }
 }

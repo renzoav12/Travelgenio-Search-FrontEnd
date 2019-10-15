@@ -13,7 +13,7 @@ export interface SearchCardProps {
 
 const SearchCard = ({id, content, pricing}: SearchCardProps) => (
     <Grid container className="otravo-box-with-border otravo-card">
-        <Grid item xs={12} sm={7} md={8} lg={9} className="otravo-card-content-section">
+        <Grid item xs={12} sm={7} md={8} lg={9}>
             <SearchCardContent id={id} {...content}></SearchCardContent>
         </Grid>
         <Grid item xs={12} sm={5} md={4} lg={3} className="otravo-card-pricing-section">
