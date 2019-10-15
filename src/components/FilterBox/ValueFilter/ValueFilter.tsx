@@ -21,11 +21,13 @@ interface State {
 
 class ValueFilter extends Component<Props, State> {
 
+  value: string;
+
   constructor(props: Props) {
     super(props);
     this.state = { display: true };
+    this.value = props.filter.value ? props.filter.value :  "";
   }
-
 
 
   onChangeDisplay = (display: boolean): void => {
@@ -37,18 +39,28 @@ class ValueFilter extends Component<Props, State> {
   }
 
   onChangeValue = (event: any): void => {
-    this.props.onChange(this.props.filter.field,event.target.value);
+    console.info(event.target.value);
+    this.value = event.target.value;
+  }
+
+  onApply = (event: any): void => {
+    this.props.onChange(this.props.filter.field, this.value);
   }
 
   render() {
 
     const filterBody = this.state.display
     ? <div className="otravo-value-filter">
-        <Input 
-          type = {"text"} 
-          defaultValue = {(this.props.filter.value) ? this.props.filter.value : null} 
-          fullWidth = {true}
-          onChange = {this.onChangeValue}/>
+        <div>
+          <Input 
+            type = {"text"} 
+            defaultValue = {(this.props.filter.value) ? this.props.filter.value : null} 
+            fullWidth = {true}
+            onChange = {this.onChangeValue}/>
+        </div>
+        <div className="otravo-value-filter-button-section">
+          <button className="otravo-value-filter-button" onClick={this.onApply}>Aplicar</button>
+        </div>
       </div>
     : null;
 
