@@ -110,12 +110,12 @@ class FilterBox extends Component<FilterBoxProps> {
   }
 
   render = () => {
-    return  <div className="otravo-box">
+    return  this.props.filters.size > 0 ? <div className="otravo-box">
               <div className="otravo-title">Filtrar por:</div>
               <div>
                 {this.renderFilters()}
               </div>
-          </div>;
+          </div> : null;
   } 
 }
 
