@@ -9,21 +9,21 @@ export interface SearchCardContentCategoryProps {
 
 const starIcon = require("../../assets/images/icons/star_icon.svg");
 
-class SearchCardContentCategory extends Component<SearchCardContentCategoryProps> {
-    getStars = () => {
+
+const SearchCardContentCategory = (props: SearchCardContentCategoryProps) => {
+
+    const getStars = () => {
         let starsElements: JSX.Element[] = [];
-        let stars = parseInt(this.props.code);
+        let stars = parseInt(props.code);
         for (let index = 0; index < stars; index++) {
             starsElements.push(<img className="otravo-card-star" src={starIcon} key={index}/>);
         }
         return starsElements;
     }
-
-    render() {
-        return <div>
-            {this.getStars()}
-        </div>;
-    }
+    
+    return <div>
+        {getStars()}
+    </div>;
 }
 
 export default SearchCardContentCategory;
