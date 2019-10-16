@@ -5,6 +5,10 @@ import { RootState, RootActions } from '../../store';
 import { AxiosResponse } from 'axios';
 import { SearchResponse, Search, SearchFilter } from '../../model/search';
 import { SearchActionTypes } from './search.actionTypes'
+import SingleOptionFilter from '../../components/FilterBox/SingleOptionFilter';
+import { SingleOptionFilterProp } from '../../components/FilterBox/SingleOptionFilter/SingleOptionFilter';
+import { optionalCallExpression } from '@babel/types';
+import { FilterType } from '../../components/FilterBox/FilterBox';
 
 export interface SearchHeaderParameters {
     readonly country: string
@@ -105,6 +109,10 @@ export const searchUpdate = (): ThunkResult<void> => async (
     }
 };
 
+interface SearchFetchFilterParameters extends Map<String, Array<String>> {
+    
+}
+
 const searchCreateRequest = (search: RootState): SearchFetchParameters => {
     const {location, stay, occupancy} = search.search.box;
     return {
@@ -117,8 +125,27 @@ const searchCreateRequest = (search: RootState): SearchFetchParameters => {
         language: 'en',
         page: 0,
         size: 20,
-        filters: new Map()
+        filters: searchCreateFilterRequest(search)
     };
+};
+
+const searchCreateFilterRequest = (search: RootState): SearchFetchFilterParameters => {
+    const query: SearchFetchFilterParameters = new Map;
+    const filters: SearchFilter  = search.search.filters;
+console.log(JSON.stringify(search.search.filters));
+    search.search.filters.forEach((filter) => {
+        if (filter.type == FilterType.SingleOption) {
+            const newFilter: SingleOptionFilterProp = filter as SingleOptionFilterProp;
+
+            const codes: Array<String> = newFilter.options
+            .filter(option => option.selected)
+            .map(option => option.code);
+
+            query.set(newFilter.field, codes);
+        }
+    })
+
+    return query;
 };
 
 export const handleSearchIncrementOnePage = () => async (

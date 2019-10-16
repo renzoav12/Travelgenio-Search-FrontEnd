@@ -7,6 +7,9 @@ import moment, {Moment} from 'moment';
 import { ValueFilterProp } from '../components/FilterBox/ValueFilter/ValueFilter';
 import { SingleOptionFilterProp } from '../components/FilterBox/SingleOptionFilter/SingleOptionFilter';
 import { RangeFilterProp } from '../components/FilterBox/RangeFilter/RangeFilter';
+import { FilterBoxSelected } from '../containers/FilterBox/FilterBoxContainer';
+import { FilterType } from '../components/FilterBox/FilterBox';
+import { Filter } from '@material-ui/icons';
 
 const initialState: Search = {
     box: {
@@ -30,20 +33,47 @@ const initialState: Search = {
 };
 
 function convertFilters(searchFilter: SearchFilterResponse) : SearchFilter {
-    const filter: SearchFilter = new Map();
+    const filters: SearchFilter = new Map();
 
     searchFilter.singleValue.forEach((value: ValueFilterProp) => {
-        filter.set(value.field, value);
+        filters.set(value.field, value);
+        value.type = FilterType.Value;
     })
 
     searchFilter.rangeValue.forEach((value: RangeFilterProp) => {
-        filter.set(value.field, value);
+        filters.set(value.field, value);
+        value.type = FilterType.Range;
     })
     
     searchFilter.singleOption.forEach((value: SingleOptionFilterProp) => {
-        filter.set(value.field, value);
-    })    
-    return filter;
+        filters.set(value.field, value);
+        value.type = FilterType.SingleOption;
+    })
+    console.log('convertFilters' + JSON.stringify(filters));
+
+    return filters;
+}
+
+function filterApplySelected(filters: SearchFilter, selected: FilterBoxSelected) : SearchFilter {
+    const newFilters: SearchFilter = new Map;
+
+    switch (selected.type) {
+        case FilterType.SingleOption:
+            const filter = filters.get(selected.field) as SingleOptionFilterProp;
+
+            filter.options.forEach((option) => {
+                if (selected.values.includes(option.code)) {
+                    option.selected = true;
+                }
+            });
+        case FilterType.Range:
+        break;
+        case FilterType.Value:
+        break;
+    }
+
+    console.log('filterApplySelected' + JSON.stringify(filters));
+    return filters;
 }
 
 export const searchReducer: Reducer<Search, SearchAction> = (
@@ -79,7 +109,14 @@ export const searchReducer: Reducer<Search, SearchAction> = (
                 box: {
                     ...action.searchBoxState
                 }
-            };            
+            }; 
+            
+        case SearchActionTypes.SAERCH_FILTER_CHANGED:
+            alert(JSON.stringify(state.filters));
+            return {
+                ...state,
+                filters: filterApplySelected(state.filters, action.changed)
+            };
 
         default:
             return state;
