@@ -10,7 +10,7 @@ import './SearchCardListContainer.scss';
 import InfiniteScroll from 'react-infinite-scroller';
 import { SearchPagination } from '../../model/search';
 import { SearchAction } from '../../actions/search/search.action';
-import { Grid } from '@material-ui/core';
+import { Grid, CircularProgress } from '@material-ui/core';
 
 
 interface SearchCardListContainerDispatchProps {
@@ -33,7 +33,11 @@ class SearchCardListContainer extends Component<SearchCardListContainerProps> {
     }
 
     renderLoader() {
-        return <div className="loader" key={0}>Loading ...</div>;
+        //return <div className="loader" key={0}>Loading ...</div>;
+        return <div key={0} className="otravo-loading-container">
+                    <div className="otravo-loading-progress"><CircularProgress/></div>
+                    <div className="otravo-loading-text">Loading...</div>
+                </div>;
     }
 
     renderCardListWithInfiniteScroll() {
