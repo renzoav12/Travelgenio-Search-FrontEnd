@@ -49,31 +49,35 @@ function convertFilters(searchFilter: SearchFilterResponse) : SearchFilter {
         filters.set(value.field, value);
         value.type = FilterType.SingleOption;
     })
-    console.log('convertFilters' + JSON.stringify(filters));
 
     return filters;
 }
 
 function filterApplySelected(filters: SearchFilter, selected: FilterBoxSelected) : SearchFilter {
-    const newFilters: SearchFilter = new Map;
+    const newFilters: SearchFilter = new Map(filters);
 
     switch (selected.type) {
         case FilterType.SingleOption:
             const filter = filters.get(selected.field) as SingleOptionFilterProp;
 
-            filter.options.forEach((option) => {
-                if (selected.values.includes(option.code)) {
-                    option.selected = true;
-                }
-            });
-        case FilterType.Range:
-        break;
-        case FilterType.Value:
+            if (selected.values.length > 0) {
+                filter.options.forEach((option) => {
+                    if (selected.values.includes(option.code)) {
+                        option.selected = true;
+                    }
+                });
+            } else {
+                filter.options.forEach((option) => {
+                    option.selected = false;
+                });
+            }
+
+            newFilters.set(filter.field, filter);
+        default:
         break;
     }
 
-    console.log('filterApplySelected' + JSON.stringify(filters));
-    return filters;
+    return newFilters;
 }
 
 export const searchReducer: Reducer<Search, SearchAction> = (
@@ -89,7 +93,7 @@ export const searchReducer: Reducer<Search, SearchAction> = (
         case SearchActionTypes.FETCH_SUCCESS:
             return {
                 ...state,
-                accommodations: state.accommodations.concat(action.payload.accommodations),
+                accommodations: action.payload.accommodations,
                 filters: convertFilters(action.payload.filters),
                 loading: false
             };
