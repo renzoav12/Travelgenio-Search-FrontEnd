@@ -2,6 +2,7 @@ import React, { Component, MouseEvent, DOMElement } from 'react';
 import Input from '@material-ui/core/Input';
 import FilterHeader from '../FilterHeader/FilterHeader';
 import './ValueFilter.scss';
+import { FilterType } from '../FilterBox';
 
 interface Props {
   filter: ValueFilterProp;
@@ -12,6 +13,7 @@ export interface ValueFilterProp {
   field: string;
   label: string;
   order: number;
+  type: FilterType;
   value?: string;
 }
 

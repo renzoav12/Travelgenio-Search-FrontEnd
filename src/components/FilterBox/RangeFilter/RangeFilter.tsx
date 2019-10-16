@@ -2,6 +2,7 @@ import React, { Component, MouseEvent, DOMElement } from 'react';
 import Slider from '@material-ui/core/Slider';
 import FilterHeader from '../FilterHeader/FilterHeader';
 import './RangeFilter.scss';
+import { FilterType } from '../FilterBox';
 
 interface Props {
   filter: RangeFilterProp;
@@ -12,6 +13,7 @@ export interface RangeFilterProp {
   field: string;
   label: string;
   order: number;
+  type: FilterType;
   boundaries: RangeProp;
   values?: RangeProp;
 }

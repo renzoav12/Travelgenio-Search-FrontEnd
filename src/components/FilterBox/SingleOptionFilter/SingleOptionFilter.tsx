@@ -4,6 +4,7 @@ import FilterHeader from '../FilterHeader/FilterHeader';
 import {KeyboardArrowDown, KeyboardArrowUp}  from '@material-ui/icons';
 
 import './SingleOptionFilter.scss';
+import { FilterType } from '../FilterBox';
 
 interface Props {
   filter: SingleOptionFilterProp;
@@ -16,6 +17,7 @@ export interface SingleOptionFilterProp {
   field: string;
   label: string;
   order: number;
+  type: FilterType;
   options: Array<SingleOptionProp>;
 }
 

@@ -3,18 +3,21 @@ import SingleOptionFilter, { SingleOptionFilterProp } from './SingleOptionFilter
 import RangeFilter, { RangeFilterProp, RangeProp } from './RangeFilter/RangeFilter';
 import ValueFilter, { ValueFilterProp } from './ValueFilter/ValueFilter';
 import './FilterBox.scss';
+import { RangeOptionFilterProp } from './RangeOptionFilter/RangeOptionFilter';
 
 interface FilterBoxProps {
   filters: Map<string, ValueFilterProp 
   | RangeFilterProp 
-  | SingleOptionFilterProp>;
+  | SingleOptionFilterProp
+  | RangeOptionFilterProp>;
   onChange: (field: string, type: FilterType, value: Array<string>) => void;
 }
 
 export enum FilterType {
-  Value = "value",
-  Range = "range",
-  Option = "option"
+  Value,
+  Range,
+  SingleOption,
+  RangeOption
 }
 
 class FilterBox extends Component<FilterBoxProps> {
@@ -42,29 +45,32 @@ class FilterBox extends Component<FilterBoxProps> {
         selectedCodes.push(code);
       }
 
-      this.sendOnChangeEvent(field, FilterType.Option, selectedCodes);
+      this.sendOnChangeEvent(field, FilterType.SingleOption, selectedCodes);
     }
   }
 
   onCleanSelectionSingleOption = (field: string) => {
-    this.sendOnChangeEvent(field, FilterType.Option, []);
+    this.sendOnChangeEvent(field, FilterType.SingleOption, []);
   }
 
   sendOnChangeEvent = (field: string, type: FilterType, values: Array<string>):void => {
     this.props.onChange(field, type, values);
   }
 
-  isRangeFilter = (filter: any): filter is RangeFilterProp => {
-    return 'boundaries' in filter;
+  isValueFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
+    return FilterType.Value === filter.type;
   }
 
-  isSingleOptionFilter = (filter: any): filter is SingleOptionFilterProp => {
-    return 'options' in filter;
+  isRangeFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
+    return FilterType.Range === filter.type;
   }
 
-  isValueFilter = (filter: any): filter is ValueFilterProp => {
-    return !this.isSingleOptionFilter(filter) 
-        && !this.isRangeFilter(filter);
+  isSingleOptionFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
+    return FilterType.SingleOption === filter.type;
+  }
+
+  isRangeOptionFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
+    return FilterType.RangeOption === filter.type;
   }
 
   renderFilters = () => {
@@ -73,7 +79,7 @@ class FilterBox extends Component<FilterBoxProps> {
         .map(filter => this.renderFilter(filter));
   }
 
-  renderFilter = (filter: any) => {
+  renderFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp) => {
     let element: any = null;
 
     if(this.isValueFilter(filter)) {
