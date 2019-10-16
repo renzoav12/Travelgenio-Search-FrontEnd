@@ -2,20 +2,20 @@ import React from 'react';
 import SearchCardListContainer from '../../containers/SearchCardList';
 import SearchBoxContainer from '../../containers/SearchBox';
 import FilterBoxContainer from '../../containers/FilterBox';
+import { Grid } from '@material-ui/core';
+import './Search.scss';
 
 const Search = () => {
     return (
-        <div className="container-fluid">
-            <div className="row">
-                <aside className="col-3">
-                    <SearchBoxContainer></SearchBoxContainer>
-                    <FilterBoxContainer></FilterBoxContainer>
-                </aside>
-                <div className="col-9">
-                    <SearchCardListContainer></SearchCardListContainer>
-                </div>
-            </div>
-        </div>
+        <Grid container alignItems="flex-start">
+            <Grid container item md={4} lg={3}>
+                <SearchBoxContainer></SearchBoxContainer>
+                <FilterBoxContainer></FilterBoxContainer>
+            </Grid>
+            <Grid container item md={8} lg={9}>
+                <SearchCardListContainer></SearchCardListContainer>
+            </Grid>
+        </Grid>
     );
 };
 

@@ -10,6 +10,8 @@ import './SearchCardListContainer.scss';
 import InfiniteScroll from 'react-infinite-scroller';
 import { SearchPagination } from '../../model/search';
 import { SearchAction } from '../../actions/search/search.action';
+import { Grid } from '@material-ui/core';
+
 
 interface SearchCardListContainerDispatchProps {
     searchIncrementOnePage: () => void;
@@ -48,16 +50,14 @@ class SearchCardListContainer extends Component<SearchCardListContainerProps> {
     render() {
         const hasCards = this.props.accommodations.length > 0;
 
-        return <div className="otravo-serach-card-list-container">
-            <div className="otravo-serach-card-list-counter">
+        return <Grid container className="otravo-serach-card-list-container">
+            <Grid item xs={12} className="otravo-serach-card-list-counter">
                 <div>{this.props.accommodations.length} alojamientos encontrados</div>
-            </div>
-            <div>
-            </div>
-            <div>
+            </Grid>
+            <Grid item xs={12}>
                 {hasCards && this.renderCardListWithInfiniteScroll()}
-            </div>
-        </div>
+            </Grid>
+        </Grid>
     }
 }
 

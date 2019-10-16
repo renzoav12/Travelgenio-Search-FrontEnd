@@ -1,8 +1,16 @@
 @import "../../styles/global.scss";
 
 .search-box {
-  min-width: 250px;
+  margin: 10px !important;
 }
 .search-box-element {
-  margin-top: 20px;
+  margin-top: 20px !important;
+}
+
+.DateRangePicker {
+  width: 100% !important;
+}
+
+.DateRangePickerInput {
+  width: 100% !important;
 }

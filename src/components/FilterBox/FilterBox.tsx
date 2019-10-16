@@ -4,6 +4,7 @@ import RangeFilter, { RangeFilterProp, RangeProp } from './RangeFilter/RangeFilt
 import ValueFilter, { ValueFilterProp } from './ValueFilter/ValueFilter';
 import './FilterBox.scss';
 import { RangeOptionFilterProp } from './RangeOptionFilter/RangeOptionFilter';
+import { Grid } from '@material-ui/core';
 
 interface FilterBoxProps {
   filters: Map<string, ValueFilterProp 
@@ -116,12 +117,14 @@ class FilterBox extends Component<FilterBoxProps> {
   }
 
   render = () => {
-    return  this.props.filters.size > 0 ? <div className="otravo-box">
-              <div className="otravo-title">Filtrar por:</div>
-              <div>
+    return  this.props.filters.size > 0 
+          ? <Grid container item className="otravo-box otravo-filter-container">
+              <Grid item xs={12} className="otravo-title">Filtrar por:</Grid>
+              <Grid item xs={12}>
                 {this.renderFilters()}
-              </div>
-          </div> : null;
+              </Grid>
+          </Grid> 
+          : null;
   } 
 }
 
