@@ -32,7 +32,6 @@ class FilterBoxContainer extends Component<FilterBoxContainerProps, State> {
     }
 
     onChange = (field: string, filterType: FilterType, values: Array<string>): void => {
-        console.info("Filters has changed -> field = " + field + ", type = " + filterType + ", values = " + JSON.stringify(values));
         this.props.onChange({field: field, type: filterType, values});
     }
 

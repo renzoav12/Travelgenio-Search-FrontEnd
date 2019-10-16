@@ -57,7 +57,7 @@ class Autocomplete extends Component<AutocompleteProps, AutocompleteState> {
         })
       });
     } catch(e) {
-      console.log(e);
+      console.error(e);
     }
   }
 

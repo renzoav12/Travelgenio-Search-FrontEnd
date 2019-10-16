@@ -27,7 +27,6 @@ class SearchBoxContainer extends Component<SearchBoxContainerProps> {
 
     handleOnChange = (searchBoxState: SearchBoxState) : void => {
         this.props.onChange(searchBoxState);
-        console.log("handle search");
         /*
         this.props.fetchSearch(
             {
@@ -46,19 +45,15 @@ class SearchBoxContainer extends Component<SearchBoxContainerProps> {
     }
 
     handleSuggestions(state: SearchBoxSuggestionState) {
-        console.log("handle suggestions");
     }
 
     handleChangeOccuppancy(state: SearchBoxOccupancyState) {
-        console.log("ocupancy change");
     }
 
     handleChangeLocation(state: SearchBoxLocationState) {
-        console.log("location change");
     }
 
     handleChangeStay(state: SearchBoxStayState) {
-        console.log("stay picker change");
     }
 
     render() {

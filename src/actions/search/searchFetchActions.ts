@@ -57,7 +57,6 @@ export const searchFetchPage = (page: number, pageSize: number) => async (
     getState: () => RootState
   ) => {
     //dispatch()
-    alert(JSON.stringify(getState().search));
 };
 
 export const searchFetch = () => async (
@@ -65,21 +64,18 @@ export const searchFetch = () => async (
     getState: () => RootState
   ) => {
     //dispatch()
-    alert(JSON.stringify(getState().search));
 };
 
 export const fetchSearch2 = () => async (
     dispatch: <T extends Action<string>>(x: T) => void,
     getState: () => RootState
   ) => {
-    alert(JSON.stringify(getState().search));
 };
 
 export const searchUpdateAsync = () => async (
     dispatch: <T extends Action<string>>(x: T) => void,
     getState: () => RootState
   ) => {
-    alert(JSON.stringify(getState().search));
 };
 
 export const searchUpdate = (): ThunkResult<void> => async (
@@ -93,7 +89,6 @@ export const searchUpdate = (): ThunkResult<void> => async (
     })
 
     try {
-        console.log(params);
         const response: AxiosResponse<SearchResponse> = await search.post('/search', params);
         dispatch<SearchFetchSuccess>({
             type: SearchActionTypes.FETCH_SUCCESS,
@@ -138,8 +133,6 @@ const searchCreateRequest = (rootState: RootState): SearchFetchParameters => {
 const searchCreateFilterRequest = (rootState: RootState): SearchFetchFilterParameters => {
     const query: SearchFetchFilterParameters = new Map;
 
-    //console.log('searchCreateFilterRequest' + JSON.stringify(rootState.search.filters.values));
-    //console.log(rootState.search);
     rootState.search.filters.forEach((filter) => {
         if (filter.type == FilterType.SingleOption) {
             const newFilter: SingleOptionFilterProp = filter as SingleOptionFilterProp;

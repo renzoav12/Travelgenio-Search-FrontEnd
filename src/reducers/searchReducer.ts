@@ -116,7 +116,6 @@ export const searchReducer: Reducer<Search, SearchAction> = (
             }; 
             
         case SearchActionTypes.SAERCH_FILTER_CHANGED:
-            alert(JSON.stringify(state.filters));
             return {
                 ...state,
                 filters: filterApplySelected(state.filters, action.changed)

@@ -33,7 +33,6 @@ class StayPicker extends React.Component<StayPickerProps, StayPickerState> {
   private focused: any = null;
 
   handleFocusChange = focusedInput => {
-    console.info(focusedInput);
     this.setState({ focusedInput })
     this.focused = focusedInput;
   }

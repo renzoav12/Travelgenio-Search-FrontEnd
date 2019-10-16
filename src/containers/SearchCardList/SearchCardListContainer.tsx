@@ -24,7 +24,6 @@ export interface SearchCardListContainerProps extends SearchCardListContainerDis
 class SearchCardListContainer extends Component<SearchCardListContainerProps> {
 
     incrementOnePage(page: number) {
-        console.log("load more" + page);
         this.props.searchIncrementOnePage();
     }
 

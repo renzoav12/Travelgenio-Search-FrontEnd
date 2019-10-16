@@ -79,11 +79,9 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
     }
 
     handleOccupancyChange = (occupancy: Array<RoomOccupancy>): void => {
-        console.info("---> Change Occupancy :" + JSON.stringify(occupancy));
     }
 
     handleOccupancyClose = (occupancy: Array<RoomOccupancy>): void => {
-        console.info("---> Close Occupancy :" + JSON.stringify(occupancy));
     }
 
     render() {
