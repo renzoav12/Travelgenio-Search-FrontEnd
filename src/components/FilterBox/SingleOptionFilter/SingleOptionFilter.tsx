@@ -5,6 +5,7 @@ import {KeyboardArrowDown, KeyboardArrowUp}  from '@material-ui/icons';
 
 import './SingleOptionFilter.scss';
 import { FilterType } from '../FilterBox';
+import Category from '../../Category';
 
 interface Props {
   filter: SingleOptionFilterProp;
@@ -85,29 +86,40 @@ class SingleOptionFilter extends Component<Props, State> {
 
   render() {
 
-    const all = <SingleOption 
+    const allOption = <SingleOption 
                   key={this.state.optionAll.code} 
                   option={this.state.optionAll} 
                   onChange={this.onSelectAll}/>
 
+    const categories = this.props.filter.options.sort((option, anotherOption) => option.label.localeCompare(anotherOption.label) * -1)
+    .slice(0, this.state.showOptionsQty)
+    .map(option =>
+      <SingleOption 
+        key = {option.code} 
+        option = {option} 
+        onChange = {(selected: boolean):void => {this.props.onChange(this.props.filter.field, option.code, selected)}}
+        label = {<Category stars={parseInt(option.code)}/>}
+      />
+    );
 
     const options = this.props.filter.options
       .slice(0, this.state.showOptionsQty)
       .map(option =>
         <SingleOption 
-          key={option.code} 
-          option={option} 
-          onChange={(selected: boolean):void => {this.props.onChange(this.props.filter.field, option.code, selected)}}/>
+          key = {option.code} 
+          option = {option} 
+          onChange = {(selected: boolean):void => {this.props.onChange(this.props.filter.field, option.code, selected)}}
+        />
       );
 
     const showMore = this.state.showAll 
-    ? <div className="otravo-small-button" onClick={this.toggleShowAll}>Mostrar sólo {this.props.initialShowQty} <KeyboardArrowUp/></div>
-    : <div className="otravo-small-button" onClick={this.toggleShowAll}>Mostrar los {this.props.filter.options.length} <KeyboardArrowDown/></div>;
+    ? <div className="otravo-small-button" onClick={this.toggleShowAll}>Mostrar menos <KeyboardArrowUp/></div>
+    : <div className="otravo-small-button" onClick={this.toggleShowAll}>Mostrar todos <KeyboardArrowDown/></div>;
 
     const filterBody = this.state.display
     ? <div>
-        <div> {all} </div>
-        <div> {options} </div>
+        <div> {allOption} </div>
+        <div> {this.props.filter.field == "category" ? categories : options} </div>
         <div className="otravo-show-more-filter-options"> {showMore} </div>
       </div>
     : null;

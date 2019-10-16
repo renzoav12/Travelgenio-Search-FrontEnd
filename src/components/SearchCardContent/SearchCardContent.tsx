@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchCardContentImage, { SearchCardContentImageProps } from '../SearchCardContentImage/SearchCardContentImage';
-import SearchCardContentCategory, { SearchCardContentCategoryProps } from '../SearchCardContentCategory/SearchCardContentCategory';
+import Category from '../Category/Category';
 import SearchCardContentAddress, { SearchCardContentLocationAddressProps } from '../SearchCardContentAddress/SearchCardContentAddress';
 
 import './SearchCardContent.scss';
@@ -15,6 +15,11 @@ export interface SearchCardContentProps {
     location: SearchCardContentLocationProps;
     amenities: SearchCardContentAmenityProps[];
     images: SearchCardContentImageProps;
+};
+
+interface SearchCardContentCategoryProps {
+    id: string;
+    code: string;
 };
 
 interface SearchCardContentAmenityProps {
@@ -35,7 +40,7 @@ const SearchCardContent = ({id, category, amenities, name, images, location}: Se
         <Grid item xs={12} md={8} className="otravo-card-info">
             <div className="otravo-title">{name}</div>
             <div className="otravo-card-category-section">
-                <SearchCardContentCategory {...category}></SearchCardContentCategory>
+                <Category stars={parseInt(category.code)}></Category>
             </div>
             <div className="otravo-card-address-section">
                 <SearchCardContentAddress {...location.address}></SearchCardContentAddress>

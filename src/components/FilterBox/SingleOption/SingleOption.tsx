@@ -6,6 +6,7 @@ import './SingleOption.scss';
 interface Props {
   option: SingleOptionProp;
   onChange: (selected: boolean) => void;
+  label?: JSX.Element;
 }
 
 export interface SingleOptionProp {
@@ -26,7 +27,7 @@ const SingleOption = (props: Props) => {
           onChange = {(event):void => props.onChange(event.target.checked)}/>
       </div>
       <div className="otravo-label otravo-filter-option-label">
-        {props.option.label}
+        {props.label ? props.label : props.option.label}
       </div>
       <div className="otravo-label otravo-filter-option-quantity">
         {props.option.quantity}
