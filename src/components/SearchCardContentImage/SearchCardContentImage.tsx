@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Image from '../Image';
 import './SearchCardContentImage.scss';
 
 export interface SearchCardContentImageProps {
@@ -10,12 +10,10 @@ interface SearchCardImage {
     url: string;
 };
 
-const SearchCardContentImage = (images: SearchCardContentImageProps) => (
-    <div className="otravo-card-image">
-        <figure>
-            <img src={images[0].url}/>
-        </figure>
-    </div>
-);
+const SearchCardContentImage = (images: SearchCardContentImageProps) => {
+  return <div className="otravo-card-image">
+    <Image url={images[0].url}/>
+  </div>;
+};
 
 export default SearchCardContentImage;
