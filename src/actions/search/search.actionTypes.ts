@@ -1,17 +1,33 @@
+import { Action } from "redux";
+import { CardProps } from "../../components/Card/Card";
+import { SearchFilterResponse } from "../../model/search";
 
-export enum SearchActionTypes {
-    SAERCHBOX_CHANGE = 'SAERCHBOX_CHANGE',
+export const SEARCH_FETCH_START = 'SEARCH_FETCH_START'
+export const SEARCH_FETCH_SUCCESS = 'SEARCH_FETCH_SUCCESS'
+export const SEARCH_FETCH_FAILED = 'SEARCH_FETCH_FAILED'
+export const SEARCH_ACCOMMODATION_UPDATE = 'SEARCH_ACCOMMODATION_UPDATE'
+export const SEARCH_FILTER_UPDATE = 'SEARCH_FILTER_UPDATE'
 
-    SAERCH_CHANGE = 'SAERCH_CHANGE',
-
-    FETCH_START = 'FETCH_SEARCH_START',
-    FETCH_SUCCESS = 'FETCH_SEARCH_SUCCESS',
-    FETCH_FAILED = 'FETCH_SEARCH_FAILED',
-    FETCH_PAGE = 'FETCH_PAGE',
-
-    SEARCH_INCREMENT_PAGE = 'SEARCH_INCREMENT_PAGE',
-    SAERCH_FILTER_CHANGED = 'SAERCH_FILTER_CHANGED',
-    CHANGE_OCCUPANCY = 'CHANGE_OCCUPANCY',
-    CHANGE_LOCATION = 'CHANGE_LOCATION',
-    CHANGE_STAY = 'CHANGE_STAY'
+export interface SearchFetchStartAction extends Action<typeof SEARCH_FETCH_START> {
 }
+
+export interface SearchFetchFailedAction extends Action<typeof SEARCH_FETCH_SUCCESS> {
+}
+
+export interface SearchFetchSuccessAction extends Action<typeof SEARCH_FETCH_FAILED> {
+}
+
+export interface SearchAccommodationUpdateAction extends Action<typeof SEARCH_ACCOMMODATION_UPDATE> {
+    accommodations: CardProps[];
+}
+
+export interface SearchFilterUpdateAction extends Action<typeof SEARCH_FILTER_UPDATE> {
+    filters: SearchFilterResponse;
+}
+
+export type SearchActionTypes =
+    | SearchFetchStartAction
+    | SearchFetchFailedAction
+    | SearchFetchSuccessAction
+    | SearchAccommodationUpdateAction
+    | SearchFilterUpdateAction;

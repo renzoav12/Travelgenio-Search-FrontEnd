@@ -1,8 +1,40 @@
-import { SearchCardProps } from "../components/SearchCard/SearchCard";
+import { CardProps } from "../components/Card/Card";
 import { SearchBoxState } from "../components/SearchBox/SearchBox";
 import { ValueFilterProp } from "../components/FilterBox/ValueFilter/ValueFilter";
 import { RangeFilterProp } from "../components/FilterBox/RangeFilter/RangeFilter";
 import { SingleOptionFilterProp } from "../components/FilterBox/SingleOptionFilter/SingleOptionFilter";
+
+
+export interface SearchParams {
+    accommodationId: string;
+    stay: StayParams;
+    occupancy: string;
+}
+
+interface StayParams {
+    from: string;
+    to: string;
+}
+
+export interface SearchHeaderParameters {
+    readonly country: string
+}
+
+export interface SearchFetchParameters {
+    readonly locationType: string,
+    readonly locationCode: string,
+    readonly checkIn: string,
+    readonly checkOut: string,
+    readonly occupancy: string,
+    readonly language: string,
+    readonly country: string,
+    readonly size: number;
+    readonly page: number;
+    readonly filters: any;
+}
+
+export interface SearchFetchFilterParameters extends Map<string, Array<string>> {
+}
 
 export interface SearchPagination {
     readonly size: number;
@@ -12,6 +44,10 @@ export interface SearchPagination {
 export interface SearchPagination {
     readonly size: number;
     readonly page: number;
+}
+
+export interface SearchStats {
+    readonly totals: number;
 }
 
 interface Filter {
@@ -50,16 +86,33 @@ export interface SearchParameters {
     readonly page: number;
 }
 
+export interface Pagination {
+    first: boolean;
+    last: boolean;
+    number: number;
+    size: number;
+    elements: number;
+    pages: number;
+}
+
 export interface SearchResponse {
-    accommodations: SearchCardProps[];
+    accommodations: CardProps[];
     filters: SearchFilterResponse;
+    pagination: Pagination;
 }
 
 export interface Search {
     box: SearchBoxState;
     filters: SearchFilter;
-    pagination: SearchPagination;
-    accommodations: SearchCardProps[];
+    pagination: Pagination;
+    accommodations: CardProps[];
     loading: boolean;
-    error: String | null
+    stats: SearchStats;
+    error: SearchError;
+}
+
+export interface SearchError {
+    exists: boolean;
+    code?: string;
+    message?: string
 }

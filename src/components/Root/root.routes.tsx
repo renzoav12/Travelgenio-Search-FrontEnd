@@ -1,18 +1,19 @@
 import React from 'react'
-import { Route } from 'react-router'
+import { Route, Switch } from 'react-router'
 
 import {
-  ROUTE_HOME,
-  ROUTE_NOT_FOUND,
   ROUTE_SEARCH,
   ROUTE_SEARCH_RESULTS
 } from './root.routes.constants'
-import App from '../Search/Search'
+import SearchContainer from '../../containers/Search/SearchContainer'
 
 const EmptyComponent = () => <div />
 
 export const getRoutes = () => (
   <div>
-    <Route path={ROUTE_SEARCH} component={App} />
+    <Switch>
+      <Route exact path={ROUTE_SEARCH} component={SearchContainer} />
+      <Route exact path={ROUTE_SEARCH_RESULTS} component={SearchContainer} />
+    </Switch>
   </div>
 )

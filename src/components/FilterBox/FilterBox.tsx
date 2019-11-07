@@ -6,12 +6,18 @@ import './FilterBox.scss';
 import { RangeOptionFilterProp } from './RangeOptionFilter/RangeOptionFilter';
 import { Grid } from '@material-ui/core';
 
-interface FilterBoxProps {
+export interface FilterBoxSelected {
+  type: FilterType;
+  field: string;
+  values: string[];
+}
+
+export interface FilterBoxProps {
   filters: Map<string, ValueFilterProp 
   | RangeFilterProp 
   | SingleOptionFilterProp
   | RangeOptionFilterProp>;
-  onChange: (field: string, type: FilterType, value: Array<string>) => void;
+  onChange: (filter: FilterBoxSelected) => void;
 }
 
 export enum FilterType {
@@ -55,7 +61,7 @@ class FilterBox extends Component<FilterBoxProps> {
   }
 
   sendOnChangeEvent = (field: string, type: FilterType, values: Array<string>):void => {
-    this.props.onChange(field, type, values);
+    this.props.onChange({field, type, values});
   }
 
   isValueFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {

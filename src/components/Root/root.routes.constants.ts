@@ -1,5 +1,4 @@
 // tslint:disable:max-line-length
-export const ROUTE_HOME = '/'
 export const ROUTE_NOT_FOUND = '/404/'
-export const ROUTE_SEARCH = '/'
-export const ROUTE_SEARCH_RESULTS='/search/results/:departure-:arrival/:departureDate/(:returnDate/):adults,:children,:infants/'
+export const ROUTE_SEARCH ='/'
+export const ROUTE_SEARCH_RESULTS ='/:locationType/:locationCode/:stayFrom/:stayTo/:occupancy/:language'

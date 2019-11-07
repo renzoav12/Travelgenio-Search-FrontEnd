@@ -1,15 +1,34 @@
 import _ from 'lodash';
 import { Reducer } from 'redux';
-import { Search, SearchFilterResponse, SearchFilter } from '../model/search';
-import { SearchActionTypes } from '../actions/search/search.actionTypes';
-import { SearchAction } from '../actions/search/search.action';
-import moment, {Moment} from 'moment';
+import { Search, SearchFilterResponse, SearchFilter, Pagination } from '../model/search';
+import moment from 'moment';
 import { ValueFilterProp } from '../components/FilterBox/ValueFilter/ValueFilter';
 import { SingleOptionFilterProp } from '../components/FilterBox/SingleOptionFilter/SingleOptionFilter';
-import { RangeFilterProp } from '../components/FilterBox/RangeFilter/RangeFilter';
-import { FilterBoxSelected } from '../containers/FilterBox/FilterBoxContainer';
-import { FilterType } from '../components/FilterBox/FilterBox';
-import { Filter } from '@material-ui/icons';
+import { RangeFilterProp, RangeProp } from '../components/FilterBox/RangeFilter/RangeFilter';
+import { FilterType, FilterBoxSelected } from '../components/FilterBox/FilterBox';
+import { SEARCH_BOX_CHANGE } from '../actions/searchBox/searchBox.actionTypes';
+import { RootAction } from '../actions/action';
+import {
+    SEARCH_FETCH_START,
+    SEARCH_FETCH_FAILED,
+    SEARCH_FETCH_SUCCESS,
+    SEARCH_FILTER_UPDATE, 
+    SEARCH_ACCOMMODATION_UPDATE
+} from '../actions/search/search.actionTypes';
+
+import { 
+    SEARCH_PAGINATION_PAGE as SEARCH_PAGINATION_PAGE 
+} from '../actions/pagination/pagination.actionTypes';
+import { SEARCH_FILTER_CHANGE } from '../actions/filterBox/filterBox.actionTypes';
+
+const emptyPagination: Pagination = {
+    number: 1,
+    size: 10,
+    first: true,
+    last: true,
+    pages: 1,
+    elements: 10
+}
 
 const initialState: Search = {
     box: {
@@ -18,7 +37,10 @@ const initialState: Search = {
             type: ''
         },
         occupancy: {
-            rooms: []
+            rooms: [{
+                adults: 2,
+                childrenAges: []
+            }]
         },
         stay: {
             from: moment(),
@@ -26,10 +48,15 @@ const initialState: Search = {
         }
     },
     filters: new Map(),
-    pagination: {page: 0, size: 5},
+    pagination: emptyPagination,
     accommodations: [],
     loading: false,
-    error: null
+    stats: {
+        totals: 0
+    },
+    error: {
+        exists: false
+    }
 };
 
 function convertFilters(searchFilter: SearchFilterResponse) : SearchFilter {
@@ -54,25 +81,46 @@ function convertFilters(searchFilter: SearchFilterResponse) : SearchFilter {
 }
 
 function filterApplySelected(filters: SearchFilter, selected: FilterBoxSelected) : SearchFilter {
+    console.log(selected);
     const newFilters: SearchFilter = new Map(filters);
 
     switch (selected.type) {
         case FilterType.SingleOption:
-            const filter = filters.get(selected.field) as SingleOptionFilterProp;
+            const singleOptionFilter = filters.get(selected.field) as SingleOptionFilterProp;
 
             if (selected.values.length > 0) {
-                filter.options.forEach((option) => {
+                singleOptionFilter.options.forEach((option) => {
                     if (selected.values.includes(option.code)) {
                         option.selected = true;
                     }
                 });
             } else {
-                filter.options.forEach((option) => {
+                singleOptionFilter.options.forEach((option) => {
                     option.selected = false;
                 });
             }
 
-            newFilters.set(filter.field, filter);
+            newFilters.set(singleOptionFilter.field, singleOptionFilter);
+        break;
+        case FilterType.Value:
+            const valueFilter = filters.get(selected.field) as ValueFilterProp;
+            if (selected.values[0] !== "")  {
+                valueFilter.value = selected.values[0];
+            } else {
+                valueFilter.value = "";
+            }
+        break;
+
+        case FilterType.Range:
+            const rangeFilter = filters.get(selected.field) as RangeFilterProp;
+            var range: RangeProp = rangeFilter.values!;
+            if (range === undefined) {
+                range = {min: Number(selected.values[0]), max: Number(selected.values[1])};
+            } else {
+                range.min = Number(selected.values[0]);
+                range.max = Number(selected.values[1]);
+            }
+            rangeFilter.values = range;
         default:
         break;
     }
@@ -80,47 +128,51 @@ function filterApplySelected(filters: SearchFilter, selected: FilterBoxSelected)
     return newFilters;
 }
 
-export const searchReducer: Reducer<Search, SearchAction> = (
+export const searchReducer: Reducer<Search, RootAction> = (
     state = initialState, 
     action
 ) => {
     switch (action.type) {
 
-        case SearchActionTypes.FETCH_START:
+        case SEARCH_FETCH_START:
             return { ...state, loading: true };
-        case SearchActionTypes.FETCH_FAILED:
+        case SEARCH_FETCH_FAILED:
             return { ...state, loading: false };
-        case SearchActionTypes.FETCH_SUCCESS:
-            return {
-                ...state,
-                accommodations: action.payload.accommodations,
-                filters: convertFilters(action.payload.filters),
-                loading: false
-            };
-
-        case SearchActionTypes.SEARCH_INCREMENT_PAGE:
+        case SEARCH_FETCH_SUCCESS:
+            return { ...state, loading: false };
+        case SEARCH_PAGINATION_PAGE:
             return {
                 ...state,
                 pagination: {
-                    page: state.pagination.page + 1,
+                    ...state.pagination,
+                    page: action.page,
                     size: state.pagination.size
                 }
             };
-
-        case SearchActionTypes.SAERCHBOX_CHANGE:
+        case SEARCH_BOX_CHANGE:
             return {
                 ...state,
                 box: {
                     ...action.searchBoxState
-                }
+                },
+                pagination: emptyPagination
             }; 
-            
-        case SearchActionTypes.SAERCH_FILTER_CHANGED:
+        case SEARCH_FILTER_CHANGE:
             return {
                 ...state,
-                filters: filterApplySelected(state.filters, action.changed)
+                filters: filterApplySelected(state.filters, action.changed),
+                pagination: emptyPagination   
             };
-
+        case SEARCH_ACCOMMODATION_UPDATE:
+            return {
+                ...state,
+                accommodations: action.accommodations,
+            };
+        case SEARCH_FILTER_UPDATE:
+            return {
+                ...state,
+                filters: convertFilters(action.filters),
+            };
         default:
             return state;
     }

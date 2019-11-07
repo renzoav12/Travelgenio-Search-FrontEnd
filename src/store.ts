@@ -1,25 +1,30 @@
-import { createStore, combineReducers, applyMiddleware, /* compose */ } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose, /* compose */ } from 'redux';
 import reduxThunk, { ThunkMiddleware } from 'redux-thunk';
-//import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { searchReducer } from './reducers/searchReducer';
-import { SearchAction } from './actions/search/search.action';
 
 import { Search } from './model/search';
+import { RootAction } from './actions/action';
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+
+import { history } from './history';
 
 export interface RootState {
     readonly search: Search;
+    readonly router: any;
 }
 
 const rootReducer = combineReducers<RootState>({
-    search: searchReducer
+    search: searchReducer,
+    router: connectRouter(history),
 });
-
-export type RootActions = SearchAction; // | OtherAction | etc.
 
 export const store = createStore(
     rootReducer,
-    //composeWithDevTools(
-        applyMiddleware(reduxThunk as ThunkMiddleware<RootState, RootActions>)
-    //)
+    compose(
+        applyMiddleware(
+            routerMiddleware(history),
+            reduxThunk as ThunkMiddleware<RootState, RootAction>
+        )
+    )
 );

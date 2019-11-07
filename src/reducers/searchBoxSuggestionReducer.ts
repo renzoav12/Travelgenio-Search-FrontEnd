@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import { Reducer } from 'redux';
-import { SearchCardProps } from '../components/SearchCard/SearchCard';
-import { SearchSuggestionAction, SearchSuggestionsActionTypes } from '../actions/search/searchBoxSuggestionAction';
+import { CardProps } from '../components/Card/Card';
+import { SearchSuggestionAction, SearchSuggestionsActionTypes } from '../actions/suggestion/suggestion.action';
 
 export interface SearchSuggestionResponse {
-    accommodations: SearchCardProps[];
+    accommodations: CardProps[];
 }
 
 export interface SearchSuggestionRequest {
