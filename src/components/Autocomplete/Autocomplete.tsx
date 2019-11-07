@@ -111,8 +111,7 @@ class Autocomplete extends Component<AutocompleteProps, AutocompleteState> {
           getSuggestionValue={this.getSuggestionName}
           shouldRenderSuggestions={this.shouldRenderSuggestions}
           renderSuggestion={renderSuggestion}
-          inputProps={inputProps}
-          id={"asd"}/>
+          inputProps={inputProps}/>
       </div>
     )
   }

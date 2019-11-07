@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import StayPicker from '../StayPicker/StayPicker';
 import moment, { Moment } from 'moment'
 import Autocomplete, { SuggestionEntry } from '../Autocomplete/Autocomplete';
-import SearchOccupancy,  { RoomOccupancy } from '../SearchOccupancy/SearchOccupancy';
+import SearchOccupancy,  { RoomOccupancy } from '../Occupancy/SearchOccupancy';
 
 import 'react-dates/lib/css/_datepicker.css';
 import './SearchBox.scss';
 import { Grid } from '@material-ui/core';
 
-interface SearchBoxProps {
+export interface SearchBoxProps {
+    init: SearchBoxState;
     onChange: (state: SearchBoxState) => void
     onChangeSuggestion: (state: SearchBoxSuggestionState) => void;
 }
@@ -40,14 +41,7 @@ export interface SearchBoxStayState {
 class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
     constructor(props: SearchBoxProps) {
         super(props);
-        this.state = {
-            location: {type: '', code: ''},
-            stay: {
-                from: moment(),
-                to: moment()
-            },
-            occupancy: {rooms: [{adults:2, childrenAges:[]}]}
-        };
+        this.state = this.props.init;
         this.handleLocationChange = this.handleLocationChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -102,9 +96,9 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
                 </Grid>
                 <Grid item xs={12} className="search-box-element">
                     <SearchOccupancy
-                                onChange = {this.handleOccupancyChange} 
-                                onClose = {this.handleOccupancyClose} 
-                                occupancy = {this.state.occupancy.rooms}/>
+                                onChange={this.handleOccupancyChange} 
+                                onClose={this.handleOccupancyClose} 
+                                occupancy={this.state.occupancy.rooms}/>
                 </Grid>
                 <Grid item xs={12} className="search-box-element">
                     <button onClick={this.handleSubmit}>Buscar</button>
