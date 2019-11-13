@@ -1,11 +1,12 @@
 import {
   PaginationActionTypes,
-  SEARCH_PAGINATION_PAGE
+  SEARCH_PAGINATION_PAGE,
+  SEARCH_PAGINATION_UPDATE
 } from './pagination.actionTypes';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '../../store';
 import { searchUpdate, searchAccommodationUpdate, searchFilterUpdate } from '../search/search.action';
-import { SearchResponse } from '../../model/search';
+import { SearchResponse, Pagination } from '../../model/search';
 import { RootAction } from '../action';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootAction>;
@@ -17,6 +18,13 @@ export function setPaginationPage(page: number) : PaginationActionTypes {
   }
 }
 
+export function searchPaginationUpdate(pagination: Pagination) : PaginationActionTypes {
+  return {
+      type: SEARCH_PAGINATION_UPDATE,
+      pagination
+  }
+}
+
 export const loadNextPage = () : ThunkResult<void> => async (
   dispatch,
   getState: () => RootState
@@ -25,8 +33,10 @@ export const loadNextPage = () : ThunkResult<void> => async (
     return;
   }
 
+  var page = +getState().search.pagination.number +1;
+
   dispatch(
-    setPaginationPage(getState().search.pagination.number + 1)
+    setPaginationPage(page)
   );
   dispatch(
     searchUpdate(
@@ -41,7 +51,7 @@ export const loadNextPage = () : ThunkResult<void> => async (
               searchFilterUpdate(
                 searchResponse.filters
               )
-            );            
+            );
         }
     )
   );

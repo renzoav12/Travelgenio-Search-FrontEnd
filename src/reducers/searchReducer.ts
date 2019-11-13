@@ -17,7 +17,7 @@ import {
 } from '../actions/search/search.actionTypes';
 
 import { 
-    SEARCH_PAGINATION_PAGE as SEARCH_PAGINATION_PAGE 
+    SEARCH_PAGINATION_PAGE as SEARCH_PAGINATION_PAGE, SEARCH_PAGINATION_UPDATE 
 } from '../actions/pagination/pagination.actionTypes';
 import { SEARCH_FILTER_CHANGE } from '../actions/filterBox/filterBox.actionTypes';
 
@@ -141,12 +141,21 @@ export const searchReducer: Reducer<Search, RootAction> = (
         case SEARCH_FETCH_SUCCESS:
             return { ...state, loading: false };
         case SEARCH_PAGINATION_PAGE:
-            return {
+            var asd = {
                 ...state,
                 pagination: {
                     ...state.pagination,
-                    page: action.page,
+                    number: action.page,
                     size: state.pagination.size
+                }
+            };
+            console.log(asd);
+            return asd;
+        case SEARCH_PAGINATION_UPDATE:
+            return {
+                ...state,
+                pagination: {
+                    ...action.pagination
                 }
             };
         case SEARCH_BOX_CHANGE:
