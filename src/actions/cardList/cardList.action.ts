@@ -13,7 +13,16 @@ export function accommodationSelect(id: string) : ResultActionTypes {
 }
 
 export const thunkAccommodationSelect = (accommodationId: string) => async (
-  dispatch
+  dispatch,
+  getState: () => RootState
 ) => {
-  window.open("http://d1m9g3t59jyyir.cloudfront.net/Hotel%20Hilton-"+ accommodationId + "/2019-11-15/2019-11-24/2/es");
+  const host = "http://d1m9g3t59jyyir.cloudfront.net";
+  const from = getState().search.box.stay.from.format("YYYY-MM-DD");
+  const to = getState().search.box.stay.to.format("YYYY-MM-DD");
+  const language = "es";
+  const name = "Hotel";
+  const occupancy = "2";
+
+  const url = `${host}/${name}-${accommodationId}/${from}/${to}/${occupancy}/${language}`;
+  window.open(url);
 };
