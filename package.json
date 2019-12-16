@@ -1,5 +1,6 @@
 {
-  "name": "site",
+  "name": "@hotels-site/search",
+  "homepage": "/hotels/search",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -42,7 +43,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "aws s3 sync build/ s3://otravo/search/ --profile my --delete --acl public-read"
+    "deployTG": "aws s3 sync build/ s3://hotels-fe-dev/search/ --profile otravo --delete",
+    "deployLB": "aws s3 sync build/ s3://otravo/search/ --profile my --delete --acl public-read",
+    "deployCF": "aws s3 sync build/ s3://otravo-hotels-site/search/ --profile my --delete --acl public-read"
   },
   "eslintConfig": {
     "extends": "react-app"
