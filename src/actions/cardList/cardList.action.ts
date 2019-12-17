@@ -16,13 +16,13 @@ export const thunkAccommodationSelect = (accommodationId: string) => async (
   dispatch,
   getState: () => RootState
 ) => {
-  const host = "http://d1m9g3t59jyyir.cloudfront.net";
+  const basePath = "hotels/detail";
   const from = getState().search.box.stay.from.format("YYYY-MM-DD");
   const to = getState().search.box.stay.to.format("YYYY-MM-DD");
   const language = "es";
   const name = "Hotel";
   const occupancy = "2";
 
-  const url = `${host}/${name}-${accommodationId}/${from}/${to}/${occupancy}/${language}`;
+  const url = `/${basePath}/${name}-${accommodationId}/${from}/${to}/${occupancy}/${language}`;
   window.open(url);
 };
