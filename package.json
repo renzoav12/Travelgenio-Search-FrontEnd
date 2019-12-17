@@ -1,5 +1,6 @@
 {
-  "name": "site",
+  "name": "@hotels/search",
+  "homepage": "/hotels/search",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
