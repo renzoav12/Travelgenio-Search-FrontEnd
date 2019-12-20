@@ -21,7 +21,7 @@ export const thunkAccommodationSelect = (accommodationId: string) => async (
   const to = getState().search.box.stay.to.format("YYYY-MM-DD");
   const language = "es";
   const name = "Hotel";
-  const occupancy = "2";
+  const occupancy = getState().search.box.occupancy.rooms.map(room => room.adults + ((room.childrenAges.length === 0) ? "" : "-") +room.childrenAges.join("-")).join("!");
 
   const url = `/${basePath}/${name}-${accommodationId}/${from}/${to}/${occupancy}/${language}`;
   window.open(url);

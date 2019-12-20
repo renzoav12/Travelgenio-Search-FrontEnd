@@ -14,6 +14,7 @@ import moment from 'moment';
 import { SearchBoxState, SearchBoxOccupancyState, SearchBoxStayState } from '../../components/SearchBox/SearchBox';
 
 import './SearchContainer.scss';
+import { Room } from '@material-ui/icons';
 
 class SearchContainer extends Component<SearchProps> {
     
@@ -44,13 +45,16 @@ function parseStay(from: string, to: string): SearchBoxStayState {
     };
 }
 
-function parseOccupancy(date: string): SearchBoxOccupancyState {
-    return {
-        rooms: [{
-            adults: 2,
-            childrenAges: []
-        }]
-    };
+function parseOccupancy(searchOccupancy: string): SearchBoxOccupancyState {
+  let rooms = searchOccupancy.split("!")
+      .map(room => {
+        let guests = room.split("-"); 
+        return {
+          adults: parseInt(guests[0]),
+          childrenAges: guests.slice(1,guests.length).map(age => parseInt(age))
+        };
+      });
+  return { rooms };
 }
 
 function createSearchFromParams(params: any): SearchBoxState {
@@ -60,7 +64,7 @@ function createSearchFromParams(params: any): SearchBoxState {
             type: params.locationType,
             code: params.locationCode
         },
-        occupancy: parseOccupancy(params)
+        occupancy: parseOccupancy(params.occupancy)
     };
 }
 
