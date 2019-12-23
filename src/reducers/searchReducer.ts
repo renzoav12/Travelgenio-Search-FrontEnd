@@ -8,6 +8,7 @@ import { RangeFilterProp, RangeProp } from '../components/FilterBox/RangeFilter/
 import { FilterType, FilterBoxSelected } from '../components/FilterBox/FilterBox';
 import { SEARCH_BOX_CHANGE } from '../actions/searchBox/searchBox.actionTypes';
 import { RootAction } from '../actions/action';
+import { CardProps } from '../components/Card/Card';
 import {
     SEARCH_FETCH_START,
     SEARCH_FETCH_FAILED,
@@ -27,8 +28,10 @@ const emptyPagination: Pagination = {
     first: true,
     last: true,
     pages: 1,
-    elements: 10
+    elements: 0
 }
+
+const emptyAccommodations: CardProps[] = [];
 
 const initialState: Search = {
     box: {
@@ -164,13 +167,14 @@ export const searchReducer: Reducer<Search, RootAction> = (
                 box: {
                     ...action.searchBoxState
                 },
-                pagination: emptyPagination
+                pagination: emptyPagination,
+                accommodations: emptyAccommodations
             }; 
         case SEARCH_FILTER_CHANGE:
             return {
                 ...state,
                 filters: filterApplySelected(state.filters, action.changed),
-                pagination: emptyPagination   
+                accommodations: emptyAccommodations
             };
         case SEARCH_ACCOMMODATION_UPDATE:
             return {

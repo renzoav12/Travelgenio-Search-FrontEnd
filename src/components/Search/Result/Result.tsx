@@ -4,9 +4,9 @@ import SearchCardList from '../../CardList';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Pagination } from '../../../model/search';
-import { Grid } from '@material-ui/core';
-import Skeleton from '@material-ui/lab/Skeleton';
+import { Grid, Box } from '@material-ui/core';
 import { CardProps } from '../../Card/Card';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import './Result.scss';
 
@@ -36,7 +36,7 @@ class Result extends Component<ResultProps> {
     }
 
     renderLoader() {
-        return <Skeleton variant="rect" width={210} height={118} />
+        return <Box className="box"><CircularProgress/></Box>;
     }
 
     renderCardListWithInfiniteScroll() {
@@ -55,8 +55,8 @@ class Result extends Component<ResultProps> {
         const hasCards = this.props.accommodations.length > 0;
 
         return <Grid container className="otravo-serach-card-list-container">
-            <Grid item xs={12} className="otravo-serach-card-list-counter">
-                <div>{this.props.accommodations.length} alojamientos encontrados</div>
+            <Grid item xs={12} className="otravo-title-2 otravo-serach-card-list-counter">
+                <div>{this.props.pagination.elements} alojamientos encontrados</div>
             </Grid>
             <Grid item xs={12}>
                 {hasCards && this.renderCardListWithInfiniteScroll()}
