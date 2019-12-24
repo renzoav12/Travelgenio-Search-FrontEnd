@@ -69,6 +69,7 @@ export const searchUpdate = (action: (x: SearchResponse) => void) => async (
                 number: response.headers['tg-page-number'],
                 size: response.headers['tg-page-size'],
                 elements: response.headers['tg-total-elements'],
+                filteredElements: response.headers['tg-filtered-elements'],
                 pages: response.headers['tg-total-pages']
             }
         });
