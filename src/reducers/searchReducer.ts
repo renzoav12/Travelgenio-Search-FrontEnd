@@ -20,7 +20,7 @@ import {
 import { 
     SEARCH_PAGINATION_PAGE as SEARCH_PAGINATION_PAGE, SEARCH_PAGINATION_UPDATE 
 } from '../actions/pagination/pagination.actionTypes';
-import { SEARCH_FILTER_CHANGE } from '../actions/filterBox/filterBox.actionTypes';
+import { SEARCH_FILTER_CHANGE, SEARCH_FILTER_CLEAN } from '../actions/filterBox/filterBox.actionTypes';
 
 const emptyPagination: Pagination = {
     number: 1,
@@ -28,7 +28,8 @@ const emptyPagination: Pagination = {
     first: true,
     last: true,
     pages: 1,
-    elements: 0
+    elements: 0,
+    filteredElements: 0
 }
 
 const emptyAccommodations: CardProps[] = [];
@@ -83,8 +84,30 @@ function convertFilters(searchFilter: SearchFilterResponse) : SearchFilter {
     return filters;
 }
 
+function cleanFilters(searchFilters: SearchFilter): SearchFilter {
+  let cleanSearchFilters: SearchFilter = new Map(searchFilters);
+  cleanSearchFilters.forEach((filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp,
+    key: string) => {
+      switch (filter.type) {
+        case FilterType.SingleOption:
+            const singleOptionFilter: SingleOptionFilterProp = filter as SingleOptionFilterProp;
+            singleOptionFilter.options.forEach(option => option.selected = false);
+        break;
+        case FilterType.Value:
+            const valueFilter: ValueFilterProp = filter as ValueFilterProp;
+            valueFilter.value = undefined;
+        break;
+        case FilterType.Range:
+            const rangeFilter: RangeFilterProp = filter as RangeFilterProp;
+            rangeFilter.values = undefined;
+        default:
+        break;
+    }  });
+
+  return cleanSearchFilters;
+}
+
 function filterApplySelected(filters: SearchFilter, selected: FilterBoxSelected) : SearchFilter {
-    console.log(selected);
     const newFilters: SearchFilter = new Map(filters);
 
     switch (selected.type) {
@@ -135,8 +158,7 @@ export const searchReducer: Reducer<Search, RootAction> = (
     state = initialState, 
     action
 ) => {
-    switch (action.type) {
-
+      switch (action.type) {
         case SEARCH_FETCH_START:
             return { ...state, loading: true };
         case SEARCH_FETCH_FAILED:
@@ -174,6 +196,7 @@ export const searchReducer: Reducer<Search, RootAction> = (
             return {
                 ...state,
                 filters: filterApplySelected(state.filters, action.changed),
+                pagination: emptyPagination,
                 accommodations: emptyAccommodations
             };
         case SEARCH_ACCOMMODATION_UPDATE:
@@ -186,6 +209,11 @@ export const searchReducer: Reducer<Search, RootAction> = (
                 ...state,
                 filters: convertFilters(action.filters),
             };
+        case SEARCH_FILTER_CLEAN:
+          return {
+              ...state,
+              filters: cleanFilters(state.filters),
+          };
         default:
             return state;
     }

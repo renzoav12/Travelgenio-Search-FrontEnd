@@ -7,6 +7,7 @@ import { Pagination } from '../../../model/search';
 import { Grid, Box } from '@material-ui/core';
 import { CardProps } from '../../Card/Card';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import './Result.scss';
 
@@ -36,7 +37,7 @@ class Result extends Component<ResultProps> {
     }
 
     renderLoader() {
-        return <Box className="box"><CircularProgress/></Box>;
+        return <Box className="next-page-progress-box"><CircularProgress/></Box>;
     }
 
     renderCardListWithInfiniteScroll() {
@@ -51,14 +52,18 @@ class Result extends Component<ResultProps> {
                 </InfiniteScroll>
     }
 
+    renderProgressBar() {
+      return <Box className="search-progress-box"><LinearProgress/></Box>;
+    }
+
     render() {
         const hasCards = this.props.accommodations.length > 0;
-
         return <Grid container className="otravo-serach-card-list-container">
             <Grid item xs={12} className="otravo-title-2 otravo-serach-card-list-counter">
-                <div>{this.props.pagination.elements} alojamientos encontrados</div>
+                <div>Se encontraron {this.props.pagination.filteredElements} {this.props.pagination.filteredElements == this.props.pagination.elements ? "" : " de " + this.props.pagination.elements} alojamientos</div>
             </Grid>
             <Grid item xs={12}>
+                {this.props.loading && this.renderProgressBar()}
                 {hasCards && this.renderCardListWithInfiniteScroll()}
             </Grid>
         </Grid>

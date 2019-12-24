@@ -6,6 +6,7 @@ import { RootAction } from '../action';
 import { searchUpdate, searchAccommodationUpdate, searchFilterUpdate } from '../search/search.action';
 import { SearchResponse } from '../../model/search';
 import { searchPaginationUpdate } from '../pagination/pagination.action';
+import { cleanFilterBox } from '../filterBox/filterBox.action';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootAction>;
 
@@ -19,6 +20,7 @@ export function searchBoxChange(searchBoxState: SearchBoxState) : SearchBoxActio
 export const thunkSearchBoxChange = (searchBoxState: SearchBoxState): ThunkResult<void> => async (
   dispatch
 ) => {
+  dispatch(cleanFilterBox());
   dispatch(searchBoxChange(searchBoxState));
   dispatch(
     searchUpdate(

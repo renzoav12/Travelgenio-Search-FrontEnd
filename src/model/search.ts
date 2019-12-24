@@ -92,6 +92,7 @@ export interface Pagination {
     number: number;
     size: number;
     elements: number;
+    filteredElements: number;
     pages: number;
 }
 
