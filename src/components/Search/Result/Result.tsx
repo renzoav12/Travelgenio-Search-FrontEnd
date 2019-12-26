@@ -21,26 +21,26 @@ export interface ResultProps {
 
 class Result extends Component<ResultProps> {
 
-    loadNextPage() {
+    loadNextPage = () => {
         this.props.loadNextPage();
     }
 
-    renderCardList() {
+    renderCardList = () => {
         return <SearchCardList 
                 accommodations={this.props.accommodations}
                 selected={this.props.selected}/>
     }
 
-    renderLoaderWhenLoading() {
+    renderLoaderWhenLoading = () => {
         if (this.props.loading) 
             return this.renderLoader();
     }
 
-    renderLoader() {
+    renderLoader = () => {
         return <Box className="next-page-progress-box"><CircularProgress/></Box>;
     }
 
-    renderCardListWithInfiniteScroll() {
+    renderCardListWithInfiniteScroll = () => {
         return <InfiniteScroll
                     dataLength={this.props.accommodations.length} 
                     pageStart={1}
@@ -52,15 +52,23 @@ class Result extends Component<ResultProps> {
                 </InfiniteScroll>
     }
 
-    renderProgressBar() {
+    renderProgressBar = () => {
       return <Box className="search-progress-box"><LinearProgress/></Box>;
     }
 
-    render() {
+    renderElementsCount = () => {
+      if(this.props.loading) {
+        return <div>Buscando alojamientos...</div>
+      } else {
+        return <div>Se encontraron {this.props.pagination.filteredElements} {this.props.pagination.filteredElements == this.props.pagination.elements ? "" : " de " + this.props.pagination.elements} alojamientos</div>;
+      }
+    }
+
+    render = () => {
         const hasCards = this.props.accommodations.length > 0;
         return <Grid container className="otravo-serach-card-list-container">
             <Grid item xs={12} className="otravo-title-2 otravo-serach-card-list-counter">
-                <div>Se encontraron {this.props.pagination.filteredElements} {this.props.pagination.filteredElements == this.props.pagination.elements ? "" : " de " + this.props.pagination.elements} alojamientos</div>
+              {this.renderElementsCount()}
             </Grid>
             <Grid item xs={12}>
                 {this.props.loading && this.renderProgressBar()}
