@@ -1,31 +1,30 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
-import SearchCard from '../Card';
+import React, { FunctionComponent } from 'react';
+import Card from '../Card/Card';
 import { CardProps } from '../Card/Card';
+import { Box } from '@material-ui/core';
 
 export interface CardListProps {
     accommodations: CardProps[];
     selected: (id: string) => void;
 }
 
-class CardList extends Component<CardListProps> {
-    renderAll(): JSX.Element[] | null {
-        const { accommodations: accommodations } = this.props;
-        if (!accommodations) {
-            return null;
-        }
-        return accommodations.map((accommodation: CardProps) => {
-            return <SearchCard
-                key={accommodation.id}
-                id={accommodation.id}
-                content={accommodation.content} pricing={accommodation.pricing}
-                selected={() => this.props.selected(accommodation.id)}/>;
-        });
-    }
+const CardList: FunctionComponent<CardListProps> = props => {
+  const renderAll = () => {
+      const { accommodations: accommodations } = props;
 
-    render() {
-        return <div>{this.renderAll()}</div>;
-    }
+      if (!accommodations) {
+          return null;
+      }
+      return accommodations.map((accommodation: CardProps) => {
+          return <Card
+              key={accommodation.id}
+              id={accommodation.id}
+              content={accommodation.content} pricing={accommodation.pricing}
+              selected={() => props.selected(accommodation.id)}/>;
+      });
+  }
+
+  return <Box>{renderAll()}</Box>;
 }
 
-export default CardList
+export default CardList;

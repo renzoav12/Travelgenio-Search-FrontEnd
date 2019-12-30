@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React, { SFC } from 'react';
 import { Grid } from '@material-ui/core';
 import SearchBox from '../SearchBox';
-import { SearchBoxProps, SearchBoxState, SearchBoxSuggestionState } from '../SearchBox/SearchBox';
-import FilterBox, { FilterBoxProps, FilterBoxSelected } from '../FilterBox/FilterBox';
+import { SearchBoxState, SearchBoxSuggestionState } from '../SearchBox/SearchBox';
+import FilterBox, { FilterBoxSelected } from '../FilterBox/FilterBox';
 
-import Result, { ResultProps } from './Result/Result';
+import Result from './Result/Result';
 import { Pagination, SearchFilter } from '../../model/search';
 import { CardProps } from '../Card/Card';
-
-import './Search.scss';
 
 export interface SearchProps {
     search: SearchBoxState;
@@ -25,29 +23,27 @@ export interface SearchProps {
     filters: SearchFilter;    
 }
 
-class Search extends Component<SearchProps> {
-    render() {
+const Search: SFC<SearchProps> = props => {
         return <Grid container alignItems="flex-start">
         <Grid container item md={4} lg={3}>
             <SearchBox
-                    init={this.props.search}
-                    onChange={this.props.onChange} 
-                    onChangeSuggestion={this.props.onChangeSuggestion}/>
+                    init={props.search}
+                    onChange={props.onChange} 
+                    onChangeSuggestion={props.onChangeSuggestion}/>
 
             <FilterBox
-                    filters={this.props.filters}
-                    onChange={this.props.filtersOnChange}/>
+                    filters={props.filters}
+                    onChange={props.filtersOnChange}/>
         </Grid>
         <Grid container item md={8} lg={9}>
             <Result
-                    accommodations={this.props.accommodations}
-                    loadNextPage={this.props.loadNextPage}
-                    loading={this.props.loading}
-                    selected={this.props.selected}
-                    pagination={this.props.pagination}/>
+                    accommodations={props.accommodations}
+                    loadNextPage={props.loadNextPage}
+                    loading={props.loading}
+                    selected={props.selected}
+                    pagination={props.pagination}/>
         </Grid>
     </Grid>;
-    }
 }
 
 export default Search;

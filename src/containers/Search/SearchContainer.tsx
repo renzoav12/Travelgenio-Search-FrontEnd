@@ -13,9 +13,6 @@ import { fetchSearchSuggestion } from '../../actions/suggestion/suggestion.actio
 import moment from 'moment';
 import { SearchBoxState, SearchBoxOccupancyState, SearchBoxStayState } from '../../components/SearchBox/SearchBox';
 
-import './SearchContainer.scss';
-import { Room } from '@material-ui/icons';
-
 class SearchContainer extends Component<SearchProps> {
     
     componentDidMount() {

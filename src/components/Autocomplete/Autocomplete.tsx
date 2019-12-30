@@ -1,4 +1,4 @@
-import React, { Component, SFC } from 'react'
+import React, { Component, FunctionComponent } from 'react'
 import suggestionApi from '../../api/suggestions/suggestions'
 import Autosuggest, { InputProps, SuggestionsFetchRequestedParams } from 'react-autosuggest'
 
@@ -33,7 +33,7 @@ const icons:Map<string, string> = new Map(
     ["POI", poiIcon]
   ]);
 
-const renderSuggestion: SFC<SuggestionEntry> = (suggestion: SuggestionEntry) => (
+const renderSuggestion: FunctionComponent<SuggestionEntry> = (suggestion: SuggestionEntry) => (
   <div className={"otravo-suggestion"}>
     <div className="otravo-suggestion-type"><img className="otravo-suggestion-icon" src={icons.get(suggestion.type)}/></div>
     <div className="otravo-suggestion-name">{suggestion.name}</div>

@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-
-import './Address.scss';
+import React, {FunctionComponent} from 'react';
+import { Box } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 export interface AddressProps {
     city: string;
@@ -10,17 +10,21 @@ export interface AddressProps {
     country: string;
 };
 
-
-class Address extends Component<AddressProps> {
-
-    getAddress = () => {
-        let city = this.props.city;
-        return city;
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    address: {
+      color: theme.palette.primary.main
     }
+  })
+);
 
-    render() {
-        return <div className="otravo-card-address">{this.getAddress()}</div>;
-    }
+const Address: FunctionComponent<AddressProps> = props => {
+  const classes = useStyles();
+
+  const street = props.street + (props.streetNumber.length > 1 ? " " + props.streetNumber : "");
+  const city = (street.length > 1 ? ", ": "") + props.city;
+
+  return <Box className={classes.address}>{street}{city}</Box>;
 }
 
 export default Address;

@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
-import SearchCardList from '../../CardList';
-
+import React, { FunctionComponent } from 'react';
+import CardList from '../../CardList/CardList';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Pagination } from '../../../model/search';
-import { Grid, Box } from '@material-ui/core';
+import { Grid, Typography, Box } from '@material-ui/core';
 import { CardProps } from '../../Card/Card';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
-
-import './Result.scss';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 export interface ResultProps {
     loading: boolean;
@@ -19,63 +16,79 @@ export interface ResultProps {
     selected: (id: string) => void;
 }
 
-class Result extends Component<ResultProps> {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    searchProgressBox: {
+      paddingTop: 10,
+      paddingBottom: 10,
+      textAlign: "center"
+    },
+    nextPageProgressBox: {
+      paddingTop: 20,
+      paddingBottom: 40,
+      textAlign: "center"
+    },
+    counter: {
+      marginTop: 10
+    }
+  }),
+);
 
-    loadNextPage = () => {
-        this.props.loadNextPage();
+const Result: FunctionComponent<ResultProps> = props => {
+
+    const classes = useStyles();
+
+    const loadNextPage = () => {
+        props.loadNextPage();
     }
 
-    renderCardList = () => {
-        return <SearchCardList 
-                accommodations={this.props.accommodations}
-                selected={this.props.selected}/>
+    const renderCardList = () => {
+        return <CardList 
+                accommodations={props.accommodations}
+                selected={props.selected}/>
     }
 
-    renderLoaderWhenLoading = () => {
-        if (this.props.loading) 
-            return this.renderLoader();
+    const renderLoaderWhenLoading = () => {
+        if (props.loading) 
+            return renderLoader();
     }
 
-    renderLoader = () => {
-        return <Box className="next-page-progress-box"><CircularProgress/></Box>;
+    const renderLoader = () => {
+        return <Box className={classes.nextPageProgressBox}><CircularProgress/></Box>;
     }
 
-    renderCardListWithInfiniteScroll = () => {
+    const renderCardListWithInfiniteScroll = () => {
         return <InfiniteScroll
-                    dataLength={this.props.accommodations.length} 
+                    dataLength={props.accommodations.length} 
                     pageStart={1}
                     hasMore={true}
                     initialLoad={false}
-                    next={this.loadNextPage.bind(this)}
-                    loader={this.renderLoaderWhenLoading()}>
-                    {this.renderCardList()}
+                    next={loadNextPage}
+                    loader={renderLoaderWhenLoading()}>
+                    {renderCardList()}
                 </InfiniteScroll>
     }
 
-    renderProgressBar = () => {
-      return <Box className="search-progress-box"><LinearProgress/></Box>;
+    const progressBar = <Box className={classes.searchProgressBox}><LinearProgress/></Box>;
+
+    const counter = () => {
+      return props.loading
+          ? <Typography variant="h1">Buscando alojamientos...</Typography>
+          : <Typography variant="h1">Se encontraron {props.pagination.filteredElements} {props.pagination.filteredElements == props.pagination.elements ? "" : " de " + props.pagination.elements} alojamientos</Typography>;
     }
 
-    renderElementsCount = () => {
-      if(this.props.loading) {
-        return <div>Buscando alojamientos...</div>
-      } else {
-        return <div>Se encontraron {this.props.pagination.filteredElements} {this.props.pagination.filteredElements == this.props.pagination.elements ? "" : " de " + this.props.pagination.elements} alojamientos</div>;
-      }
-    }
-
-    render = () => {
-        const hasCards = this.props.accommodations.length > 0;
-        return <Grid container className="otravo-serach-card-list-container">
-            <Grid item xs={12} className="otravo-title-2 otravo-serach-card-list-counter">
-              {this.renderElementsCount()}
-            </Grid>
-            <Grid item xs={12}>
-                {this.props.loading && this.renderProgressBar()}
-                {hasCards && this.renderCardListWithInfiniteScroll()}
-            </Grid>
+    const hasCards = props.accommodations.length > 0;
+        
+    return <Grid container>
+        <Grid item xs={12} className={classes.counter}>
+          {counter()}
         </Grid>
-    }
-}
+        <Grid item xs={12}>
+            {props.loading && progressBar}
+            {hasCards && renderCardListWithInfiniteScroll()}
+        </Grid>
+    </Grid>
+  }
+
 
 export default Result
