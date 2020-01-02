@@ -5,7 +5,7 @@ import {KeyboardArrowDown, KeyboardArrowUp}  from '@material-ui/icons';
 
 import './SingleOptionFilter.scss';
 import { FilterType } from '../FilterBox';
-import Category from '../../Category';
+import Category from '../../Category/Category';
 
 interface Props {
   filter: SingleOptionFilterProp;

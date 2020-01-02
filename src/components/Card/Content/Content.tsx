@@ -1,12 +1,10 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import Image, { ImageProps } from './Image/Image';
 import Category from '../../Category/Category';
 import Address, { AddressProps } from './Address/Address';
-
-import './Content.scss';
-import { Grid } from '@material-ui/core';
-
-const foodIcon = require("../../../assets/images/icons/food_icon.svg");
+import Amenities, { AmenityProps } from './Amenities/Amenities';
+import { Grid, Box } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 export interface ContentProps {
     id: string;
@@ -22,35 +20,52 @@ interface CategoryProps {
     code: string;
 };
 
-interface AmenityProps {
-    id: string;
-    name: string;
-};
-
 interface LocationProps {
     address: AddressProps;
 };
 
-const Content = ({id, category, amenities, name, images, location}: ContentProps) => (
-    <Grid container className="otravo-card-content">
-        <Grid item xs={12} md={4} className="otravo-card-image-section">
-            <Image {...images}></Image>
-        </Grid>
-        <Grid item xs={12} md={8} className="otravo-card-info">
-            <div className="otravo-title">{name}</div>
-            <div className="otravo-card-category-section">
-                <Category stars={parseInt(category.code)}></Category>
-            </div>
-            <div className="otravo-card-address-section">
-                <Address {...location.address}></Address>
-            </div>
-            <div className="otravo-card-ammenities">
-                <img className="otravo-card-amenity" src={foodIcon}/>
-                <img className="otravo-card-amenity" src={foodIcon}/>
-                <img className="otravo-card-amenity" src={foodIcon}/>
-            </div>
-        </Grid>
-    </Grid>
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    title: {
+      fontSize: "16pt",
+      fontWeight: "bold",
+      paddingTop: 5
+    },
+    content: {
+      display: "flex",
+      padding: 10,
+      height: "100%"
+    },
+    image: {
+      width: "30%"
+    },
+    info: {
+      width: "70%"
+    },
+    category: {
+      minHeight: 20,
+      paddingBottom: 5
+    }
+  })
 );
+
+const Content: FunctionComponent<ContentProps> = props => {
+
+  const classes = useStyles();
+
+  return <Grid container className={classes.content}>
+      <Grid item xs={12} md={4} className={classes.image}>
+          <Image {...props.images}></Image>
+      </Grid>
+      <Grid item xs={12} md={8} className={classes.info}>
+          <Box className={classes.title}>{props.name}</Box>
+          <Box className={classes.category}>
+              <Category stars={parseInt(props.category.code)}/>
+          </Box>
+          <Address {...props.location.address}/>
+          <Amenities {...props}/>
+      </Grid>
+  </Grid>;
+}
 
 export default Content;
