@@ -28,14 +28,14 @@ interface FetchSearchSuggestionFailed {
 }
 
 export interface SearchSuggestionParameters {
-    readonly hint: string
+    readonly text: string
 }
 
 export const fetchSearchSuggestion = (queryParameters: SearchSuggestionParameters): ThunkResult<void> => async dispatch => {
     handleFetchSearchSuggestion(dispatch);
 
     try {
-        const response: AxiosResponse<SearchSuggestionResponse> = await search.get('/suggestions', {
+        const response: AxiosResponse<SearchSuggestionResponse> = await search.get('/hint', {
             params: queryParameters
         });
         handleAccommodationRateSearchSuccess(dispatch, response.data);

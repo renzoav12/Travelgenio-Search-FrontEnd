@@ -15,7 +15,7 @@ export interface SearchBoxProps {
 }
 
 export interface SearchBoxSuggestionState {
-    hint: string;
+    text: string;
 }
 
 export interface SearchBoxLocationState {

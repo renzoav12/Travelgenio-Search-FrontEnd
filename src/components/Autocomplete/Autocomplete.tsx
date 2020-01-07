@@ -30,7 +30,7 @@ const icons:Map<string, string> = new Map(
     ["CITY", cityIcon], 
     ["ACCOMMODATION", accommodationIcon], 
     ["AIRPORT", airportIcon],
-    ["POI", poiIcon]
+    ["POINT_OF_INTEREST", poiIcon]
   ]);
 
 const renderSuggestion: FunctionComponent<SuggestionEntry> = (suggestion: SuggestionEntry) => (
@@ -49,8 +49,8 @@ class Autocomplete extends Component<AutocompleteProps, AutocompleteState> {
   getSuggestions2(value: String) {
 
     try {
-      suggestionApi.get('/suggestions', {
-        params: {hint: value}
+      suggestionApi.get('/hint', {
+        params: {text: value}
       }).then((response) => {
         this.setState({
           suggestions: response.data
