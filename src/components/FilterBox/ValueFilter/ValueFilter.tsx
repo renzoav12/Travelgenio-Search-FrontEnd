@@ -1,12 +1,13 @@
-import React, { Component, MouseEvent, DOMElement } from 'react';
-import Input from '@material-ui/core/Input';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import FilterHeader from '../FilterHeader/FilterHeader';
 import './ValueFilter.scss';
 import { FilterType } from '../FilterBox';
+import { Input, Box } from '@material-ui/core';
 
 interface Props {
   filter: ValueFilterProp;
   onChange: (field: string, value: string) => void;
+  display: boolean;
 }
 
 export interface ValueFilterProp {
@@ -17,62 +18,53 @@ export interface ValueFilterProp {
   value?: string;
 }
 
-interface State {
-  display: boolean;
-}
+const ValueFilter: FunctionComponent<Props> = props => {
 
-class ValueFilter extends Component<Props, State> {
+  const [display, setDisplay] = useState<boolean>(true);
+  const [value, setValue] = useState<string>(props.filter.value ? props.filter.value : "");
 
-  value: string;
+  useEffect(() => {
+    setValue(props.filter.value ? props.filter.value : "");
+  }, [props.filter.value]);
 
-  constructor(props: Props) {
-    super(props);
-    this.state = { display: true };
-    this.value = props.filter.value ? props.filter.value :  "";
+  useEffect(() => {
+    setDisplay(props.display);
+  }, [props.display]);
+
+  const onChangeDisplay = (show: boolean): void => {
+    setDisplay(show);
   }
 
-
-  onChangeDisplay = (display: boolean): void => {
-    this.setState((prevState: State) => {      
-      return {
-        display: display
-      };
-    });    
+  const onChangeValue = (event: any): void => {
+    setValue(event.target.value);
   }
 
-  onChangeValue = (event: any): void => {
-    this.value = event.target.value;
+  const onApply = (event: any): void => {
+    props.onChange(props.filter.field, value);
   }
 
-  onApply = (event: any): void => {
-    this.props.onChange(this.props.filter.field, this.value);
-  }
-
-  render() {
-
-    const filterBody = this.state.display
-    ? <div className="otravo-value-filter">
-        <div>
+  const filterBody = display
+    ? <Box className="otravo-value-filter">
+        <Box>
           <Input 
             type = {"text"} 
-            defaultValue = {(this.props.filter.value) ? this.props.filter.value : null} 
+            value = {value} 
             fullWidth = {true}
-            onChange = {this.onChangeValue}
+            onChange = {onChangeValue}
             placeholder = {"Hotel"}/>
-        </div>
-        <div className="otravo-value-filter-button-section">
-          <button className="otravo-value-filter-button" onClick={this.onApply}>Aplicar</button>
-        </div>
-      </div>
+        </Box>
+        <Box className="otravo-value-filter-button-section">
+          <button className="otravo-value-filter-button" onClick={onApply}>Aplicar</button>
+        </Box>
+      </Box>
     : null;
 
-    return <div>
-              <div>
-                <FilterHeader label={this.props.filter.label} onChange={this.onChangeDisplay}/>
-              </div>
-              { filterBody }
-            </div>;
-  } 
+    return <Box>
+            <Box>
+              <FilterHeader label={props.filter.label} onChange={onChangeDisplay} display={display}/>
+            </Box>
+            { filterBody }
+          </Box>;
 }
 
 export default ValueFilter;

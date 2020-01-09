@@ -1,12 +1,14 @@
-import React, { Component, MouseEvent, DOMElement } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import Slider from '@material-ui/core/Slider';
 import FilterHeader from '../FilterHeader/FilterHeader';
-import './RangeFilter.scss';
 import { FilterType } from '../FilterBox';
+import { Box } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 interface Props {
   filter: RangeFilterProp;
   onChange: (field: string, values: RangeProp) => void;
+  display: boolean;
 }
 
 export interface RangeFilterProp {
@@ -23,54 +25,55 @@ export interface RangeProp {
   max: number;
 }
 
-interface State {
-  display: boolean;
-}
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    slider: {
+      marginTop: 45,
+      marginLeft: 20,
+      marginRight: 20
+    }
+  }),
+);
 
+const RangeFilter: FunctionComponent<Props> = props => {
+  
+  const classes = useStyles();
+  
+  const [display, setDisplay] = useState<boolean>(true);
 
+  useEffect(() => {
+    setDisplay(props.display);
+  }, [props.display]);
 
-class RangeFilter extends Component<Props, State> {
-
-  constructor(props: Props) {
-    super(props);
-    this.state = { display: true };
+  const onChangeDisplay = (show: boolean): void => {
+    setDisplay(show);
   }
 
-  onChangeDisplay = (display: boolean): void => {
-    this.setState((prevState: State) => {      
-      return {
-        display: display
-      };
-    });    
+  const onChangeRange = (event: any, range: any): void => {
+    props.onChange(props.filter.field, {min: range[0], max: range[1]});
   }
 
-  onChangeRange = (event: any, range: any): void => {
-    this.props.onChange(this.props.filter.field, {min: range[0], max: range[1]});
-  }
 
-  render() {
-
-    const filterBody = this.state.display
-    ? <div className="otravo-slider">
+  const filterBody = display
+    ? <Box className={classes.slider}>
         <Slider
           style = {{ backgroundColor: 'transparent' }}
           valueLabelDisplay="on"
-          max = {this.props.filter.boundaries.max}
-          min = {this.props.filter.boundaries.min}
-          defaultValue = {(this.props.filter.values) 
-            ? [this.props.filter.values.min, this.props.filter.values.max]
-          : [this.props.filter.boundaries.min, this.props.filter.boundaries.max]}
-          onChangeCommitted= {this.onChangeRange} />
-      </div>
+          max = {props.filter.boundaries.max}
+          min = {props.filter.boundaries.min}
+          defaultValue = {(props.filter.values) 
+            ? [props.filter.values.min, props.filter.values.max]
+          : [props.filter.boundaries.min, props.filter.boundaries.max]}
+          onChangeCommitted= {onChangeRange} />
+      </Box>
     : null;
 
-    return <div>
-              <div>
-                <FilterHeader label={this.props.filter.label} onChange={this.onChangeDisplay}/>
-              </div>
-              { filterBody }
-            </div>;
-  } 
+  return <Box>
+            <Box>
+              <FilterHeader label={props.filter.label} onChange={onChangeDisplay} display={display}/>
+            </Box>
+            { filterBody }
+          </Box>;
 }
 
 export default RangeFilter;

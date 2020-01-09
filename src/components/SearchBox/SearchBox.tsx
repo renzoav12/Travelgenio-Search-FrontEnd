@@ -85,7 +85,8 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
                 <Grid item xs={12} className="search-box-element">
                     <Autocomplete
                                 onChange={this.handleLocationChange} 
-                                value={""}/>
+                                type={this.state.location.type}
+                                code={this.state.location.code}/>
                 </Grid>
                 <Grid item xs={12} className="search-box-element">
                     <StayPicker

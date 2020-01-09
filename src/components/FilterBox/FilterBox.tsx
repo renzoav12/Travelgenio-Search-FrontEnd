@@ -18,6 +18,7 @@ export interface FilterBoxProps {
   | SingleOptionFilterProp
   | RangeOptionFilterProp>;
   onChange: (filter: FilterBoxSelected) => void;
+  loading: boolean;
 }
 
 export enum FilterType {
@@ -102,13 +103,13 @@ class FilterBox extends Component<FilterBoxProps> {
 
   renderValueFilter = (filter: any) => {
     return  <div  key = {filter.field} className="otravo-filter">
-              <ValueFilter filter = {filter} onChange = {this.onChangeValue}/>
+              <ValueFilter filter = {filter} onChange = {this.onChangeValue} display = {!this.props.loading} />
             </div>;
   }
 
   renderRangeFilter = (filter: any) => {
     return  <div  key = {filter.field} className="otravo-filter">
-              <RangeFilter filter = {filter} onChange = {this.onChangeRange}/>
+              <RangeFilter filter = {filter} onChange = {this.onChangeRange} display = {!this.props.loading}/>
             </div>;
   }
 
@@ -118,7 +119,8 @@ class FilterBox extends Component<FilterBoxProps> {
               initialShowQty={2} 
               filter = {filter}
               onChange = {this.onChangeSingleOption}
-              onCleanSelection = {this.onCleanSelectionSingleOption}/>
+              onCleanSelection = {this.onCleanSelectionSingleOption}
+              display = {!this.props.loading}/>
           </div>;
   }
 
