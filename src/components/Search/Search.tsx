@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Grid } from '@material-ui/core';
 import SearchBox from '../SearchBox';
 import { SearchBoxState, SearchBoxSuggestionState } from '../SearchBox/SearchBox';
@@ -23,7 +23,7 @@ export interface SearchProps {
     filters: SearchFilter;    
 }
 
-const Search: SFC<SearchProps> = props => {
+const Search: FunctionComponent<SearchProps> = props => {
         return <Grid container alignItems="flex-start">
         <Grid container item md={4} lg={3}>
             <SearchBox
@@ -33,7 +33,8 @@ const Search: SFC<SearchProps> = props => {
 
             <FilterBox
                     filters={props.filters}
-                    onChange={props.filtersOnChange}/>
+                    onChange={props.filtersOnChange}
+                    loading={props.loading}/>
         </Grid>
         <Grid container item md={8} lg={9}>
             <Result

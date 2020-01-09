@@ -1,4 +1,4 @@
-import React, { Component, FunctionComponent } from 'react'
+import React, { FunctionComponent, useState, useEffect } from 'react'
 import suggestionApi from '../../api/suggestions/suggestions'
 import Autosuggest, { InputProps, SuggestionsFetchRequestedParams } from 'react-autosuggest'
 
@@ -10,13 +10,9 @@ export interface SuggestionEntry {
   name: string
 }
 
-export interface AutocompleteState {
-  suggestions: Array<SuggestionEntry>
-  inputValue: string
-}
-
 export interface AutocompleteProps {
-  value: string
+  code: string
+  type: string
   onChange(suggestionEntry: SuggestionEntry): void
 }
 
@@ -40,81 +36,90 @@ const renderSuggestion: FunctionComponent<SuggestionEntry> = (suggestion: Sugges
   </div>
 )
 
-class Autocomplete extends Component<AutocompleteProps, AutocompleteState> {
-  state = {
-    suggestions: [],
-    inputValue: this.props.value
-  }
+const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
 
-  getSuggestions2(value: String) {
+  const [suggestions, setSuggestions] = useState<Array<SuggestionEntry>>(new Array());
+  const [inputValue, setInputValue] = useState<string>("");
 
+
+  useEffect(() => {
+    setInitialSuggestionName();
+  }, []);
+
+
+  const getHints = (value: String) => {
     try {
       suggestionApi.get('/hint', {
         params: {text: value}
       }).then((response) => {
-        this.setState({
-          suggestions: response.data
-        })
+        setSuggestions(response.data);
       });
     } catch(e) {
       console.error(e);
     }
   }
 
-  onSuggestionsClearRequested = (): void => {
-    this.setState({ 
-      suggestions: []
-    })
+  const setInitialSuggestionName = () => {
+
+    const {type, code} = props;
+
+    try {
+      suggestionApi.get('/suggestions', {
+        params: {type, code}
+      }).then((response) => {
+        setInputValue(getSuggestionName(response.data));
+      });
+    } catch(e) {
+      console.error(e);
+    }
   }
 
-  onChangeInputValue = ({}, { newValue }): void => {
-    this.setState({ inputValue: newValue })
+  const onSuggestionsClearRequested = (): void => {
+    setSuggestions([]);
   }
 
-  onSuggestionSelected = ({ target }, { suggestion }): void => {
-    const { onChange } = this.props
+  const onChangeInputValue = ({}, { newValue }): void => {
+    setInputValue(newValue);
+  }
+
+  const onSuggestionSelected = ({ target }, { suggestion }): void => {
+    const { onChange } = props
     onChange(suggestion);
     target.blur()
   }
 
-  onSuggestionsFetchRequested = (params: SuggestionsFetchRequestedParams) => {
-    this.getSuggestions2(params.value);
+  const onSuggestionsFetchRequested = (params: SuggestionsFetchRequestedParams) => {
+    getHints(params.value);
   };
 
-  shouldRenderSuggestions = (input: string): boolean => {
+  const shouldRenderSuggestions = (input: string): boolean => {
     return input.trim().length > 2
   }
 
-  getSuggestionName(suggestion: SuggestionEntry) {
+  const getSuggestionName = (suggestion: SuggestionEntry) => {
     return suggestion.name;
   }
 
-  render() {
-    const { value } = this.props
-    const { suggestions, inputValue } = this.state
-    
-    const inputProps: InputProps<SuggestionEntry> = {
-      onChange: this.onChangeInputValue,
-      value: inputValue && inputValue.length > 0 ? inputValue : value,
-    }
-
-    return (
-      <div>
-        <label htmlFor={"asd"} className="otravo-label">Destino / Alojamiento:</label>
-        <Autosuggest
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          onSuggestionSelected={this.onSuggestionSelected}
-          focusInputOnSuggestionClick={false}
-          highlightFirstSuggestion={true}
-          getSuggestionValue={this.getSuggestionName}
-          shouldRenderSuggestions={this.shouldRenderSuggestions}
-          renderSuggestion={renderSuggestion}
-          inputProps={inputProps}/>
-      </div>
-    )
+  const inputProps: InputProps<SuggestionEntry> = {
+    onChange: onChangeInputValue,
+    value: inputValue
   }
+
+  return <div>
+      <label htmlFor={"asd"} className="otravo-label">Destino / Alojamiento:</label>
+      <Autosuggest
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        onSuggestionSelected={onSuggestionSelected}
+        focusInputOnSuggestionClick={false}
+        highlightFirstSuggestion={true}
+        getSuggestionValue={getSuggestionName}
+        shouldRenderSuggestions={shouldRenderSuggestions}
+        renderSuggestion={renderSuggestion}
+        inputProps={inputProps}/>
+    </div>
+  
 }
 
-export default Autocomplete
+export default Autocomplete;

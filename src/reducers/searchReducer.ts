@@ -91,15 +91,17 @@ function cleanFilters(searchFilters: SearchFilter): SearchFilter {
       switch (filter.type) {
         case FilterType.SingleOption:
             const singleOptionFilter: SingleOptionFilterProp = filter as SingleOptionFilterProp;
-            singleOptionFilter.options.forEach(option => option.selected = false);
+            singleOptionFilter.options = [];
         break;
         case FilterType.Value:
             const valueFilter: ValueFilterProp = filter as ValueFilterProp;
-            valueFilter.value = undefined;
+            valueFilter.value = "";
         break;
         case FilterType.Range:
             const rangeFilter: RangeFilterProp = filter as RangeFilterProp;
             rangeFilter.values = undefined;
+            rangeFilter.boundaries.min = 0;
+            rangeFilter.boundaries.max = 0;
         default:
         break;
     }  });

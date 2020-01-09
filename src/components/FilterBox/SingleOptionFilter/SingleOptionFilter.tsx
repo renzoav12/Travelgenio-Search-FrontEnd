@@ -1,17 +1,18 @@
-import React, { Component, MouseEvent, DOMElement } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import SingleOption, {SingleOptionProp} from '../SingleOption/SingleOption';
 import FilterHeader from '../FilterHeader/FilterHeader';
 import {KeyboardArrowDown, KeyboardArrowUp}  from '@material-ui/icons';
-
-import './SingleOptionFilter.scss';
+import { Box } from '@material-ui/core';
 import { FilterType } from '../FilterBox';
 import Category from '../../Category/Category';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 interface Props {
   filter: SingleOptionFilterProp;
   initialShowQty: number;
   onChange: (field:string, code: string, selected: boolean) => void;
   onCleanSelection: (field:string) => void;
+  display: boolean;
 }
 
 export interface SingleOptionFilterProp {
@@ -22,115 +23,110 @@ export interface SingleOptionFilterProp {
   options: Array<SingleOptionProp>;
 }
 
-interface State {
-  showAll: boolean;
-  showOptionsQty: number;
-  optionAll: SingleOptionProp;
-  display: boolean;
-}
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    showMoreOptions: {
+      marginTop: 10,
+      color: theme.palette.primary.main
+    }
+  }),
+);
 
+const SingleOptionFilter: FunctionComponent<Props> = props => {
+  
+  const classes = useStyles();
+  
+  const [showAll, setShowAll] = useState<boolean>(false);
+  const [showOptionsQty, setShowOptionsQty] = useState<number>(props.initialShowQty);
+  const [optionAll, setOptionAll] = useState<SingleOptionProp>({
+    code: "",
+    label: "Todos",
+    quantity: props.filter.options.map(option => option.quantity).reduce((sum,current) => sum + current, 0),
+    selected: !props.filter.options.some(option => option.selected)
+  });
+  const [display, setDisplay] = useState<boolean>(true);
 
+  useEffect(() => {
+    setDisplay(props.display);
+  }, [props.display]);
 
-class SingleOptionFilter extends Component<Props, State> {
+  useEffect(() => {
+    setOptionAll({
+      code: "",
+      label: "Todos",
+      quantity: props.filter.options.map(option => option.quantity).reduce((sum,current) => sum + current, 0),
+      selected: !props.filter.options.some(option => option.selected)
+    });
+  }, [props.filter.options]);
 
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      showAll: false,
-      showOptionsQty: props.initialShowQty,
-      optionAll: {
-        code: "",
-        label: "Todos",
-        quantity: this.props.filter.options.map(option => option.quantity).reduce((sum,current) => sum + current, 0),
-        selected: !this.props.filter.options.some(option => option.selected)
-      },
-      display: true
-    };
+  const componentWillReceiveProps = (nextProps: Props) => {
+    setSelectAll(!nextProps.filter.options.some(option => option.selected));      
   }
 
-  componentWillReceiveProps(nextProps: Props) {
-    this.setSelectAll(!nextProps.filter.options.some(option => option.selected));      
+  const toggleShowAll = (): void => {
+    setShowAll(!showAll);
+    setShowOptionsQty(showAll ? props.initialShowQty : props.filter.options.length);
   }
 
-  toggleShowAll = (): void => {
-    this.setState((prevState: State) => {      
-      return {
-        showAll: !prevState.showAll,
-        showOptionsQty: prevState.showAll ? this.props.initialShowQty : this.props.filter.options.length
-      };
-    });    
+  const onChangeDisplay = (show: boolean): void => {
+    setDisplay(show);
   }
 
-  onChangeDisplay = (display: boolean): void => {
-    this.setState((prevState: State) => {      
-      return {
-        display: display
-      };
-    });    
+  const onSelectAll = (selected: boolean) => {
+    setSelectAll(true);
+    props.onCleanSelection(props.filter.field);
   }
 
-  onSelectAll = (selected: boolean) => {
-    this.setSelectAll(true);
-    this.props.onCleanSelection(this.props.filter.field);
+  const setSelectAll = (selected: boolean): void => {
+    let actualOptionAll: SingleOptionProp = optionAll;
+    actualOptionAll.selected = selected;
+    setOptionAll(actualOptionAll);
   }
 
-  setSelectAll = (selected: boolean): void => {
-    this.setState((prevState: State) => {      
-      
-      let optionAll: SingleOptionProp = prevState.optionAll;
-      optionAll.selected = selected;
+  const allOption = <SingleOption 
+                key={optionAll.code} 
+                option={optionAll} 
+                onChange={onSelectAll}/>
 
-      return { optionAll: optionAll };
-    });    
-  }
+  const categories = props.filter.options.sort((option, anotherOption) => option.label.localeCompare(anotherOption.label) * -1)
+  .slice(0, showOptionsQty)
+  .map(option =>
+    <SingleOption 
+      key = {option.code} 
+      option = {option} 
+      onChange = {(selected: boolean):void => {props.onChange(props.filter.field, option.code, selected)}}
+      label = {<Category stars={parseInt(option.code)}/>}
+    />
+  );
 
-  render() {
-
-    const allOption = <SingleOption 
-                  key={this.state.optionAll.code} 
-                  option={this.state.optionAll} 
-                  onChange={this.onSelectAll}/>
-
-    const categories = this.props.filter.options.sort((option, anotherOption) => option.label.localeCompare(anotherOption.label) * -1)
-    .slice(0, this.state.showOptionsQty)
+  const options = props.filter.options
+    .slice(0, showOptionsQty)
     .map(option =>
       <SingleOption 
         key = {option.code} 
         option = {option} 
-        onChange = {(selected: boolean):void => {this.props.onChange(this.props.filter.field, option.code, selected)}}
-        label = {<Category stars={parseInt(option.code)}/>}
+        onChange = {(selected: boolean):void => {props.onChange(props.filter.field, option.code, selected)}}
       />
     );
 
-    const options = this.props.filter.options
-      .slice(0, this.state.showOptionsQty)
-      .map(option =>
-        <SingleOption 
-          key = {option.code} 
-          option = {option} 
-          onChange = {(selected: boolean):void => {this.props.onChange(this.props.filter.field, option.code, selected)}}
-        />
-      );
+  const showMore = () => showAll 
+  ? <Box onClick={toggleShowAll}>Mostrar menos <KeyboardArrowUp/></Box>
+  : <Box onClick={toggleShowAll}>Mostrar todos <KeyboardArrowDown/></Box>;
 
-    const showMore = this.state.showAll 
-    ? <div className="otravo-small-button" onClick={this.toggleShowAll}>Mostrar menos <KeyboardArrowUp/></div>
-    : <div className="otravo-small-button" onClick={this.toggleShowAll}>Mostrar todos <KeyboardArrowDown/></div>;
+  const filterBody = () => display
+  ? <Box>
+      <Box> {allOption} </Box>
+      <Box> {props.filter.field == "category" ? categories : options} </Box>
+      <Box className={classes.showMoreOptions}> {showMore()} </Box>
+    </Box>
+  : null;
 
-    const filterBody = this.state.display
-    ? <div>
-        <div> {allOption} </div>
-        <div> {this.props.filter.field == "category" ? categories : options} </div>
-        <div className="otravo-show-more-filter-options"> {showMore} </div>
-      </div>
-    : null;
-
-    return <div>
-              <div>
-                <FilterHeader label={this.props.filter.label} onChange={this.onChangeDisplay}/>
-              </div>
-              {filterBody}
-            </div>;
-  } 
+  return <Box>
+            <Box>
+              <FilterHeader label={props.filter.label} onChange={onChangeDisplay} display = {display}/>
+            </Box>
+            {filterBody()}
+          </Box>;
 }
 
 export default SingleOptionFilter;
