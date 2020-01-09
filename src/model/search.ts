@@ -26,7 +26,7 @@ export interface SearchFetchParameters {
     readonly checkIn: string,
     readonly checkOut: string,
     readonly occupancy: string,
-    readonly language: string,
+    readonly locale: string,
     readonly country: string,
     readonly size: number;
     readonly page: number;

@@ -23,7 +23,7 @@ export const searchCreateRequest = (rootState: RootState): SearchFetchParameters
         checkOut: stay.to.toISOString().substring(0, 10),
         occupancy: occupancy.rooms.map(room => room.adults + ((room.childrenAges.length === 0) ? "" : "-") +room.childrenAges.join("-")).join("!"),
         country: 'US',
-        language: 'en',
+        locale: 'en-US',
         page: pageNumber,
         size: pageSize,
         filters: jsonFilter
