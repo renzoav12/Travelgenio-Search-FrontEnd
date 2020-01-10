@@ -57,8 +57,8 @@ const searchCreateFilterRequest = (rootState: RootState): SearchFetchFilterParam
             break;
             case FilterType.Range:
                 const rangeFilter = filter as RangeFilterProp;
-                if (!(!rangeFilter.values)) {
-                    const rangeProp: RangeProp = rangeFilter.values;
+                if (!(!rangeFilter.value)) {
+                    const rangeProp: RangeProp = rangeFilter.value;
                     if (rangeProp) {
                         query.set(rangeFilter.field, [rangeProp.min.toString(), rangeProp.max.toString()]);
                     }

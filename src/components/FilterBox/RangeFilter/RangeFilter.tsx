@@ -17,7 +17,7 @@ export interface RangeFilterProp {
   order: number;
   type: FilterType;
   boundaries: RangeProp;
-  values?: RangeProp;
+  value?: RangeProp;
 }
 
 export interface RangeProp {
@@ -54,25 +54,28 @@ const RangeFilter: FunctionComponent<Props> = props => {
   }
 
 
-  const filterBody = display
+  const filterBody = () => {
+    return display
     ? <Box className={classes.slider}>
         <Slider
           style = {{ backgroundColor: 'transparent' }}
           valueLabelDisplay="on"
           max = {props.filter.boundaries.max}
           min = {props.filter.boundaries.min}
-          defaultValue = {(props.filter.values) 
-            ? [props.filter.values.min, props.filter.values.max]
-          : [props.filter.boundaries.min, props.filter.boundaries.max]}
+          defaultValue = {[
+            props.filter.value && props.filter.value.min ? props.filter.value.min : props.filter.boundaries.min,
+            props.filter.value && props.filter.value.max ? props.filter.value.max : props.filter.boundaries.max
+          ]}
           onChangeCommitted= {onChangeRange} />
       </Box>
     : null;
+  }
 
   return <Box>
             <Box>
               <FilterHeader label={props.filter.label} onChange={onChangeDisplay} display={display}/>
             </Box>
-            { filterBody }
+            { filterBody() }
           </Box>;
 }
 

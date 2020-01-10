@@ -74,7 +74,7 @@ export const searchUpdate = (action: (x: SearchResponse) => void) => async (
             }
         });
     } catch (e) {
-        console.log(e);
+        console.error(e);
         dispatch(searchFetchFailed());
     }
     dispatch(searchFetchSuccess());
