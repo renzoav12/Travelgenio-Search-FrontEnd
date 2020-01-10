@@ -99,7 +99,7 @@ function cleanFilters(searchFilters: SearchFilter): SearchFilter {
         break;
         case FilterType.Range:
             const rangeFilter: RangeFilterProp = filter as RangeFilterProp;
-            rangeFilter.values = undefined;
+            rangeFilter.value = undefined;
             rangeFilter.boundaries.min = 0;
             rangeFilter.boundaries.max = 0;
         default:
@@ -141,14 +141,14 @@ function filterApplySelected(filters: SearchFilter, selected: FilterBoxSelected)
 
         case FilterType.Range:
             const rangeFilter = filters.get(selected.field) as RangeFilterProp;
-            var range: RangeProp = rangeFilter.values!;
+            var range: RangeProp = rangeFilter.value!;
             if (range === undefined) {
                 range = {min: Number(selected.values[0]), max: Number(selected.values[1])};
             } else {
                 range.min = Number(selected.values[0]);
                 range.max = Number(selected.values[1]);
             }
-            rangeFilter.values = range;
+            rangeFilter.value = range;
         default:
         break;
     }
@@ -176,7 +176,6 @@ export const searchReducer: Reducer<Search, RootAction> = (
                     size: state.pagination.size
                 }
             };
-            console.log(asd);
             return asd;
         case SEARCH_PAGINATION_UPDATE:
             return {
