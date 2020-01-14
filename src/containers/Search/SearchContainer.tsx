@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { RootState } from '../../store';
@@ -11,38 +11,36 @@ import { thunkSearchBoxChange } from '../../actions/searchBox/searchBox.action';
 import { fetchSearchSuggestion } from '../../actions/suggestion/suggestion.action';
 
 import moment from 'moment';
-import { SearchBoxState, SearchBoxOccupancyState, SearchBoxStayState } from '../../components/SearchBox/SearchBox';
+import { SearchBoxState, SearchBoxOccupancyState, SearchBoxStayState, SearchBoxSuggestionState } from '../../components/SearchBox/SearchBox';
 
-class SearchContainer extends Component<SearchProps> {
-    
-    componentDidMount() {
-        this.props.onChange(this.props.search);
-    }
-    
-    render() {
-        return <Search
-                search={this.props.search}
-                onChange={this.props.onChange}
-                onChangeSuggestion={this.props.onChangeSuggestion}
-                accommodations={this.props.accommodations}
-                loading={this.props.loading}
-                loadNextPage={this.props.loadNextPage}
-                pagination={this.props.pagination}
-                selected={this.props.selected}
-                filters={this.props.filters}
-                filtersOnChange={this.props.filtersOnChange}
-                />
-    }
+const SearchContainer: FunctionComponent<SearchProps> = props => {
+
+  useEffect(() => {
+    props.onChange(props.search);
+  }, []);
+
+  return <Search
+          search={props.search}
+          onChange={props.onChange}
+          onChangeSuggestion={props.onChangeSuggestion}
+          accommodations={props.accommodations}
+          loading={props.loading}
+          loadNextPage={props.loadNextPage}
+          pagination={props.pagination}
+          selected={props.selected}
+          filters={props.filters}
+          filtersOnChange={props.filtersOnChange}
+          />
 }
 
-function parseStay(from: string, to: string): SearchBoxStayState {
+const parseStay = (from: string, to: string): SearchBoxStayState => {
     return {
         from: moment(from, "YYYY-MM-DD"),
         to: moment(to, "YYYY-MM-DD")
     };
 }
 
-function parseOccupancy(searchOccupancy: string): SearchBoxOccupancyState {
+const parseOccupancy = (searchOccupancy: string): SearchBoxOccupancyState => {
   let rooms = searchOccupancy.split("!")
       .map(room => {
         let guests = room.split("-"); 
@@ -54,7 +52,7 @@ function parseOccupancy(searchOccupancy: string): SearchBoxOccupancyState {
   return { rooms };
 }
 
-function createSearchFromParams(params: any): SearchBoxState {
+const createSearchFromParams = (params: any): SearchBoxState => {
     return {
         stay: parseStay(params.stayFrom, params.stayTo),
         location: {
