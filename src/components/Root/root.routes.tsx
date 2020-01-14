@@ -7,8 +7,6 @@ import {
 } from './root.routes.constants'
 import SearchContainer from '../../containers/Search/SearchContainer'
 
-const EmptyComponent = () => <div />
-
 export const getRoutes = () => (
   <div>
     <Switch>
