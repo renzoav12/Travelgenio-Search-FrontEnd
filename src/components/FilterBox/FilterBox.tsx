@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { FunctionComponent } from 'react';
 import SingleOptionFilter, { SingleOptionFilterProp } from './SingleOptionFilter/SingleOptionFilter';
 import RangeFilter, { RangeFilterProp, RangeProp } from './RangeFilter/RangeFilter';
 import ValueFilter, { ValueFilterProp } from './ValueFilter/ValueFilter';
-import './FilterBox.scss';
 import { RangeOptionFilterProp } from './RangeOptionFilter/RangeOptionFilter';
-import { Grid } from '@material-ui/core';
+import { Grid, Paper, Typography, Box } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 export interface FilterBoxSelected {
   type: FilterType;
@@ -28,21 +28,34 @@ export enum FilterType {
   RangeOption
 }
 
-class FilterBox extends Component<FilterBoxProps> {
-  constructor(props: FilterBoxProps) {
-    super(props);
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    filterBox:{
+      width: "100%"
+    },
+    filter: {
+      paddingTop: 20,
+      paddingBottom: 20,
+      borderBottomColor: theme.palette.divider,
+      borderBottomWidth: 1,
+      borderBottomStyle: "solid"
+    }
+  }),
+);
+
+const FilterBox: FunctionComponent<FilterBoxProps> = props => {
+  const classes = useStyles();
+
+  const onChangeValue = (field: string, value: string): void => {
+    sendOnChangeEvent(field, FilterType.Value, [value]);
   }
 
-  onChangeValue = (field: string, value: string): void => {
-    this.sendOnChangeEvent(field, FilterType.Value, [value]);
+  const onChangeRange = (field: string, values: RangeProp): void => {
+    sendOnChangeEvent(field, FilterType.Range, [values.min.toString(), values.max.toString()]);
   }
 
-  onChangeRange = (field: string, values: RangeProp): void => {
-    this.sendOnChangeEvent(field, FilterType.Range, [values.min.toString(), values.max.toString()]);
-  }
-
-  onChangeSingleOption = (field: string, code: string, selected: boolean): void => {
-    let changedFilter: any = this.props.filters.get(field);
+  const onChangeSingleOption = (field: string, code: string, selected: boolean): void => {
+    let changedFilter: any = props.filters.get(field);
     if(changedFilter) {
       let selectedCodes: Array<string> = 
           changedFilter.options
@@ -53,87 +66,88 @@ class FilterBox extends Component<FilterBoxProps> {
         selectedCodes.push(code);
       }
 
-      this.sendOnChangeEvent(field, FilterType.SingleOption, selectedCodes);
+      sendOnChangeEvent(field, FilterType.SingleOption, selectedCodes);
     }
   }
 
-  onCleanSelectionSingleOption = (field: string) => {
-    this.sendOnChangeEvent(field, FilterType.SingleOption, []);
+  const onCleanSelectionSingleOption = (field: string) => {
+    sendOnChangeEvent(field, FilterType.SingleOption, []);
   }
 
-  sendOnChangeEvent = (field: string, type: FilterType, values: Array<string>):void => {
-    this.props.onChange({field, type, values});
+  const sendOnChangeEvent = (field: string, type: FilterType, values: Array<string>):void => {
+    props.onChange({field, type, values});
   }
 
-  isValueFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
+  const isValueFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
     return FilterType.Value === filter.type;
   }
 
-  isRangeFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
+  const isRangeFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
     return FilterType.Range === filter.type;
   }
 
-  isSingleOptionFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
+  const isSingleOptionFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
     return FilterType.SingleOption === filter.type;
   }
 
-  isRangeOptionFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
+  const isRangeOptionFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
     return FilterType.RangeOption === filter.type;
   }
 
-  renderFilters = () => {
-    return Array.from(this.props.filters.values())
+  const renderFilters = () => {
+    return Array.from(props.filters.values())
         .sort((filter, anotherFilter) => {return filter.order - anotherFilter.order})
-        .map(filter => this.renderFilter(filter));
+        .map(filter => renderFilter(filter));
   }
 
-  renderFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp) => {
+  const renderFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp) => {
     let element: any = null;
 
-    if(this.isValueFilter(filter)) {
-      element = this.renderValueFilter(filter);
-    } else if(this.isRangeFilter(filter)) {
-      element = this.renderRangeFilter(filter);
-    } else if(this.isSingleOptionFilter(filter)){
-      element = this.renderSingleOptionFilter(filter);
+    if(isValueFilter(filter)) {
+      element = renderValueFilter(filter);
+    } else if(isRangeFilter(filter)) {
+      element = renderRangeFilter(filter);
+    } else if(isSingleOptionFilter(filter)){
+      element = renderSingleOptionFilter(filter);
     }
 
     return element;
   }
 
-  renderValueFilter = (filter: any) => {
-    return  <div  key = {filter.field} className="otravo-filter">
-              <ValueFilter filter = {filter} onChange = {this.onChangeValue} display = {!this.props.loading} />
-            </div>;
+  const renderValueFilter = (filter: any) => {
+    return  <Box key = {filter.field} className={classes.filter}>
+              <ValueFilter filter = {filter} onChange = {onChangeValue} display = {!props.loading} />
+            </Box>;
   }
 
-  renderRangeFilter = (filter: any) => {
-    return  <div  key = {filter.field} className="otravo-filter">
-              <RangeFilter filter = {filter} onChange = {this.onChangeRange} display = {!this.props.loading}/>
-            </div>;
+  const renderRangeFilter = (filter: any) => {
+    return  <Box key = {filter.field} className={classes.filter}>
+              <RangeFilter filter = {filter} onChange = {onChangeRange} display = {!props.loading}/>
+            </Box>;
   }
 
-  renderSingleOptionFilter = (filter: any) => {
-    return <div key = {filter.field} className="otravo-filter">
+  const renderSingleOptionFilter = (filter: any) => {
+    return <Box key = {filter.field} className={classes.filter}>
             <SingleOptionFilter 
               initialShowQty={2} 
               filter = {filter}
-              onChange = {this.onChangeSingleOption}
-              onCleanSelection = {this.onCleanSelectionSingleOption}
-              display = {!this.props.loading}/>
-          </div>;
+              onChange = {onChangeSingleOption}
+              onCleanSelection = {onCleanSelectionSingleOption}
+              display = {!props.loading}/>
+          </Box>;
   }
 
-  render = () => {
-    return  this.props.filters.size > 0 
-          ? <Grid container item className="otravo-box otravo-filter-container">
-              <Grid item xs={12} className="otravo-title">Filtrar por:</Grid>
-              <Grid item xs={12}>
-                {this.renderFilters()}
-              </Grid>
-          </Grid> 
-          : null;
-  } 
+  
+    return  props.filters.size > 0 
+      ? <Paper className={classes.filterBox}>
+          <Grid container item>
+            <Grid item xs={12}><Typography>Filtrar por:</Typography></Grid>
+            <Grid item xs={12}>
+              {renderFilters()}
+            </Grid>
+          </Grid>
+        </Paper>
+      : null;
 }
 
 export default FilterBox;

@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useEffect } from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import { RootState } from '../../store';
 
@@ -8,21 +7,46 @@ import { thunkAccommodationSelect } from '../../actions/cardList/cardList.action
 import Search, { SearchProps } from '../../components/Search/Search';
 import { thunkFilterBoxChange } from '../../actions/filterBox/filterBox.action';
 import { thunkSearchBoxChange } from '../../actions/searchBox/searchBox.action';
-import { fetchSearchSuggestion } from '../../actions/suggestion/suggestion.action';
+import { fetchSuggestionSearch, fetchSuggestionSearchName, SearchNameSuggestionParameters } from '../../actions/suggestion/suggestion.action';
 
 import moment from 'moment';
-import { SearchBoxState, SearchBoxOccupancyState, SearchBoxStayState, SearchBoxSuggestionState } from '../../components/SearchBox/SearchBox';
+import { SearchBoxState, SearchBoxOccupancyState, SearchBoxStayState } from '../../components/SearchBox/SearchBox';
+import { SuggestionHint, SuggestionEntry } from '../../components/SearchBox/Autocomplete/Autocomplete';
+import { Pagination, SearchFilter } from '../../model/search';
+import { FilterBoxSelected } from '../../components/FilterBox/FilterBox';
+import { CardProps } from '../../components/Card/Card';
 
-const SearchContainer: FunctionComponent<SearchProps> = props => {
+export interface SearchContainerProps {
+  search: SearchBoxState;
+  suggestionName: string;
+  onChange: (state: SearchBoxState) => void;
+  onChangeSuggestionHint: (suggestionHint: SuggestionHint) => void;
+  searchSuggestionName: (params: SearchNameSuggestionParameters) => void;
+
+  loading: boolean;
+  pagination: Pagination;
+  accommodations: CardProps[];
+  loadNextPage: () => void;
+  selected: (id: string) => void;
+
+  filtersOnChange: (searchBoxState: FilterBoxSelected) => void;
+  filters: SearchFilter;  
+  
+  suggestions: SuggestionEntry[];
+}
+
+const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
 
   useEffect(() => {
     props.onChange(props.search);
+    props.searchSuggestionName(props.search.location);
   }, []);
 
   return <Search
           search={props.search}
+          suggestionName={props.suggestionName}
           onChange={props.onChange}
-          onChangeSuggestion={props.onChangeSuggestion}
+          onChangeSuggestionHint={props.onChangeSuggestionHint}
           accommodations={props.accommodations}
           loading={props.loading}
           loadNextPage={props.loadNextPage}
@@ -30,6 +54,7 @@ const SearchContainer: FunctionComponent<SearchProps> = props => {
           selected={props.selected}
           filters={props.filters}
           filtersOnChange={props.filtersOnChange}
+          suggestions={props.suggestions}
           />
 }
 
@@ -69,7 +94,9 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
         accommodations: rootState.search.accommodations,
         pagination: rootState.search.pagination,
         loading: rootState.search.loading,
-        filters: rootState.search.filters
+        filters: rootState.search.filters,
+        suggestions: rootState.searchSuggestion.suggestions,
+        suggestionName: rootState.searchSuggestion.suggestionName
     };
 };
 
@@ -77,7 +104,8 @@ export default connect(
     mapStateToProps,
     {
         onChange: thunkSearchBoxChange,
-        onChangeSuggestion: fetchSearchSuggestion,
+        onChangeSuggestionHint: fetchSuggestionSearch,
+        searchSuggestionName: fetchSuggestionSearchName,
         loadNextPage: loadNextPage,
         selected: thunkAccommodationSelect,
         filtersOnChange: thunkFilterBoxChange

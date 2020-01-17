@@ -1,5 +1,5 @@
 import React, { Component, MouseEvent } from 'react';
-import SearchOccupancyModal from './Modal';
+import SearchOccupancyModal from './Modal/Modal';
 import {Hotel, Person, Face}  from '@material-ui/icons';
 import './SearchOccupancy.scss';
 
