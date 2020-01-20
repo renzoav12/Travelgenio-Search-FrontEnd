@@ -15,9 +15,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
       marginLeft: 0,
-      marginRight: 10,
-      marginBottom: 0,
-      marginTop: 10,
       padding: 0
     },
     pricing: {

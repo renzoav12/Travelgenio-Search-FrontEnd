@@ -3,15 +3,18 @@ import { ThunkAction } from 'redux-thunk';
 import { Dispatch } from 'redux';
 import { RootState } from '../../store';
 import { AxiosResponse } from 'axios';
-import { SearchSuggestionResponse } from '../../reducers/searchBoxSuggestionReducer';
 import { RootAction } from '../action';
+import { SuggestionEntry } from '../../components/SearchBox/Autocomplete/Autocomplete';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootAction>;
 
 export enum SearchSuggestionsActionTypes {
     FETCH = 'FETCH_SEARCH_SUGGESTIONS',
     FETCH_SUCCESS = 'FETCH_SEARCH_SUGGESTIONS_SUCCESS',
-    FETCH_FAILED = 'FETCH_SEARCH_SUGGESTIONS_FAILED'
+    FETCH_FAILED = 'FETCH_SEARCH_SUGGESTIONS_FAILED',
+    FETCH_NAME = 'FETCH_SEARCH_SUGGESTION_NAME',
+    FETCH_NAME_SUCCESS = 'FETCH_SEARCH_SUGGESTION_NAME_SUCCESS',
+    FETCH_NAME_FAILED = 'FETCH_SEARCH_SUGGESTION_NAME_FAILED'
 }
 
 interface FetchSearchSuggestion {
@@ -20,53 +23,110 @@ interface FetchSearchSuggestion {
 
 interface FetchSearchSuggestionSuccess {
     type: SearchSuggestionsActionTypes.FETCH_SUCCESS;
-    payload: SearchSuggestionResponse;
+    suggestions: Array<SuggestionEntry>;
 }
 
 interface FetchSearchSuggestionFailed {
     type: SearchSuggestionsActionTypes.FETCH_FAILED;
 }
 
-export interface SearchSuggestionParameters {
-    readonly text: string
+interface FetchSearchSuggestionName {
+  type: SearchSuggestionsActionTypes.FETCH_NAME;
 }
 
-export const fetchSearchSuggestion = (queryParameters: SearchSuggestionParameters): ThunkResult<void> => async dispatch => {
-    handleFetchSearchSuggestion(dispatch);
+interface FetchSearchSuggestionNameSuccess {
+  type: SearchSuggestionsActionTypes.FETCH_NAME_SUCCESS;
+  suggestion: SuggestionEntry;
+}
+
+interface FetchSearchSuggestionNameFailed {
+  type: SearchSuggestionsActionTypes.FETCH_NAME_FAILED;
+}
+
+export interface SearchSuggestionParameters {
+    readonly text: string;
+}
+
+export interface SearchNameSuggestionParameters {
+  readonly type: string;
+  readonly code: string;
+}
+
+export const fetchSuggestionSearch = (queryParameters: SearchSuggestionParameters): ThunkResult<void> => async dispatch => {
+    handleFetchSuggestionSearch(dispatch);
 
     try {
-        const response: AxiosResponse<SearchSuggestionResponse> = await search.get('/hint', {
+        const response: AxiosResponse<Array<SuggestionEntry>> = await search.get('/hint', {
             params: queryParameters
         });
-        handleAccommodationRateSearchSuccess(dispatch, response.data);
+        handleSuggestionSearchSuccess(dispatch, response.data);
     } catch (e) {
-        handleAccommodationRateSearchFailed(dispatch);
+        handleSuggestionSearchFailed(dispatch);
     }
 };
 
-export const handleFetchSearchSuggestion = (dispatch: Dispatch<FetchSearchSuggestion>) => {
+export const fetchSuggestionSearchName = (queryParameters: SearchNameSuggestionParameters): ThunkResult<void> => async dispatch => {
+  handleFetchSuggestionSearchName(dispatch);
+
+  try {
+      const response: AxiosResponse<SuggestionEntry> = await search.get('/suggestions', {
+          params: queryParameters
+      });
+      handleSuggestionSearchNameSuccess(dispatch, response.data);
+  } catch (e) {
+      handleSuggestionSearchNameFailed(dispatch);
+  }
+};
+
+export const handleFetchSuggestionSearch = (dispatch: Dispatch<FetchSearchSuggestion>) => {
     dispatch({
         type: SearchSuggestionsActionTypes.FETCH
     });
 };
 
-export const handleAccommodationRateSearchSuccess = (
+export const handleSuggestionSearchSuccess = (
     dispatch: Dispatch<FetchSearchSuggestionSuccess>,
-    response: SearchSuggestionResponse
+    response: Array<SuggestionEntry>
 ) => {
     dispatch({
         type: SearchSuggestionsActionTypes.FETCH_SUCCESS,
-        payload: response
+        suggestions: response
     });
 };
 
-export const handleAccommodationRateSearchFailed = (dispatch: Dispatch<FetchSearchSuggestionFailed>) => {
+export const handleSuggestionSearchFailed = (dispatch: Dispatch<FetchSearchSuggestionFailed>) => {
     dispatch({
         type: SearchSuggestionsActionTypes.FETCH_FAILED
     });
 };
 
+export const handleFetchSuggestionSearchName = (dispatch: Dispatch<FetchSearchSuggestionName>) => {
+  dispatch({
+      type: SearchSuggestionsActionTypes.FETCH_NAME
+  });
+};
+
+export const handleSuggestionSearchNameSuccess = (
+  dispatch: Dispatch<FetchSearchSuggestionNameSuccess>,
+  response: SuggestionEntry
+) => {
+  dispatch({
+      type: SearchSuggestionsActionTypes.FETCH_NAME_SUCCESS,
+      suggestion: response
+  });
+};
+
+export const handleSuggestionSearchNameFailed = (dispatch: Dispatch<FetchSearchSuggestionNameFailed>) => {
+  dispatch({
+      type: SearchSuggestionsActionTypes.FETCH_NAME_FAILED
+  });
+};
+
 export type SearchSuggestionAction = 
     | FetchSearchSuggestion 
     | FetchSearchSuggestionSuccess 
-    | FetchSearchSuggestionFailed;
+    | FetchSearchSuggestionFailed    
+    | FetchSearchSuggestionName 
+    | FetchSearchSuggestionNameSuccess 
+    | FetchSearchSuggestionNameFailed;
+;

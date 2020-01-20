@@ -1,27 +1,23 @@
 import _ from 'lodash';
 import { Reducer } from 'redux';
-import { CardProps } from '../components/Card/Card';
 import { SearchSuggestionAction, SearchSuggestionsActionTypes } from '../actions/suggestion/suggestion.action';
+import { SuggestionEntry } from '../components/SearchBox/Autocomplete/Autocomplete';
 
-export interface SearchSuggestionResponse {
-    accommodations: CardProps[];
-}
-
-export interface SearchSuggestionRequest {
-    data: SearchSuggestionResponse;
+export interface SearchSuggestion {
+    suggestions: Array<SuggestionEntry>;
+    suggestionName: string;
     loading: boolean;
     error: String | null
 }
 
 const initialState = {
-    data: {
-        accommodations: []
-    },
+    suggestions: [],
+    suggestionName: "",
     loading: false,
     error: null
 };
 
-export const accommodationRateSearchReducer: Reducer<SearchSuggestionRequest, SearchSuggestionAction> = (
+export const searchSuggestionReducer: Reducer<SearchSuggestion, SearchSuggestionAction> = (
     state = initialState, 
     action
 ) => {
@@ -33,8 +29,13 @@ export const accommodationRateSearchReducer: Reducer<SearchSuggestionRequest, Se
         case SearchSuggestionsActionTypes.FETCH_SUCCESS:
             return {
                 ...state,
-                data: {...state.data, ...action.payload},
+                suggestions: action.suggestions,
                 loading: false
+            };
+        case SearchSuggestionsActionTypes.FETCH_NAME_SUCCESS:
+            return {
+                ...state,
+                suggestionName: action.suggestion.name
             };
         default:
             return state;

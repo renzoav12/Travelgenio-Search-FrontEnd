@@ -1,17 +1,20 @@
-import React, { Component } from 'react';
-import StayPicker from '../StayPicker/StayPicker';
-import moment, { Moment } from 'moment'
-import Autocomplete, { SuggestionEntry } from '../Autocomplete/Autocomplete';
-import SearchOccupancy,  { RoomOccupancy } from '../Occupancy/SearchOccupancy';
-
+import React, { FunctionComponent, useState } from 'react';
+import StayPicker from './StayPicker/StayPicker';
+import { Moment } from 'moment'
+import Autocomplete, { SuggestionEntry, SuggestionHint } from './Autocomplete/Autocomplete';
+import SearchOccupancy,  { RoomOccupancy } from './Occupancy/SearchOccupancy';
 import 'react-dates/lib/css/_datepicker.css';
 import './SearchBox.scss';
-import { Grid } from '@material-ui/core';
+import { Grid, Paper, Typography } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 export interface SearchBoxProps {
     init: SearchBoxState;
+    suggestionName: string;
     onChange: (state: SearchBoxState) => void
-    onChangeSuggestion: (state: SearchBoxSuggestionState) => void;
+    onChangeSuggestionHint: (suggestionHint: SuggestionHint) => void;
+    horizontal: boolean;
+    suggestions: SuggestionEntry[];
 }
 
 export interface SearchBoxSuggestionState {
@@ -38,75 +41,101 @@ export interface SearchBoxStayState {
     to: Moment;
 }
 
-class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
-    constructor(props: SearchBoxProps) {
-        super(props);
-        this.state = this.props.init;
-        this.handleLocationChange = this.handleLocationChange.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
+interface ItemColumns {
+  xs: any,
+  sm: any,
+  md: any,
+  lg: any
+}
 
-    handleChange = (event: any): void => {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    searchBox: {
+      width: "100%"
+    },
+    searchBoxAutocomplete: {
+      marginTop: "2px !important",
     }
+  }),
+);
 
-    handleSubmit = (event: any): void => {
-        event.preventDefault();
-        this.props.onChange(this.state);
-    }
+const SearchBox: FunctionComponent<SearchBoxProps> = props => {
+  
+  const classes = useStyles();
 
-    handleStayPickerChange = (dates) => {
-        this.setState({ 
-            stay: {
-                from: dates.startDate,
-                to: dates.endDate
-            }
-        });
-    }
+  const [location, setLocation] = useState<SearchBoxLocationState>(props.init.location);
+  const [stay, setStay] = useState<SearchBoxStayState>(props.init.stay);
+  const [occupancy, setOccupancy] = useState<SearchBoxOccupancyState>(props.init.occupancy);
 
-    handleLocationChange = (suggestionEntry: SuggestionEntry): void => {
-        this.setState({
-            location: {
-                type: suggestionEntry.type,
-                code: suggestionEntry.code
-            }
-        });
-    }
+  const handleSubmit = (event: any): void => {
+    event.preventDefault();
+    props.onChange({location, stay, occupancy});
+  }
 
-    handleOccupancyChange = (occupancy: Array<RoomOccupancy>): void => {
-    }
+  const handleStayPickerChange = (dates) => {
+    setStay({
+            from: dates.startDate,
+            to: dates.endDate
+    });
+  }
 
-    handleOccupancyClose = (occupancy: Array<RoomOccupancy>): void => {
-    }
+  const handleLocationChange = (suggestionEntry: SuggestionEntry): void => {
+    setLocation({
+            type: suggestionEntry.type,
+            code: suggestionEntry.code
+    });
+  }
 
-    render() {
-        return (
-            <Grid container item xs={12} alignItems="flex-start" className="search-box otravo-box">
-                <Grid item xs={12} className="otravo-title">Modificar búsqueda</Grid>
-                <Grid item xs={12} className="search-box-element">
-                    <Autocomplete
-                                onChange={this.handleLocationChange} 
-                                type={this.state.location.type}
-                                code={this.state.location.code}/>
-                </Grid>
-                <Grid item xs={12} className="search-box-element">
-                    <StayPicker
-                                calendars={2}
-                                startDate={this.state.stay.from}
-                                endDate={this.state.stay.to}
-                                onChange={this.handleStayPickerChange}/>
-                </Grid>
-                <Grid item xs={12} className="search-box-element">
-                    <SearchOccupancy
-                                onChange={this.handleOccupancyChange} 
-                                onClose={this.handleOccupancyClose} 
-                                occupancy={this.state.occupancy.rooms}/>
-                </Grid>
-                <Grid item xs={12} className="search-box-element">
-                    <button onClick={this.handleSubmit}>Buscar</button>
-                </Grid>
-            </Grid>
-        )
-    }
+  const handleOccupancyChange = (occupancy: Array<RoomOccupancy>): void => {
+  }
+
+  const handleOccupancyClose = (occupancy: Array<RoomOccupancy>): void => {
+  }
+
+  const verticalColumns: ItemColumns = {xs: 12, sm: 12, md:12, lg: 12};
+
+  const locationColumns: ItemColumns = props.horizontal 
+      ? {xs: 12, sm: 12, md:12, lg: 5} : verticalColumns;
+
+  const stayColumns: ItemColumns = props.horizontal 
+      ? {xs: 12, sm: 7, md:6, lg: 4} : verticalColumns;
+
+  const occupancyColumns: ItemColumns = props.horizontal 
+      ? {xs: 12, sm: 5, md:5, lg: 2} : verticalColumns;
+
+  const buttonColumns: ItemColumns = props.horizontal 
+      ? {xs: 12, sm: 12, md:1, lg: 1} : verticalColumns;
+
+  return <Paper className={classes.searchBox}>
+    <Grid container item xs={12} alignItems="flex-start" spacing={2}>
+      <Grid item xs={12}><Typography variant="h1">Modificar búsqueda</Typography></Grid>
+      <Grid item xs={locationColumns.xs} sm={locationColumns.sm} md={locationColumns.md} lg={locationColumns.lg} className={classes.searchBoxAutocomplete}>
+          <Autocomplete
+                      code = {props.init.location.code}
+                      type = {props.init.location.code}
+                      name = {props.suggestionName}
+                      onChange={handleLocationChange}
+                      onChangeSuggestionHint={props.onChangeSuggestionHint}
+                      suggestions={props.suggestions}/>
+      </Grid>
+      <Grid item xs={stayColumns.xs} sm={stayColumns.sm} md={stayColumns.md} lg={stayColumns.lg}>
+          <StayPicker
+                      calendars={2}
+                      startDate={stay.from}
+                      endDate={stay.to}
+                      onChange={handleStayPickerChange}/>
+      </Grid>
+      <Grid item xs={occupancyColumns.xs} sm={occupancyColumns.sm} md={occupancyColumns.md} lg={occupancyColumns.lg}>
+          <SearchOccupancy
+                      onChange={handleOccupancyChange} 
+                      onClose={handleOccupancyClose} 
+                      occupancy={occupancy.rooms}/>
+      </Grid>
+      <Grid item xs={buttonColumns.xs} sm={buttonColumns.sm} md={buttonColumns.md} lg={buttonColumns.lg}>
+          <button onClick={handleSubmit}>Buscar</button>
+      </Grid>
+    </Grid>
+  </Paper>;
 }
 
 export default SearchBox;

@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: "center"
     },
     counter: {
-      marginTop: 10
+      marginTop: 20
     }
   }),
 );
@@ -45,7 +45,7 @@ const Result: FunctionComponent<ResultProps> = props => {
     const renderCardList = () => {
         return <CardList 
                 accommodations={props.accommodations}
-                selected={props.selected}/>
+                selected={props.selected}/>;
     }
 
     const renderLoaderWhenLoading = () => {
