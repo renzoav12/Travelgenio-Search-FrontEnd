@@ -39,7 +39,7 @@ const Card: FunctionComponent<CardProps> = props => {
   return <Paper className={classes.card}>
     <Grid container>
         <Grid item xs={12} sm={7} md={8} lg={9}>
-            <Content id={props.id} {...props.content}></Content>
+            <Content content={props.content} mealPlan={props.pricing.mealPlan}></Content>
         </Grid>
         <Grid item xs={12} sm={5} md={4} lg={3} className={classes.pricing}>
             <Pricing selected={props.selected} {...props.pricing}></Pricing>

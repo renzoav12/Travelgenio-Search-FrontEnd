@@ -79,9 +79,6 @@ const icons:Map<string, string> = new Map(
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    amenities: {
-      marginTop: 30
-    },
     icon: {
       marginRight: 15
     }
@@ -97,7 +94,7 @@ const AmenityIcons: FunctionComponent<Props> = props => {
     .sort((amenity, otherAmenity) => {return getAmenityOrder(amenity) - getAmenityOrder(otherAmenity)})
     .map(amenity => <img src={getAmenityIcon(amenity)} className={classes.icon} key={amenity.id} title={amenity.name}/>);
 
-  return <Box className={classes.amenities}>{amenities}</Box>;
+  return <Box>{amenities}</Box>;
 };
 
 export default AmenityIcons;

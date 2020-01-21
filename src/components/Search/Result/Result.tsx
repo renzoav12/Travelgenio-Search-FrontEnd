@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: 20
     },
     skeleton: {
-      marginRight: 30,
+      marginRight: 25,
       '& span span' : {
         marginTop: 20
       }

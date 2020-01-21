@@ -1,18 +1,20 @@
 import React, { FunctionComponent } from 'react';
 import { Box, Button } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { MealPlanProps } from '../../MealPlan/MealPlan';
 
 export interface PricingProps {
-    id: string;
-    nightlyPrice: Price;
-    stayPrice: Price;
-    strikethroughPrice: Price;
-    selected: () => void;
+  id: string;
+  nightlyPrice: Price;
+  stayPrice: Price;
+  strikethroughPrice: Price;
+  mealPlan: MealPlanProps;
+  selected: () => void;
 };
 
 interface Price {
-    amount: Number;
-    currency: string
+  amount: Number;
+  currency: string
 };
 
 const useStyles = makeStyles((theme: Theme) =>

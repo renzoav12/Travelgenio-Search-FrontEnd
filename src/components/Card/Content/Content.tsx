@@ -5,23 +5,28 @@ import Address, { AddressProps } from './Address/Address';
 import AmenityIcons, { Amenity } from './AmenityIcons/AmenityIcons';
 import { Grid, Box } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import MealPlan, { MealPlanProps } from '../../MealPlan/MealPlan';
+
+export interface Props {
+  content: ContentProps;
+  mealPlan: MealPlanProps;
+};
 
 export interface ContentProps {
-    id: string;
-    name: string;
-    category: CategoryProps;
-    location: LocationProps;
-    amenities: Amenity[];
-    images: ImageProps;
+  name: string;
+  category: CategoryProps;
+  location: LocationProps;
+  amenities: Amenity[];
+  images: ImageProps;
 };
 
 interface CategoryProps {
-    id: string;
-    code: string;
+  id: string;
+  code: string;
 };
 
 interface LocationProps {
-    address: AddressProps;
+  address: AddressProps;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -45,25 +50,35 @@ const useStyles = makeStyles((theme: Theme) =>
     category: {
       minHeight: 20,
       paddingBottom: 5
+    },
+    amenities: {
+      marginTop: 20
+    },
+    mealPlan: {
+      marginTop: 10
     }
   })
 );
 
-const Content: FunctionComponent<ContentProps> = props => {
-
+const Content: FunctionComponent<Props> = props => {
   const classes = useStyles();
 
   return <Grid container className={classes.content}>
       <Grid item xs={12} md={4} className={classes.image}>
-          <Image {...props.images}></Image>
+          <Image {...props.content.images}></Image>
       </Grid>
       <Grid item xs={12} md={8} className={classes.info}>
-          <Box className={classes.title}>{props.name}</Box>
+          <Box className={classes.title}>{props.content.name}</Box>
           <Box className={classes.category}>
-              <Category stars={parseInt(props.category.code)}/>
+              <Category stars={parseInt(props.content.category.code)}/>
           </Box>
-          <Address {...props.location.address}/>
-          <AmenityIcons {...props}/>
+          <Address {...props.content.location.address}/>
+          <Box className={classes.amenities}>
+            <AmenityIcons {...props.content}/>
+          </Box>
+          <Box className={classes.mealPlan}>
+            <MealPlan {...props.mealPlan}/>
+          </Box>
       </Grid>
   </Grid>;
 }
