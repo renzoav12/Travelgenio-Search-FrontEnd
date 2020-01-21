@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react';
 import Image, { ImageProps } from './Image/Image';
 import Category from '../../Category/Category';
 import Address, { AddressProps } from './Address/Address';
-import Amenities, { AmenityProps } from './Amenities/Amenities';
+import AmenityIcons, { Amenity } from './AmenityIcons/AmenityIcons';
 import { Grid, Box } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
@@ -11,7 +11,7 @@ export interface ContentProps {
     name: string;
     category: CategoryProps;
     location: LocationProps;
-    amenities: AmenityProps[];
+    amenities: Amenity[];
     images: ImageProps;
 };
 
@@ -63,7 +63,7 @@ const Content: FunctionComponent<ContentProps> = props => {
               <Category stars={parseInt(props.category.code)}/>
           </Box>
           <Address {...props.location.address}/>
-          <Amenities {...props}/>
+          <AmenityIcons {...props}/>
       </Grid>
   </Grid>;
 }

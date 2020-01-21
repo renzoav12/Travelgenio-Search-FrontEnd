@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useState, useEffect } from 'react'
-import suggestionApi from '../../../api/suggestions/suggestions'
 import Autosuggest, { InputProps, SuggestionsFetchRequestedParams } from 'react-autosuggest'
 
 import './Autocomplete.scss'

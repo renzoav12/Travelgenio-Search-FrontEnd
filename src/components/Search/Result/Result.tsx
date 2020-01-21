@@ -5,8 +5,8 @@ import { Pagination } from '../../../model/search';
 import { Grid, Typography, Box } from '@material-ui/core';
 import { CardProps } from '../../Card/Card';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Skeleton from 'react-loading-skeleton';
 
 export interface ResultProps {
     loading: boolean;
@@ -30,6 +30,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     counter: {
       marginTop: 20
+    },
+    skeleton: {
+      marginRight: 30,
+      '& span span' : {
+        marginTop: 20
+      }
     }
   }),
 );
@@ -69,8 +75,6 @@ const Result: FunctionComponent<ResultProps> = props => {
                 </InfiniteScroll>
     }
 
-    const progressBar = <Box className={classes.searchProgressBox}><LinearProgress/></Box>;
-
     const counter = () => {
       return props.loading
           ? <Typography variant="h1">Buscando alojamientos...</Typography>
@@ -84,8 +88,8 @@ const Result: FunctionComponent<ResultProps> = props => {
           {counter()}
         </Grid>
         <Grid item xs={12}>
-            {props.loading && progressBar}
-            {hasCards && renderCardListWithInfiniteScroll()}
+          {props.loading && <Box className={classes.skeleton}><Skeleton height={243} count={5}/></Box>}
+          {hasCards && renderCardListWithInfiniteScroll()}
         </Grid>
     </Grid>
   }
