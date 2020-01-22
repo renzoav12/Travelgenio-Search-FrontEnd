@@ -33,7 +33,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const SingleOptionFilter: FunctionComponent<Props> = props => {
-  
+  const withoutCategory: string = "0.0";
+ 
   const classes = useStyles();
   
   const [showAll, setShowAll] = useState<boolean>(false);
@@ -95,7 +96,7 @@ const SingleOptionFilter: FunctionComponent<Props> = props => {
       key = {option.code} 
       option = {option} 
       onChange = {(selected: boolean):void => {props.onChange(props.filter.field, option.code, selected)}}
-      label = {<Category stars={parseInt(option.code)}/>}
+      label = {option.code === withoutCategory ? <Box>Otros</Box> : <Category stars={parseInt(option.code)}/>}
     />
   );
 
