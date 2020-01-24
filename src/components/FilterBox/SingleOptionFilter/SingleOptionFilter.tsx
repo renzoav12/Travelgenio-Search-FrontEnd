@@ -25,9 +25,14 @@ export interface SingleOptionFilterProp {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    showMoreOptions: {
+    showMoreSection: {
       marginTop: 10,
-      color: theme.palette.primary.main
+    },
+    showMoreOption: {
+      display:"flex",
+      alignItems: "center",
+      color: theme.palette.primary.main,
+      cursor: "pointer"
     }
   }),
 );
@@ -111,14 +116,14 @@ const SingleOptionFilter: FunctionComponent<Props> = props => {
     );
 
   const showMore = () => showAll 
-  ? <Box onClick={toggleShowAll}>Mostrar menos <KeyboardArrowUp/></Box>
-  : <Box onClick={toggleShowAll}>Mostrar todos <KeyboardArrowDown/></Box>;
+  ? <Box onClick={toggleShowAll} className={classes.showMoreOption}>Mostrar menos <KeyboardArrowUp/></Box>
+  : <Box onClick={toggleShowAll} className={classes.showMoreOption}>Mostrar todos <KeyboardArrowDown/></Box>;
 
   const filterBody = () => display
   ? <Box>
       <Box> {allOption} </Box>
       <Box> {props.filter.field == "category" ? categories : options} </Box>
-      <Box className={classes.showMoreOptions}> {showMore()} </Box>
+      <Box className={classes.showMoreSection}> {showMore()} </Box>
     </Box>
   : null;
 

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
-
-import './SingleOption.scss';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
 
 interface Props {
   option: SingleOptionProp;
@@ -16,23 +16,54 @@ export interface SingleOptionProp {
   selected: boolean
 }
 
-const SingleOption = (props: Props) => {
-    return <div className="otravo-filter-option">
-      <div className="otravo-filter-option-checkbox">
-        <Checkbox 
-          style = {{ backgroundColor: 'transparent' }}
-          color = "primary" 
-          value = {props.option.code} 
-          checked = {props.option.selected}
-          onChange = {(event):void => props.onChange(event.target.checked)}/>
-      </div>
-      <div className="otravo-label otravo-filter-option-label">
-        {props.label ? props.label : props.option.label}
-      </div>
-      <div className="otravo-label otravo-filter-option-quantity">
-        {props.option.quantity}
-      </div>
-    </div>;
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    filterOption: {
+      display: 'flex',
+      alignItems: 'center',
+      height: 30
+    },
+    
+    filterOptionCheckbox: {
+      width: 45,
+      maxHeight: "100%",
+      '& .MuiButtonBase-root': {
+        padding: '0 !important'
+      }
+    },
+  
+    filterOptionLabel: {
+      width: "100%"
+    },
+
+    filterOptionQuantity: {
+      width: 80,
+      textAlign: "right",
+      paddingRight: 10
+    }
+  }),
+);
+
+const SingleOption: FunctionComponent<Props> = props => {
+    
+  const classes = useStyles();
+
+  return <Box className={classes.filterOption}>
+    <Box className={classes.filterOptionCheckbox}>
+      <Checkbox 
+        style = {{ backgroundColor: 'transparent' }}
+        color = "primary" 
+        value = {props.option.code} 
+        checked = {props.option.selected}
+        onChange = {(event):void => props.onChange(event.target.checked)}/>
+    </Box>
+    <Box className={classes.filterOptionLabel}>
+      {props.label ? props.label : props.option.label}
+    </Box>
+    <Box className={classes.filterOptionQuantity}>
+      {props.option.quantity}
+    </Box>
+  </Box>;
 }
 
 export default SingleOption;

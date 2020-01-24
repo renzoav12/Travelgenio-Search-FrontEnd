@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-
-import './RangeOptionFilter.scss';
+import React, { FunctionComponent } from 'react';
 import { FilterType } from '../FilterBox';
 import { RangeProp } from '../RangeFilter/RangeFilter';
 
@@ -27,18 +25,8 @@ export interface RangeOptionProp {
   selected: boolean
 }
 
-
-
-
-class RangeOptionFilter extends Component<Props> {
-
-  constructor(props: Props) {
-    super(props);
-  }
-
-  render() {
-    return null;
-  } 
+const RangeOptionFilter: FunctionComponent<Props> = props => {
+  return null;
 }
 
 export default RangeOptionFilter;

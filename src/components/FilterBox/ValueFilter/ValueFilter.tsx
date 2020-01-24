@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import FilterHeader from '../FilterHeader/FilterHeader';
-import './ValueFilter.scss';
 import { FilterType } from '../FilterBox';
-import { Input, Box } from '@material-ui/core';
+import { Input, Box, Button } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 interface Props {
   filter: ValueFilterProp;
@@ -18,7 +18,24 @@ export interface ValueFilterProp {
   value?: string;
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    input: {
+      '&:before': {
+        borderBottom: '2px solid ' + theme.palette.primary.main + ' !important',
+      }
+    },
+    button: {
+      width: 90
+    },
+    buttonBox: {
+      marginTop: 10
+    }
+  }),
+);
+
 const ValueFilter: FunctionComponent<Props> = props => {
+  const classes = useStyles();
 
   const [display, setDisplay] = useState<boolean>(true);
   const [value, setValue] = useState<string>(props.filter.value ? props.filter.value : "");
@@ -44,17 +61,18 @@ const ValueFilter: FunctionComponent<Props> = props => {
   }
 
   const filterBody = display
-    ? <Box className="otravo-value-filter">
+    ? <Box>
         <Box>
-          <Input 
+          <Input
             type = {"text"} 
             value = {value} 
             fullWidth = {true}
             onChange = {onChangeValue}
-            placeholder = {"Hotel"}/>
+            placeholder = {"Hotel"}
+            className = {classes.input}/>
         </Box>
-        <Box className="otravo-value-filter-button-section">
-          <button className="otravo-value-filter-button" onClick={onApply}>Aplicar</button>
+        <Box className={classes.buttonBox}>
+          <Button variant="contained" color="primary" className={classes.button} onClick={onApply}>Aplicar</Button>
         </Box>
       </Box>
     : null;
