@@ -5,7 +5,7 @@ import Autocomplete, { SuggestionEntry, SuggestionHint } from './Autocomplete/Au
 import SearchOccupancy,  { RoomOccupancy } from './Occupancy/SearchOccupancy';
 import 'react-dates/lib/css/_datepicker.css';
 import './SearchBox.scss';
-import { Grid, Paper, Typography } from '@material-ui/core';
+import { Grid, Paper, Typography, Button } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 export interface SearchBoxProps {
@@ -132,7 +132,7 @@ const SearchBox: FunctionComponent<SearchBoxProps> = props => {
                       occupancy={occupancy.rooms}/>
       </Grid>
       <Grid item xs={buttonColumns.xs} sm={buttonColumns.sm} md={buttonColumns.md} lg={buttonColumns.lg}>
-          <button onClick={handleSubmit}>Buscar</button>
+          <Button variant="contained" color="primary" onClick={handleSubmit}>Buscar</Button>
       </Grid>
     </Grid>
   </Paper>;
