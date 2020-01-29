@@ -6,6 +6,8 @@ import Root from './components/Root/root';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import './styles/fonts/fonts.scss';
+import Header from './components/HeaderFooter/Header';
+import {initialData, countries, currencies} from './components/HeaderFooter';
 
 const theme = createMuiTheme({
   palette: {
@@ -38,9 +40,6 @@ const theme = createMuiTheme({
     MuiPaper: {
       root: {
         padding: 20,
-        marginTop: 20,
-        marginLeft: 20,
-        marginRight: 20,
         borderStyle: "solid",
         border: "1px",
         borderColor: "#C0C6D1"
@@ -50,12 +49,13 @@ const theme = createMuiTheme({
       }
     }
   }
-})
+});
 
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-       <CssBaseline />
+      <CssBaseline />
+      <Header initialData={initialData} countries={countries} currencies={currencies} />
       <Root store={store} />
     </MuiThemeProvider>
   );

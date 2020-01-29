@@ -1,0 +1,42 @@
+@import "../../../../../styles/global.scss";
+
+.language {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.language span.world-logo {
+  width: 16px;
+  height: 16px;
+  display: block;
+  margin-right: 10px;
+}
+.language span.world-logo svg {
+  fill: #fff;
+}
+.language span.select {
+  margin-top: 3px;
+  min-width: 100px;
+}
+.language span.select .select-menu {
+  font-family: 'open sans', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #fff;
+}
+.language span.select .select-menu:before {
+  display: none;
+}
+.language span.select .select-menu:after {
+  border-bottom-color: rgba(255,255,255,0.5);
+}
+.language span.select .select-menu [class*="inputSelect"],
+.language span.select .select-menu svg {
+  color: #fff;
+}
+@media (max-width: $screen-md) {
+  .language span.select {
+    min-width: 75px;
+    margin-right: 30px;
+  }
+}

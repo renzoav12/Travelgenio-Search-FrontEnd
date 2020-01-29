@@ -1,0 +1,44 @@
+@import "../../../../../styles/global.scss";
+
+.currency {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.currency span.currency-logo {
+  width: 16px;
+  height: 16px;
+  display: block;
+  margin-right: 10px;
+}
+.currency span.currency-logo svg {
+  fill: #fff;
+}
+.currency span.select {
+  margin-top: 3px;
+  min-width: 100px;
+}
+.currency span.select .select-menu {
+  font-family: 'open sans', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #fff;
+}
+.currency span.select .select-menu:before {
+  display: none;
+}
+.currency span.select .select-menu:after {
+  border-bottom-color: rgba(255,255,255,0.5);
+}
+.currency span.select .select-menu [class*="inputSelect"],
+.currency span.select .select-menu svg {
+  color: #fff;
+}
+@media (max-width: $screen-md) {
+  .currency {
+    margin-right: 35px;
+  }
+  .currency span.select {
+    min-width: 75px;
+  }
+}

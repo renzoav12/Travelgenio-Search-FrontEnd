@@ -1,14 +1,13 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../store';
-
+import { Container } from "@material-ui/core";
 import { loadNextPage } from '../../actions/pagination/pagination.action';
 import { thunkAccommodationSelect } from '../../actions/cardList/cardList.action';
-import Search, { SearchProps } from '../../components/Search/Search';
+import Search from '../../components/Search/Search';
 import { thunkFilterBoxChange } from '../../actions/filterBox/filterBox.action';
 import { thunkSearchBoxChange } from '../../actions/searchBox/searchBox.action';
 import { fetchSuggestionSearch, fetchSuggestionSearchName, SearchNameSuggestionParameters } from '../../actions/suggestion/suggestion.action';
-
 import moment from 'moment';
 import { SearchBoxState, SearchBoxOccupancyState, SearchBoxStayState } from '../../components/SearchBox/SearchBox';
 import { SuggestionHint, SuggestionEntry } from '../../components/SearchBox/Autocomplete/Autocomplete';
@@ -42,20 +41,22 @@ const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
     props.searchSuggestionName(props.search.location);
   }, []);
 
-  return <Search
-          search={props.search}
-          suggestionName={props.suggestionName}
-          onChange={props.onChange}
-          onChangeSuggestionHint={props.onChangeSuggestionHint}
-          accommodations={props.accommodations}
-          loading={props.loading}
-          loadNextPage={props.loadNextPage}
-          pagination={props.pagination}
-          selected={props.selected}
-          filters={props.filters}
-          filtersOnChange={props.filtersOnChange}
-          suggestions={props.suggestions}
-          />
+  return <Container maxWidth="lg">
+          <Search
+            search={props.search}
+            suggestionName={props.suggestionName}
+            onChange={props.onChange}
+            onChangeSuggestionHint={props.onChangeSuggestionHint}
+            accommodations={props.accommodations}
+            loading={props.loading}
+            loadNextPage={props.loadNextPage}
+            pagination={props.pagination}
+            selected={props.selected}
+            filters={props.filters}
+            filtersOnChange={props.filtersOnChange}
+            suggestions={props.suggestions}
+            />
+          </Container>
 }
 
 const parseStay = (from: string, to: string): SearchBoxStayState => {
