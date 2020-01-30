@@ -40,19 +40,30 @@ const RangeFilter: FunctionComponent<Props> = props => {
   const classes = useStyles();
   
   const [display, setDisplay] = useState<boolean>(true);
+  const [value, setValue] = useState<Array<number>>([props.filter.boundaries.min, props.filter.boundaries.max]);
 
   useEffect(() => {
     setDisplay(props.display);
   }, [props.display]);
 
+  useEffect(() => {
+    setValue([
+      props.filter.value && props.filter.value.min ? props.filter.value.min : props.filter.boundaries.min,
+      props.filter.value && props.filter.value.max ? props.filter.value.max : props.filter.boundaries.max]);
+  }, [props.filter.value]);
+
   const onChangeDisplay = (show: boolean): void => {
     setDisplay(show);
   }
 
+  const onChange = (event: any, newValue: number | number[]) => {
+    setValue(newValue as number[]);
+  };
+
+
   const onChangeRange = (event: any, range: any): void => {
     props.onChange(props.filter.field, {min: range[0], max: range[1]});
   }
-
 
   const filterBody = () => {
     return display
@@ -60,13 +71,11 @@ const RangeFilter: FunctionComponent<Props> = props => {
         <Slider
           style = {{ backgroundColor: 'transparent' }}
           valueLabelDisplay="on"
-          max = {props.filter.boundaries.max}
           min = {props.filter.boundaries.min}
-          defaultValue = {[
-            props.filter.value && props.filter.value.min ? props.filter.value.min : props.filter.boundaries.min,
-            props.filter.value && props.filter.value.max ? props.filter.value.max : props.filter.boundaries.max
-          ]}
-          onChangeCommitted= {onChangeRange} />
+          max = {props.filter.boundaries.max}
+          value = {value}
+          onChangeCommitted = {onChangeRange}
+          onChange = {onChange}/>
       </Box>
     : null;
   }
