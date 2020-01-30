@@ -56,7 +56,7 @@ export const fetchSuggestionSearch = (queryParameters: SearchSuggestionParameter
     handleFetchSuggestionSearch(dispatch);
 
     try {
-        const response: AxiosResponse<Array<SuggestionEntry>> = await search.get('/hint', {
+        const response: AxiosResponse<Array<SuggestionEntry>> = await search.get('/suggestions', {
             params: queryParameters
         });
         handleSuggestionSearchSuccess(dispatch, response.data);
@@ -69,8 +69,10 @@ export const fetchSuggestionSearchName = (queryParameters: SearchNameSuggestionP
   handleFetchSuggestionSearchName(dispatch);
 
   try {
-      const response: AxiosResponse<SuggestionEntry> = await search.get('/suggestions', {
-          params: queryParameters
+      const response: AxiosResponse<SuggestionEntry> = await search.get('/suggestions/' + queryParameters.code , {
+          params: {
+              'type': queryParameters.type
+          }
       });
       handleSuggestionSearchNameSuccess(dispatch, response.data);
   } catch (e) {
