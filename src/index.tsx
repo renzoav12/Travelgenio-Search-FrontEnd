@@ -7,6 +7,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import './styles/fonts/fonts.scss';
 import Header from './components/HeaderFooter/Header';
+import Footer from './components/HeaderFooter/Footer';
 import {initialData, countries, currencies} from './components/HeaderFooter';
 
 const theme = createMuiTheme({
@@ -57,6 +58,7 @@ function App() {
       <CssBaseline />
       <Header initialData={initialData} countries={countries} currencies={currencies} />
       <Root store={store} />
+      <Footer initialData={initialData} countries={countries} />
     </MuiThemeProvider>
   );
 }

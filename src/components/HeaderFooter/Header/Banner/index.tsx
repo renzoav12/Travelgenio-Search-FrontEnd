@@ -1,11 +1,11 @@
 import React from "react";
 import { Container } from "@material-ui/core";
 import { IBannerProps } from "../../interfaces";
-import CountrySelector from "./CountrySelector";
+import CountrySelector from "../../CountrySelector";
 import CurrencySelector from "./CurrencySelector";
 
 // Import TG Logo
-import { TGLogo } from "../img/svg";
+import { TGLogo } from "../../img/svg";
 
 // Styles
 import './styles.scss'; 

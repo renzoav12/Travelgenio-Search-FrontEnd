@@ -176,6 +176,7 @@ export interface IPreviousItemProps {
 
 export interface IFooterProps {
   initialData: InitialService.IProps;
+  countries: InitialService.ICountry[];
 }
 
 export interface ILanguageChooserProps { }
