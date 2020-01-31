@@ -55,7 +55,7 @@ const Result: FunctionComponent<ResultProps> = props => {
     }
 
     const renderLoaderWhenLoading = () => {
-        if (props.loading) 
+        if (props.pagination.loading) 
             return renderLoader();
     }
 

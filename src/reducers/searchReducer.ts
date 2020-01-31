@@ -13,6 +13,9 @@ import {
     SEARCH_FETCH_START,
     SEARCH_FETCH_FAILED,
     SEARCH_FETCH_SUCCESS,
+    PAGE_FETCH_START,
+    PAGE_FETCH_FAILED,
+    PAGE_FETCH_SUCCESS,
     SEARCH_FILTER_UPDATE, 
     SEARCH_ACCOMMODATION_UPDATE
 } from '../actions/search/search.actionTypes';
@@ -29,7 +32,8 @@ const emptyPagination: Pagination = {
     last: true,
     pages: 1,
     elements: 0,
-    filteredElements: 0
+    filteredElements: 0,
+    loading: false
 }
 
 const emptyAccommodations: CardProps[] = [];
@@ -167,6 +171,30 @@ export const searchReducer: Reducer<Search, RootAction> = (
             return { ...state, loading: false };
         case SEARCH_FETCH_SUCCESS:
             return { ...state, loading: false };
+        case PAGE_FETCH_START:
+          return { 
+            ...state, 
+            pagination: {
+              ...state.pagination,
+              loading: true
+            }
+          };
+        case PAGE_FETCH_FAILED:
+          return { 
+            ...state, 
+            pagination: {
+              ...state.pagination,
+              loading: false
+            }
+          };
+        case PAGE_FETCH_SUCCESS:
+          return { 
+            ...state, 
+            pagination: {
+              ...state.pagination,
+              loading: false
+            }
+          };
         case SEARCH_PAGINATION_PAGE:
             var asd = {
                 ...state,

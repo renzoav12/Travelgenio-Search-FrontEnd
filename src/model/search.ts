@@ -94,6 +94,7 @@ export interface Pagination {
     elements: number;
     filteredElements: number;
     pages: number;
+    loading: boolean;
 }
 
 export interface SearchResponse {
