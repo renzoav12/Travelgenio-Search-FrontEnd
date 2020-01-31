@@ -66,9 +66,7 @@ const Result: FunctionComponent<ResultProps> = props => {
     const renderCardListWithInfiniteScroll = () => {
         return <InfiniteScroll
                     dataLength={props.accommodations.length} 
-                    pageStart={1}
                     hasMore={true}
-                    initialLoad={false}
                     next={loadNextPage}
                     loader={renderLoaderWhenLoading()}>
                     {renderCardList()}
