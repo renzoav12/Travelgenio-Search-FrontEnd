@@ -1,5 +1,5 @@
 import React from "react";
-import { ILogo } from "../../../interfaces";
+import { ILogo } from "../../interfaces";
 
 export const WorldLogo: React.SFC<{}> = (): JSX.Element => {
   return (

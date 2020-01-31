@@ -1,11 +1,11 @@
 import React from "react";
-import { ICountrySelectorProps, InitialService as IS } from "../../../interfaces";
+import { ICountrySelectorProps, InitialService as IS } from "../interfaces";
 
 // Import Material UI
 import { Select, MenuItem } from "@material-ui/core";
 
 // Import SVG Logo
-import { WorldLogo } from "../../img/svg";
+import { WorldLogo } from "../img/svg";
 
 // Styles
 import "./styles.scss";

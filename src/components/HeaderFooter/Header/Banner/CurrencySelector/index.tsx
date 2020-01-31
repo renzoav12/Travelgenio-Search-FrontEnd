@@ -5,7 +5,7 @@ import { ICurrencySelectorProps, InitialService as IS } from "../../../interface
 import { Select, MenuItem } from "@material-ui/core";
 
 // Import SVG Logo
-import { CurrencyLogo } from "../../img/svg";
+import { CurrencyLogo } from "../../../img/svg";
 
 // Styles
 import "./styles.scss";
