@@ -5,7 +5,10 @@ import {
     SEARCH_FETCH_FAILED,
     SEARCH_FETCH_SUCCESS,
     SEARCH_ACCOMMODATION_UPDATE,
-    SEARCH_FILTER_UPDATE
+    SEARCH_FILTER_UPDATE,
+    PAGE_FETCH_START,
+    PAGE_FETCH_FAILED,
+    PAGE_FETCH_SUCCESS
 } from './search.actionTypes';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '../../store';
@@ -36,6 +39,24 @@ export function searchFetchFailed(): SearchActionTypes {
     }
 }
 
+export function pageFetchStart(): SearchActionTypes {
+  return {
+      type: PAGE_FETCH_START
+  }
+}
+
+export function pageFetchSuccess(): SearchActionTypes {
+  return {
+      type: PAGE_FETCH_SUCCESS
+  }
+}
+
+export function pageFetchFailed(): SearchActionTypes {
+  return {
+      type: PAGE_FETCH_FAILED
+  }
+}
+
 export function searchAccommodationUpdate(accommodations: CardProps[]): SearchActionTypes {
     return {
         type: SEARCH_ACCOMMODATION_UPDATE,
@@ -60,7 +81,13 @@ export const searchUpdate = (action: (x: SearchResponse) => void) => async (
 
     window.history.pushState({}, "", url);
 
-    dispatch(searchFetchStart());
+    let isFirstPage = getState().search.pagination.number === 1;
+    
+    if(isFirstPage) {
+      dispatch(searchFetchStart());
+    } else {
+      dispatch(pageFetchStart());
+    }
 
     try {
         const response: AxiosResponse<SearchResponse> = await search.post('/search', params);
@@ -74,12 +101,21 @@ export const searchUpdate = (action: (x: SearchResponse) => void) => async (
                 size: response.headers['tg-page-size'],
                 elements: response.headers['tg-total-elements'],
                 filteredElements: response.headers['tg-filtered-elements'],
-                pages: response.headers['tg-total-pages']
+                pages: response.headers['tg-total-pages'],
+                loading: getState().search.pagination.loading
             }
         });
     } catch (e) {
         console.error(e);
-        dispatch(searchFetchFailed());
+        if(isFirstPage) {
+          dispatch(searchFetchFailed());
+        } else {
+          dispatch(pageFetchFailed());
+        }
     }
-    dispatch(searchFetchSuccess());
+    if(isFirstPage) {
+      dispatch(searchFetchSuccess());
+    } else {
+      dispatch(pageFetchSuccess());
+    }
 };
