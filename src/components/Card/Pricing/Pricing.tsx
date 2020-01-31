@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Box, Button } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { MealPlanProps } from '../../MealPlan/MealPlan';
+import Discount, { DiscountProps } from '../../Discount/Discount';
 
 export interface PricingProps {
   id: string;
@@ -9,6 +10,7 @@ export interface PricingProps {
   stayPrice: Price;
   strikethroughPrice: Price;
   mealPlan: MealPlanProps;
+  discount: DiscountProps;
   selected: () => void;
 };
 
@@ -35,19 +37,21 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     detail: {
       marginTop: 30
-    }
+    },
   }),
 );
 
 const Pricing: FunctionComponent<PricingProps> = props => {
   const classes = useStyles();
 
-  const strikeThroughPrice = () => {return (props.stayPrice.amount !== props.strikethroughPrice.amount 
+  const strikeThroughPrice = () => {return (props.stayPrice.amount !== props.strikethroughPrice.amount  
     || props.stayPrice.currency !== props.strikethroughPrice.currency)
         ? props.strikethroughPrice.amount + " " + props.strikethroughPrice.currency
         : null;}
-
+  
   return <Box className={classes.pricing}>
+
+      <Discount {...props.discount}/>
       <Box className={classes.strikeoutPrice}>
         {strikeThroughPrice()}
       </Box>
