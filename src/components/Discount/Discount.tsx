@@ -18,12 +18,12 @@ const useStyles = makeStyles((theme: Theme) =>
 const Discount: FunctionComponent<DiscountProps> = props => {
     const classes = useStyles();
 
-    const percentageNumber = () => {return props.percentage == "0" ?  " " 
+    const discountPercentage = () => {return props.percentage == "0" ?  " " 
             : "-" + props.percentage + "%";}
 
     return <Box className={classes.percentage}>
       <Box className={classes.percentage}>
-        {percentageNumber()}
+        {discountPercentage()}
       </Box>
   </Box>
 }
