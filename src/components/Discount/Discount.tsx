@@ -22,11 +22,8 @@ const Discount: FunctionComponent<DiscountProps> = props => {
             : "-" + props.percentage + "%";}
 
     return <Box className={classes.percentage}>
-      <Box className={classes.percentage}>
         {discountPercentage()}
       </Box>
-  </Box>
 }
-
 
 export default Discount;
