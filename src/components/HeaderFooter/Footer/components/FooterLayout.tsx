@@ -15,10 +15,12 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import CommentIcon from "@material-ui/icons/Comment";
 import LinksContainer from "./LinksContainer";
 import SubscriptionContainer from "./SubscriptionContainer";
+import { IEmailSubscriptionRequest } from "../../interfaces";
 
 export interface IFooterLayoutProps {
   i18n: Map<string, string>;
   initial: any;
+  subscribeEmail: (emaulSubscriptionRequest: IEmailSubscriptionRequest) => void;
 }
 
 const FooterLayout: React.SFC<IFooterLayoutProps> = props => {
@@ -40,7 +42,7 @@ const FooterLayout: React.SFC<IFooterLayoutProps> = props => {
       <Container maxWidth="lg" className="footer-links-subscribers">
         <Grid container>
           <LinksContainer i18n={i18n} initial={initial} />
-          <SubscriptionContainer i18n={i18n} initial={initial} />
+          <SubscriptionContainer i18n={i18n} initial={initial} subscribeEmail={props.subscribeEmail} />
         </Grid>
       </Container>
     );
@@ -56,7 +58,7 @@ const FooterLayout: React.SFC<IFooterLayoutProps> = props => {
             {openBoletin ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={openBoletin} timeout="auto" unmountOnExit>
-            <SubscriptionContainer i18n={i18n} initial={initial} />
+            <SubscriptionContainer i18n={i18n} initial={initial} subscribeEmail={props.subscribeEmail}/>
           </Collapse>
         </List>
         <List>

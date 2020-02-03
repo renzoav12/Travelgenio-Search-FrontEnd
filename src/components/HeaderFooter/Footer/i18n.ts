@@ -19,7 +19,7 @@ export const i18n: Map<string, string> = new Map([
   ["footer.email.error", "Introduce un email válido"],
   ["footer.email.success", "Su suscripción fue exitosa"],
   ["footer.email.popup.title.error", "Se ha producido un error. Intente suscribirse más tarde o contacte con Atención al Cliente."],
-  ["footer.email.popup.body.error", "Por favor], corrige los datos, introduce un email válido"],
+  ["footer.email.popup.body.error", "Por favor, corrige los datos, introduce un email válido"],
   ["footer.email.popup.title.success", "Boletín de Ofertas"],
   ["footer.email.popup.body.success", "¡Gracias por apuntarte a nuestro boletín de ofertas! ¡Recibirás las mejores ofertas!"],
   ["footer.credit.cards", "Tarjetas de crédito"],
