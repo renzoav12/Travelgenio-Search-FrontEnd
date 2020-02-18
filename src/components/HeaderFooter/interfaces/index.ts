@@ -177,6 +177,7 @@ export interface IPreviousItemProps {
 export interface IFooterProps {
   initialData: InitialService.IProps;
   countries: InitialService.ICountry[];
+  subscribeEmail: (emaulSubscriptionRequest: IEmailSubscriptionRequest) => Promise<void>;
 }
 
 export interface ILanguageChooserProps { }
@@ -321,10 +322,17 @@ export interface ICSMoreInfoDialogProps {
 }
 
 // Logos
-
 export interface ILogo {
   title?: string;
   description?: string;
   width?: string;
   height?: string;
+}
+
+//Email Subscription Request
+export interface IEmailSubscriptionRequest {
+  url: string;
+  cultureCode: string;
+  cobrandId: string;
+  email: string;
 }

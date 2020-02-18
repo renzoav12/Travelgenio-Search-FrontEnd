@@ -9,6 +9,7 @@ import './styles/fonts/fonts.scss';
 import Header from './components/HeaderFooter/Header';
 import Footer from './components/HeaderFooter/Footer';
 import {initialData, countries, currencies} from './components/HeaderFooter';
+import { subscribeEmail } from './actions/emailSubscription/emailSubscription.action';
 
 const theme = createMuiTheme({
   palette: {
@@ -58,7 +59,7 @@ function App() {
       <CssBaseline />
       <Header initialData={initialData} countries={countries} currencies={currencies} />
       <Root store={store} />
-      <Footer initialData={initialData} countries={countries} />
+      <Footer initialData={initialData} countries={countries} subscribeEmail={subscribeEmail}/>
     </MuiThemeProvider>
   );
 }

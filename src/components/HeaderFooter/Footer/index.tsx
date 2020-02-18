@@ -41,7 +41,7 @@ const IFooter: React.SFC<IFooterProps> = (props): JSX.Element => {
               {props.initialData.optionParameters.enableSelectLanguage ? <CountrySelector countries={props.countries} currentSelection={props.initialData.currentSelection} /> : ""}
             </Grid>
           </Container>
-          <FooterLayout i18n={i18n} initial={props.initialData} />
+          <FooterLayout i18n={i18n} initial={props.initialData} subscribeEmail={props.subscribeEmail}/>
         </Container>
       </div>
       <div className="flags-container">

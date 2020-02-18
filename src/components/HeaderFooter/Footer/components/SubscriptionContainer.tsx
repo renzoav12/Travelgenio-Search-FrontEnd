@@ -10,6 +10,7 @@ import {
   CircularProgress,
   Grid
 } from "@material-ui/core";
+import { IEmailSubscriptionRequest } from "../../interfaces";
 
 
 //import { Services } from "../../../helpers/services";
@@ -17,6 +18,7 @@ import {
 export interface ISubscriptionContainerProps {
   i18n: Map<string, string>;
   initial: any;
+  subscribeEmail: (emaulSubscriptionRequest: IEmailSubscriptionRequest) => void;
 }
 
 const SubscriptionContainer: React.SFC<ISubscriptionContainerProps> = props => {
@@ -40,11 +42,13 @@ const SubscriptionContainer: React.SFC<ISubscriptionContainerProps> = props => {
     setOpen(false);
   };
 
-  const postSuscpripcion = async (email: String) => {
-    let cobId = initial.currentSelection.cobrandedId,
-      culCode = initial.currentSelection.cultureCode,
-      url = `${initial.footerItems.footerSubscription.url}/cd,c2-sin,-5-${culCode},${cobId},${email}`;
-//    return Services.postSubscription(url, {});
+  const postSuscpripcion = async (email: string) => {
+    return props.subscribeEmail({
+      cultureCode: initial.currentSelection.cultureCode,
+      cobrandId: initial.currentSelection.cobrandedId,
+      email: email,
+      url: initial.footerItems.footerSubscription.url
+    });
   };
 
   const handleSubmitSubscription = (event: React.FormEvent<HTMLFormElement>): void => {
