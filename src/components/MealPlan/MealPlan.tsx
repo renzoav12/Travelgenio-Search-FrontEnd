@@ -38,16 +38,11 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: "#028A51",
       color: "white"
     },
-    roomOnly: {
-      backgroundColor: "#E9EFF9",
-      color: "#3D4355",
-      paddingLeft: 15
-    },
     mealPlanIcon: {
       width: 30,
       height: 30,
       marginLeft: 18,
-      marginTop:-20
+      marginTop: -8
     },
     mealPlanDescription: {
       paddingLeft: 10,
@@ -63,11 +58,10 @@ const MealPlan: FunctionComponent<MealPlanProps> = props => {
     ["all_inclusive", {icon: <AllInclusive className={classes.mealPlanIcon}/>, class: classes.allInclusive}],
     ["half_board", {icon: <Meal className={classes.mealPlanIcon}/>, class: classes.mealPlan}],
     ["full_board", {icon: <Meal className={classes.mealPlanIcon}/>, class: classes.mealPlan}],
-    ["breakfast", {icon: <Breakfast className={classes.mealPlanIcon}/>, class: classes.mealPlan}],
-    ["room_only", {icon: null, class: classes.roomOnly}]
+    ["breakfast", {icon: <Breakfast className={classes.mealPlanIcon}/>, class: classes.mealPlan}]
   ]);
   
-  const mealPlanType: MealPlanType | undefined = mealPlanTypes.get("room_only"/*props.type*/);
+  const mealPlanType: MealPlanType | undefined = mealPlanTypes.get(props.type);
 
   if(mealPlanType) {
     return <Box className={classes.container}>

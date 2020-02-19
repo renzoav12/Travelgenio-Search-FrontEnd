@@ -6,6 +6,7 @@ import AmenityIcons, { Amenity } from './AmenityIcons/AmenityIcons';
 import { Grid, Box } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import MealPlan, { MealPlanProps } from '../../MealPlan/MealPlan';
+import { FullscreenExit } from '@material-ui/icons';
 
 export interface Props {
   content: ContentProps;
@@ -31,11 +32,6 @@ interface LocationProps {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    title: {
-      fontSize: "16pt",
-      fontWeight: "bold",
-      paddingTop: 5
-    },
     content: {
       display: "flex",
       padding: 10,
@@ -45,17 +41,36 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "30%"
     },
     info: {
-      width: "70%"
+      width: "70%",
+      display: "flex",
+      flexDirection: "column"
+    },
+    title: {
+      fontSize: "16pt",
+      fontWeight: "bold",
+      paddingTop: 5,
+      minHeight: 40
     },
     category: {
       minHeight: 20,
-      paddingBottom: 5
+      paddingBottom: 5,
+      height: 30
+    },
+    address: {
+      minHeight: 30
     },
     amenities: {
-      marginTop: 20
+      [theme.breakpoints.up('md')]: {
+        marginTop: 10,
+        height: 22,
+      }
     },
     mealPlan: {
-      marginTop: 10
+      display: "flex",
+      alignItems: "center",
+      [theme.breakpoints.up('md')]: {
+        minHeight: 75
+      }
     }
   })
 );
@@ -72,7 +87,9 @@ const Content: FunctionComponent<Props> = props => {
           <Box className={classes.category}>
               <Category stars={parseInt(props.content.category.code)}/>
           </Box>
-          <Address {...props.content.location.address}/>
+          <Box className={classes.address}>
+            <Address {...props.content.location.address}/>
+          </Box>
           <Box className={classes.amenities}>
             <AmenityIcons {...props.content}/>
           </Box>
