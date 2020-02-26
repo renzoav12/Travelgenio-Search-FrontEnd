@@ -5,7 +5,7 @@ const dev = {
 };
 
 const prod = {
-    SEARCH_API: "https://dev-hotels-shopping-search.travelagency.tech",
+    SEARCH_API: "https://hotels-shopping-search.travelagency.tech",
     SUGGESTIONS_API: "https://hotels-autocomplete-suggestion.travelagency.tech",
     EMAIL_SUBSCRIPTION_API: "http://v24-hermes.int.travelgenio.tech"
 };
