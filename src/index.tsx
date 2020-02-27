@@ -6,9 +6,8 @@ import Root from './components/Root/root';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import './styles/fonts/fonts.scss';
-import Header from './components/HeaderFooter/Header';
-import Footer from './components/HeaderFooter/Footer';
-import {initialData, countries, currencies} from './components/HeaderFooter';
+import Header, {initialData, countries, currencies} from '@hotels/header';
+import Footer from '@hotels/footer';
 import { subscribeEmail } from './actions/emailSubscription/emailSubscription.action';
 
 const theme = createMuiTheme({
