@@ -1,4 +1,4 @@
-import { IEmailSubscriptionRequest } from "../../components/HeaderFooter/interfaces";
+import { IEmailSubscriptionRequest } from "@hotels/header/dist/interfaces";
 import emailSubscription from "../../api/emailSubscription/emailSubscription";
 
 export const subscribeEmail = async (emailSubscriptionRequest: IEmailSubscriptionRequest): Promise<void> => {
