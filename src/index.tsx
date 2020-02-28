@@ -6,9 +6,8 @@ import Root from './components/Root/root';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import './styles/fonts/fonts.scss';
-import Header, {initialData, countries, currencies} from '@hotels/header';
-import Footer from '@hotels/footer';
-import { subscribeEmail } from './actions/emailSubscription/emailSubscription.action';
+import Header, { initialData as headerInitialData, countries, currencies } from '@hotels/header';
+import Footer, { initialData as footerInitialData, subscribeEmail } from '@hotels/footer';
 
 const theme = createMuiTheme({
   palette: {
@@ -56,13 +55,12 @@ function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <Header initialData={initialData} countries={countries} currencies={currencies} />
+      <Header initialData={headerInitialData} countries={countries} currencies={currencies} />
       <Root store={store} />
-      <Footer initialData={initialData} countries={countries} subscribeEmail={subscribeEmail}/>
+      <Footer initialData={footerInitialData} countries={countries} subscribeEmail={subscribeEmail}/>
     </MuiThemeProvider>
   );
 }
-
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
