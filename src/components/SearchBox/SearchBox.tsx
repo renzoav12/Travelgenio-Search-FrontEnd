@@ -107,8 +107,9 @@ const SearchBox: FunctionComponent<SearchBoxProps> = props => {
       ? {xs: 12, sm: 12, md:1, lg: 1} : verticalColumns;
 
   const canBeSubmit = () => {
-        return  props.suggestions.length === 0 ||stay.from === null || stay.to === undefined;
-      }
+        return  props.suggestions.length === 0 ||
+                stay.from === null || stay.to === undefined;
+  }
     
   const isEnabled = canBeSubmit();
 
