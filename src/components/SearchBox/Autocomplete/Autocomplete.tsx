@@ -98,9 +98,9 @@ const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
 
   const shouldRenderWhat = (suggestions, value, children) => {
     if (value === "") {
-      return <div className="example_suggest">Ingrese un destino/alojamiento</div>;
+      return <div className="suggest_empty">Ingrese un destino/alojamiento</div>;
     } else if (suggestions.length === 0) {
-    return <div className="example_suggest">No se encontraron resultados para: {value}</div>;
+    return <div className="suggest_empty">No se encontraron resultados para: {value}</div>;
     } else {
       return children;
     }
