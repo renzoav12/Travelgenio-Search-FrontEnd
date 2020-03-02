@@ -108,7 +108,7 @@ const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
   
 
   return <div>
-      <label htmlFor={"asd"} className="otravo-label">Destino / Alojamiento:</label>
+      <label className="otravo-label">Destino / Alojamiento:</label>
       <Autosuggest
         suggestions={suggestions}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
