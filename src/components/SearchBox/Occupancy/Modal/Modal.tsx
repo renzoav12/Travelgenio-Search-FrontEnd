@@ -35,6 +35,13 @@ const useStyles = makeStyles((theme: Theme) =>
     addRoomButton: {
       cursor: "pointer",
       color: theme.palette.primary.main
+    },
+    addCloseButtom: {
+      cursor: "pointer",
+      color: theme.palette.primary.main,
+      position: "absolute",
+      right: 14,
+      bottom: 11
     }
   }),
 );
@@ -99,6 +106,7 @@ const Modal: FunctionComponent<ModalProps> = props => {
       ? <Box  className={classes.addRoomButton} onClick={addRoom}>Añadir habitación</Box>
       : null }
     </Box>
+    <Box  className={classes.addCloseButtom} onClick={close}>Aplicar</Box>
   </Paper>;
 }
 

@@ -36,10 +36,12 @@ const icons:Map<string, string> = new Map(
   ]);
 
 const renderSuggestion: FunctionComponent<SuggestionEntry> = (suggestion: SuggestionEntry) => (
-  <div className={"otravo-suggestion"}>
+
+    <div className={"otravo-suggestion"}>
     <div className="otravo-suggestion-type"><img className="otravo-suggestion-icon" src={icons.get(suggestion.type)}/></div>
     <div className="otravo-suggestion-name">{suggestion.name}</div>
   </div>
+
 )
 
 const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
@@ -86,8 +88,27 @@ const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
     value: inputValue
   }
 
+  const renderSuggestionsContainer = ({ containerProps, children, query }) => {
+    return ( 
+     <div {...containerProps}>
+        {shouldRenderWhat(props.suggestions, query, children)}
+    </div>
+    );
+  }
+
+  const shouldRenderWhat = (suggestions, value, children) => {
+    if (value === "") {
+      return <div className="otravo-suggest-empty">Ingrese un destino/alojamiento</div>;
+    } else if (suggestions.length === 0) {
+    return <div className="otravo-suggest-empty">No se encontraron resultados para: {value}</div>;
+    } else {
+      return children;
+    }
+  };
+  
+
   return <div>
-      <label htmlFor={"asd"} className="otravo-label">Destino / Alojamiento:</label>
+      <label className="otravo-label">Destino / Alojamiento:</label>
       <Autosuggest
         suggestions={suggestions}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
@@ -98,7 +119,8 @@ const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
         getSuggestionValue={getSuggestionName}
         shouldRenderSuggestions={shouldRenderSuggestions}
         renderSuggestion={renderSuggestion}
-        inputProps={inputProps}/>
+        inputProps={inputProps}
+        renderSuggestionsContainer={renderSuggestionsContainer}/>
     </div>;
 }
 
