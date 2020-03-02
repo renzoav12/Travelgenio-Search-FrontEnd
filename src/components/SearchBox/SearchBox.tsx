@@ -106,6 +106,12 @@ const SearchBox: FunctionComponent<SearchBoxProps> = props => {
   const buttonColumns: ItemColumns = props.horizontal 
       ? {xs: 12, sm: 12, md:1, lg: 1} : verticalColumns;
 
+  const canBeSubmit = () => {
+        return  props.suggestions.length == 0 ||stay.from == null || stay.to == undefined;
+      }
+    
+  const isEnabled = canBeSubmit();
+
   return <Paper className={classes.searchBox}>
     <Grid container item xs={12} alignItems="flex-start" spacing={2}>
       <Grid item xs={12}><Typography variant="h1">Modificar búsqueda</Typography></Grid>
@@ -132,7 +138,7 @@ const SearchBox: FunctionComponent<SearchBoxProps> = props => {
                       occupancy={occupancy.rooms}/>
       </Grid>
       <Grid item xs={buttonColumns.xs} sm={buttonColumns.sm} md={buttonColumns.md} lg={buttonColumns.lg}>
-          <Button variant="contained" color="primary" onClick={handleSubmit}>Buscar</Button>
+          <Button disabled={isEnabled} variant="contained" color="primary" onClick={handleSubmit}>Buscar</Button>
       </Grid>
     </Grid>
   </Paper>;
