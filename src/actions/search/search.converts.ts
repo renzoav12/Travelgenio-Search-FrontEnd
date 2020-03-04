@@ -16,14 +16,15 @@ export const searchCreateRequest = (rootState: RootState): SearchFetchParameters
     const pageSize: number = rootState.search.pagination.size;
     const jsonFilter = {};
     mapToObject(jsonFilter, filters);
+
     return {
         locationType: location.type,
         locationCode: location.code,
         checkIn: stay.from.toISOString().substring(0, 10),
         checkOut: stay.to.toISOString().substring(0, 10),
         occupancy: occupancy.rooms.map(room => room.adults + ((room.childrenAges.length === 0) ? "" : "-") +room.childrenAges.join("-")).join("!"),
-        country: 'US',
-        locale: 'en-US',
+        country: 'ES',
+        locale: 'es-ES',
         page: pageNumber,
         size: pageSize,
         filters: jsonFilter
