@@ -40,7 +40,7 @@ const renderSuggestion: FunctionComponent<SuggestionEntry> = (suggestion: Sugges
 
     <div className={"otravo-suggestion"}>
     <div className="otravo-suggestion-type"><img className="otravo-suggestion-icon" src={icons.get(suggestion.type)}/></div>
-    <div className="otravo-suggestion-name">{suggestion.name}</div>
+    <div className="otravo-suggestion-name">{suggestion.description}</div>
   </div>
 
 )
@@ -80,7 +80,7 @@ const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
     return input.trim().length > 2
   }
 
-  const getSuggestionName = (suggestion: SuggestionEntry) => {
+  const getSuggestion = (suggestion: SuggestionEntry) => {
     return suggestion.description;
   }
 
@@ -117,7 +117,7 @@ const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
         onSuggestionSelected={onSuggestionSelected}
         focusInputOnSuggestionClick={false}
         highlightFirstSuggestion={true}
-        getSuggestionValue={getSuggestionName}
+        getSuggestionValue={getSuggestion}
         shouldRenderSuggestions={shouldRenderSuggestions}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
