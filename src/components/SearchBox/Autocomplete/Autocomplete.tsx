@@ -7,6 +7,7 @@ export interface SuggestionEntry {
   code: string;
   type: string;
   name: string;
+  description: string;
 }
 
 export interface AutocompleteProps {
@@ -80,7 +81,7 @@ const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
   }
 
   const getSuggestionName = (suggestion: SuggestionEntry) => {
-    return suggestion.name;
+    return suggestion.description;
   }
 
   const inputProps: InputProps<SuggestionEntry> = {
