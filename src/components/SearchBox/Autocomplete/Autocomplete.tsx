@@ -40,7 +40,8 @@ const renderSuggestion: FunctionComponent<SuggestionEntry> = (suggestion: Sugges
 
     <div className={"otravo-suggestion"}>
     <div className="otravo-suggestion-type"><img className="otravo-suggestion-icon" src={icons.get(suggestion.type)}/></div>
-    <div className="otravo-suggestion-name">{suggestion.name}</div>
+    <div className="otravo-suggestion-name">{suggestion.name.length < 50 ? suggestion.name : 
+         suggestion.name.substring(0, Math.min(suggestion.name.length, 50)) + "..."}</div>
   </div>
 
 )
