@@ -85,7 +85,7 @@ const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
     return input.trim().length > 2
   }
 
-  const getSuggestionName = (suggestion: SuggestionEntry) => {
+  const getSuggestion = (suggestion: SuggestionEntry) => {
     return suggestion.description;
   }
 
@@ -122,7 +122,7 @@ const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
         onSuggestionSelected={onSuggestionSelected}
         focusInputOnSuggestionClick={false}
         highlightFirstSuggestion={true}
-        getSuggestionValue={getSuggestionName}
+        getSuggestionValue={getSuggestion}
         shouldRenderSuggestions={shouldRenderSuggestions}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
