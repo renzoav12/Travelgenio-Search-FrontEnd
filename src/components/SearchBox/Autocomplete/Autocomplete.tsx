@@ -37,14 +37,18 @@ const icons:Map<string, string> = new Map(
   ]);
 
 const renderSuggestion: FunctionComponent<SuggestionEntry> = (suggestion: SuggestionEntry) => (
-
+  
     <div className={"otravo-suggestion"}>
     <div className="otravo-suggestion-type"><img className="otravo-suggestion-icon" src={icons.get(suggestion.type)}/></div>
-    <div className="otravo-suggestion-name">{suggestion.name.length < 50 ? suggestion.name : 
-         suggestion.name.substring(0, Math.min(suggestion.name.length, 50)) + "..."}</div>
+    <div className="otravo-suggestion-name">{isNameLengthExcedded(suggestion.name)}</div>
   </div>
-
 )
+
+const isNameLengthExcedded = (getSuggestionName: string) => {
+  return getSuggestionName.length < 50 ? getSuggestionName : 
+         getSuggestionName.substring(0, Math.min(getSuggestionName.length, 50)) + "...";
+ }
+
 
 const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
 
