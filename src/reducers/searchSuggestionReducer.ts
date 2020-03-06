@@ -35,7 +35,8 @@ export const searchSuggestionReducer: Reducer<SearchSuggestion, SearchSuggestion
         case SearchSuggestionsActionTypes.FETCH_NAME_SUCCESS:
             return {
                 ...state,
-                suggestionName: action.suggestion.description
+                suggestionName: action.suggestion.description,
+                suggestions: [action.suggestion],
             };
         default:
             return state;

@@ -54,9 +54,13 @@ const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
 
   const [suggestions, setSuggestions] = useState<Array<SuggestionEntry>>(props.suggestions);
   const [inputValue, setInputValue] = useState<string>(props.name ? props.name : "");
+  const [showAlert, setShowAlert] = useState<boolean>(false);
 
   useEffect(() => {
     setSuggestions(props.suggestions);
+    if(!showAlert) {
+      setShowAlert(props.suggestions.length > 0)
+    }
   }, [props.suggestions]);
 
   useEffect(() => {
@@ -103,9 +107,9 @@ const Autocomplete: FunctionComponent<AutocompleteProps> = props => {
   }
 
   const shouldRenderWhat = (suggestions, value, children) => {
-    if (value === "") {
+    if (value === "" && showAlert) {
       return <div className="otravo-suggest-empty">Ingrese un destino/alojamiento</div>;
-    } else if (suggestions.length === 0) {
+    } else if (suggestions.length === 0  && showAlert) {
     return <div className="otravo-suggest-empty">No se encontraron resultados para: {value}</div>;
     } else {
       return children;
