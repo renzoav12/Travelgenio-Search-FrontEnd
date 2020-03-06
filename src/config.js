@@ -4,8 +4,8 @@ const dev = {
 };
 
 const prod = {
-    SEARCH_API: "https://hotels-shopping-search.travelagency.tech",
-    SUGGESTIONS_API: "https://hotels-autocomplete-suggestion.travelagency.tech"
+    SEARCH_API: "https://" + window.location.hostname + "/hotels/api/",
+    SUGGESTIONS_API: "https://" + window.location.hostname + "/hotels/api/"
 };
 
 const config = process.env.REACT_APP_STAGE === 'prod'
