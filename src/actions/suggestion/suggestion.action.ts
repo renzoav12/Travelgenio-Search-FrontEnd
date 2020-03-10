@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import { RootState } from '../../store';
 import { AxiosResponse } from 'axios';
 import { RootAction } from '../action';
-import { SuggestionEntry } from '../../components/SearchBox/Autocomplete/Autocomplete';
+import { SuggestionEntry } from '@hotels/search-box/dist/Autocomplete/Autocomplete';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootAction>;
 

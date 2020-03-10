@@ -1,5 +1,5 @@
 import {SEARCH_BOX_CHANGE, SearchBoxActionTypes} from './searchBox.actionTypes';
-import { SearchBoxState } from '../../components/SearchBox/SearchBox';
+import { SearchBoxState } from '@hotels/search-box';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '../../store';
 import { RootAction } from '../action';

@@ -1,5 +1,5 @@
 import { CardProps } from "../components/Card/Card";
-import { SearchBoxState } from "../components/SearchBox/SearchBox";
+import { SearchBoxState } from "@hotels/search-box";
 import { ValueFilterProp } from "../components/FilterBox/ValueFilter/ValueFilter";
 import { RangeFilterProp } from "../components/FilterBox/RangeFilter/RangeFilter";
 import { SingleOptionFilterProp } from "../components/FilterBox/SingleOptionFilter/SingleOptionFilter";
