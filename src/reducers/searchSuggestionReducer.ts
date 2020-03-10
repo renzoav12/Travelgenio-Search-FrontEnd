@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { Reducer } from 'redux';
 import { SearchSuggestionAction, SearchSuggestionsActionTypes } from '../actions/suggestion/suggestion.action';
-import { SuggestionEntry } from '../components/SearchBox/Autocomplete/Autocomplete';
+import { SuggestionEntry } from '@hotels/search-box/dist/Autocomplete/Autocomplete';
 
 export interface SearchSuggestion {
     suggestions: Array<SuggestionEntry>;
@@ -36,7 +36,7 @@ export const searchSuggestionReducer: Reducer<SearchSuggestion, SearchSuggestion
             return {
                 ...state,
                 suggestionName: action.suggestion.description,
-                suggestions: [action.suggestion],
+                suggestions: [action.suggestion]
             };
         default:
             return state;

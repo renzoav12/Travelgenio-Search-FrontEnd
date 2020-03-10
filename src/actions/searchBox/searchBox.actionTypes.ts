@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { SearchBoxState } from '../../components/SearchBox/SearchBox';
+import { SearchBoxState } from '@hotels/search-box';
 
 export const SEARCH_BOX_CHANGE = 'SEARCH_BOX_CHANGE'
 

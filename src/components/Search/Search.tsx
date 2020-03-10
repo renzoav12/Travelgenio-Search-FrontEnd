@@ -1,13 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import { Grid, Box } from '@material-ui/core';
-import SearchBox from '../SearchBox/SearchBox';
-import { SearchBoxState } from '../SearchBox/SearchBox';
+import SearchBox, { SearchBoxState } from '@hotels/search-box';
 import FilterBox, { FilterBoxSelected } from '../FilterBox/FilterBox';
 
 import Result from './Result/Result';
 import { Pagination, SearchFilter } from '../../model/search';
 import { CardProps } from '../Card/Card';
-import { SuggestionHint, SuggestionEntry } from '../SearchBox/Autocomplete/Autocomplete';
+import { SuggestionHint, SuggestionEntry } from '@hotels/search-box/dist/Autocomplete/Autocomplete';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 export interface SearchProps {
