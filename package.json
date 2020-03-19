@@ -48,7 +48,7 @@
     "eject": "react-scripts eject",
     "predeploy:dev": "REACT_APP_STAGE=dev yarn build",
     "deploy:dev": "aws s3 sync build/ s3://hotels-fe-dev/search/ --profile otravo --delete",
-    "predeploy:prod": "REACT_APP_STAGE=prod yarn build",
+    "predeploy:prod": "git checkout master && git pull origin master && REACT_APP_STAGE=prod yarn build",
     "deploy:prod": "aws s3 sync build/ s3://hotels-fe-prod/search/ --profile otravo-prod --delete"
   },
   "eslintConfig": {
