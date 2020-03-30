@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import Image, { ImageProps } from './Image/Image';
 import Category from '../../Category/Category';
-import Address, { AddressProps } from './Address/Address';
+import Location, { LocationProps } from './Location/Location';
 import AmenityIcons, { Amenity } from './AmenityIcons/AmenityIcons';
 import { Grid, Box } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -26,9 +26,6 @@ interface CategoryProps {
   code: string;
 };
 
-interface LocationProps {
-  address: AddressProps;
-};
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -88,7 +85,7 @@ const Content: FunctionComponent<Props> = props => {
               <Category stars={parseInt(props.content.category.code)}/>
           </Box>
           <Box className={classes.address}>
-            <Address {...props.content.location.address}/>
+            <Location location={props.content.location} accommodationName={props.content.name}/>
           </Box>
           <Box className={classes.amenities}>
             <AmenityIcons {...props.content}/>
