@@ -1210,10 +1210,10 @@
     react-scripts "3.4.0"
     typescript "~3.7.2"
 
-"@hotels/search-box@0.0.7":
-  version "0.0.7"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.7.tgz#6c76a097945599323653593fe8d38035d25d2a34"
-  integrity sha512-M8d2+8InqSvpjERKX6j7mkdBlGFN9XhOGCuLntNfGRq0s8JcTDYFk4QD33VX9reu1J7r7NULjMMjWwQWvmcUow==
+"@hotels/search-box@0.0.8":
+  version "0.0.8"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.8.tgz#62080b3a2225bb6a332cf7cd464a6041479ddfb1"
+  integrity sha512-hKeSyh2UBoI3kRLJsfh27GnJ0ztPpHVEfi1Susg0xklwRJzDKGi7y9hy8ZvRUOTw1XsslqAqvtnkOTmKK8xSJg==
   dependencies:
     "@material-ui/core" "^4.9.5"
     "@material-ui/icons" "^4.9.1"

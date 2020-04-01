@@ -51,7 +51,8 @@ const Search: FunctionComponent<SearchProps> = props => {
           onChange={props.onChange} 
           onChangeSuggestionHint={props.onChangeSuggestionHint}
           horizontal = {false}
-          suggestions = {props.suggestions}/>
+          suggestions = {props.suggestions}
+          title = {"Modifica tu destino"}/>
       </Box>
       <Box className={classes.filter}>
         <FilterBox
