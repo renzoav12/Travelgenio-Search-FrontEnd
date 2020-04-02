@@ -1168,12 +1168,12 @@
     redux-thunk "2.3.0"
     typescript "~3.7.2"
 
-"@hotels/map-dialog@0.0.1":
-  version "0.0.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/map-dialog/-/map-dialog-0.0.1.tgz#e5fdfc9b277104c623682bafd133c4432337a5ba"
-  integrity sha512-5pl8NKq2CmQb3O/uw9oacf8Oiss2galWzInXTAhQVfxtksh8YVrx3eGMfUsGIhZXCdnCYUcf78ZpzyFxH+b7Wg==
+"@hotels/map-dialog@0.0.2":
+  version "0.0.2"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/map-dialog/-/map-dialog-0.0.2.tgz#0cb3c08d4bcb1722ab002b850f6b51e20092eac8"
+  integrity sha512-qovzsjw3YO/h1S0Lohr2wrwfVdXHx2X+1OCo7izXhJBV9tmL3G0+3pQ1Ostj/00Hr4bOs1pFg1OYX96WOIsffw==
   dependencies:
-    "@hotels/map" "0.0.1"
+    "@hotels/map" "0.0.2"
     "@material-ui/core" "^4.9.5"
     "@material-ui/icons" "^4.9.1"
     "@testing-library/jest-dom" "^4.2.4"
@@ -1188,25 +1188,24 @@
     react-scripts "3.4.0"
     typescript "~3.7.2"
 
-"@hotels/map@0.0.1":
-  version "0.0.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/map/-/map-0.0.1.tgz#61615eee5a6128812aa7ed02fe1728fd2b1a12bb"
-  integrity sha512-fLQzw1h5of6q4zgiUOEbTlm7YGK1IAZOib6xLdZ332IZMW0ninah5VNB4Xd/rny1eIg5rTIxVMq3zsFHyCf6TA==
+"@hotels/map@0.0.2":
+  version "0.0.2"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/map/-/map-0.0.2.tgz#142f4d61aa055b503a704dba3997c107a4c1b71b"
+  integrity sha512-7Nj0P4X4aglppY58fk/vYdm3mD4+i/h0e1YEtpzoePPmRg9gvFWG3fmqbL0Yd89yI+JbaGANL/3l+DO+ZyGefA==
   dependencies:
     "@material-ui/core" "^4.9.5"
     "@material-ui/icons" "^4.9.1"
+    "@react-google-maps/api" "^1.8.6"
     "@testing-library/jest-dom" "^4.2.4"
     "@testing-library/react" "^9.3.2"
     "@testing-library/user-event" "^7.1.2"
     "@types/classnames" "^2.2.10"
+    "@types/googlemaps" "^3.39.3"
     "@types/jest" "^24.0.0"
     "@types/node" "^12.0.0"
     "@types/react" "^16.9.0"
     "@types/react-dom" "^16.9.0"
-    "@types/react-leaflet" "^2.5.1"
     classnames "^2.2.6"
-    leaflet "^1.6.0"
-    react-leaflet "^2.6.3"
     react-scripts "3.4.0"
     typescript "~3.7.2"
 
@@ -1513,6 +1512,25 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
+"@react-google-maps/api@^1.8.6":
+  version "1.8.6"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@react-google-maps/api/-/api-1.8.6.tgz#0a68f5f726f2cb2551f855c9f8493c854fb2782f"
+  integrity sha512-zioXQwqc6Cuw8hOkuf4TIJdvzgXGT+h7Hj2SVFm9AHvfaYMfhNxVnID/8txaX/iDxKG83qTFwMH3AoRrNSlaFQ==
+  dependencies:
+    "@react-google-maps/infobox" "1.8.6"
+    "@react-google-maps/marker-clusterer" "1.8.6"
+    invariant "2.2.4"
+
+"@react-google-maps/infobox@1.8.6":
+  version "1.8.6"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@react-google-maps/infobox/-/infobox-1.8.6.tgz#16b00052581fcafc3ca073e73100f05cb1f13002"
+  integrity sha512-q3V1NdVzMLesW2/TEoszzLPOFXpovjrEgyXR0ftZIZBRqXWPl/YKjYUYDDSKf6GDo0d91r8K/yBqkywQBfQENQ==
+
+"@react-google-maps/marker-clusterer@1.8.6":
+  version "1.8.6"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@react-google-maps/marker-clusterer/-/marker-clusterer-1.8.6.tgz#ec26d76e890fa8a7ee7d6a810fce29a39e156e7b"
+  integrity sha512-aEJikokaGBd6hPhTXDSaQCSUaXrvSoKUmmXRFIq2sQz0hp4oJJnlkSl2Me6cV0inUaboNCK2lunKGCsgDrzOzQ==
+
 "@sheerun/mutationobserver-shim@^0.3.2":
   version "0.3.3"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@sheerun/mutationobserver-shim/-/mutationobserver-shim-0.3.3.tgz#5405ee8e444ed212db44e79351f0c70a582aae25"
@@ -1716,11 +1734,6 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
   integrity sha512-EaObqwIvayI5a8dCzhFrjKzVwKLxjoG9T6Ppd5CEo07LRKfQ8Yokw54r5+Wq7FaBQ+yXRvQAYPrHwya1/UFt9g==
 
-"@types/geojson@*":
-  version "7946.0.7"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/geojson/-/geojson-7946.0.7.tgz#c8fa532b60a0042219cdf173ca21a975ef0666ad"
-  integrity sha512-wE2v81i4C4Ol09RtsWFAqg3BUitWbHSpSlIo+bNdsCJijO9sjme+zm+73ZMCa/qMC8UEERxzGbvmr1cffo2SiQ==
-
 "@types/glob@^7.1.1":
   version "7.1.1"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/glob/-/glob-7.1.1.tgz#aa59a1c6e3fbc421e07ccd31a944c30eba521575"
@@ -1729,6 +1742,11 @@
     "@types/events" "*"
     "@types/minimatch" "*"
     "@types/node" "*"
+
+"@types/googlemaps@^3.39.3":
+  version "3.39.3"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/googlemaps/-/googlemaps-3.39.3.tgz#8664e424f335802c8aa46a94676666b0a0f31d97"
+  integrity sha512-L8O9HAVFZj0TuiS8h5ORthiMsrrhjxTC8XUusp5k47oXCst4VTm+qWKvrAvmYMybZVokbp4Udco1mNwJrTNZPQ==
 
 "@types/history@*":
   version "4.7.5"
@@ -1782,13 +1800,6 @@
   version "7.0.4"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/json-schema/-/json-schema-7.0.4.tgz#38fd73ddfd9b55abb1e1b2ed578cb55bd7b7d339"
   integrity sha512-8+KAKzEvSUdeo+kmqnKrqgeE+LcA0tjYWFY7RPProVYwnqDjukzO+3b6dLD56rYX5TdWejnEOLJYOIeh4CXKuA==
-
-"@types/leaflet@*":
-  version "1.5.12"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/leaflet/-/leaflet-1.5.12.tgz#9953b7e47a53e0a70cdd7a903a43dc3c343cf623"
-  integrity sha512-61HRMIng+bWvnnAIqUWLBlrd/TQZc4gU+gN1JL4K47EDtwIrcMEhWgi7PdcpbG1YmpH4F0EfOimkvV82gJIl9w==
-  dependencies:
-    "@types/geojson" "*"
 
 "@types/lodash@4.14.149":
   version "4.14.149"
@@ -1865,14 +1876,6 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/react-dom/-/react-dom-16.9.5.tgz#5de610b04a35d07ffd8f44edad93a71032d9aaa7"
   integrity sha512-BX6RQ8s9D+2/gDhxrj8OW+YD4R+8hj7FEM/OJHGNR0KipE1h1mSsf39YeyC81qafkq+N3rU3h3RFbLSwE5VqUg==
   dependencies:
-    "@types/react" "*"
-
-"@types/react-leaflet@^2.5.1":
-  version "2.5.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/react-leaflet/-/react-leaflet-2.5.1.tgz#528eedd225cc880a55cfe6c32da07e52ef7e641e"
-  integrity sha512-a6iCOLGstIsmd+Om4Ri/XUWxikF5jNy85M8wOgDyn7+Y2xx5ziVsPiiLxssLgTh12RdXkkzj7rdy0avyY3uROw==
-  dependencies:
-    "@types/leaflet" "*"
     "@types/react" "*"
 
 "@types/react-redux@7.1.7":
@@ -6072,7 +6075,7 @@ internal-ip@^4.3.0:
     default-gateway "^4.2.0"
     ipaddr.js "^1.9.0"
 
-invariant@^2.2.2, invariant@^2.2.4:
+invariant@2.2.4, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -7233,11 +7236,6 @@ lcid@^2.0.0:
   integrity sha512-avPEb8P8EGnwXKClwsNUgryVjllcRqtMYa49NTsbQagYuT1DcXnl1915oxWjoyGrXR6zH/Y0Zc96xWsPcoDKeA==
   dependencies:
     invert-kv "^2.0.0"
-
-leaflet@^1.6.0:
-  version "1.6.0"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/leaflet/-/leaflet-1.6.0.tgz#aecbb044b949ec29469eeb31c77a88e2f448f308"
-  integrity sha512-CPkhyqWUKZKFJ6K8umN5/D2wrJ2+/8UIpXppY7QDnUZW5bZL5+SEI2J7GBpwh4LIupOKqbNSQXgqmrEJopHVNQ==
 
 left-pad@^1.3.0:
   version "1.3.0"
@@ -9705,16 +9703,6 @@ react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-i
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-leaflet@^2.6.3:
-  version "2.6.3"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/react-leaflet/-/react-leaflet-2.6.3.tgz#a826c20d7f4b530f38a1b71bfa9c51cefb598ce0"
-  integrity sha512-0ynYVkPNVJmjO7ewR+zBBu3sxbWmwJYkxd6SUJkQKG40+JNJEvYGSFPvP8W1BS9d0MntZFDTzEM1OdBiWMrlEA==
-  dependencies:
-    "@babel/runtime" "^7.8.7"
-    fast-deep-equal "^3.1.1"
-    hoist-non-react-statics "^3.3.2"
-    warning "^4.0.3"
-
 react-loading-skeleton@2.0.1:
   version "2.0.1"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/react-loading-skeleton/-/react-loading-skeleton-2.0.1.tgz#113cde70b37f0c2064b190af2d8b5c00c2496eb5"
@@ -11781,13 +11769,6 @@ walker@^1.0.7, walker@~1.0.5:
   integrity sha1-L3+bj9ENZ3JisYqITijRlhjgKPs=
   dependencies:
     makeerror "1.0.x"
-
-warning@^4.0.3:
-  version "4.0.3"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
-  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
-  dependencies:
-    loose-envify "^1.0.0"
 
 watchpack@^1.6.0:
   version "1.6.1"
