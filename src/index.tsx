@@ -5,7 +5,6 @@ import { store } from './store';
 import Root from './components/Root/root';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import './styles/fonts/fonts.scss';
 import Header, { initialData as headerInitialData, countries, currencies } from '@hotels/header';
 import Footer, { initialData as footerInitialData, subscribeEmail } from '@hotels/footer';
 
