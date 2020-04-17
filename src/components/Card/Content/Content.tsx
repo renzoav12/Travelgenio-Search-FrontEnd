@@ -5,8 +5,7 @@ import Location, { LocationProps } from './Location/Location';
 import AmenityIcons, { Amenity } from './AmenityIcons/AmenityIcons';
 import { Grid, Box } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import MealPlan, { MealPlanProps } from '../../MealPlan/MealPlan';
-import { FullscreenExit } from '@material-ui/icons';
+import MealPlan, { MealPlanProps } from '@hotels/mealplan';
 
 export interface Props {
   content: ContentProps;

@@ -8,6 +8,7 @@
     "@hotels/header": "0.0.3",
     "@hotels/map-dialog": "0.0.2",
     "@hotels/search-box": "0.0.10",
+    "@hotels/mealplan": "0.0.2",
     "@material-ui/core": "4.9.0",
     "@material-ui/icons": "4.5.1",
     "@material-ui/lab": "4.0.0-alpha.40",
