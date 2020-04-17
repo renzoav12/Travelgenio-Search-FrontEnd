@@ -92,7 +92,7 @@ const AmenityIcons: FunctionComponent<Props> = props => {
   const amenities = props.amenities
     .filter(amenity => existAmenityIcon(amenity))
     .sort((amenity, otherAmenity) => {return getAmenityOrder(amenity) - getAmenityOrder(otherAmenity)})
-    .map(amenity => <img src={getAmenityIcon(amenity)} className={classes.icon} key={amenity.id} title={amenity.name}/>);
+    .map(amenity => <img src={getAmenityIcon(amenity)} className={classes.icon} alt="" key={amenity.id} title={amenity.name}/>);
 
   return <Box>{amenities}</Box>;
 };

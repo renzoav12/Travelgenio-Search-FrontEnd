@@ -21,12 +21,10 @@ const CardList: FunctionComponent<CardListProps> = props => {
   const classes = useStyles();
   
   const renderAll = () => {
-      const { accommodations: accommodations } = props;
-
-      if (!accommodations) {
+      if (!props.accommodations) {
           return null;
       }
-      return accommodations.map((accommodation: CardProps) => {
+      return props.accommodations.map((accommodation: CardProps) => {
           return <Box className={classes.card} key={accommodation.id}>
             <Card
               id={accommodation.id}

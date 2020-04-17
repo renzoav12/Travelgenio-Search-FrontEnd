@@ -76,7 +76,7 @@ const Result: FunctionComponent<ResultProps> = props => {
     const counter = () => {
       return props.loading
           ? <Typography variant="h1">Buscando alojamientos...</Typography>
-          : <Typography variant="h1">Se encontraron {props.pagination.filteredElements} {props.pagination.filteredElements == props.pagination.elements ? "" : " de " + props.pagination.elements} alojamientos</Typography>;
+          : <Typography variant="h1">Se encontraron {props.pagination.filteredElements} {props.pagination.filteredElements === props.pagination.elements ? "" : " de " + props.pagination.elements} alojamientos</Typography>;
     }
 
     const hasCards = props.accommodations.length > 0;

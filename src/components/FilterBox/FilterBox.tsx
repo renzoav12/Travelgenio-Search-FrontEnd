@@ -59,7 +59,7 @@ const FilterBox: FunctionComponent<FilterBoxProps> = props => {
     if(changedFilter) {
       let selectedCodes: Array<string> = 
           changedFilter.options
-              .filter(option => option.selected && option.code != code)
+              .filter(option => option.selected && option.code !== code)
               .map(option => option.code);
 
       if(selected) {
@@ -88,10 +88,6 @@ const FilterBox: FunctionComponent<FilterBoxProps> = props => {
 
   const isSingleOptionFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
     return FilterType.SingleOption === filter.type;
-  }
-
-  const isRangeOptionFilter = (filter: ValueFilterProp | RangeFilterProp | SingleOptionFilterProp | RangeOptionFilterProp): boolean => {
-    return FilterType.RangeOption === filter.type;
   }
 
   const renderFilters = () => {
