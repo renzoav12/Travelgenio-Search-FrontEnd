@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Box, Button } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { MealPlanProps } from '../../MealPlan/MealPlan';
+import { MealPlanProps } from '@hotels/mealplan';
 import Discount, { DiscountProps } from '../../Discount/Discount';
 
 export interface PricingProps {

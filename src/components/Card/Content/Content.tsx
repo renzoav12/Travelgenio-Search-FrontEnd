@@ -5,8 +5,7 @@ import Location, { LocationProps } from './Location/Location';
 import AmenityIcons, { Amenity } from './AmenityIcons/AmenityIcons';
 import { Grid, Box } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import MealPlan, { MealPlanProps } from '../../MealPlan/MealPlan';
-import { FullscreenExit } from '@material-ui/icons';
+import MealPlan, { MealPlanProps } from '@hotels/mealplan';
 
 export interface Props {
   content: ContentProps;
@@ -74,7 +73,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Content: FunctionComponent<Props> = props => {
   const classes = useStyles();
-
+  console.log(props.mealPlan.type);
   return <Grid container className={classes.content}>
       <Grid item xs={12} md={4} className={classes.image}>
           <Image {...props.content.images}></Image>
@@ -91,7 +90,8 @@ const Content: FunctionComponent<Props> = props => {
             <AmenityIcons {...props.content}/>
           </Box>
           <Box className={classes.mealPlan}>
-            <MealPlan {...props.mealPlan}/>
+            {props.mealPlan.type ? 
+            <MealPlan {...props.mealPlan}/> : null} 
           </Box>
       </Grid>
   </Grid>;
