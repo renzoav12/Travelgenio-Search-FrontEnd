@@ -1173,8 +1173,8 @@
 
 "@hotels/mealplan@0.0.2":
   version "0.0.2"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/mealplan/-/mealplan-0.0.2.tgz#eddafbeb25d8ae4b1da68fe11e67d451aec828e8"
-  integrity sha512-p9FKbS/rgnPIbdo3/jsGL4mOcqz2bhMfb7KmNp13kXSZ3XoP/uQxC8gtFKGBpK0hEL5ZATdc7dGC2S+Ns8Txsg==
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/mealplan/-/mealplan-0.0.2.tgz#a2ea8e59d467786b524853e2d56c090378fc11da"
+  integrity sha512-tFVh38pAqnvM3eZHo0I2Mi385BRlAmdyfN4Hfxp3O5nQ+uq/Pn4SaBOGnC7pGewfQEykocgh2klJgPADRogS1A==
 
 "@hotels/search-box@0.0.11":
   version "0.0.11"
