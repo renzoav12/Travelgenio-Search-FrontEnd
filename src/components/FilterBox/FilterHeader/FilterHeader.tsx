@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
       cursor: "pointer",
-      marginBottom: "5px"
+      marginBottom: 12
     }
   }),
 );
