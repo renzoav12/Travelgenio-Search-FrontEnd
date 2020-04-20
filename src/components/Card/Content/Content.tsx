@@ -73,7 +73,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Content: FunctionComponent<Props> = props => {
   const classes = useStyles();
-  console.log(props.mealPlan.type);
   return <Grid container className={classes.content}>
       <Grid item xs={12} md={4} className={classes.image}>
           <Image {...props.content.images}></Image>
