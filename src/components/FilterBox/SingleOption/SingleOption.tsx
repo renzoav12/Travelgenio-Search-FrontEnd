@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     filterOption: {
       display: 'flex',
-      alignItems: 'center',
-      height: 30
+      alignItems: 'flex-start',
+      marginBottom: 12
     },
     
     filterOptionCheckbox: {
