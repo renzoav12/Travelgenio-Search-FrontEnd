@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { Reducer } from 'redux';
 import { Search, SearchFilterResponse, SearchFilter, Pagination } from '../model/search';
 import moment from 'moment';
@@ -20,9 +19,7 @@ import {
     SEARCH_ACCOMMODATION_UPDATE
 } from '../actions/search/search.actionTypes';
 
-import { 
-    SEARCH_PAGINATION_PAGE as SEARCH_PAGINATION_PAGE, SEARCH_PAGINATION_UPDATE 
-} from '../actions/pagination/pagination.actionTypes';
+import { SEARCH_PAGINATION_PAGE, SEARCH_PAGINATION_UPDATE } from '../actions/pagination/pagination.actionTypes';
 import { SEARCH_FILTER_CHANGE, SEARCH_FILTER_CLEAN } from '../actions/filterBox/filterBox.actionTypes';
 
 const emptyPagination: Pagination = {
@@ -106,6 +103,7 @@ function cleanFilters(searchFilters: SearchFilter): SearchFilter {
             rangeFilter.value = undefined;
             rangeFilter.boundaries.min = 0;
             rangeFilter.boundaries.max = 0;
+            break;
         default:
         break;
     }  });
@@ -153,6 +151,7 @@ function filterApplySelected(filters: SearchFilter, selected: FilterBoxSelected)
                 range.max = Number(selected.values[1]);
             }
             rangeFilter.value = range;
+            break;
         default:
         break;
     }

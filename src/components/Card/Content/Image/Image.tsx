@@ -12,14 +12,14 @@ interface Image {
 };
 
 const loadingComponent = () => (
-  <img src={loadingImage}/>
+  <img src={loadingImage} alt=""/>
 )
 
 const Image = (images: ImageProps) => (
     <div className="otravo-card-image">
         <div className="otravo-image">
             <figure>
-              <Img src={images[0].url} loader={loadingComponent()} unloader={loadingComponent()}/>
+              <Img src={images[0].url} loader={loadingComponent()} unloader={loadingComponent()} alt=""/>
             </figure>
         </div>
     </div>

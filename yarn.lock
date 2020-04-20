@@ -972,14 +972,6 @@
     "@babel/helper-plugin-utils" "^7.8.3"
     "@babel/plugin-transform-typescript" "^7.9.0"
 
-"@babel/runtime-corejs3@^7.7.4":
-  version "7.9.2"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@babel/runtime-corejs3/-/runtime-corejs3-7.9.2.tgz#26fe4aa77e9f1ecef9b776559bbb8e84d34284b7"
-  integrity sha512-HHxmgxbIzOfFlZ+tdeRKtaxWOMUoCG5Mu3wKeUmOxjYrwb3AAHgnmtCUbPPK11/raIWLIBK250t8E2BPO0p7jA==
-  dependencies:
-    core-js-pure "^3.0.0"
-    regenerator-runtime "^0.13.4"
-
 "@babel/runtime@7.9.0":
   version "7.9.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@babel/runtime/-/runtime-7.9.0.tgz#337eda67401f5b066a6f205a3113d4ac18ba495b"
@@ -987,7 +979,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.4", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.0":
   version "7.9.2"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@babel/runtime/-/runtime-7.9.2.tgz#d90df0583a3a252f09aaa619665367bae518db06"
   integrity sha512-NE2DtOdufG7R5vnfQUTehdTfNycfUANEtCa9PssN9O/xmTzP4E08UI797ixaei6hBEVL9BI/PsdJS5x7mWoB9Q==
@@ -1154,108 +1146,41 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@hotels/footer@0.0.5":
-  version "0.0.5"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/footer/-/footer-0.0.5.tgz#ebde0004ebd14e84cec9769c8b9ff1c9a4ebb95f"
-  integrity sha512-ZqkZoQ6+JsiflnaxEhBNtul1ekyNwfQ69saaL4jdpTf2X59Eu8f3h4b//XGOkb/jSAGjnsNYwVU1nomRiwLVpA==
-  dependencies:
-    "@material-ui/core" "4.9.0"
-    "@material-ui/icons" "4.5.1"
-    "@material-ui/lab" "4.0.0-alpha.40"
-    "@types/node" "^12.0.0"
-    "@types/node-sass" "4.11.0"
-    "@types/react" "^16.9.0"
-    "@types/react-dom" "^16.9.0"
-    array.prototype.flat "1.2.3"
-    axios "0.19.2"
-    classnames "2.2.6"
-    es-abstract "1.17.4"
-    node-sass "4.13.1"
-    react-content-loader "5.0.1"
-    react-image "2.2.2"
-    react-scripts "3.4.0"
-    typescript "~3.7.2"
+"@hotels/footer@0.0.6":
+  version "0.0.6"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/footer/-/footer-0.0.6.tgz#d4102c445c4f48f27eb66ee4046e955f90286f66"
+  integrity sha512-8qHagt2oKJiysxrn6oBF2EMT/CfYPsfMbTOHNIP23aWdZkAFV/IsDYNXQK2tfF6bNM9F9iVlkl3ON1sZp6QWpA==
 
-"@hotels/header@0.0.3":
+"@hotels/header@0.0.4":
+  version "0.0.4"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/header/-/header-0.0.4.tgz#4ee55e522f443b3f5ecb8aafb08ab78f8be52f2c"
+  integrity sha512-AqzaQZ5jLCDfWLOlq3jcYKlyquRxZVj18XYhUJ496h6Llk58QxjuMApQECvkGKhy+JXI+B7ejGLVUBGG0hDHpw==
+
+"@hotels/map-dialog@0.0.3":
   version "0.0.3"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/header/-/header-0.0.3.tgz#fa5135f6e1e29a4ed8edd5b7505d4fc5f7034315"
-  integrity sha512-hrsqv4SXEKxhhXc0pkNpuUsf+ECwJVPkEZ/1q9YoVe+3jGhQNlti7U5FVJfnYo1VmnnaOd1bwYq1JUgXToFbxQ==
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/map-dialog/-/map-dialog-0.0.3.tgz#0ab71b3d3e149a16de8b8c3f93d4f3b26dc3a2fd"
+  integrity sha512-yLeNFX50y+Emn36WQ6X2XYmtRrJ+sSFhE7JK3FSMsEXfz+VbH05ciaShONcT6ArmSeDQ8/c9T/lvKPp+PIAWBw==
   dependencies:
-    "@material-ui/core" "4.9.0"
-    "@material-ui/icons" "4.5.1"
-    "@material-ui/lab" "4.0.0-alpha.40"
-    "@types/node" "^12.0.0"
-    "@types/node-sass" "4.11.0"
-    "@types/react" "^16.9.0"
-    "@types/react-dom" "^16.9.0"
-    array.prototype.flat "1.2.3"
-    es-abstract "1.17.4"
-    node-sass "4.13.1"
-    react-content-loader "5.0.1"
-    react-image "2.2.2"
-    react-scripts "3.4.0"
-    typescript "~3.7.2"
+    "@hotels/map" "0.0.3"
 
-"@hotels/map-dialog@0.0.2":
-  version "0.0.2"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/map-dialog/-/map-dialog-0.0.2.tgz#0cb3c08d4bcb1722ab002b850f6b51e20092eac8"
-  integrity sha512-qovzsjw3YO/h1S0Lohr2wrwfVdXHx2X+1OCo7izXhJBV9tmL3G0+3pQ1Ostj/00Hr4bOs1pFg1OYX96WOIsffw==
+"@hotels/map@0.0.3":
+  version "0.0.3"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/map/-/map-0.0.3.tgz#a78f968878c8b83e851c141f8392f3594c1c4bff"
+  integrity sha512-VGvLBPmLVNZIeumxm0d5CZXSWwUn+WsCtLDNBFAQPEEwsQDNs+XD3NsB5cYw77Xp25Yt9kOz6IyM+4oizu2BcA==
   dependencies:
-    "@hotels/map" "0.0.2"
-    "@material-ui/core" "^4.9.5"
-    "@material-ui/icons" "^4.9.1"
-    "@testing-library/jest-dom" "^4.2.4"
-    "@testing-library/react" "^9.3.2"
-    "@testing-library/user-event" "^7.1.2"
-    "@types/classnames" "^2.2.10"
-    "@types/jest" "^24.0.0"
-    "@types/node" "^12.0.0"
-    "@types/react" "^16.9.0"
-    "@types/react-dom" "^16.9.0"
-    classnames "^2.2.6"
-    react-scripts "3.4.0"
-    typescript "~3.7.2"
+    "@react-google-maps/api" "1.8.6"
+    "@types/googlemaps" "3.39.3"
 
-"@hotels/map@0.0.2":
-  version "0.0.2"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/map/-/map-0.0.2.tgz#142f4d61aa055b503a704dba3997c107a4c1b71b"
-  integrity sha512-7Nj0P4X4aglppY58fk/vYdm3mD4+i/h0e1YEtpzoePPmRg9gvFWG3fmqbL0Yd89yI+JbaGANL/3l+DO+ZyGefA==
+"@hotels/search-box@0.0.11":
+  version "0.0.11"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.11.tgz#e22c5f1cd6244289ff1d00b4539aaccc6c38a0cf"
+  integrity sha512-gW1YrNO7YhReBUUdPpuppUUciS7+VlzllmzSuVsa/bfOtnoan/lMY3Mi0vFSJSOjcyNsj70LDr88BHS7UlplrA==
   dependencies:
-    "@material-ui/core" "^4.9.5"
-    "@material-ui/icons" "^4.9.1"
-    "@react-google-maps/api" "^1.8.6"
-    "@testing-library/jest-dom" "^4.2.4"
-    "@testing-library/react" "^9.3.2"
-    "@testing-library/user-event" "^7.1.2"
-    "@types/classnames" "^2.2.10"
-    "@types/googlemaps" "^3.39.3"
-    "@types/jest" "^24.0.0"
-    "@types/node" "^12.0.0"
-    "@types/react" "^16.9.0"
-    "@types/react-dom" "^16.9.0"
-    classnames "^2.2.6"
-    react-scripts "3.4.0"
-    typescript "~3.7.2"
-
-"@hotels/search-box@0.0.10":
-  version "0.0.10"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.10.tgz#3aa818af3ccf9591bd416e6b32ca85bfa4cac308"
-  integrity sha512-gQKMeFJFQuyA3wBp1PyBqZvkaDzNR5hRmhfpbOWDWKqW8hu9zrDhaqM3HqXepWlMl4Bh35p75hekl7pslEV73w==
-  dependencies:
-    "@material-ui/core" "^4.9.5"
-    "@material-ui/icons" "^4.9.1"
-    "@types/classnames" "^2.2.10"
-    "@types/node" "^12.0.0"
-    "@types/react" "^16.9.0"
     "@types/react-autosuggest" "^9.3.13"
     "@types/react-dates" "^17.1.10"
-    "@types/react-dom" "^16.9.0"
-    classnames "^2.2.6"
     moment "^2.24.0"
     react-autosuggest "^9.4.3"
     react-dates "^21.8.0"
-    react-scripts "3.4.0"
-    typescript "~3.7.2"
 
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
@@ -1435,24 +1360,6 @@
     react-is "^16.8.0"
     react-transition-group "^4.3.0"
 
-"@material-ui/core@^4.9.5":
-  version "4.9.10"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@material-ui/core/-/core-4.9.10.tgz#53f1d18bd274c258698b6cfdab3c4bee0edf7892"
-  integrity sha512-CQuZU9Y10RkwSdxjn785kw2EPcXhv5GKauuVQufR9LlD37kjfn21Im1yvr6wsUzn81oLhEvVPz727UWC0gbqxg==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@material-ui/styles" "^4.9.10"
-    "@material-ui/system" "^4.9.10"
-    "@material-ui/types" "^5.0.1"
-    "@material-ui/utils" "^4.9.6"
-    "@types/react-transition-group" "^4.2.0"
-    clsx "^1.0.4"
-    hoist-non-react-statics "^3.3.2"
-    popper.js "^1.16.1-lts"
-    prop-types "^15.7.2"
-    react-is "^16.8.0"
-    react-transition-group "^4.3.0"
-
 "@material-ui/icons@4.5.1":
   version "4.5.1"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@material-ui/icons/-/icons-4.5.1.tgz#6963bad139e938702ece85ca43067688018f04f8"
@@ -1460,25 +1367,7 @@
   dependencies:
     "@babel/runtime" "^7.4.4"
 
-"@material-ui/icons@^4.9.1":
-  version "4.9.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@material-ui/icons/-/icons-4.9.1.tgz#fdeadf8cb3d89208945b33dbc50c7c616d0bd665"
-  integrity sha512-GBitL3oBWO0hzBhvA9KxqcowRUsA0qzwKkURyC8nppnC3fw54KPKZ+d4V1Eeg/UnDRSzDaI9nGCdel/eh9AQMg==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-
-"@material-ui/lab@4.0.0-alpha.40":
-  version "4.0.0-alpha.40"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@material-ui/lab/-/lab-4.0.0-alpha.40.tgz#8d78dc80d32c27c05def7eda8a36e0d0a0748e7f"
-  integrity sha512-VwXCNFJKfctu9Ot9XP5u2SSzXpm2Fn7F/o08bUfrJDkMCuRc8MCGVnNhT+guZRZa35rR97uWKc3SGQ/LAv8yEg==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@material-ui/utils" "^4.7.1"
-    clsx "^1.0.4"
-    prop-types "^15.7.2"
-    react-is "^16.8.0"
-
-"@material-ui/styles@^4.9.0", "@material-ui/styles@^4.9.10":
+"@material-ui/styles@^4.9.0":
   version "4.9.10"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@material-ui/styles/-/styles-4.9.10.tgz#182ccdd0bc8525a459486499bbaebcd92b0db3ab"
   integrity sha512-EXIXlqVyFDnjXF6tj72y6ZxiSy+mHtrsCo3Srkm3XUeu3Z01aftDBy7ZSr3TQ02gXHTvDSBvegp3Le6p/tl7eA==
@@ -1500,7 +1389,7 @@
     jss-plugin-vendor-prefixer "^10.0.3"
     prop-types "^15.7.2"
 
-"@material-ui/system@^4.7.1", "@material-ui/system@^4.9.10":
+"@material-ui/system@^4.7.1":
   version "4.9.10"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@material-ui/system/-/system-4.9.10.tgz#5de6ec7bea0f222b10b45e5bd5bb8b9a7b938926"
   integrity sha512-E+t0baX2TBZk6ALm8twG6objpsxLdMM4MDm1++LMt2m7CetCAEc3aIAfDaprk4+tm5hFT1Cah5dRWk8EeIFQYw==
@@ -1536,7 +1425,7 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@react-google-maps/api@^1.8.6":
+"@react-google-maps/api@1.8.6":
   version "1.8.6"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@react-google-maps/api/-/api-1.8.6.tgz#0a68f5f726f2cb2551f855c9f8493c854fb2782f"
   integrity sha512-zioXQwqc6Cuw8hOkuf4TIJdvzgXGT+h7Hj2SVFm9AHvfaYMfhNxVnID/8txaX/iDxKG83qTFwMH3AoRrNSlaFQ==
@@ -1554,11 +1443,6 @@
   version "1.8.6"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@react-google-maps/marker-clusterer/-/marker-clusterer-1.8.6.tgz#ec26d76e890fa8a7ee7d6a810fce29a39e156e7b"
   integrity sha512-aEJikokaGBd6hPhTXDSaQCSUaXrvSoKUmmXRFIq2sQz0hp4oJJnlkSl2Me6cV0inUaboNCK2lunKGCsgDrzOzQ==
-
-"@sheerun/mutationobserver-shim@^0.3.2":
-  version "0.3.3"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@sheerun/mutationobserver-shim/-/mutationobserver-shim-0.3.3.tgz#5405ee8e444ed212db44e79351f0c70a582aae25"
-  integrity sha512-DetpxZw1fzPD5xUBrIAoplLChO2VB8DlL5Gg+I1IR9b2wPqYIca2WSUxL5g1vLeR4MsQq1NeWriXAVffV+U1Fw==
 
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
@@ -1663,48 +1547,6 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@testing-library/dom@^6.15.0":
-  version "6.16.0"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@testing-library/dom/-/dom-6.16.0.tgz#04ada27ed74ad4c0f0d984a1245bb29b1fd90ba9"
-  integrity sha512-lBD88ssxqEfz0wFL6MeUyyWZfV/2cjEZZV3YRpb2IoJRej/4f1jB0TzqIOznTpfR1r34CNesrubxwIlAQ8zgPA==
-  dependencies:
-    "@babel/runtime" "^7.8.4"
-    "@sheerun/mutationobserver-shim" "^0.3.2"
-    "@types/testing-library__dom" "^6.12.1"
-    aria-query "^4.0.2"
-    dom-accessibility-api "^0.3.0"
-    pretty-format "^25.1.0"
-    wait-for-expect "^3.0.2"
-
-"@testing-library/jest-dom@^4.2.4":
-  version "4.2.4"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@testing-library/jest-dom/-/jest-dom-4.2.4.tgz#00dfa0cbdd837d9a3c2a7f3f0a248ea6e7b89742"
-  integrity sha512-j31Bn0rQo12fhCWOUWy9fl7wtqkp7In/YP2p5ZFyRuiiB9Qs3g+hS4gAmDWONbAHcRmVooNJ5eOHQDCOmUFXHg==
-  dependencies:
-    "@babel/runtime" "^7.5.1"
-    chalk "^2.4.1"
-    css "^2.2.3"
-    css.escape "^1.5.1"
-    jest-diff "^24.0.0"
-    jest-matcher-utils "^24.0.0"
-    lodash "^4.17.11"
-    pretty-format "^24.0.0"
-    redent "^3.0.0"
-
-"@testing-library/react@^9.3.2":
-  version "9.5.0"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@testing-library/react/-/react-9.5.0.tgz#71531655a7890b61e77a1b39452fbedf0472ca5e"
-  integrity sha512-di1b+D0p+rfeboHO5W7gTVeZDIK5+maEgstrZbWZSSvxDyfDRkkyBE1AJR5Psd6doNldluXlCWqXriUfqu/9Qg==
-  dependencies:
-    "@babel/runtime" "^7.8.4"
-    "@testing-library/dom" "^6.15.0"
-    "@types/testing-library__react" "^9.1.2"
-
-"@testing-library/user-event@^7.1.2":
-  version "7.2.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@testing-library/user-event/-/user-event-7.2.1.tgz#2ad4e844175a3738cb9e7064be5ea070b8863a1c"
-  integrity sha512-oZ0Ib5I4Z2pUEcoo95cT1cr6slco9WY7yiPpG+RGNkj8YcYgJnM7pXmYmorNOReh8MIGcKSqXyeGjxnr8YiZbA==
-
 "@types/babel__core@^7.1.0":
   version "7.1.7"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/babel__core/-/babel__core-7.1.7.tgz#1dacad8840364a57c98d0dd4855c6dd3752c6b89"
@@ -1738,11 +1580,6 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/classnames@^2.2.10":
-  version "2.2.10"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/classnames/-/classnames-2.2.10.tgz#cc658ca319b6355399efc1f5b9e818f1a24bf999"
-  integrity sha512-1UzDldn9GfYYEsWWnn/P4wkTlkZDH7lDb0wBMGbtIQc9zXEQq7FlKBdZUn6OBqD8sKZZ2RQO2mAjGpXiDGoRmQ==
-
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -1767,7 +1604,7 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/googlemaps@^3.39.3":
+"@types/googlemaps@3.39.3":
   version "3.39.3"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/googlemaps/-/googlemaps-3.39.3.tgz#8664e424f335802c8aa46a94676666b0a0f31d97"
   integrity sha512-L8O9HAVFZj0TuiS8h5ORthiMsrrhjxTC8XUusp5k47oXCst4VTm+qWKvrAvmYMybZVokbp4Udco1mNwJrTNZPQ==
@@ -1813,22 +1650,10 @@
     jest-diff "^25.1.0"
     pretty-format "^25.1.0"
 
-"@types/jest@^24.0.0":
-  version "24.9.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/jest/-/jest-24.9.1.tgz#02baf9573c78f1b9974a5f36778b366aa77bd534"
-  integrity sha512-Fb38HkXSVA4L8fGKEZ6le5bB8r6MRWlOCZbVuWZcmOMSCd2wCYOwN1ibj8daIoV9naq7aaOZjrLCoCMptKU/4Q==
-  dependencies:
-    jest-diff "^24.3.0"
-
 "@types/json-schema@^7.0.3":
   version "7.0.4"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/json-schema/-/json-schema-7.0.4.tgz#38fd73ddfd9b55abb1e1b2ed578cb55bd7b7d339"
   integrity sha512-8+KAKzEvSUdeo+kmqnKrqgeE+LcA0tjYWFY7RPProVYwnqDjukzO+3b6dLD56rYX5TdWejnEOLJYOIeh4CXKuA==
-
-"@types/lodash@4.14.149":
-  version "4.14.149"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/lodash/-/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
-  integrity sha512-ijGqzZt/b7BfzcK9vTrS6MFljQRPn5BFWOx8oE0GYxribu6uV+aA9zZuXI1zc/etK9E8nrgdoF2+LgUw7+9tJQ==
 
 "@types/minimatch@*":
   version "3.0.3"
@@ -1852,11 +1677,6 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/node/-/node-13.5.2.tgz#3de53b55fd39efc428a901a0f6db31f761cfa131"
   integrity sha512-Fr6a47c84PRLfd7M7u3/hEknyUdQrrBA6VoPmkze0tcflhU5UnpWEX2kn12ktA/lb+MNHSqFlSiPHIHsaErTPA==
 
-"@types/node@^12.0.0":
-  version "12.12.35"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/node/-/node-12.12.35.tgz#1e61b226c14380f4384f70cfe49a65c2c553ad2b"
-  integrity sha512-ASYsaKecA7TUsDrqIGPNk3JeEox0z/0XR/WsJJ8BIX/9+SkMSImQXKWfU/yBrSyc7ZSE/NPqLu36Nur0miCFfQ==
-
 "@types/parse-json@^4.0.0":
   version "4.0.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
@@ -1872,20 +1692,12 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
 
-"@types/react-autosuggest@9.3.13", "@types/react-autosuggest@^9.3.13":
+"@types/react-autosuggest@^9.3.13":
   version "9.3.13"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/react-autosuggest/-/react-autosuggest-9.3.13.tgz#0a943bf78e432e32d0e48e2ecfaa4422f67a6ced"
   integrity sha512-J1RB5KAIk6vOJ+TkIE+EqjCWBjXxjobzeA6D9KrS64kzrt6ixC6uSoKMFnG6ByeWoC+1g0756NILCpIpTV62dw==
   dependencies:
     "@types/react" "*"
-
-"@types/react-dates@17.1.7":
-  version "17.1.7"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/react-dates/-/react-dates-17.1.7.tgz#56750a6b32c4785f5f7722125eaca98341048a08"
-  integrity sha512-SF4bA2vP1MRGootf++JIvs6hr62JzclMGiFRhRg6estjTcsu1/7xcj6aZ+bT+D1YxeNLcRBcJGhLjuFkvF55Jg==
-  dependencies:
-    "@types/react" "*"
-    moment ">=2.17.1"
 
 "@types/react-dates@^17.1.10":
   version "17.1.10"
@@ -1894,13 +1706,6 @@
   dependencies:
     "@types/react" "*"
     moment ">=2.17.1"
-
-"@types/react-dom@*", "@types/react-dom@^16.9.0":
-  version "16.9.6"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/react-dom/-/react-dom-16.9.6.tgz#9e7f83d90566521cc2083be2277c6712dcaf754c"
-  integrity sha512-S6ihtlPMDotrlCJE9ST1fRmYrQNNwfgL61UB4I1W7M6kPulUKx9fXAleW5zpdIjUQ4fTaaog8uERezjsGUj9HQ==
-  dependencies:
-    "@types/react" "*"
 
 "@types/react-dom@16.9.5":
   version "16.9.5"
@@ -1943,7 +1748,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.9.0":
+"@types/react@*":
   version "16.9.34"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/react/-/react-16.9.34.tgz#f7d5e331c468f53affed17a8a4d488cd44ea9349"
   integrity sha512-8AJlYMOfPe1KGLKyHpflCg5z46n0b5DbRfqDksxBLBTUpB75ypDBAO9eCUcjNwE6LCUslwTz00yyG/X9gaVtow==
@@ -1963,29 +1768,6 @@
   version "1.0.1"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
-
-"@types/testing-library__dom@*":
-  version "7.0.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/testing-library__dom/-/testing-library__dom-7.0.1.tgz#426bef0aa306a603fe071859d4b485941b28aca6"
-  integrity sha512-WokGRksRJb3Dla6h02/0/NNHTkjsj4S8aJZiwMj/5/UL8VZ1iCe3H8SHzfpmBeH8Vp4SPRT8iC2o9kYULFhDIw==
-  dependencies:
-    pretty-format "^25.1.0"
-
-"@types/testing-library__dom@^6.12.1":
-  version "6.14.0"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/testing-library__dom/-/testing-library__dom-6.14.0.tgz#1aede831cb4ed4a398448df5a2c54b54a365644e"
-  integrity sha512-sMl7OSv0AvMOqn1UJ6j1unPMIHRXen0Ita1ujnMX912rrOcawe4f7wu0Zt9GIQhBhJvH2BaibqFgQ3lP+Pj2hA==
-  dependencies:
-    pretty-format "^24.3.0"
-
-"@types/testing-library__react@^9.1.2":
-  version "9.1.3"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/testing-library__react/-/testing-library__react-9.1.3.tgz#35eca61cc6ea923543796f16034882a1603d7302"
-  integrity sha512-iCdNPKU3IsYwRK9JieSYAiX0+aYDXOGAmrC/3/M7AqqSDKnWWVv07X+Zk1uFSL7cMTUYzv4lQRfohucEocn5/w==
-  dependencies:
-    "@types/react-dom" "*"
-    "@types/testing-library__dom" "*"
-    pretty-format "^25.1.0"
 
 "@types/yargs-parser@*":
   version "15.0.0"
@@ -2432,14 +2214,6 @@ aria-query@^3.0.0:
     ast-types-flow "0.0.7"
     commander "^2.11.0"
 
-aria-query@^4.0.2:
-  version "4.0.2"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/aria-query/-/aria-query-4.0.2.tgz#250687b4ccde1ab86d127da0432ae3552fc7b145"
-  integrity sha512-S1G1V790fTaigUSM/Gd0NngzEfiMy9uTUfMyHhKhVyy4cH5O/eTuR01ydhGL0z4Za1PXFTRGH3qL8VhUQuEO5w==
-  dependencies:
-    "@babel/runtime" "^7.7.4"
-    "@babel/runtime-corejs3" "^7.7.4"
-
 arity-n@^1.0.4:
   version "1.0.4"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/arity-n/-/arity-n-1.0.4.tgz#d9e76b11733e08569c0847ae7b39b2860b30b745"
@@ -2514,7 +2288,7 @@ array.prototype.find@^2.1.0:
     define-properties "^1.1.3"
     es-abstract "^1.17.4"
 
-array.prototype.flat@1.2.3, array.prototype.flat@^1.2.1:
+array.prototype.flat@^1.2.1:
   version "1.2.3"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/array.prototype.flat/-/array.prototype.flat-1.2.3.tgz#0de82b426b0318dbfdb940089e38b043d37f6c7b"
   integrity sha512-gBlRZV0VSmfPIeWfuuy56XZMvbVfbEUnOXUvt3F/eUUUSyzlgLxhEX4YAEpxNAogRGehPSnfXyPtYyKAhkzQhQ==
@@ -3364,7 +3138,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@2.2.6, classnames@^2.2.6:
+classnames@2.2.6:
   version "2.2.6"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -3440,7 +3214,7 @@ clone-deep@^4.0.1:
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
 
-clsx@^1.0.2, clsx@^1.0.4:
+clsx@^1.0.2:
   version "1.1.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/clsx/-/clsx-1.1.0.tgz#62937c6adfea771247c34b54d320fb99624f5702"
   integrity sha512-3avwM37fSK5oP6M5rQ9CNe99lwxhXDOeSWVPAOYF6OazUTgZCMb0yWlJpmdD74REy1gkEaFiub2ULv4fq9GUhA==
@@ -3694,11 +3468,6 @@ core-js-compat@^3.6.2:
     browserslist "^4.8.5"
     semver "7.0.0"
 
-core-js-pure@^3.0.0:
-  version "3.6.5"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/core-js-pure/-/core-js-pure-3.6.5.tgz#c79e75f5e38dbc85a662d91eea52b8256d53b813"
-  integrity sha512-lacdXOimsiD0QyNf9BC/mxivNJ/ybBGJXQFKzRekp1WTHoVUWsUHEn+2T8GJAzzIhyOuXA+gOxCVN3l+5PLPUA==
-
 core-js@^2.4.0:
   version "2.6.11"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
@@ -3923,12 +3692,7 @@ css-what@^3.2.1:
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/css-what/-/css-what-3.2.1.tgz#f4a8f12421064621b456755e34a03a2c22df5da1"
   integrity sha512-WwOrosiQTvyms+Ti5ZC5vGEK0Vod3FTt1ca+payZqvKuGJF+dq7bG63DstxtN0dpm6FxY27a/zS3Wten+gEtGw==
 
-css.escape@^1.5.1:
-  version "1.5.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/css.escape/-/css.escape-1.5.1.tgz#42e27d4fa04ae32f931a4b4d4191fa9cddee97cb"
-  integrity sha1-QuJ9T6BK4y+TGktNQZH6nN3ul8s=
-
-css@^2.0.0, css@^2.2.3:
+css@^2.0.0:
   version "2.2.4"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/css/-/css-2.2.4.tgz#c646755c73971f2bba6a601e2cf2fd71b1298929"
   integrity sha512-oUnjmWpy0niI3x/mPL8dVEI1l7MnG3+HHyRPHf+YFSbK+svOhXpmSOcDURUh2aOCgl2grzrOPt1nHLuCVFULLw==
@@ -4333,11 +4097,6 @@ document.contains@^1.0.1:
   dependencies:
     define-properties "^1.1.3"
 
-dom-accessibility-api@^0.3.0:
-  version "0.3.0"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/dom-accessibility-api/-/dom-accessibility-api-0.3.0.tgz#511e5993dd673b97c87ea47dba0e3892f7e0c983"
-  integrity sha512-PzwHEmsRP3IGY4gv/Ug+rMeaTIyTJvadCb+ujYXYeIylbHJezIyNToe8KfEgHTCEYyC+/bUghYOGg8yMGlZ6vA==
-
 dom-converter@^0.2:
   version "0.2.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/dom-converter/-/dom-converter-0.2.0.tgz#6721a9daee2e293682955b6afe416771627bb768"
@@ -4460,9 +4219,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.378, electron-to-chromium@^1.3.390:
-  version "1.3.410"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/electron-to-chromium/-/electron-to-chromium-1.3.410.tgz#00e0ec61c22933daa8b4de172c03932678783adc"
-  integrity sha512-DbCBdwtARI0l3e3m6ZIxVaTNahb6dSsmGjuag/twiVcWuM4MSpL5IfsJsJSyqLqxosE/m0CXlZaBmxegQW/dAg==
+  version "1.3.412"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/electron-to-chromium/-/electron-to-chromium-1.3.412.tgz#da0475c653b48e5935f300aa9c875377bf8ddcf9"
+  integrity sha512-4bVdSeJScR8fT7ERveLWbxemY5uXEHVseqMRyORosiKcTUSGtVwBkV8uLjXCqoFLeImA57Z9hbz3TOid01U4Hw==
 
 elliptic@^6.0.0:
   version "6.5.2"
@@ -4833,11 +4592,11 @@ esprima@^4.0.0, esprima@^4.0.1:
   integrity sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==
 
 esquery@^1.0.1:
-  version "1.3.0"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/esquery/-/esquery-1.3.0.tgz#e5e29a6f66a837840d34f68cb9ce355260d1128b"
-  integrity sha512-/5qB+Mb0m2bh86tjGbA8pB0qBfdmCIK6ZNPjcw4/TtEH0+tTf0wLA5HK4KMTweSMwLGHwBDWCBV+6+2+EuHmgg==
+  version "1.3.1"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/esquery/-/esquery-1.3.1.tgz#b78b5828aa8e214e29fb74c4d5b752e1c033da57"
+  integrity sha512-olpvt9QG0vniUBZspVRN6lwB7hOZoTRtT+jzR+tS4ffYx2mzbw+z0XCOk44aaLYKApNX5nMm+E+P6o25ip/DHQ==
   dependencies:
-    estraverse "^5.0.0"
+    estraverse "^5.1.0"
 
 esrecurse@^4.1.0:
   version "4.2.1"
@@ -4851,7 +4610,7 @@ estraverse@^4.1.0, estraverse@^4.1.1, estraverse@^4.2.0:
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/estraverse/-/estraverse-4.3.0.tgz#398ad3f3c5a24948be7725e83d11a7de28cdbd1d"
   integrity sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==
 
-estraverse@^5.0.0:
+estraverse@^5.1.0:
   version "5.1.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/estraverse/-/estraverse-5.1.0.tgz#374309d39fd935ae500e7b92e8a6b4c720e59642"
   integrity sha512-FyohXK+R0vE+y1nHLoBM7ZTyqRpqAlhdZHCWIWEviFLiGB8b04H6bQs8G+XTthacvT8VuwvteiP7RJSxMs8UEw==
@@ -6609,7 +6368,7 @@ jest-config@^24.9.0:
     pretty-format "^24.9.0"
     realpath-native "^1.1.0"
 
-jest-diff@^24.0.0, jest-diff@^24.3.0, jest-diff@^24.9.0:
+jest-diff@^24.9.0:
   version "24.9.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/jest-diff/-/jest-diff-24.9.0.tgz#931b7d0d5778a1baf7452cb816e325e3724055da"
   integrity sha512-qMfrTs8AdJE2iqrTp0hzh7kTd2PQWrsFyj9tORoKmu32xjPjeE4NyjVRDz8ybYwqS2ik8N4hsIpiVTyFeo2lBQ==
@@ -6741,7 +6500,7 @@ jest-leak-detector@^24.9.0:
     jest-get-type "^24.9.0"
     pretty-format "^24.9.0"
 
-jest-matcher-utils@^24.0.0, jest-matcher-utils@^24.9.0:
+jest-matcher-utils@^24.9.0:
   version "24.9.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/jest-matcher-utils/-/jest-matcher-utils-24.9.0.tgz#f5b3661d5e628dffe6dd65251dfdae0e87c3a073"
   integrity sha512-OZz2IXsu6eaiMAwe67c1T+5tUAtQyQx27/EMEkbFAGiw52tB9em+uGbzpcgYVpA8wl0hlxKPZxrly4CXU/GjHA==
@@ -7435,7 +7194,7 @@ lodash.uniq@^4.5.0:
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@4.17.15, "lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.1.1, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.5, lodash@~4.17.12:
+"lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.1.1, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.5, lodash@~4.17.12:
   version "4.17.15"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -7685,11 +7444,6 @@ mimic-fn@^2.0.0, mimic-fn@^2.1.0:
   version "2.1.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
-
-min-indent@^1.0.0:
-  version "1.0.0"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/min-indent/-/min-indent-1.0.0.tgz#cfc45c37e9ec0d8f0a0ec3dd4ef7f7c3abe39256"
-  integrity sha1-z8RcN+nsDY8KDsPdTvf3w6vjklY=
 
 mini-create-react-context@^0.3.0:
   version "0.3.2"
@@ -8779,7 +8533,7 @@ pnp-webpack-plugin@1.6.0:
   dependencies:
     ts-pnp "^1.1.2"
 
-popper.js@^1.14.1, popper.js@^1.16.1-lts:
+popper.js@^1.14.1:
   version "1.16.1"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
   integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
@@ -9482,7 +9236,7 @@ pretty-error@^2.1.1:
     renderkid "^2.0.1"
     utila "~0.4"
 
-pretty-format@^24.0.0, pretty-format@^24.3.0, pretty-format@^24.9.0:
+pretty-format@^24.9.0:
   version "24.9.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/pretty-format/-/pretty-format-24.9.0.tgz#12fac31b37019a4eea3c11aa9a959eb7628aa7c9"
   integrity sha512-00ZMZUiHaJrNfk33guavqgvfJS30sLYf0f8+Srklv0AMPodGGHcoHgksZ3OThYnIvOd+8yMCn0YiEOogjlgsnA==
@@ -9732,7 +9486,7 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
-react-autosuggest@9.4.3, react-autosuggest@^9.4.3:
+react-autosuggest@^9.4.3:
   version "9.4.3"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/react-autosuggest/-/react-autosuggest-9.4.3.tgz#eb46852422a48144ab9f39fb5470319222f26c7c"
   integrity sha512-wFbp5QpgFQRfw9cwKvcgLR8theikOUkv8PFsuLYqI2PUgVlx186Cz8MYt5bLxculi+jxGGUUVt+h0esaBZZouw==
@@ -9755,7 +9509,7 @@ react-content-loader@5.0.1:
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/react-content-loader/-/react-content-loader-5.0.1.tgz#8da35e362bd1f53233c9daec99a67d8ea14ecd68"
   integrity sha512-id1zp9jcB+SfJV9Vrjpmk+Qt+zJ3owYiIAGkHy8V4Sffvcyr6zmZbai8qT+Y3bPrvnH3kWvr9iO5giC5g9cYKQ==
 
-react-dates@21.8.0, react-dates@^21.8.0:
+react-dates@^21.8.0:
   version "21.8.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/react-dates/-/react-dates-21.8.0.tgz#355c3c7a243a7c29568fe00aca96231e171a5e94"
   integrity sha512-PPriGqi30CtzZmoHiGdhlA++YPYPYGCZrhydYmXXQ6RAvAsaONcPtYgXRTLozIOrsQ5mSo40+DiA5eOFHnZ6xw==
@@ -10142,14 +9896,6 @@ redent@^1.0.0:
   dependencies:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
-
-redent@^3.0.0:
-  version "3.0.0"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/redent/-/redent-3.0.0.tgz#e557b7998316bb53c9f1f56fa626352c6963059f"
-  integrity sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==
-  dependencies:
-    indent-string "^4.0.0"
-    strip-indent "^3.0.0"
 
 redux-thunk@2.3.0:
   version "2.3.0"
@@ -10598,9 +10344,9 @@ schema-utils@^1.0.0:
     ajv-keywords "^3.1.0"
 
 schema-utils@^2.5.0, schema-utils@^2.6.0, schema-utils@^2.6.1, schema-utils@^2.6.4:
-  version "2.6.5"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/schema-utils/-/schema-utils-2.6.5.tgz#c758f0a7e624263073d396e29cd40aa101152d8a"
-  integrity sha512-5KXuwKziQrTVHh8j/Uxz+QUbxkaLW9X/86NBlx/gnKgtsZA2GIVMUn17qWhRFwF8jdYb3Dig5hRO/W5mZqy6SQ==
+  version "2.6.6"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/schema-utils/-/schema-utils-2.6.6.tgz#299fe6bd4a3365dc23d99fd446caff8f1d6c330c"
+  integrity sha512-wHutF/WPSbIi9x6ctjGGk2Hvl0VOz5l3EKEuKbjPlB30mKZUzb9A5k9yEXRX3pwyqVLPvpfZZEllaFq/M718hA==
   dependencies:
     ajv "^6.12.0"
     ajv-keywords "^3.4.1"
@@ -11271,13 +11017,6 @@ strip-indent@^1.0.1:
   dependencies:
     get-stdin "^4.0.1"
 
-strip-indent@^3.0.0:
-  version "3.0.0"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/strip-indent/-/strip-indent-3.0.0.tgz#c32e1cee940b6b3432c771bc2c54bcce73cd3001"
-  integrity sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==
-  dependencies:
-    min-indent "^1.0.0"
-
 strip-json-comments@^3.0.1:
   version "3.1.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/strip-json-comments/-/strip-json-comments-3.1.0.tgz#7638d31422129ecf4457440009fba03f9f9ac180"
@@ -11671,7 +11410,7 @@ typedarray@^0.0.6:
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@3.7.5, typescript@~3.7.2:
+typescript@3.7.5:
   version "3.7.5"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
   integrity sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
@@ -11912,11 +11651,6 @@ w3c-xmlserializer@^1.1.2:
     domexception "^1.0.1"
     webidl-conversions "^4.0.2"
     xml-name-validator "^3.0.0"
-
-wait-for-expect@^3.0.2:
-  version "3.0.2"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/wait-for-expect/-/wait-for-expect-3.0.2.tgz#d2f14b2f7b778c9b82144109c8fa89ceaadaa463"
-  integrity sha512-cfS1+DZxuav1aBYbaO/kE06EOS8yRw7qOFoD3XtjTkYvCvh3zUvNST8DXK/nPaeqIzIv3P3kL3lRJn8iwOiSag==
 
 walker@^1.0.7, walker@~1.0.5:
   version "1.0.7"
@@ -12378,11 +12112,11 @@ yallist@^4.0.0:
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
 
 yaml@^1.7.2:
-  version "1.8.3"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/yaml/-/yaml-1.8.3.tgz#2f420fca58b68ce3a332d0ca64be1d191dd3f87a"
-  integrity sha512-X/v7VDnK+sxbQ2Imq4Jt2PRUsRsP7UcpSl3Llg6+NRRqWLIvxkMFYtH1FmvwNGYRKKPa+EPA4qDBlI9WVG1UKw==
+  version "1.9.0"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/yaml/-/yaml-1.9.0.tgz#dc1ff3e24837b62bc3c8ae02c28e16ee5742b9d6"
+  integrity sha512-3GLZOj8A9Gsp0Fw3kOyj0zqk4xMq+YvhbHSDYALd2NMOfIpyZeBhz32ZiNU7AtX1MtXX/9JJgxSElGRwvv9enA==
   dependencies:
-    "@babel/runtime" "^7.8.7"
+    "@babel/runtime" "^7.9.0"
 
 yargs-parser@^11.1.1:
   version "11.1.1"

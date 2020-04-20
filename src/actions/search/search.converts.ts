@@ -32,7 +32,7 @@ export const searchCreateRequest = (rootState: RootState): SearchFetchParameters
 };
 
 const searchCreateFilterRequest = (rootState: RootState): SearchFetchFilterParameters => {
-    const query: SearchFetchFilterParameters = new Map;
+    const query: SearchFetchFilterParameters = new Map();
 
     rootState.search.filters.forEach((filter) => {
         switch(filter.type) {

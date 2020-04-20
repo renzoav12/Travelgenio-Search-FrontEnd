@@ -65,10 +65,6 @@ const SingleOptionFilter: FunctionComponent<Props> = props => {
     });
   }, [props.filter.options]);
 
-  const componentWillReceiveProps = (nextProps: Props) => {
-    setSelectAll(!nextProps.filter.options.some(option => option.selected));      
-  }
-
   const toggleShowAll = (): void => {
     setShowAll(!showAll);
     setShowOptionsQty(showAll ? props.initialShowQty : props.filter.options.length);
@@ -122,7 +118,7 @@ const SingleOptionFilter: FunctionComponent<Props> = props => {
   const filterBody = () => display
   ? <Box>
       <Box> {allOption} </Box>
-      <Box> {props.filter.field == "category" ? categories : options} </Box>
+      <Box> {props.filter.field === "category" ? categories : options} </Box>
       <Box className={classes.showMoreSection}> {showMore()} </Box>
     </Box>
   : null;
