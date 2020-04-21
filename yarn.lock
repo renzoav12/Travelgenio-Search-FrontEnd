@@ -1171,10 +1171,10 @@
     "@react-google-maps/api" "1.8.6"
     "@types/googlemaps" "3.39.3"
 
-"@hotels/mealplan@0.0.2":
-  version "0.0.2"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/mealplan/-/mealplan-0.0.2.tgz#a2ea8e59d467786b524853e2d56c090378fc11da"
-  integrity sha512-tFVh38pAqnvM3eZHo0I2Mi385BRlAmdyfN4Hfxp3O5nQ+uq/Pn4SaBOGnC7pGewfQEykocgh2klJgPADRogS1A==
+"@hotels/mealplan@0.0.3":
+  version "0.0.3"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/mealplan/-/mealplan-0.0.3.tgz#166f14f2c549dfdca582590ad0870988a44b47af"
+  integrity sha512-JWd8aGyckWysQqUsgd3J5rklq05e+Am4p84civ6z0dWrVsDVrUUa2PvSmDiuNOFqlFRWmK6R0v0RvZlVWMBUdg==
 
 "@hotels/search-box@0.0.11":
   version "0.0.11"
