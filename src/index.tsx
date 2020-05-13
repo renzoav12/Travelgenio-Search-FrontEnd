@@ -1,39 +1,52 @@
-import * as serviceWorker from './serviceWorker';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { store } from './store';
-import Root from './components/Root/root';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import * as Sentry from "@sentry/browser";
+import * as serviceWorker from "./serviceWorker";
+import React from "react";
+import ReactDOM from "react-dom";
+import { store } from "./store";
+import Root from "./components/Root/root";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Header, { initialData as headerInitialData, countries, currencies } from '@hotels/header';
-import Footer, { initialData as footerInitialData, subscribeEmail } from '@hotels/footer';
+import Header, {
+  initialData as headerInitialData,
+  countries,
+  currencies,
+} from "@hotels/header";
+import Footer, {
+  initialData as footerInitialData,
+  subscribeEmail,
+} from "@hotels/footer";
+
+Sentry.init({
+  dsn:
+    "https://fd1b27603c3f40bcaa68c84e54c23301@o332894.ingest.sentry.io/5216597",
+});
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-        main: "#1D54C1",
-        dark: ' #0B3994',
-        contrastText: "#FFFFFF",
+      main: "#1D54C1",
+      dark: " #0B3994",
+      contrastText: "#FFFFFF",
     },
     background: {
-      default: "#E5E5E5"
+      default: "#E5E5E5",
     },
     text: {
-      primary: "#3D4355"
+      primary: "#3D4355",
     },
-    divider: "#C0C6D1"
+    divider: "#C0C6D1",
   },
   typography: {
     fontFamily: "Open Sans",
     fontSize: 14,
     h1: {
       fontSize: 18,
-      fontWeight: "bold"
+      fontWeight: "bold",
     },
     h2: {
       fontSize: 16,
-      fontWeight: 600
-    }
+      fontWeight: 600,
+    },
   },
   overrides: {
     MuiPaper: {
@@ -41,26 +54,34 @@ const theme = createMuiTheme({
         padding: 20,
         borderStyle: "solid",
         border: "1px",
-        borderColor: "#C0C6D1"
+        borderColor: "#C0C6D1",
       },
       elevation1: {
-        boxShadow: "none"
-      }
-    }
-  }
+        boxShadow: "none",
+      },
+    },
+  },
 });
 
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <Header initialData={headerInitialData} countries={countries} currencies={currencies} />
+      <Header
+        initialData={headerInitialData}
+        countries={countries}
+        currencies={currencies}
+      />
       <Root store={store} />
-      <Footer initialData={footerInitialData} countries={countries} subscribeEmail={subscribeEmail}/>
+      <Footer
+        initialData={footerInitialData}
+        countries={countries}
+        subscribeEmail={subscribeEmail}
+      />
     </MuiThemeProvider>
   );
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
 
 serviceWorker.unregister();

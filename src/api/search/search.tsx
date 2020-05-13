@@ -1,6 +1,6 @@
-import axios from 'axios';
-import config from './../../config';
+import axios from "axios";
+import config from "./../../config";
 
 export default axios.create({
-    baseURL: config.SEARCH_API
+  baseURL: config.SEARCH_API,
 });
