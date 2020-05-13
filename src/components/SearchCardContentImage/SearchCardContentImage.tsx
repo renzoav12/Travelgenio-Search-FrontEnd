@@ -3,16 +3,16 @@ import Image from '../Image';
 import './SearchCardContentImage.scss';
 
 export interface SearchCardContentImageProps {
-    images: SearchCardImage[];
+  images: SearchCardImage[];
 };
 
 interface SearchCardImage {
-    url: string;
+  url: string;
 };
 
 const SearchCardContentImage = (images: SearchCardContentImageProps) => {
   return <div className="otravo-card-image">
-    <Image url={images[0].url}/>
+    <Image url={images[0].url} />
   </div>;
 };
 

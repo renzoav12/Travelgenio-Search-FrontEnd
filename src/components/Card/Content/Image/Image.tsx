@@ -1,28 +1,31 @@
-import React from 'react';
-import Img from 'react-image'
-import loadingImage from '../../../../assets/images/loadingHotel.jpg';
-import './Image.scss';
+import React from "react";
+import Img from "react-image";
+import loadingImage from "../../../../assets/images/loadingHotel.jpg";
+import "./Image.scss";
 
 export interface ImageProps {
-    images: Image[];
-};
+  images: Image[];
+}
 
 interface Image {
-    url: string;
-};
+  url: string;
+}
 
-const loadingComponent = () => (
-  <img src={loadingImage} alt=""/>
-)
+const loadingComponent = () => <img src={loadingImage} alt="" />;
 
 const Image = (images: ImageProps) => (
-    <div className="otravo-card-image">
-        <div className="otravo-image">
-            <figure>
-              <Img src={images[0].url} loader={loadingComponent()} unloader={loadingComponent()} alt=""/>
-            </figure>
-        </div>
+  <div className="otravo-card-image">
+    <div className="otravo-image">
+      <figure>
+        <Img
+          src={images[0].url}
+          loader={loadingComponent()}
+          unloader={loadingComponent()}
+          alt=""
+        />
+      </figure>
     </div>
+  </div>
 );
 
 export default Image;

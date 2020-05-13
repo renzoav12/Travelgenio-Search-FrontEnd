@@ -1,16 +1,18 @@
-import React from 'react';
-import './Image.scss';
+import React from "react";
+import "./Image.scss";
 
 export interface ImageProps {
-    url: string;
-};
+  url: string;
+}
 
 const Image = (props: ImageProps) => {
-  return <div className="otravo-image">
-    <figure>
-      <img src={props.url} alt=""/>
-    </figure>
-  </div>;
+  return (
+    <div className="otravo-image">
+      <figure>
+        <img src={props.url} alt="" />
+      </figure>
+    </div>
+  );
 };
 
 export default Image;
