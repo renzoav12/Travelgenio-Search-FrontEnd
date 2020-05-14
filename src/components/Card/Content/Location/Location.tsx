@@ -6,6 +6,7 @@ import ExploreIcon from "@material-ui/icons/Explore";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Keys from "@hotels/translation-keys";
 import Translate from "@hotels/translation";
+import config from "../../../../config";
 
 export interface Props {
   location: LocationProps;
@@ -82,9 +83,10 @@ const Location: FunctionComponent<Props> = (props) => {
     map: {
       places: [place],
       zoom: 14,
+      googleMapsKey: config.GOOGLE_MAP_KEY
     },
     open,
-    onClose: closeMap,
+    onClose: closeMap
   };
 
   return (
@@ -96,7 +98,7 @@ const Location: FunctionComponent<Props> = (props) => {
           <Translate tkey={Keys.search.see_map} />
         </Box>
       </Grid>
-      <MapDialog {...dialogProps} />
+      <MapDialog {...dialogProps}/>
     </Box>
   );
 };
