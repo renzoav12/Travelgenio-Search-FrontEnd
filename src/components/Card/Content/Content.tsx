@@ -6,6 +6,7 @@ import AmenityIcons, { Amenity } from "./AmenityIcons/AmenityIcons";
 import { Grid, Box } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import MealPlan, { MealPlanProps } from "@hotels/mealplan";
+import Map from "./Map/Map";
 
 export interface Props {
   content: ContentProps;
@@ -46,10 +47,14 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingTop: 5,
       minHeight: 40,
     },
-    category: {
+    categoryMap: {
+      display: "flex",
       minHeight: 20,
       paddingBottom: 5,
       height: 30,
+    },
+    category: {
+      marginRight: 30,
     },
     address: {
       minHeight: 30,
@@ -79,14 +84,17 @@ const Content: FunctionComponent<Props> = (props) => {
       </Grid>
       <Grid item xs={12} md={8} className={classes.info}>
         <Box className={classes.title}>{props.content.name}</Box>
-        <Box className={classes.category}>
-          <Category stars={parseInt(props.content.category.code)} />
-        </Box>
-        <Box className={classes.address}>
-          <Location
+        <Box className={classes.categoryMap}>
+          <Box className={classes.category}>
+            <Category stars={parseInt(props.content.category.code)} />
+          </Box>
+          <Map
             location={props.content.location}
             accommodationName={props.content.name}
           />
+        </Box>
+        <Box className={classes.address}>
+          <Location location={props.content.location} />
         </Box>
         <Box className={classes.amenities}>
           <AmenityIcons {...props.content} />
