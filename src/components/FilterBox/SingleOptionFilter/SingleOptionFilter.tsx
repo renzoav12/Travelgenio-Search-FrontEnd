@@ -119,7 +119,7 @@ const SingleOptionFilter: FunctionComponent<Props> = (props, context) => {
         }}
         label={
           option.code === withoutCategory ? (
-            <Box></Box>
+            translate(context, Keys.search.others)
           ) : (
             <Category stars={parseInt(option.code)} />
           )
