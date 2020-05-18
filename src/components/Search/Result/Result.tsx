@@ -87,7 +87,6 @@ const Result: FunctionComponent<ResultProps> = (props) => {
     return props.loading ? (
       <Typography variant="h1">
         <Translate tkey={Keys.search.searching_accommodations} />
-        ...
       </Typography>
     ) : (
       <Typography variant="h1">{foundAccommodationsLabel()}</Typography>

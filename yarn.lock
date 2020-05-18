@@ -1198,10 +1198,10 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm-releases/@hotels/mealplan/-/mealplan-0.0.3.tgz#166f14f2c549dfdca582590ad0870988a44b47af"
   integrity sha512-JWd8aGyckWysQqUsgd3J5rklq05e+Am4p84civ6z0dWrVsDVrUUa2PvSmDiuNOFqlFRWmK6R0v0RvZlVWMBUdg==
 
-"@hotels/search-box@0.0.13":
-  version "0.0.13"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.13.tgz#db01383f6dc4eb02a9f2999dc8b4a0eb3a57972e"
-  integrity sha512-jCiRCHDNZUmCHkp5q/aDs/V8osQIEisG/UWyKW7J/NQFGHND0fyuhMWzohBnHIxj51WVNkv7JUvkU7KbVxpFFQ==
+"@hotels/search-box@0.0.14":
+  version "0.0.14"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.14.tgz#48c7ef55702dec2abbe4da8a84fcd24addf49689"
+  integrity sha512-LhoYWuOTRTS4FHA3dgINmr3r7Cv/93lqWDiWbzlG/bJq51YcBmXkeQOFOdAJnFlXcfYkDhl4oyvV3Dkmj8T9Qw==
   dependencies:
     "@types/react-autosuggest" "^9.3.13"
     "@types/react-dates" "^17.1.10"
@@ -1215,6 +1215,13 @@
   integrity sha512-vYbsn3Fk6JLH5pUC2hj6juf4Xip919Z6ryQZjVF5NQlrp5VKcSQMS1NIi7Jxyv1P3ACtGtQfycynJiv8J2pyGA==
   dependencies:
     typescript "~3.7.2"
+
+"@hotels/translation@^0.0.6":
+  version "0.0.6"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation/-/translation-0.0.6.tgz#7dbc15b6dabc7470e94c9cbb38cec232638e7812"
+  integrity sha512-+t36+Eq6Rk43ByfZMPanZjkZDss8ISb/hnJwwSyppdidjRSgdMl+ni+kXlKbA0XT9qiHtsTeXtrh4UsqI47wiw==
+  dependencies:
+    change-case "^4.1.1"
 
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"

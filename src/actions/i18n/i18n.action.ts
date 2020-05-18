@@ -22,7 +22,7 @@ export const loadI18n = (): ThunkAction<
 
 const resolveTranslations = async () => {
   const axiosInstance = axios.create({
-    baseURL: config.I18N_API,
+    baseURL: config.TRANSLATION_API,
   });
 
   let translations: ITranslations = {};
