@@ -2,5 +2,5 @@ import axios from "axios";
 import config from "../../config";
 
 export default axios.create({
-  baseURL: config.SUGGESTIONS_API,
+  baseURL: config.AUTOCOMPLETE,
 });
