@@ -1168,6 +1168,11 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@hotels/category@0.0.1":
+  version "0.0.1"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/category/-/category-0.0.1.tgz#eed780479334a4385b55e7f68ca62dcc7a131572"
+  integrity sha512-5cHJxCdxTUYlb2vu37doZgMI/WVmtuIVs958xbeVXEsYPdTMBjfy7o5Yv1GtXhGCQkIi3BqumofFG25d233a/w==
+
 "@hotels/footer@0.0.6":
   version "0.0.6"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/footer/-/footer-0.0.6.tgz#d4102c445c4f48f27eb66ee4046e955f90286f66"
@@ -1216,10 +1221,8 @@
 
 "@hotels/translation-keys@^0.0.1":
   version "0.0.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation-keys/-/translation-keys-0.0.1.tgz#2c2e230f3ae9c96fcfb7fd2ca5ad94f3f60b8668"
-  integrity sha512-vYbsn3Fk6JLH5pUC2hj6juf4Xip919Z6ryQZjVF5NQlrp5VKcSQMS1NIi7Jxyv1P3ACtGtQfycynJiv8J2pyGA==
-  dependencies:
-    typescript "~3.7.2"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation-keys/-/translation-keys-0.0.1.tgz#4117134d95065e5d874b4fd47dd0fb4a46006610"
+  integrity sha512-iPE/nN3dpQWJLVq+xLy1obTYXMB7KOYvgQaNMSy8vIEyznJJzP6hahPMFqd6n8fr2uL2c4/PEmjN5oNXLTqMVw==
 
 "@hotels/translation@^0.0.6":
   version "0.0.6"
@@ -1709,9 +1712,9 @@
   integrity sha512-L8O9HAVFZj0TuiS8h5ORthiMsrrhjxTC8XUusp5k47oXCst4VTm+qWKvrAvmYMybZVokbp4Udco1mNwJrTNZPQ==
 
 "@types/history@*":
-  version "4.7.5"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/history/-/history-4.7.5.tgz#527d20ef68571a4af02ed74350164e7a67544860"
-  integrity sha512-wLD/Aq2VggCJXSjxEwrMafIP51Z+13H78nXIX0ABEuIGhmB5sNGbR113MOKo+yfw+RDo1ZU3DM6yfnnRF/+ouw==
+  version "4.7.6"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/history/-/history-4.7.6.tgz#ed8fc802c45b8e8f54419c2d054e55c9ea344356"
+  integrity sha512-GRTZLeLJ8ia00ZH8mxMO8t0aC9M1N9bN461Z2eaRurJo6Fpa+utgCwLzI4jQHcrdzuzp5WPN9jRwpsCQ1VhJ5w==
 
 "@types/hoist-non-react-statics@^3.3.0":
   version "3.3.1"
@@ -1767,9 +1770,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "14.0.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/node/-/node-14.0.1.tgz#5d93e0a099cd0acd5ef3d5bde3c086e1f49ff68c"
-  integrity sha512-FAYBGwC+W6F9+huFIDtn43cpy7+SzG+atzRiTfdp3inUKL2hXnd4rG8hylJLIh4+hqrQy1P17kvJByE/z825hA==
+  version "14.0.2"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/node/-/node-14.0.2.tgz#e6ba5b2fbf92154e2d126c61e8cc5b114f469ca6"
+  integrity sha512-iQgg5AfQVQ766QGtK90g3EctbIe5Xwf1xMafnQB3WUr5hkrT5CUMbzMGtxSsICNWSgExILgQ+8kCfX2p0OKWGg==
 
 "@types/node@13.5.2":
   version "13.5.2"
@@ -3121,9 +3124,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001035, caniuse-lite@^1.0.30001043, caniuse-lite@^1.0.30001061:
-  version "1.0.30001061"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/caniuse-lite/-/caniuse-lite-1.0.30001061.tgz#80ca87ef14eb543a7458e7fd2b5e2face3458c9f"
-  integrity sha512-SMICCeiNvMZnyXpuoO+ot7FHpMVPlrsR+HmfByj6nY4xYDHXLqMTbgH7ecEkDNXWkH1vaip+ZS0D7VTXwM1KYQ==
+  version "1.0.30001062"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/caniuse-lite/-/caniuse-lite-1.0.30001062.tgz#d814b648338504b315222ace6f1a533d9a55e390"
+  integrity sha512-ei9ZqeOnN7edDrb24QfJ0OZicpEbsWxv7WusOiQGz/f2SfvBgHHbOEwBJ8HKGVSyx8Z6ndPjxzR6m0NQq+0bfw==
 
 capital-case@^1.0.3:
   version "1.0.3"
@@ -4356,9 +4359,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.378, electron-to-chromium@^1.3.413:
-  version "1.3.441"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/electron-to-chromium/-/electron-to-chromium-1.3.441.tgz#094f71b992dca5bc96b798cfbaf37dc76302015a"
-  integrity sha512-leBfJwLuyGs1jEei2QioI+PjVMavmUIvPYidE8dCCYWLAq0uefhN3NYgDNb8WxD3uiUNnJ3ScMXg0upSlwySzQ==
+  version "1.3.443"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/electron-to-chromium/-/electron-to-chromium-1.3.443.tgz#b01c8933e820a728afc5dde7dd535c53ff55ab11"
+  integrity sha512-ty0LEroTap/xfMy31oQ3XX+Q377QvWvJaha2cmuXcbmBiX2EIB5SNDQ0hp8lhvxj63WG0zOgm/4MQ/oUBdfQqg==
 
 elliptic@^6.0.0, elliptic@^6.5.2:
   version "6.5.2"
@@ -11303,9 +11306,9 @@ terser-webpack-plugin@^1.4.3:
     worker-farm "^1.7.0"
 
 terser@^4.1.2, terser@^4.4.3, terser@^4.6.3:
-  version "4.6.13"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/terser/-/terser-4.6.13.tgz#e879a7364a5e0db52ba4891ecde007422c56a916"
-  integrity sha512-wMvqukYgVpQlymbnNbabVZbtM6PN63AzqexpwJL8tbh/mRT9LE5o+ruVduAGL7D6Fpjl+Q+06U5I9Ul82odAhw==
+  version "4.7.0"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/terser/-/terser-4.7.0.tgz#15852cf1a08e3256a80428e865a2fa893ffba006"
+  integrity sha512-Lfb0RiZcjRDXCC3OSHJpEkxJ9Qeqs6mp2v4jf2MHfy8vGERmVDuvjXdd/EnP5Deme5F2yBRBymKmKHCBg2echw==
   dependencies:
     commander "^2.20.0"
     source-map "~0.6.1"
@@ -11541,7 +11544,7 @@ typedarray@^0.0.6:
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@3.7.5, typescript@~3.7.2:
+typescript@3.7.5:
   version "3.7.5"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
   integrity sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==

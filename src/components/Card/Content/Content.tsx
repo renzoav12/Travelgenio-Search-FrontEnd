@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from "react";
 import Image, { ImageProps } from "./Image/Image";
-import Category from "../../Category/Category";
 import Location, { LocationProps } from "./Location/Location";
 import AmenityIcons, { Amenity } from "./AmenityIcons/AmenityIcons";
 import { Grid, Box } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import MealPlan, { MealPlanProps } from "@hotels/mealplan";
 import Map from "./Map/Map";
+import Category from "@hotels/category";
 
 export interface Props {
   content: ContentProps;

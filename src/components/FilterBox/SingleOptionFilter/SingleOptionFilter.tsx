@@ -4,7 +4,7 @@ import FilterHeader from "../FilterHeader/FilterHeader";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@material-ui/icons";
 import { Box } from "@material-ui/core";
 import { FilterType } from "../FilterBox";
-import Category from "../../Category/Category";
+import Category from "@hotels/category";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Keys from "@hotels/translation-keys";
 import Translate, { translate } from "@hotels/translation";

@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@hotels/category": "0.0.1",
     "@hotels/footer": "0.0.6",
     "@hotels/header": "0.0.4",
     "@hotels/map-dialog": "0.0.6",
