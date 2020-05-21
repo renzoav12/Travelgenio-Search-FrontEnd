@@ -1178,10 +1178,10 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/footer/-/footer-0.0.6.tgz#d4102c445c4f48f27eb66ee4046e955f90286f66"
   integrity sha512-8qHagt2oKJiysxrn6oBF2EMT/CfYPsfMbTOHNIP23aWdZkAFV/IsDYNXQK2tfF6bNM9F9iVlkl3ON1sZp6QWpA==
 
-"@hotels/header@0.0.4":
-  version "0.0.4"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/header/-/header-0.0.4.tgz#4ee55e522f443b3f5ecb8aafb08ab78f8be52f2c"
-  integrity sha512-AqzaQZ5jLCDfWLOlq3jcYKlyquRxZVj18XYhUJ496h6Llk58QxjuMApQECvkGKhy+JXI+B7ejGLVUBGG0hDHpw==
+"@hotels/header@0.0.5":
+  version "0.0.5"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/header/-/header-0.0.5.tgz#79f2c90914d55b077d635e622d3e0991b0d9ecf7"
+  integrity sha512-eS1NNCaPeC9Ng+o2y/ni7wJn6GCdQf4RYIRWUYv0uls1d6DTQldwaVMp0S4Lb58uw/6ne2K75lX0+IvHW0qnFQ==
 
 "@hotels/map-dialog@0.0.6":
   version "0.0.6"
