@@ -10,7 +10,7 @@ import Category from "@hotels/category";
 
 export interface Props {
   content: ContentProps;
-  mealPlan: MealPlanProps;
+  mealPlan?: MealPlanProps | undefined;
 }
 
 export interface ContentProps {
@@ -100,7 +100,7 @@ const Content: FunctionComponent<Props> = (props) => {
           <AmenityIcons {...props.content} />
         </Box>
         <Box className={classes.mealPlan}>
-          {props.mealPlan.type ? <MealPlan {...props.mealPlan} /> : null}
+          {props.mealPlan && props.mealPlan.type? <MealPlan {...props.mealPlan} /> : null}
         </Box>
       </Grid>
     </Grid>
