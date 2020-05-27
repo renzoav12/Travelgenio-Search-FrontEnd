@@ -9,7 +9,7 @@
     "@hotels/header": "0.0.5",
     "@hotels/map-dialog": "0.0.6",
     "@hotels/mealplan": "0.0.4",
-    "@hotels/search-box": "0.0.14",
+    "@hotels/search-box": "0.0.16",
     "@hotels/translation": "^0.0.6",
     "@hotels/translation-keys": "^0.0.1",
     "@hotels/styles": "0.0.1",
@@ -53,7 +53,7 @@
     "predeploy:dev": "REACT_APP_STAGE=dev yarn build",
     "deploy:dev": "aws s3 sync build/ s3://hotels-fe-dev/search/ --profile otravo --delete",
     "predeploy:prod": "git checkout master && git pull origin master && REACT_APP_STAGE=prod yarn build",
-    "deploy:prod": "aws s3 sync build/ s3://hotels-fe-prod/search/ --profile otravo-prod --delete"
+    "deploy:prod": "aws s3 sync build/ s3://hotels-fe-prod/search/ --profile otravo-prod"
   },
   "eslintConfig": {
     "extends": "react-app"
