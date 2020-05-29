@@ -32,8 +32,8 @@ export const searchCreateRequest = (
   return {
     locationType: location.type,
     locationCode: location.code,
-    checkIn: stay.from.toISOString().substring(0, 10),
-    checkOut: stay.to.toISOString().substring(0, 10),
+    checkIn: stay.from?.toISOString().substring(0, 10),
+    checkOut: stay.to?.toISOString().substring(0, 10),
     occupancy: occupancy.rooms
       .map(
         (room) =>

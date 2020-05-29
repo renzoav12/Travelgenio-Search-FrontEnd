@@ -20,8 +20,8 @@ export const thunkAccommodationSelect = (accommodationId: string) => async (
   getState: () => RootState
 ) => {
   const basePath = "hotels/detail";
-  const from = getState().search.box.stay.from.format("YYYY-MM-DD");
-  const to = getState().search.box.stay.to.format("YYYY-MM-DD");
+  const from = getState().search.box.stay.from?.format("YYYY-MM-DD");
+  const to = getState().search.box.stay.to?.format("YYYY-MM-DD");
   const language = "es";
   const name = "Hotel";
   const occupancy = getState()

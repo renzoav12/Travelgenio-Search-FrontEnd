@@ -22,8 +22,8 @@ export interface SearchHeaderParameters {
 export interface SearchFetchParameters {
   readonly locationType: string;
   readonly locationCode: string;
-  readonly checkIn: string;
-  readonly checkOut: string;
+  readonly checkIn: string | undefined;
+  readonly checkOut: string | undefined;
   readonly occupancy: string;
   readonly locale: string;
   readonly country: string;
