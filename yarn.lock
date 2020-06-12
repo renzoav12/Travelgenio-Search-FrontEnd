@@ -1305,10 +1305,10 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation-keys/-/translation-keys-0.0.1.tgz#6c1cb26268968ce5de558577067761f68e64611b"
   integrity sha512-rwOUu2Ng4Ri20Ro35LwPGkHGM8Y501Od0ogtXcmcwKtRWD5gkcutgXJnrAFzOHaX3esNbfLks3G4v/eS80qzsQ==
 
-"@hotels/translation@^0.0.6":
-  version "0.0.6"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation/-/translation-0.0.6.tgz#2112bc8685c2289a34dd981e1826a49cf0abf907"
-  integrity sha512-2iqtyeWabLwVZHLRvFJKs/hPb6GFgkGBS7GxeqdgAu7H4DyrwNjuudeZ7RnlsVsYFkrc6p6y8YUzSwymoQFznA==
+"@hotels/translation@^0.0.8":
+  version "0.0.8"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation/-/translation-0.0.8.tgz#260a530006f6c040429f5a2c4bd4a7a7025357ab"
+  integrity sha512-Kmvtnv3BhmUJnRgZk95LsPDH/mVzH5MteDR8Qzu/hTkZ6Vr7EaNKpA6AykFM2nI5hawGtSE7xvwNvcWcDm3IYg==
   dependencies:
     change-case "^4.1.1"
 
