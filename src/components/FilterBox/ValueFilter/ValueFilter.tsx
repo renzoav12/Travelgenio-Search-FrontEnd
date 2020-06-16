@@ -94,7 +94,7 @@ const ValueFilter: FunctionComponent<Props> = (props, context) => {
     <Box>
       <Box>
         <FilterHeader
-          label={props.filter.label}
+          label={props.filter.field}
           onChange={onChangeDisplay}
           display={display}
         />

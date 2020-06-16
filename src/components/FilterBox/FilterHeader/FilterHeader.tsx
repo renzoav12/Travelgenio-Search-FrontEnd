@@ -3,6 +3,10 @@ import { KeyboardArrowDown, KeyboardArrowUp } from "@material-ui/icons";
 import { Box, Typography } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
+import PropTypes from "prop-types";
+import Keys from "@hotels/translation-keys";
+import { translate } from "@hotels/translation";
+
 interface Props {
   label: string;
   onChange: (display: boolean) => void;
@@ -20,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const FilterHeader: FunctionComponent<Props> = (props) => {
+const FilterHeader: FunctionComponent<Props> = (props, context) => {
   const classes = useStyles();
 
   const toggleDisplay = (): void => {
@@ -30,12 +34,18 @@ const FilterHeader: FunctionComponent<Props> = (props) => {
   const arrow = () =>
     props.display ? <KeyboardArrowUp /> : <KeyboardArrowDown />;
 
+  const label = Keys.search[`filter_${props.label}`];
+
   return (
     <Box className={classes.filterHeader} onClick={toggleDisplay}>
-      <Typography variant="h1">{props.label}</Typography>
+      <Typography variant="h1">
+        {translate(context, label ? label : props.label)}
+      </Typography>
       <Box>{arrow}</Box>
     </Box>
   );
 };
+
+FilterHeader.contextTypes = { t: PropTypes.func };
 
 export default FilterHeader;
