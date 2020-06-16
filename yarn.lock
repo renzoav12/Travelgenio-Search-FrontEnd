@@ -1286,8 +1286,8 @@
 
 "@hotels/search-box@0.0.18":
   version "0.0.18"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.18.tgz#23f0253ebf9b2ebb77d840387b1d085985dd59f2"
-  integrity sha512-Gg6DtW7BvR3+hcfmagSLGQKUKHtNSGNu4jdoR8jjpBYpxOAbwXKHfTXD/fMiysHh4n3PaOMAXlH5muPms2C5HA==
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.18.tgz#cdce132d7a599187ad0780f4654632c45079b0c4"
+  integrity sha512-Q43YTnBC5y3drnSBxkkijMs89x8gosyWOticfpqpvdzJ1Mtqsagc28iEMvWak7eMVE69Lp6SZSUo3G/N8E24zw==
   dependencies:
     "@types/react-autosuggest" "^9.3.13"
     "@types/react-dates" "^17.1.10"
@@ -1302,8 +1302,8 @@
 
 "@hotels/translation-keys@^0.0.1":
   version "0.0.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation-keys/-/translation-keys-0.0.1.tgz#6c1cb26268968ce5de558577067761f68e64611b"
-  integrity sha512-rwOUu2Ng4Ri20Ro35LwPGkHGM8Y501Od0ogtXcmcwKtRWD5gkcutgXJnrAFzOHaX3esNbfLks3G4v/eS80qzsQ==
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation-keys/-/translation-keys-0.0.1.tgz#b1256d264c47f543d55e43c524e84a7e2cd062db"
+  integrity sha512-BzYemJ4bTLRsaulcxBBqU7LOZ71a3pZl8J7ptjzXwSTk5Dn27hspX/3povRdinGltqR+ciCJmX8YnQIR5GHAAA==
 
 "@hotels/translation@^0.0.8":
   version "0.0.8"
