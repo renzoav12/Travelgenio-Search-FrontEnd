@@ -15,6 +15,8 @@ import { SuggestionHint, SuggestionEntry } from '@hotels/search-box/dist/Autocom
 import { Pagination, SearchFilter } from '../../model/search';
 import { FilterBoxSelected } from '../../components/FilterBox/FilterBox';
 import { CardProps } from '../../components/Card/Card';
+import { initCobrand } from "@hotels/header-footer";
+import config from "../../config";
 
 export interface SearchContainerProps {
   search: SearchBoxState;
@@ -34,6 +36,8 @@ export interface SearchContainerProps {
   filters: SearchFilter;
 
   suggestions: SuggestionEntry[];
+
+  initCobrand?: (url: string, emailSubscriptionUrl: string) => void;  
 }
 
 const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
@@ -42,6 +46,7 @@ const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
     props.onChange(props.search);
     props.searchSuggestionName(props.search.location);
     props.loadI18n();
+    props.initCobrand && props.initCobrand(config.COBRAND, config.EMAIL_SUBSCRIPTION);
   }, []);
 
   return <Container maxWidth="lg">
@@ -113,6 +118,7 @@ export default connect(
     loadNextPage: loadNextPage,
     loadI18n: loadI18n,
     selected: thunkAccommodationSelect,
-    filtersOnChange: thunkFilterBoxChange
+    filtersOnChange: thunkFilterBoxChange,
+    initCobrand: initCobrand
   }
 )(SearchContainer);

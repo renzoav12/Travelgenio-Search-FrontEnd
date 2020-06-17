@@ -14,7 +14,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 import PropTypes from "prop-types";
 import Keys from "@hotels/translation-keys";
-import Translate, {translate} from "@hotels/translation";
+import {translate} from "@hotels/translation";
 
 export interface SearchProps {
   search: SearchBoxState;

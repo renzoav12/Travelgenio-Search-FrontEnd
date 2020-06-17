@@ -5,8 +5,7 @@
   "private": true,
   "dependencies": {
     "@hotels/category": "0.0.1",
-    "@hotels/footer": "0.0.6",
-    "@hotels/header": "0.0.5",
+    "@hotels/header-footer": "0.0.1",
     "@hotels/map-dialog": "0.0.6",
     "@hotels/mealplan": "0.0.4",
     "@hotels/search-box": "0.0.18",
