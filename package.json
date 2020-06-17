@@ -9,9 +9,8 @@
     "@hotels/map-dialog": "0.0.6",
     "@hotels/mealplan": "0.0.4",
     "@hotels/search-box": "0.0.18",
-    "@hotels/translation": "^0.0.8",
-    "@hotels/translation-keys": "^0.0.1",
     "@hotels/styles": "0.0.1",
+    "@hotels/translation": "^0.0.8",
     "@material-ui/core": "4.9.0",
     "@material-ui/icons": "4.5.1",
     "@sentry/browser": "^5.15.5",
@@ -38,6 +37,7 @@
     "react-scripts": "3.4.0",
     "redux-i18n": "^1.5.19",
     "redux-thunk": "2.3.0",
+    "@hotels/translation-keys": "0.0.2",
     "typescript": "3.7.5"
   },
   "devDependencies": {
