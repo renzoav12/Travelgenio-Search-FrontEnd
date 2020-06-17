@@ -91,7 +91,7 @@ const RangeFilter: FunctionComponent<Props> = (props) => {
     <Box>
       <Box>
         <FilterHeader
-          label={props.filter.label}
+          label={props.filter.field}
           onChange={onChangeDisplay}
           display={display}
         />
