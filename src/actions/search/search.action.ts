@@ -80,7 +80,7 @@ export const searchUpdate = (action: (x: SearchResponse) => void) => async (
 ) => {
   const params = searchCreateRequest(getState());
 
-  const url = `/hotels/search/${params.locationType}/${params.locationCode}/${params.checkIn}/${params.checkOut}/${params.occupancy}/es`;
+  const url = `/hotels/search/${params.locationType}/${params.locationCode}/${params.checkIn}/${params.checkOut}/${params.occupancy}`;
 
   window.history.pushState({}, "", url);
 
