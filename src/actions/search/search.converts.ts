@@ -42,8 +42,6 @@ export const searchCreateRequest = (
           room.childrenAges.join("-")
       )
       .join("!"),
-    country: "ES",
-    locale: "es-ES",
     page: pageNumber,
     size: pageSize,
     filters: jsonFilter,
