@@ -1259,20 +1259,13 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/header-footer/-/header-footer-0.0.2.tgz#499178fa133412bfed5e9708364b31dd3fb4cc94"
   integrity sha512-iK6SVENlG2o46gynAop1nazLGTrq1GnJrlRKK0OlNsH9BUJ9KUV+Sx+M9WWld+VceOz2Oh6pdVU79hw1QVK+4w==
 
-"@hotels/map-dialog@0.0.6":
-  version "0.0.6"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/map-dialog/-/map-dialog-0.0.6.tgz#084f53077b45b2ba0afc9aaac379372ad014907f"
-  integrity sha512-YYwg87LMhbGNiF4Mos8Xukm9be+HHaqZes5aaRS16ArkJmjuRFVBRXpeF1c+cMuL+N0h3nGhC4bgpQcN05Ukjg==
+"@hotels/map@0.0.7":
+  version "0.0.7"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/map/-/map-0.0.7.tgz#009e01cfe60c7aae8d9fc1440cecd6a18ea584c5"
+  integrity sha512-vsk/sbM1DJgi6zrrYxhXNuKGqJOnlNDES7x7eo9og2wl2LLubJAxS6v+epVqB4Me6K6iTQy/UGBTtR2Nes8GPA==
   dependencies:
-    "@hotels/map" "0.0.6"
-
-"@hotels/map@0.0.6":
-  version "0.0.6"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/map/-/map-0.0.6.tgz#512c1a17ede58a429672de0fb293ad8a6624fcbd"
-  integrity sha512-6nkCJAj8RB4xI4njB2ZFr3gFzz2VA9HRCS6Bi9ltP3++kQMPwRD8Vim5VlBnVwENVwZ0WMWxLrORI7C2cFsy8g==
-  dependencies:
-    "@react-google-maps/api" "1.8.6"
-    "@types/googlemaps" "3.39.3"
+    "@react-google-maps/api" "1.9.5"
+    "@types/googlemaps" "3.39.6"
 
 "@hotels/mealplan@0.0.5":
   version "0.0.5"
@@ -1551,24 +1544,26 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@react-google-maps/api@1.8.6":
-  version "1.8.6"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@react-google-maps/api/-/api-1.8.6.tgz#0a68f5f726f2cb2551f855c9f8493c854fb2782f"
-  integrity sha512-zioXQwqc6Cuw8hOkuf4TIJdvzgXGT+h7Hj2SVFm9AHvfaYMfhNxVnID/8txaX/iDxKG83qTFwMH3AoRrNSlaFQ==
+"@react-google-maps/api@1.9.5":
+  version "1.9.5"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@react-google-maps/api/-/api-1.9.5.tgz#5b99d7397cdbb6c48c16623d63592df9a6cfffde"
+  integrity sha512-DB8Zv+ADwhHdulwec7k9yoMqpgK2VnaGD//rlZSUsDj1gafECFgxOEMcmjPSCDfFCSvX6qr5VVZJqBvrlpkm3Q==
   dependencies:
-    "@react-google-maps/infobox" "1.8.6"
-    "@react-google-maps/marker-clusterer" "1.8.6"
+    "@react-google-maps/infobox" "1.9.3"
+    "@react-google-maps/marker-clusterer" "1.9.3"
+    acorn "^7.2.0"
+    acorn-jsx "^5.2.0"
     invariant "2.2.4"
 
-"@react-google-maps/infobox@1.8.6":
-  version "1.8.6"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@react-google-maps/infobox/-/infobox-1.8.6.tgz#16b00052581fcafc3ca073e73100f05cb1f13002"
-  integrity sha512-q3V1NdVzMLesW2/TEoszzLPOFXpovjrEgyXR0ftZIZBRqXWPl/YKjYUYDDSKf6GDo0d91r8K/yBqkywQBfQENQ==
+"@react-google-maps/infobox@1.9.3":
+  version "1.9.3"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@react-google-maps/infobox/-/infobox-1.9.3.tgz#90a32d57527f5f0476f2fcb41556016b650cc4a3"
+  integrity sha512-e2EoeS+VSBsU4Gol3m3eaj9n1UGmp4Sz1ORpYHq0TJI2zRNwS7C2rGLe4aT0tHMXcaPSfkPR811IKtmc54ItUQ==
 
-"@react-google-maps/marker-clusterer@1.8.6":
-  version "1.8.6"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@react-google-maps/marker-clusterer/-/marker-clusterer-1.8.6.tgz#ec26d76e890fa8a7ee7d6a810fce29a39e156e7b"
-  integrity sha512-aEJikokaGBd6hPhTXDSaQCSUaXrvSoKUmmXRFIq2sQz0hp4oJJnlkSl2Me6cV0inUaboNCK2lunKGCsgDrzOzQ==
+"@react-google-maps/marker-clusterer@1.9.3":
+  version "1.9.3"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@react-google-maps/marker-clusterer/-/marker-clusterer-1.9.3.tgz#6acb6a12cffeef04f11549aaf0a43e6135578116"
+  integrity sha512-fJoNmtHewep2wM4PnCtpPn3wImUPHBhCyz0YqOx1AxRg8zOwCOauPSMon3xKtGP7m5AmrAZpiYY51vBkubH/aA==
 
 "@sentry/browser@^5.15.5":
   version "5.18.0"
@@ -1758,6 +1753,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/classnames@^2.2.10":
+  version "2.2.10"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/classnames/-/classnames-2.2.10.tgz#cc658ca319b6355399efc1f5b9e818f1a24bf999"
+  integrity sha512-1UzDldn9GfYYEsWWnn/P4wkTlkZDH7lDb0wBMGbtIQc9zXEQq7FlKBdZUn6OBqD8sKZZ2RQO2mAjGpXiDGoRmQ==
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -1776,10 +1776,10 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/googlemaps@3.39.3":
-  version "3.39.3"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/googlemaps/-/googlemaps-3.39.3.tgz#8664e424f335802c8aa46a94676666b0a0f31d97"
-  integrity sha512-L8O9HAVFZj0TuiS8h5ORthiMsrrhjxTC8XUusp5k47oXCst4VTm+qWKvrAvmYMybZVokbp4Udco1mNwJrTNZPQ==
+"@types/googlemaps@3.39.6":
+  version "3.39.6"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@types/googlemaps/-/googlemaps-3.39.6.tgz#ca76df823fb4a8bd78bf47bd215fc70417a9ae51"
+  integrity sha512-O2joRmShgUcGBSyjp0pYFIP0Kv3y6jl8UXokEkcTI4D8FinTYsSt8OaHGQ/tI7WUF2eZTXKVJg6jQuEQS4d30w==
 
 "@types/history@*":
   version "4.7.6"
@@ -2205,7 +2205,7 @@ acorn@^6.0.1, acorn@^6.0.4, acorn@^6.2.1:
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
   integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
-acorn@^7.1.1:
+acorn@^7.1.1, acorn@^7.2.0:
   version "7.3.1"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/acorn/-/acorn-7.3.1.tgz#85010754db53c3fbaf3b9ea3e083aa5c5d147ffd"
   integrity sha512-tLc0wSnatxAQHVHUapaHdz72pi9KUyHjq5KyHjGg9Y8Ifdc79pTh2XvI6I1/chZbnM7QtNKzh66ooDogPZSleA==
@@ -10085,6 +10085,11 @@ redent@^1.0.0:
   dependencies:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
+
+redux-devtools-extension@^2.13.8:
+  version "2.13.8"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/redux-devtools-extension/-/redux-devtools-extension-2.13.8.tgz#37b982688626e5e4993ff87220c9bbb7cd2d96e1"
+  integrity sha512-8qlpooP2QqPtZHQZRhx3x3OP5skEV1py/zUdMY28WNAocbafxdG2tRD1MWE7sp8obGMNYuLWanhhQ7EQvT1FBg==
 
 redux-i18n@^1.5.19:
   version "1.5.19"

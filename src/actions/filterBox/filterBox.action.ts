@@ -4,7 +4,7 @@ import {
   FilterActionTypes,
 } from "./filterBox.actionTypes";
 import { ThunkAction } from "redux-thunk";
-import { RootState } from "../../store";
+import { RootState, store } from "../../store";
 import { RootAction } from "../action";
 import { SearchResponse } from "../../model/search";
 import {
@@ -14,6 +14,7 @@ import {
 } from "../search/search.action";
 import { FilterBoxSelected } from "../../components/FilterBox/FilterBox";
 import { searchPaginationUpdate } from "../pagination/pagination.action";
+import {mapAccommodationUpdate, fetch as fetchMap} from "../map/map.action";
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootAction>;
 
@@ -35,12 +36,25 @@ export function cleanFilterBox(): FilterActionTypes {
 export const thunkFilterBoxChange = (
   filterBoxSelected: FilterBoxSelected
 ): ThunkResult<void> => async (dispatch) => {
+
+  let mapView = store.getState().map.mapView;
+
   dispatch(filterBoxChange(filterBoxSelected));
+
+  if(mapView){
+    dispatch(fetchMap());
+  }
+
   dispatch(
     searchUpdate((searchResponse: SearchResponse) => {
       dispatch(searchAccommodationUpdate(searchResponse.accommodations));
       dispatch(searchFilterUpdate(searchResponse.filters));
       dispatch(searchPaginationUpdate(searchResponse.pagination));
+
+      if(!mapView) {
+        dispatch(mapAccommodationUpdate(searchResponse.accommodations));
+      }
+
     })
   );
 };

@@ -12,6 +12,7 @@ import {
 } from "../search/search.action";
 import { SearchResponse, Pagination } from "../../model/search";
 import { RootAction } from "../action";
+import {mapAccommodationUpdate} from "../map/map.action";
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootAction>;
 
@@ -53,6 +54,7 @@ export const loadNextPage = (): ThunkResult<void> => async (
       );
 
       dispatch(searchFilterUpdate(searchResponse.filters));
+      dispatch(mapAccommodationUpdate(searchResponse.accommodations));
     })
   );
 };

@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware, compose,} from 'redux';
+import { createStore, combineReducers, applyMiddleware} from 'redux';
 import reduxThunk, { ThunkMiddleware } from 'redux-thunk';
 import { searchReducer } from './reducers/searchReducer';
 import { searchSuggestionReducer, SearchSuggestion } from './reducers/searchSuggestionReducer';
@@ -8,6 +8,8 @@ import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { history } from './history';
 import { i18nState } from 'redux-i18n';
 import { cobrandReducer } from '@hotels/header-footer';
+import { MapState, mapReducer } from './reducers/mapReducer';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 export interface RootState {
     readonly search: Search;
@@ -15,6 +17,7 @@ export interface RootState {
     readonly router: any;
     readonly i18nState: any;
     readonly cobrand: any;
+    readonly map: MapState;
 }
 
 const rootReducer = combineReducers<RootState>({
@@ -22,12 +25,15 @@ const rootReducer = combineReducers<RootState>({
     searchSuggestion: searchSuggestionReducer,
     router: connectRouter(history),
     i18nState: i18nState,
-    cobrand: cobrandReducer    
+    cobrand: cobrandReducer,
+    map: mapReducer,
 });
+
+const composeEnhancers = composeWithDevTools({});
 
 export const store = createStore(
     rootReducer,
-    compose(
+    composeEnhancers(
         applyMiddleware(
             routerMiddleware(history),
             reduxThunk as ThunkMiddleware<RootState, RootAction>
