@@ -17,6 +17,7 @@ import { FilterBoxSelected } from '../../components/FilterBox/FilterBox';
 import { CardProps } from '../../components/Card/Card';
 import { initCobrand } from "@hotels/header-footer";
 import config from "../../config";
+import { enableView } from "../../actions/map/map.action";
 
 export interface SearchContainerProps {
   search: SearchBoxState;
@@ -28,6 +29,7 @@ export interface SearchContainerProps {
   loading: boolean;
   pagination: Pagination;
   accommodations: CardProps[];
+  mapAccommodations: CardProps[];
   loadNextPage: () => void;
   selected: (id: string) => void;
   loadI18n: () => void;
@@ -37,7 +39,9 @@ export interface SearchContainerProps {
 
   suggestions: SuggestionEntry[];
 
-  initCobrand?: (url: string, emailSubscriptionUrl: string) => void;  
+  initCobrand?: (url: string, emailSubscriptionUrl: string) => void;
+  enableView: (listView: boolean) => void;
+  loadingMap: boolean;
 }
 
 const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
@@ -56,6 +60,7 @@ const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
       onChange={props.onChange}
       onChangeSuggestionHint={props.onChangeSuggestionHint}
       accommodations={props.accommodations}
+      mapAccommodations={props.mapAccommodations}
       loading={props.loading}
       loadNextPage={props.loadNextPage}
       pagination={props.pagination}
@@ -63,6 +68,8 @@ const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
       filters={props.filters}
       filtersOnChange={props.filtersOnChange}
       suggestions={props.suggestions}
+      enableView = {props.enableView}
+      loadingMap = {props.loadingMap}
     />
   </Container>
 }
@@ -101,11 +108,13 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
   return {
     search: createSearchFromParams(ownProps.match.params),
     accommodations: rootState.search.accommodations,
+    mapAccommodations: rootState.map.accommodations,
     pagination: rootState.search.pagination,
     loading: rootState.search.loading,
     filters: rootState.search.filters,
     suggestions: rootState.searchSuggestion.suggestions,
-    suggestionName: rootState.searchSuggestion.suggestionName
+    suggestionName: rootState.searchSuggestion.suggestionName,
+    loadingMap: rootState.map.loading,
   };
 };
 
@@ -119,6 +128,7 @@ export default connect(
     loadI18n: loadI18n,
     selected: thunkAccommodationSelect,
     filtersOnChange: thunkFilterBoxChange,
-    initCobrand: initCobrand
+    initCobrand: initCobrand,
+    enableView: enableView,
   }
 )(SearchContainer);

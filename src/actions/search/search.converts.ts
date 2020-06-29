@@ -43,7 +43,7 @@ export const searchCreateRequest = (
       )
       .join("!"),
     page: pageNumber,
-    size: pageSize,
+    pageSize: pageSize,
     filters: jsonFilter,
   };
 };

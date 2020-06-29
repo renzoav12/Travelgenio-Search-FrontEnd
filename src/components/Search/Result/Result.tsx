@@ -7,8 +7,6 @@ import { CardProps } from "../../Card/Card";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Skeleton from "react-loading-skeleton";
-import Keys from "@hotels/translation-keys";
-import Translate from "@hotels/translation";
 
 export interface ResultProps {
   loading: boolean;
@@ -30,11 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingBottom: 40,
       textAlign: "center",
     },
-    counter: {
-      marginTop: 20,
-    },
     skeleton: {
-      marginRight: 25,
       "& span span": {
         marginTop: 20,
       },
@@ -83,45 +77,10 @@ const Result: FunctionComponent<ResultProps> = (props) => {
     );
   };
 
-  const counter = () => {
-    return props.loading ? (
-      <Typography variant="h1">
-        <Translate tkey={Keys.search.searching_accommodations} />
-      </Typography>
-    ) : (
-      <Typography variant="h1">{foundAccommodationsLabel()}</Typography>
-    );
-  };
-
-  const foundAccommodationsLabel = () => {
-    const eqElements =
-      props.pagination.filteredElements === props.pagination.elements;
-
-    let interporlateValues = {};
-
-    if (eqElements) {
-      interporlateValues = { n: props.pagination.elements };
-    } else {
-      const { filteredElements: n, elements: m } = props.pagination;
-      interporlateValues = { n, m };
-    }
-
-    return (
-      <Translate
-        tkey={Keys.search.x_accommodation_were_found}
-        quantity={props.pagination.elements}
-        values={interporlateValues}
-      />
-    );
-  };
-
   const hasCards = props.accommodations.length > 0;
 
   return (
     <Grid container>
-      <Grid item xs={12} className={classes.counter}>
-        {counter()}
-      </Grid>
       <Grid item xs={12}>
         {props.loading && (
           <Box className={classes.skeleton}>

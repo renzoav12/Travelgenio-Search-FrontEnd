@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from "react";
 import { Place } from "@hotels/map";
 import { Box } from "@material-ui/core";
-import MapDialog, { MapDialogProps } from "@hotels/map-dialog";
+import { MapDialog, MapDialogProps } from "@hotels/map";
 import ExploreIcon from "@material-ui/icons/Explore";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Keys from "@hotels/translation-keys";
@@ -47,7 +47,6 @@ const Map: FunctionComponent<Props> = (props) => {
   const city = (street.length > 1 ? ", " : "") + props.location.address.city;
 
   const place: Place = {
-    title: street + " " + city,
     geoPosition: props.location.geoPosition,
   };
 
@@ -58,6 +57,7 @@ const Map: FunctionComponent<Props> = (props) => {
       places: [place],
       zoom: 14,
       googleMapsKey: config.GOOGLE_MAP_KEY,
+      onlyMark: true,
     },
     open,
     onClose: closeMap,
