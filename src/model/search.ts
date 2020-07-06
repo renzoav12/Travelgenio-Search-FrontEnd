@@ -28,6 +28,7 @@ export interface SearchFetchParameters {
   readonly pageSize: number;
   readonly page: number;
   readonly filters: any;
+  readonly sort: SortRequest | null;
 }
 
 export interface SearchFetchFilterParameters
@@ -97,12 +98,14 @@ export interface Pagination {
 export interface SearchResponse {
   accommodations: CardProps[];
   filters: SearchFilterResponse;
+  sort: SortField[];
   pagination: Pagination;
 }
 
 export interface Search {
   box: SearchBoxState;
   filters: SearchFilter;
+  sortFields: SortField[];
   pagination: Pagination;
   accommodations: CardProps[];
   loading: boolean;
@@ -114,4 +117,15 @@ export interface SearchError {
   exists: boolean;
   code?: string;
   message?: string;
+}
+
+export interface SortField {
+  field: string;
+  order: string;
+  selected: boolean;
+}
+
+export interface SortRequest {
+  field: string;
+  order: string;
 }

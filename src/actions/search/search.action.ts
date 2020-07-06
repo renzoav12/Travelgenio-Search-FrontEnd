@@ -5,18 +5,22 @@ import {
   SEARCH_FETCH_SUCCESS,
   SEARCH_ACCOMMODATION_UPDATE,
   SEARCH_FILTER_UPDATE,
+  SEARCH_SORT_UPDATE,
   PAGE_FETCH_START,
   PAGE_FETCH_FAILED,
   PAGE_FETCH_SUCCESS,
+  SEARCH_SORT_SELECT,
 } from "./search.actionTypes";
 import { ThunkAction } from "redux-thunk";
-import { RootState } from "../../store";
-import { SearchResponse, SearchFilterResponse } from "../../model/search";
+import { RootState, store } from "../../store";
+import { SearchResponse, SearchFilterResponse, SortField } from "../../model/search";
 import { AxiosResponse } from "axios";
 import search from "../../api/search/search";
 import { searchCreateRequest } from "./search.converts";
 import { CardProps } from "../../components/Card/Card";
 import { RootAction } from "../action";
+import { searchPaginationUpdate } from "../pagination/pagination.action";
+import {mapAccommodationUpdate} from "../map/map.action";
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootAction>;
 
@@ -74,6 +78,26 @@ export function searchFilterUpdate(
   };
 }
 
+export function searchSortUpdate(
+  sortFields: SortField[]
+): SearchActionTypes {
+  return {
+    type: SEARCH_SORT_UPDATE,
+    sortFields,
+  };
+}
+
+export function searchSortSelect(
+  field: string,
+  order: string
+): SearchActionTypes {
+  return {
+    type: SEARCH_SORT_SELECT,
+    field,
+    order
+  };
+}
+
 export const searchUpdate = (action: (x: SearchResponse) => void) => async (
   dispatch,
   getState: () => RootState
@@ -100,6 +124,7 @@ export const searchUpdate = (action: (x: SearchResponse) => void) => async (
     action({
       accommodations: response.data.accommodations,
       filters: response.data.filters,
+      sort: response.data.sort,
       pagination: {
         first: response.headers["tg-page-first"],
         last: response.headers["tg-page-last"],
@@ -124,4 +149,29 @@ export const searchUpdate = (action: (x: SearchResponse) => void) => async (
   } else {
     dispatch(pageFetchSuccess());
   }
+};
+
+
+export const thunkSort = (
+  field: string,
+  order: string
+): ThunkResult<void> => async (dispatch) => {
+
+  const mapView = store.getState().map.mapView;
+
+  dispatch(searchSortSelect(field, order));
+  
+  dispatch(
+    searchUpdate((searchResponse: SearchResponse) => {
+      dispatch(searchAccommodationUpdate(searchResponse.accommodations));
+      dispatch(searchFilterUpdate(searchResponse.filters));
+      dispatch(searchSortUpdate(searchResponse.sort));
+      dispatch(searchPaginationUpdate(searchResponse.pagination));
+
+      if(!mapView) {
+        dispatch(mapAccommodationUpdate(searchResponse.accommodations));
+      }
+
+    })
+  );
 };

@@ -9,6 +9,7 @@ import {
 import {
   SearchFetchParameters,
   SearchFetchFilterParameters,
+  SortRequest,
 } from "../../model/search";
 
 function mapToObject(o, m) {
@@ -45,6 +46,7 @@ export const searchCreateRequest = (
     page: pageNumber,
     pageSize: pageSize,
     filters: jsonFilter,
+    sort: createSortParameter(rootState),
   };
 };
 
@@ -93,3 +95,8 @@ const searchCreateFilterRequest = (
 
   return query;
 };
+
+const createSortParameter = (rootState: RootState): SortRequest | null => {
+  const sortFieldSelected = rootState.search.sortFields.find(sortField => sortField.selected);
+  return sortFieldSelected ? {...sortFieldSelected} : null;
+}

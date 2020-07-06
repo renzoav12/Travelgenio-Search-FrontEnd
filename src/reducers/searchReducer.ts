@@ -27,6 +27,8 @@ import {
   PAGE_FETCH_FAILED,
   PAGE_FETCH_SUCCESS,
   SEARCH_FILTER_UPDATE,
+  SEARCH_SORT_UPDATE,
+  SEARCH_SORT_SELECT,
   SEARCH_ACCOMMODATION_UPDATE,
 } from "../actions/search/search.actionTypes";
 
@@ -72,6 +74,7 @@ const initialState: Search = {
     },
   },
   filters: new Map(),
+  sortFields: [],
   pagination: emptyPagination,
   accommodations: [],
   loading: false,
@@ -274,6 +277,22 @@ export const searchReducer: Reducer<Search, RootAction> = (
         ...state,
         filters: cleanFilters(state.filters),
       };
+      case SEARCH_SORT_UPDATE:
+        return {
+          ...state,
+          sortFields: action.sortFields,
+        };
+      case SEARCH_SORT_SELECT: {
+        const sortFields = state.sortFields.slice();
+        sortFields.forEach(sortField => {
+          sortField.selected = (sortField.field === action.field && sortField.order === action.order)
+        });
+        return {
+          ...state,
+          sortFields: sortFields,
+          pagination: emptyPagination,
+          accommodations: emptyAccommodations,
+        }};
     default:
       return state;
   }
