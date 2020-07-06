@@ -3,7 +3,7 @@ import { Grid, Box, Typography } from "@material-ui/core";
 import SearchBox, { SearchBoxState } from "@hotels/search-box";
 import FilterBox, { FilterBoxSelected } from "../FilterBox/FilterBox";
 import Result from "./Result/Result";
-import { Pagination, SearchFilter } from "../../model/search";
+import { Pagination, SearchFilter, SortField } from "../../model/search";
 import { CardProps } from "../Card/Card";
 import {
   SuggestionHint,
@@ -33,6 +33,9 @@ export interface SearchProps {
 
   filtersOnChange: (searchBoxState: FilterBoxSelected) => void;
   filters: SearchFilter;
+
+  sortFields: SortField[];
+  sort: (field: string, order: string) => void;
 
   suggestions: SuggestionEntry[];
 
@@ -167,6 +170,8 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
             title={counter()}
             onChange={onChangeView}
             showViewIcons={props.accommodations.length > 0}
+            sortFields={props.sortFields}
+            sort={props.sort}
           />
         </Grid>
         {listView ? results : map}

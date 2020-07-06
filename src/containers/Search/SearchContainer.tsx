@@ -12,12 +12,13 @@ import { fetchSuggestionSearch, fetchSuggestionSearchName, SearchNameSuggestionP
 import moment from 'moment';
 import { SearchBoxState, SearchBoxOccupancyState, SearchBoxStayState } from '@hotels/search-box';
 import { SuggestionHint, SuggestionEntry } from '@hotels/search-box/dist/Autocomplete/Autocomplete';
-import { Pagination, SearchFilter } from '../../model/search';
+import { Pagination, SearchFilter, SortField } from '../../model/search';
 import { FilterBoxSelected } from '../../components/FilterBox/FilterBox';
 import { CardProps } from '../../components/Card/Card';
 import { initCobrand } from "@hotels/header-footer";
 import config from "../../config";
 import { enableView } from "../../actions/map/map.action";
+import { thunkSort } from '../../actions/search/search.action';
 
 export interface SearchContainerProps {
   search: SearchBoxState;
@@ -36,6 +37,9 @@ export interface SearchContainerProps {
 
   filtersOnChange: (searchBoxState: FilterBoxSelected) => void;
   filters: SearchFilter;
+
+  sortFields: SortField[];
+  sort: (field: string, order: string) => void;
 
   suggestions: SuggestionEntry[];
 
@@ -67,6 +71,8 @@ const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
       selected={props.selected}
       filters={props.filters}
       filtersOnChange={props.filtersOnChange}
+      sortFields={props.sortFields}
+      sort={props.sort}
       suggestions={props.suggestions}
       enableView = {props.enableView}
       loadingMap = {props.loadingMap}
@@ -112,6 +118,7 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
     pagination: rootState.search.pagination,
     loading: rootState.search.loading,
     filters: rootState.search.filters,
+    sortFields: rootState.search.sortFields,
     suggestions: rootState.searchSuggestion.suggestions,
     suggestionName: rootState.searchSuggestion.suggestionName,
     loadingMap: rootState.map.loading,
@@ -130,5 +137,6 @@ export default connect(
     filtersOnChange: thunkFilterBoxChange,
     initCobrand: initCobrand,
     enableView: enableView,
+    sort: thunkSort,
   }
 )(SearchContainer);

@@ -1,5 +1,6 @@
 const dev = {
-  SEARCH_API: "https://dev-hotels-shopping-search.travelagency.tech",
+  //SEARCH_API: "https://dev-hotels-shopping-search.travelagency.tech",
+  SEARCH_API: "http://localhost:8080",
   AUTOCOMPLETE:"https://dev-hotels-autocomplete-suggestion.travelagency.tech/suggestions",
   TRANSLATION_API: "https://dev-hotels-translation.travelagency.tech",
   GOOGLE_MAP_KEY: "AIzaSyAnwYNB5CVKjwPORNGDi67XLfcfE0WV-to",

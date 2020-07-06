@@ -10,6 +10,7 @@ import { SearchResponse } from "../../model/search";
 import {
   searchAccommodationUpdate,
   searchFilterUpdate,
+  searchSortUpdate,
   searchUpdate,
 } from "../search/search.action";
 import { FilterBoxSelected } from "../../components/FilterBox/FilterBox";
@@ -49,6 +50,7 @@ export const thunkFilterBoxChange = (
     searchUpdate((searchResponse: SearchResponse) => {
       dispatch(searchAccommodationUpdate(searchResponse.accommodations));
       dispatch(searchFilterUpdate(searchResponse.filters));
+      dispatch(searchSortUpdate(searchResponse.sort));
       dispatch(searchPaginationUpdate(searchResponse.pagination));
 
       if(!mapView) {

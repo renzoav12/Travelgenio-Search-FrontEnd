@@ -10,6 +10,7 @@ import {
   searchUpdate,
   searchAccommodationUpdate,
   searchFilterUpdate,
+  searchSortUpdate,
 } from "../search/search.action";
 import { SearchResponse } from "../../model/search";
 import { searchPaginationUpdate } from "../pagination/pagination.action";
@@ -44,6 +45,7 @@ export const thunkSearchBoxChange = (
     searchUpdate((searchResponse: SearchResponse) => {
       dispatch(searchAccommodationUpdate(searchResponse.accommodations));
       dispatch(searchFilterUpdate(searchResponse.filters));
+      dispatch(searchSortUpdate(searchResponse.sort));
       dispatch(searchPaginationUpdate(searchResponse.pagination));
       if(!mapView) {
         dispatch(mapAccommodationUpdate(searchResponse.accommodations));
