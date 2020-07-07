@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from "react";
-import { Paper, Box, Select, MenuItem } from "@material-ui/core";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { Paper, Box, Select, MenuItem, InputBase, Tooltip, FormControl, InputLabel } from "@material-ui/core";
+import { makeStyles, createStyles, Theme, withStyles } from "@material-ui/core/styles";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import classnames from "classnames";
@@ -29,6 +29,15 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
       alignItems: "center",
     },
+    formControl: {
+      "& .MuiSelect-select": {
+        paddingTop: "7px",
+        paddingBottom: "7px",
+      }
+    },    
+    iconsSortContainer: {
+      display: "flex",
+    },
     icon: {
       cursor: "pointer",
       display: "flex",
@@ -40,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 5,
       width: 32,
       height: 32,
-      marginLeft: 10,
+      marginRight: 10,
     },
     selected: {
       background: theme.palette.primary.main,
@@ -87,22 +96,26 @@ const SearchBar: FunctionComponent<Props> = (props) => {
 
   const icons: JSX.Element | null = props.showViewIcons ? (
     <Box className={classes.container}>
-      <Box
-        className={listStyles}
-        onClick={() => {
-          handleClick(ViewType.List);
-        }}
-      >
-        <ViewListIcon />
-      </Box>
-      <Box
-        className={mapStyles}
-        onClick={() => {
-          handleClick(ViewType.Map);
-        }}
-      >
-        <LocationOnIcon />
-      </Box>
+      <Tooltip title={<Translate tkey={Keys.search.see_list}/>} arrow>
+        <Box
+          className={listStyles}
+          onClick={() => {
+            handleClick(ViewType.List);
+          }}
+        >
+          <ViewListIcon />
+        </Box>
+      </Tooltip>
+      <Tooltip title={<Translate tkey={Keys.search.see_map}/>} arrow>
+        <Box
+          className={mapStyles}
+          onClick={() => {
+            handleClick(ViewType.Map);
+          }}
+        >
+          <LocationOnIcon />
+        </Box>
+      </Tooltip>
     </Box>
   ) : null;
 
@@ -132,23 +145,28 @@ const SearchBar: FunctionComponent<Props> = (props) => {
 
   const sort: JSX.Element | null =
     props.sortFields.length > 0 && listView && props.showViewIcons ? (
-      <Select
-        value={selectedSortValue}
-        onChange={sortChangeHandler}
-        className={classes.sort}
-      >
-        <MenuItem value={notSelectedValue}>
-          <Translate tkey={Keys.search.sort_by}/>
-        </MenuItem>
-       {sortFields}
-      </Select>
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="sort-label"><Translate tkey={Keys.search.sort_by}/></InputLabel>
+        <Select
+          labelId="sort-label"
+          id="sort"
+          value={selectedSortValue}
+          onChange={sortChangeHandler}
+          className={classes.sort}
+          label={<Translate tkey={Keys.search.sort_by}/>}
+        >
+          <MenuItem value={notSelectedValue}>
+            <Translate tkey={Keys.search.recommended}/>
+          </MenuItem>
+        {sortFields}
+        </Select>
+      </FormControl>
     ) : null;
 
   return (
     <Paper className={classes.container}>
       <Box>{props.title}</Box>
-      <Box>{sort}</Box>
-      {icons}
+      <Box className={classes.iconsSortContainer}>{icons}{sort}</Box>
     </Paper>
   );
 };
