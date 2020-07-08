@@ -8,6 +8,7 @@ import axios, { AxiosResponse } from "axios";
 import config from "./../../config";
 import { ThunkAction } from "redux-thunk";
 import { OriginHostHeader } from "../../api/headers";
+import { setLocale } from "../locale/locale.action";
 
 export const loadI18n = (): ThunkAction<
   any,
@@ -16,9 +17,12 @@ export const loadI18n = (): ThunkAction<
   any
 > => async (dispatch) => {
   let translations = await resolveTranslations();
+  let locale = Object.keys(translations)[0];
+
+  dispatch(setLocale(locale));
 
   dispatch(setTranslations(translations));
-  dispatch(setLanguage(Object.keys(translations)[0]));
+  dispatch(setLanguage(locale));
 };
 
 const resolveTranslations = async () => {

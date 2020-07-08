@@ -1,7 +1,7 @@
 import search from "../../api/suggestions/suggestions";
 import { ThunkAction } from "redux-thunk";
 import { Dispatch } from "redux";
-import { RootState } from "../../store";
+import { RootState, store } from "../../store";
 import { AxiosResponse } from "axios";
 import { RootAction } from "../action";
 import { SuggestionEntry } from "@hotels/search-box/dist/Autocomplete/Autocomplete";
@@ -61,7 +61,10 @@ export const fetchSuggestionSearch = (
     const response: AxiosResponse<Array<SuggestionEntry>> = await search.get(
       "",
       {
-        params: queryParameters,
+        params: {
+          text: queryParameters.text,
+          locale: store.getState().locale.code,
+        }
       }
     );
     handleSuggestionSearchSuccess(dispatch, response.data);
@@ -81,6 +84,7 @@ export const fetchSuggestionSearchName = (
       {
         params: {
           type: queryParameters.type,
+          locale: store.getState().locale.code,
         },
       }
     );

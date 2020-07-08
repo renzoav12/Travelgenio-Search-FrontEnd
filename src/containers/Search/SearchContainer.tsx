@@ -19,6 +19,7 @@ import { initCobrand } from "@hotels/header-footer";
 import config from "../../config";
 import { enableView } from "../../actions/map/map.action";
 import { thunkSort } from '../../actions/search/search.action';
+import { LocaleState } from '../../reducers/localeReducer';
 
 export interface SearchContainerProps {
   search: SearchBoxState;
@@ -46,16 +47,23 @@ export interface SearchContainerProps {
   initCobrand?: (url: string, emailSubscriptionUrl: string) => void;
   enableView: (listView: boolean) => void;
   loadingMap: boolean;
+
+  locale: LocaleState;
 }
 
 const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
 
   useEffect(() => {
-    props.onChange(props.search);
-    props.searchSuggestionName(props.search.location);
     props.loadI18n();
     props.initCobrand && props.initCobrand(config.COBRAND, config.EMAIL_SUBSCRIPTION);
   }, []);
+
+  useEffect(() => {
+    if(props.locale.code !== null){
+      props.onChange(props.search);
+      props.searchSuggestionName(props.search.location);
+      }
+  }, [props.locale.code]);
 
   return <Container maxWidth="lg">
     <Search
@@ -122,6 +130,7 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
     suggestions: rootState.searchSuggestion.suggestions,
     suggestionName: rootState.searchSuggestion.suggestionName,
     loadingMap: rootState.map.loading,
+    locale: rootState.locale,
   };
 };
 
