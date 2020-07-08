@@ -38,7 +38,7 @@ const CardList: FunctionComponent<CardListProps> = (props) => {
     });
   };
 
-  return <Box>{renderAll()}</Box>;
+  return <Box id="accommodation_cards">{renderAll()}</Box>;
 };
 
 export default CardList;
