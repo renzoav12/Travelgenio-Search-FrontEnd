@@ -1274,8 +1274,8 @@
 
 "@hotels/search-box@0.0.20":
   version "0.0.20"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.20.tgz#51a07e2f94b430c0c3ee4868deea589928a8f650"
-  integrity sha512-jqnUI+1U+Ss2JTYgAt2ejFx6wLdGZkwKonOwvIL3fldrpAZg+ba1VZR6lhSMC4BI2TaoIHT0oczaCRGbbhUDdA==
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.20.tgz#1f858c48b5c6d5102f9f64069c26cb4fff0cf18a"
+  integrity sha512-QHNrO9ofGw8X9tghZRM3qDNXwst1xQ3SvTkD/eEborlAakJPSX8cwdC33q1W4LuHnvlq+pHyIGWGHCkPn59hqA==
   dependencies:
     "@types/react-autosuggest" "^9.3.13"
     "@types/react-dates" "^17.1.10"
