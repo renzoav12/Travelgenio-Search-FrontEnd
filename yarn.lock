@@ -1267,15 +1267,15 @@
     "@react-google-maps/api" "1.9.5"
     "@types/googlemaps" "3.39.6"
 
-"@hotels/mealplan@0.0.5":
-  version "0.0.5"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/mealplan/-/mealplan-0.0.5.tgz#835b36f020302a1015fa44ceaeb330213ec06711"
-  integrity sha512-4S/ue0TvmI+WuPocrAW3ZClkstZDv32BwNlEnEQIbA2ZGgNGnnacz7v5zLWzyy2pdlIoQcZF9Zs6M9Xwnxz4Hw==
+"@hotels/mealplan@0.0.6":
+  version "0.0.6"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/mealplan/-/mealplan-0.0.6.tgz#ed51175f6f297830687095acf276e0871e80fbbe"
+  integrity sha512-VWiRnEEOr1cGX2Br/WooAF8KR9Qn14K5NhrGtRaYx9Htovv2i9J9QOVEpilM2DqenThSKro+XfXVBk8JzKGMKg==
 
 "@hotels/search-box@0.0.20":
   version "0.0.20"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.20.tgz#1f858c48b5c6d5102f9f64069c26cb4fff0cf18a"
-  integrity sha512-QHNrO9ofGw8X9tghZRM3qDNXwst1xQ3SvTkD/eEborlAakJPSX8cwdC33q1W4LuHnvlq+pHyIGWGHCkPn59hqA==
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.20.tgz#982cd158f44ac89865b7bd43ffcf8882edfef50e"
+  integrity sha512-1eFGfZ8x+hlB6yH9O8hlWXOKB4I5c1XzA7jNUKFOoPI1Bqx6Owc3R1z/65NBfn/gcA0mwCTvr4BeNn0by36UYg==
   dependencies:
     "@types/react-autosuggest" "^9.3.13"
     "@types/react-dates" "^17.1.10"
