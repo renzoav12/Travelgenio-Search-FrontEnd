@@ -40,6 +40,7 @@ export interface SearchProps {
   suggestions: SuggestionEntry[];
 
   enableView: (listView: boolean) => void;
+  code: string | null;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -141,7 +142,6 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
       loading={props.loadingMap}
     />
   );
-
   return (
     <Grid container alignItems="flex-start" spacing={2} className={classes.container}>
       <Grid item md={4} lg={3}>
@@ -154,6 +154,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
             horizontal={false}
             suggestions={props.suggestions}
             title={translate(context, Keys.common.change_your_destination)}
+            locale={props.code === null? "" : props.code}
           />
         </Box>
         <Box className={classes.filter}>

@@ -84,6 +84,7 @@ const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
       suggestions={props.suggestions}
       enableView = {props.enableView}
       loadingMap = {props.loadingMap}
+      code = {props.locale.code}
     />
   </Container>
 }
