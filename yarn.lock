@@ -1254,10 +1254,10 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/category/-/category-0.0.1.tgz#eed780479334a4385b55e7f68ca62dcc7a131572"
   integrity sha512-5cHJxCdxTUYlb2vu37doZgMI/WVmtuIVs958xbeVXEsYPdTMBjfy7o5Yv1GtXhGCQkIi3BqumofFG25d233a/w==
 
-"@hotels/header-footer@0.0.2":
-  version "0.0.2"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/header-footer/-/header-footer-0.0.2.tgz#499178fa133412bfed5e9708364b31dd3fb4cc94"
-  integrity sha512-iK6SVENlG2o46gynAop1nazLGTrq1GnJrlRKK0OlNsH9BUJ9KUV+Sx+M9WWld+VceOz2Oh6pdVU79hw1QVK+4w==
+"@hotels/header-footer@0.0.3":
+  version "0.0.3"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/header-footer/-/header-footer-0.0.3.tgz#509c183e24836971d762bfd5c5a0834c4b2a118b"
+  integrity sha512-b3aKJfoGuZmJ1ZbH3AcAPZYA9wa4SgKkIBsNTNKvecf8G6bh+mBq2dh8QOOxX7/PXLwTFId1GfRpOaRFNxOWqg==
 
 "@hotels/map@0.0.7":
   version "0.0.7"
@@ -1274,8 +1274,8 @@
 
 "@hotels/search-box@0.0.20":
   version "0.0.20"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.20.tgz#982cd158f44ac89865b7bd43ffcf8882edfef50e"
-  integrity sha512-1eFGfZ8x+hlB6yH9O8hlWXOKB4I5c1XzA7jNUKFOoPI1Bqx6Owc3R1z/65NBfn/gcA0mwCTvr4BeNn0by36UYg==
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.20.tgz#c79eb55ab82cc3d6c01c5d5b5614b8dd8c64ea2d"
+  integrity sha512-ReIdlOnP5xXBSZBMNAT6JyYkLoperoKGyfYhQ6fT0YCJ6kNR2zErbsfh3b91C+AjOEyNx7vpZnXw3wXRCsjcjg==
   dependencies:
     "@types/react-autosuggest" "^9.3.13"
     "@types/react-dates" "^17.1.10"
@@ -1283,10 +1283,10 @@
     react-autosuggest "^9.4.3"
     react-dates "^21.8.0"
 
-"@hotels/styles@0.0.1":
-  version "0.0.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/styles/-/styles-0.0.1.tgz#4e88c4da1787ee8c15e997d6ad732793e194cae0"
-  integrity sha512-3o2hNbKyE+tVEJv08zP787lu9ygw5/Mt2Up2PAW484QJqPr5BeiqrPsJTNTQVfVvM3qkdRRyK17/ECTD5mC3Sg==
+"@hotels/styles@0.0.2":
+  version "0.0.2"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/styles/-/styles-0.0.2.tgz#19733442338652a52e292bd0f313ffe8d31f45fc"
+  integrity sha512-/YEGzOBLaqPpJsOk7dkNEmOrtg43oEhQ/PxesEzYEwpBI1XJHhQDV+hKvXOHEb3l/z/XqV09/NglFC4/JwA4zQ==
 
 "@hotels/translation-keys@0.0.3":
   version "0.0.3"
