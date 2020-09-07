@@ -7,6 +7,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import MealPlan, { MealPlanProps } from "@hotels/mealplan";
 import Map from "./Map/Map";
 import Category from "@hotels/category";
+import Distance, { DistanceProps } from "./Distance/Distance";
 
 export interface Props {
   content: ContentProps;
@@ -19,6 +20,7 @@ export interface ContentProps {
   location: LocationProps;
   amenities: Amenity[];
   images: ImageProps;
+  distance: DistanceProps;
 }
 
 interface CategoryProps {
@@ -57,7 +59,9 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: 30,
     },
     address: {
-      minHeight: 30,
+      marginTop: 5,
+    },
+    distance: {
     },
     amenities: {
       [theme.breakpoints.up("md")]: {
@@ -68,9 +72,7 @@ const useStyles = makeStyles((theme: Theme) =>
     mealPlan: {
       display: "flex",
       alignItems: "center",
-      [theme.breakpoints.up("md")]: {
-        minHeight: 75,
-      },
+      marginTop: 5,
     },
   })
 );
@@ -95,6 +97,9 @@ const Content: FunctionComponent<Props> = (props) => {
         </Box>
         <Box className={classes.address}>
           <Location location={props.content.location} />
+        </Box>
+        <Box className={classes.distance}>
+          <Distance distance={props.content.distance} />
         </Box>
         <Box className={classes.amenities}>
           <AmenityIcons {...props.content} />
