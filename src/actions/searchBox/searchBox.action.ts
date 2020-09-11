@@ -31,7 +31,6 @@ export function searchBoxChange(
 export const thunkSearchBoxChange = (
   searchBoxState: SearchBoxState
 ): ThunkResult<void> => async (dispatch) => {
-  
   let mapView = store.getState().map.mapView;
   
   dispatch(cleanFilterBox());

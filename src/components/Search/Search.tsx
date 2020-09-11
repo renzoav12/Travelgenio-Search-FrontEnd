@@ -18,6 +18,7 @@ import SearchBar, { ViewType } from "../SearchBar/SearchBar";
 import SearchMap from "../SearchMap/SearchMap";
 
 export interface SearchProps {
+  initialSearch: SearchBoxState;
   search: SearchBoxState;
   suggestionName: string;
   onChange: (state: SearchBoxState) => void;
@@ -147,7 +148,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
       <Grid item md={4} lg={3}>
         <Box className={classes.search}>
           <SearchBox
-            init={props.search}
+            init={props.initialSearch}
             suggestionName={props.suggestionName}
             onChange={props.onChange}
             onChangeSuggestionHint={props.onChangeSuggestionHint}

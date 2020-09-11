@@ -22,6 +22,7 @@ import { thunkSort } from '../../actions/search/search.action';
 import { LocaleState } from '../../reducers/localeReducer';
 
 export interface SearchContainerProps {
+  initialSearch: SearchBoxState;
   search: SearchBoxState;
   suggestionName: string;
   onChange: (state: SearchBoxState) => void;
@@ -60,13 +61,14 @@ const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
 
   useEffect(() => {
     if(props.locale.code !== null){
-      props.onChange(props.search);
-      props.searchSuggestionName(props.search.location);
+      props.onChange(props.initialSearch);
+      props.searchSuggestionName(props.initialSearch.location);
       }
   }, [props.locale.code]);
 
   return <Container maxWidth="lg">
     <Search
+      initialSearch={props.initialSearch}
       search={props.search}
       suggestionName={props.suggestionName}
       onChange={props.onChange}
@@ -121,7 +123,8 @@ const createSearchFromParams = (params: any): SearchBoxState => {
 
 const mapStateToProps = (rootState: RootState, ownProps) => {
   return {
-    search: createSearchFromParams(ownProps.match.params),
+    initialSearch: createSearchFromParams(ownProps.match.params),
+    search: rootState.search.box,
     accommodations: rootState.search.accommodations,
     mapAccommodations: rootState.map.accommodations,
     pagination: rootState.search.pagination,
