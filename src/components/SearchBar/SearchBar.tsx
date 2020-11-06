@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title:{
       [theme.breakpoints.down("xs")]:{
-        marginBottom:"15px"
+        marginBottom:"20px"
       },
       
     },
