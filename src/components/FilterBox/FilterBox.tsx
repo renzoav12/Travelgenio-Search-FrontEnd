@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent , useState, useEffect} from "react";
 import SingleOptionFilter, {
   SingleOptionFilterProp,
 } from "./SingleOptionFilter/SingleOptionFilter";
@@ -8,10 +8,13 @@ import RangeFilter, {
 } from "./RangeFilter/RangeFilter";
 import ValueFilter, { ValueFilterProp } from "./ValueFilter/ValueFilter";
 import { RangeOptionFilterProp } from "./RangeOptionFilter/RangeOptionFilter";
-import { Grid, Paper, Typography, Box } from "@material-ui/core";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { Grid, Paper, Box } from "@material-ui/core";
+import { makeStyles, createStyles, Theme, useTheme } from "@material-ui/core/styles";
 import Keys from "@hotels/translation-keys";
-import Translate from "@hotels/translation";
+import { translate } from "@hotels/translation";
+import PropTypes from "prop-types";
+import FilterHeader from "./FilterHeader/FilterHeader";
+import { useMediaQuery } from "@material-ui/core";
 
 export interface FilterBoxSelected {
   type: FilterType;
@@ -29,6 +32,7 @@ export interface FilterBoxProps {
   >;
   onChange: (filter: FilterBoxSelected) => void;
   loading: boolean;
+  display: boolean;
 }
 
 export enum FilterType {
@@ -42,6 +46,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     filterBox: {
       width: "100%",
+      [theme.breakpoints.down("xs")]:{
+        paddingBottom: "6px"
+      }
     },
     filter: {
       paddingTop: 20,
@@ -53,11 +60,18 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const FilterBox: FunctionComponent<FilterBoxProps> = (props) => {
-  const classes = useStyles();
+const FilterBox: FunctionComponent<FilterBoxProps> = (props, context) => {
+  const classes = useStyles()
+  const theme = useTheme();
+
+  const [display, setDisplay] = useState<boolean>(props.display);
 
   const onChangeValue = (field: string, value: string): void => {
     sendOnChangeEvent(field, FilterType.Value, [value]);
+  };
+
+  const onChangeDisplay = (show: boolean): void => {
+    setDisplay(!display);
   };
 
   const onChangeRange = (field: string, values: RangeProp): void => {
@@ -162,7 +176,7 @@ const FilterBox: FunctionComponent<FilterBoxProps> = (props) => {
         <ValueFilter
           filter={filter}
           onChange={onChangeValue}
-          display={!props.loading}
+          display={props.display}
         />
       </Box>
     );
@@ -174,11 +188,15 @@ const FilterBox: FunctionComponent<FilterBoxProps> = (props) => {
         <RangeFilter
           filter={filter}
           onChange={onChangeRange}
-          display={!props.loading}
+          display={props.display}
         />
       </Box>
     );
   };
+
+  useEffect(() => {
+    setDisplay(props.display);
+  }, [props.display]);
 
   const renderSingleOptionFilter = (filter: any) => {
     return (
@@ -188,26 +206,34 @@ const FilterBox: FunctionComponent<FilterBoxProps> = (props) => {
           filter={filter}
           onChange={onChangeSingleOption}
           onCleanSelection={onCleanSelectionSingleOption}
-          display={!props.loading}
+          display={props.display}
         />
       </Box>
     );
   };
 
+  const filterBody = () => display ?  renderFilters() : null;
+
   return props.filters.size > 0 ? (
-    <Paper className={classes.filterBox}>
+    
+   <Paper className={classes.filterBox}>
       <Grid container item>
-        <Grid item xs={12}>
-          <Typography>
-            <Translate tkey={Keys.search.filter_by} />
-          </Typography>
+
+      <Grid item xs={12}>
+        <FilterHeader
+          label={translate(context, Keys.search.filter_by)}
+          onChange={onChangeDisplay}
+          display={props.display}>
+        </FilterHeader>
         </Grid>
         <Grid item xs={12}>
-          {renderFilters()}
+          {filterBody()}
         </Grid>
       </Grid>
     </Paper>
   ) : null;
 };
+
+FilterBox.contextTypes = { t: PropTypes.func };
 
 export default FilterBox;
