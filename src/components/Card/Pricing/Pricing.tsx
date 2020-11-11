@@ -31,6 +31,14 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: "20pt",
       fontWeight: "bold",
     },
+    price_total: {
+      [theme.breakpoints.down("sm")]:{
+        justifyContent:"flex-end",
+        float: "right",
+        paddingBottom: "7px"
+      },
+           
+    },
     nightlyPrice: {
       fontSize: "10pt",
     },
@@ -57,14 +65,17 @@ const Pricing: FunctionComponent<PricingProps> = (props) => {
 
   return (
     <Box className={classes.pricing}>
-      <Discount {...props.discount} />
-      <Box className={classes.strikeoutPrice}>{strikeThroughPrice()}</Box>
-      <Box className={classes.stayPrice}>
-        {props.stayPrice.amount} {props.stayPrice.currency}
-      </Box>
-      <Box className={classes.nightlyPrice}>
-        {props.nightlyPrice.amount} {props.nightlyPrice.currency}{" "}
-        <Translate tkey={Keys.search.by_night} />
+      
+      <Box className={classes.price_total}>
+          <Discount {...props.discount} />
+          <Box className={classes.strikeoutPrice}>{strikeThroughPrice()}</Box>
+          <Box className={classes.stayPrice}>
+            {props.stayPrice.amount} {props.stayPrice.currency}
+          </Box>
+          <Box className={classes.nightlyPrice}>
+            {props.nightlyPrice.amount} {props.nightlyPrice.currency}{" "}
+            <Translate tkey={Keys.search.by_night} />
+          </Box>
       </Box>
       <Box className={classes.detail}>
         <Button
