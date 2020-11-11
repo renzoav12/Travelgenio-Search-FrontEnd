@@ -17,6 +17,9 @@ import Translate, { translate } from "@hotels/translation";
 import SearchBar, { ViewType } from "../SearchBar/SearchBar";
 import SearchMap from "../SearchMap/SearchMap";
 import { useMediaQuery } from "@material-ui/core";
+import Skeleton from "react-loading-skeleton";
+import SearchBoxPortal from "./SearchMobile/SeachBoxPortal";
+
 
 export interface SearchProps {
   initialSearch: SearchBoxState;
@@ -69,6 +72,9 @@ const useStyles = makeStyles((theme: Theme) =>
         width: "100%",
       }
     },
+    skeleton:{
+
+    }
   })
 );
 
@@ -77,6 +83,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
 
   const theme = useTheme();
   const lg = useMediaQuery(theme.breakpoints.down("lg"));
+  const xs = useMediaQuery(theme.breakpoints.down("xs"));
 
   useEffect(() => {
     props.enableView(false);
@@ -156,10 +163,26 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
       loading={props.loadingMap}
     />
   );
-  return (
-    <Grid container alignItems="flex-start" spacing={2} className={classes.container}>
-      <Grid item md={4} lg={3}>
-        <Box className={classes.search}>
+
+  const showSearchBox = () => {
+      if ( xs ) {
+        return(   
+          /*<Box className={classes.skeleton}>
+            <Skeleton height={50} width={"100%"} />
+          </Box>*/
+
+          <SearchBoxPortal
+              suggestionName={props.suggestionName}
+              init={props.initialSearch}
+              onChange= {props.onChange}
+              onChangeSuggestionHint= {props.onChangeSuggestionHint}
+              suggestions={props.suggestions}
+              title={translate(context, Keys.common.change_your_destination)}
+              locale={props.code === null? "" : props.code}
+          />
+          )           
+      }else {
+        return (<Box className={classes.search}>
           <SearchBox
             init={props.initialSearch}
             suggestionName={props.suggestionName}
@@ -170,7 +193,13 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
             title={translate(context, Keys.common.change_your_destination)}
             locale={props.code === null? "" : props.code}
           />
-        </Box>
+        </Box>)
+      }
+  }
+  return (
+    <Grid container alignItems="flex-start" spacing={2} className={classes.container}>
+      <Grid item md={4} lg={3} xs={12}>
+         {showSearchBox()}
         <Box className={classes.filter}>
           <FilterBox
             filters={props.filters}
