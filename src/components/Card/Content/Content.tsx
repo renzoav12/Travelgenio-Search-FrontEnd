@@ -68,6 +68,9 @@ const useStyles = makeStyles((theme: Theme) =>
         marginTop: 10,
         height: 22,
       },
+      [theme.breakpoints.down("sm")]:{
+        paddingTop: "10px"
+      } 
     },
     mealPlan: {
       display: "flex",

@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from "react";
-import { Paper, Box, Select, MenuItem, InputBase, Tooltip, FormControl, InputLabel } from "@material-ui/core";
-import { makeStyles, createStyles, Theme, withStyles } from "@material-ui/core/styles";
+import { Paper, Box, Select, MenuItem, useMediaQuery, Tooltip, FormControl, InputLabel } from "@material-ui/core";
+import { makeStyles, createStyles, Theme, useTheme } from "@material-ui/core/styles";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import classnames from "classnames";
@@ -25,9 +25,18 @@ export enum ViewType {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
+      [theme.breakpoints.down("xs")]:{
+        display:"inherit"
+      },
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
+    },
+    title:{
+      [theme.breakpoints.down("xs")]:{
+        marginBottom:"20px"
+      },
+      
     },
     formControl: {
       "& .MuiSelect-select": {
@@ -36,6 +45,9 @@ const useStyles = makeStyles((theme: Theme) =>
       }
     },    
     iconsSortContainer: {
+      [theme.breakpoints.down("xs")]:{
+        marginLeft: "16px"
+      },      
       display: "flex",
     },
     icon: {
@@ -165,7 +177,7 @@ const SearchBar: FunctionComponent<Props> = (props) => {
 
   return (
     <Paper className={classes.container}>
-      <Box>{props.title}</Box>
+      <Box className={classes.title}>{props.title}</Box>
       <Box className={classes.iconsSortContainer}>{icons}{sort}</Box>
     </Paper>
   );

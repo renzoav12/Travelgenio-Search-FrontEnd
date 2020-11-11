@@ -9,15 +9,17 @@ import {
   SuggestionHint,
   SuggestionEntry,
 } from "@hotels/search-box/dist/Autocomplete/Autocomplete";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, createStyles, Theme, useTheme } from "@material-ui/core/styles";
 
 import PropTypes from "prop-types";
 import Keys from "@hotels/translation-keys";
 import Translate, { translate } from "@hotels/translation";
 import SearchBar, { ViewType } from "../SearchBar/SearchBar";
 import SearchMap from "../SearchMap/SearchMap";
+import { useMediaQuery } from "@material-ui/core";
 
 export interface SearchProps {
+  initialSearch: SearchBoxState;
   search: SearchBoxState;
   suggestionName: string;
   onChange: (state: SearchBoxState) => void;
@@ -60,11 +62,21 @@ const useStyles = makeStyles((theme: Theme) =>
     mapContainer: {
       marginTop: 20,
     },
+    found_results: {
+      [theme.breakpoints.down("xs")]:{
+        fontSize: 16,
+        fontWeight: 600 ,
+        width: "100%",
+      }
+    },
   })
 );
 
 const Search: FunctionComponent<SearchProps> = (props, context) => {
   const [listView, setListView] = useState(true);
+
+  const theme = useTheme();
+  const lg = useMediaQuery(theme.breakpoints.down("lg"));
 
   useEffect(() => {
     props.enableView(false);
@@ -95,11 +107,13 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
 
     if (props.pagination.elements > 0) {
       return (
+        <Box className={classes.found_results}>
         <Translate
           tkey={Keys.search.x_accommodation_were_found}
           quantity={props.pagination.elements}
           values={interporlateValues}
         />
+        </Box>
       );
     } else {
       return (
@@ -147,7 +161,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
       <Grid item md={4} lg={3}>
         <Box className={classes.search}>
           <SearchBox
-            init={props.search}
+            init={props.initialSearch}
             suggestionName={props.suggestionName}
             onChange={props.onChange}
             onChangeSuggestionHint={props.onChangeSuggestionHint}
@@ -162,10 +176,11 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
             filters={props.filters}
             onChange={props.filtersOnChange}
             loading={props.loading}
+            display={lg === true ? false : true}
           />
         </Box>
       </Grid>
-      <Grid item md={8} lg={9}>
+      <Grid item md={8} lg={9} xs={12}>
         <Grid item xs={12} className={classes.counter}>
           <SearchBar
             title={counter()}
