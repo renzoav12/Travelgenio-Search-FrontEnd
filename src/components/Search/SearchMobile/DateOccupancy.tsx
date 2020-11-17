@@ -22,17 +22,18 @@ const useStyles = makeStyles((theme: Theme) =>
             color: theme.palette.primary.contrastText
         },
         occupancy: {
-            marginLeft: 20
+            marginLeft: 17
         },
         occupancyCount: {
-            marginLeft: 5
+            marginLeft: 5,
+            marginRight: 25
         },
         dates: {
             marginLeft: 5
         },
         searchIcon: {
-            marginLeft: 57,
-            marginTop: -10
+            marginTop: -4,
+            marginLeft: 10
         }
     })
 );

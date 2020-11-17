@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     search: {
       marginTop: 20,
+      width: "100%"
     },
     filter: {
       marginTop: 20,
@@ -197,7 +198,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
 
   return (
     <Grid container alignItems="flex-start" spacing={2} className={classes.container}>
-      <Box>
+      <Box className={classes.search}>
       {xs ? 
           showSearchBox :
            <Box className={classes.search}>
