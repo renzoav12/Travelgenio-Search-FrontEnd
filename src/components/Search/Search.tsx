@@ -76,7 +76,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
   const [listView, setListView] = useState(true);
 
   const theme = useTheme();
-  const lg = useMediaQuery(theme.breakpoints.down("lg"));
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     props.enableView(false);
@@ -176,7 +176,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
             filters={props.filters}
             onChange={props.filtersOnChange}
             loading={props.loading}
-            display={lg === true ? false : true}
+            display={sm === true ? false : true}
           />
         </Box>
       </Grid>
