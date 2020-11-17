@@ -50,10 +50,6 @@ const ModalSearch: FunctionComponent<ModalProps> = (props) => {
                     locale={props.locale}
                 />
             </Box>
-             <span 
-                 className="close"
-                 onClick={ closeModal }>&times;
-             </span>
           </div>
        </div> 
     );

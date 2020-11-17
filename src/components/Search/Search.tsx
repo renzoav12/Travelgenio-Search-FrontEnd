@@ -17,7 +17,6 @@ import Translate, { translate } from "@hotels/translation";
 import SearchBar, { ViewType } from "../SearchBar/SearchBar";
 import SearchMap from "../SearchMap/SearchMap";
 import { useMediaQuery } from "@material-ui/core";
-import Skeleton from "react-loading-skeleton";
 import SearchBoxPortal from "./SearchMobile/SeachBoxPortal";
 
 
@@ -46,6 +45,7 @@ export interface SearchProps {
 
   enableView: (listView: boolean) => void;
   code: string | null;
+  display: boolean;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -61,6 +61,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     filter: {
       marginTop: 20,
+    },
+    searchPortal: {
+      marginTop: 0,
+      width: "100%"
     },
     mapContainer: {
       marginTop: 20,
@@ -79,10 +83,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Search: FunctionComponent<SearchProps> = (props, context) => {
+
   const [listView, setListView] = useState(true);
 
+  const [display, setDisplay] = useState<boolean>(props.display);
+
+  console.log("suggetionName : " + props.onChangeSuggestionHint);
+
   const theme = useTheme();
-  const lg = useMediaQuery(theme.breakpoints.down("lg"));
   const xs = useMediaQuery(theme.breakpoints.down("xs"));
 
   useEffect(() => {
@@ -145,7 +153,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
     );
   };
 
-  const results = (
+  const results = (  
     <Result
       accommodations={props.accommodations}
       loadNextPage={props.loadNextPage}
@@ -164,48 +172,55 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
     />
   );
 
-  const showSearchBox = () => {
-      if ( xs ) {
-        return(   
-          /*<Box className={classes.skeleton}>
-            <Skeleton height={50} width={"100%"} />
-          </Box>*/
-
-          <SearchBoxPortal
-              suggestionName={props.suggestionName}
-              init={props.initialSearch}
-              onChange= {props.onChange}
-              onChangeSuggestionHint= {props.onChangeSuggestionHint}
-              suggestions={props.suggestions}
-              title={translate(context, Keys.common.change_your_destination)}
-              locale={props.code === null? "" : props.code}
-          />
-          )           
-      }else {
-        return (<Box className={classes.search}>
-          <SearchBox
-            init={props.initialSearch}
-            suggestionName={props.suggestionName}
-            onChange={props.onChange}
-            onChangeSuggestionHint={props.onChangeSuggestionHint}
-            horizontal={false}
-            suggestions={props.suggestions}
-            title={translate(context, Keys.common.change_your_destination)}
-            locale={props.code === null? "" : props.code}
-          />
-        </Box>)
+      const onChangeDisplay = () => {
+        setDisplay(!display);
       }
-  }
+
+    const showSearchBox = (
+
+          <Box className={classes.search}>
+            <SearchBoxPortal
+                suggestionName={props.suggestionName}
+                init={props.initialSearch}
+                onChange= {props.onChange}
+                onChangeSuggestionHint= {props.onChangeSuggestionHint}
+                suggestions={props.suggestions}
+                title={translate(context, Keys.common.change_your_destination)}
+                locale={props.code === null? "" : props.code}
+                display={display}
+                onChangePortal={onChangeDisplay}
+            />  
+        </Box>
+    );
+  
+  console.log(listView);
+
   return (
     <Grid container alignItems="flex-start" spacing={2} className={classes.container}>
+      <Box>
+      {xs ? 
+          showSearchBox :
+           <Box className={classes.search}>
+              <SearchBox
+                init={props.initialSearch}
+                suggestionName={props.suggestionName}
+                onChange={props.onChange}
+                onChangeSuggestionHint={props.onChangeSuggestionHint}
+                horizontal={false}
+                suggestions={props.suggestions}
+                title={translate(context, Keys.common.change_your_destination)}
+                locale={props.code === null? "" : props.code}
+              />
+        </Box>}
+      </Box>
+    
       <Grid item md={4} lg={3} xs={12}>
-         {showSearchBox()}
         <Box className={classes.filter}>
           <FilterBox
             filters={props.filters}
             onChange={props.filtersOnChange}
             loading={props.loading}
-            display={lg === true ? false : true}
+            display={display}
           />
         </Box>
       </Grid>

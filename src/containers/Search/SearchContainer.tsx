@@ -60,6 +60,7 @@ const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
   }, []);
 
   useEffect(() => {
+    console.log("SIEMPRE ENTRO ACA?");
     if(props.locale.code !== null){
       props.onChange(props.initialSearch);
       props.searchSuggestionName(props.initialSearch.location);
@@ -87,6 +88,7 @@ const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
       enableView = {props.enableView}
       loadingMap = {props.loadingMap}
       code = {props.locale.code}
+      display={false}
     />
   </Container>
 }

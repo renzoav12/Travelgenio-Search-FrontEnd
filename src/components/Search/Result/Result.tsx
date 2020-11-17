@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Result: FunctionComponent<ResultProps> = (props) => {
+
   const classes = useStyles();
 
   const loadNextPage = () => {
