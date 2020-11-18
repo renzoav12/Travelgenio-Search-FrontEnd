@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: 20,
     },
     searchPortal: {
-      marginTop: 0,
+      marginTop: 18,
       width: "100%"
     },
     mapContainer: {
@@ -87,8 +87,6 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
   const [listView, setListView] = useState(true);
 
   const [display, setDisplay] = useState<boolean>(props.display);
-
-  console.log("suggetionName : " + props.onChangeSuggestionHint);
 
   const theme = useTheme();
   const xs = useMediaQuery(theme.breakpoints.down("sm"));
@@ -177,8 +175,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
       }
 
     const showSearchBox = (
-
-          <Box className={classes.search}>
+          <Box className={classes.searchPortal}>
             <SearchBoxPortal
                 suggestionName={props.suggestionName}
                 init={props.initialSearch}
@@ -195,8 +192,8 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
   
   return (
     <Grid container alignItems="flex-start" spacing={2} className={classes.container}>
-      {xs ? 
-          showSearchBox :
+      {xs ? showSearchBox :
+      <Grid item md={4} lg={3} xs={12}>  
         <Box className={classes.search}>
               <SearchBox
                 init={props.initialSearch}
@@ -208,14 +205,16 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
                 title={translate(context, Keys.common.change_your_destination)}
                 locale={props.code === null? "" : props.code}
               />
-        </Box>}
-      <Grid item md={4} lg={3} xs={12}>
-        <Box className={classes.filter}>
+        </Box>       
+      </Grid>
+      }
+      <Grid item md={4} lg={3} xs={12}>  
+       <Box className={classes.filter}>
           <FilterBox
             filters={props.filters}
             onChange={props.filtersOnChange}
             loading={props.loading}
-            display={display}
+            display={ xs? false : true }
           />
         </Box>
       </Grid>

@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from "react";
-import { Paper, Box, Select, MenuItem, useMediaQuery, Tooltip, FormControl, InputLabel } from "@material-ui/core";
-import { makeStyles, createStyles, Theme, useTheme } from "@material-ui/core/styles";
+import { Paper, Box, Select, MenuItem, Tooltip, FormControl, InputLabel } from "@material-ui/core";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import classnames from "classnames";
