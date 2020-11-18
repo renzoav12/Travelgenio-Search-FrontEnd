@@ -9,7 +9,7 @@ import RangeFilter, {
 import ValueFilter, { ValueFilterProp } from "./ValueFilter/ValueFilter";
 import { RangeOptionFilterProp } from "./RangeOptionFilter/RangeOptionFilter";
 import { Grid, Paper, Box } from "@material-ui/core";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, createStyles, Theme, useTheme } from "@material-ui/core/styles";
 import Keys from "@hotels/translation-keys";
 import { translate } from "@hotels/translation";
 import PropTypes from "prop-types";
@@ -169,7 +169,6 @@ const FilterBox: FunctionComponent<FilterBoxProps> = (props, context) => {
   };
 
   const renderValueFilter = (filter: any) => {
-    console.log("renderValueFilter");
     return (
       <Box key={filter.field} className={classes.filter}>
         <ValueFilter
@@ -182,7 +181,6 @@ const FilterBox: FunctionComponent<FilterBoxProps> = (props, context) => {
   };
 
   const renderRangeFilter = (filter: any) => {
-    console.log("renderRangeFilter");
     return (
       <Box key={filter.field} className={classes.filter}>
         <RangeFilter
@@ -199,7 +197,6 @@ const FilterBox: FunctionComponent<FilterBoxProps> = (props, context) => {
   }, [props.display]);
 
   const renderSingleOptionFilter = (filter: any) => {
-    console.log("renderSingleOptionFilter");
     return (
       <Box key={filter.field} className={classes.filter}>
         <SingleOptionFilter

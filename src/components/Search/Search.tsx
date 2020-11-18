@@ -57,8 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: 20,
     },
     search: {
-      marginTop: 20,
-      width: "100%"
+      marginTop: 20
     },
     filter: {
       marginTop: 20,
@@ -92,7 +91,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
   console.log("suggetionName : " + props.onChangeSuggestionHint);
 
   const theme = useTheme();
-  const xs = useMediaQuery(theme.breakpoints.down("xs"));
+  const xs = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     props.enableView(false);
@@ -194,14 +193,11 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
         </Box>
     );
   
-  console.log(listView);
-
   return (
     <Grid container alignItems="flex-start" spacing={2} className={classes.container}>
-      <Box className={classes.search}>
       {xs ? 
           showSearchBox :
-           <Box className={classes.search}>
+        <Box className={classes.search}>
               <SearchBox
                 init={props.initialSearch}
                 suggestionName={props.suggestionName}
@@ -213,8 +209,6 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
                 locale={props.code === null? "" : props.code}
               />
         </Box>}
-      </Box>
-    
       <Grid item md={4} lg={3} xs={12}>
         <Box className={classes.filter}>
           <FilterBox
