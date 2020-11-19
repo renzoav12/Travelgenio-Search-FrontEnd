@@ -22,7 +22,6 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Provider store={store}>
-        <Header />
         <Root store={store} />
         <Footer />
       </Provider>

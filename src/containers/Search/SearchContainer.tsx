@@ -60,7 +60,6 @@ const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
   }, []);
 
   useEffect(() => {
-    console.log("SIEMPRE ENTRO ACA?");
     if(props.locale.code !== null){
       props.onChange(props.initialSearch);
       props.searchSuggestionName(props.initialSearch.location);
@@ -117,7 +116,8 @@ const createSearchFromParams = (params: any): SearchBoxState => {
     stay: parseStay(params.stayFrom, params.stayTo),
     location: {
       type: params.locationType,
-      code: params.locationCode
+      code: params.locationCode,
+      name: "init"
     },
     occupancy: parseOccupancy(params.occupancy)
   };

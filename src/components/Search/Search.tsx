@@ -170,23 +170,33 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
     />
   );
 
-      const onChangeDisplay = () => {
+  const onChangeDisplay = () => {
         setDisplay(!display);
-      }
+  }
 
-    const showSearchBox = (
+    const showSearchBox = (       
           <Box className={classes.searchPortal}>
             <SearchBoxPortal
-                suggestionName={props.suggestionName}
-                init={props.initialSearch}
-                onChange= {props.onChange}
+                suggestionName={props.search.location.name === "init" ?
+                props.suggestionName : props.search.location.name}
+                init={props.search}
+                onChange={props.onChange}
                 onChangeSuggestionHint= {props.onChangeSuggestionHint}
                 suggestions={props.suggestions}
                 title={translate(context, Keys.common.change_your_destination)}
                 locale={props.code === null? "" : props.code}
                 display={display}
                 onChangePortal={onChangeDisplay}
-            />  
+                loading={props.loading}
+            /> 
+             <Box className={classes.filter}>
+              <FilterBox
+                filters={props.filters}
+                onChange={props.filtersOnChange}
+                loading={props.loading}
+                display={ xs? false : true }
+              />
+        </Box>        
         </Box>
     );
   
@@ -205,19 +215,17 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
                 title={translate(context, Keys.common.change_your_destination)}
                 locale={props.code === null? "" : props.code}
               />
-        </Box>       
-      </Grid>
-      }
-      <Grid item md={4} lg={3} xs={12}>  
-       <Box className={classes.filter}>
+        </Box>
+        <Box className={classes.filter}>
           <FilterBox
             filters={props.filters}
             onChange={props.filtersOnChange}
             loading={props.loading}
             display={ xs? false : true }
           />
-        </Box>
+        </Box>       
       </Grid>
+      }
       <Grid item md={8} lg={9} xs={12}>
         <Grid item xs={12} className={classes.counter}>
           <SearchBar

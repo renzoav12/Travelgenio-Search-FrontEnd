@@ -59,6 +59,7 @@ const initialState: Search = {
     location: {
       code: "",
       type: "",
+      name: ""
     },
     occupancy: {
       rooms: [

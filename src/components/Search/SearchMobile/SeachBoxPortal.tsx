@@ -22,6 +22,7 @@ export interface SearchBoxPortalProps {
     locale: string;
     display: boolean;
     onChangePortal: (display: boolean) => void;
+    loading: boolean;
 }
 
 export interface SearchBoxPortal {
@@ -36,10 +37,12 @@ const useStyles = makeStyles((theme: Theme) =>
             width: "100%"
         },
         portal: {
-            width: "100%",
-            marginTop: "-10px",
+            width: "104.6%",
+            marginTop: "-9px",
             backgroundColor: "#235ec1e6",
-            paddingBottom: "6px"
+            paddingBottom: "6px",
+            marginRight: 10,
+            marginLeft: -8
         },
         search: {
             paddingTop: 20,
@@ -57,8 +60,10 @@ const SearchBoxPortal: FunctionComponent<SearchBoxPortalProps> = (props) => {
     const [display, setDisplay] = useState<boolean>(props.display);
     
     const getSearchBoxPortal = () => {
-
-        
+        if (props.loading === true ){
+            setDisplay(!display);
+            return null;
+        }
         return (<Box className={classes.search}>
             <SearchBox
                 init={props.init}
@@ -92,12 +97,14 @@ const SearchBoxPortal: FunctionComponent<SearchBoxPortalProps> = (props) => {
             <Grid container item md={4} xs={12} >
                 <Grid onClick={handleSubmit}>
                     <Box className={classes.searchPortal}  >
-                        <DestinationPortal destination={props.suggestionName} />
+                        <DestinationPortal destination={props.suggestionName}
+                         loading={props.loading} />
                     </Box>
                     <Box>
                         <DateOccupancy
                             init={props.init}
-                            display={display}/>
+                            display={display}
+                            loading={props.loading}/>
                     </Box>
                 </Grid>
                 <Grid item xs={12}>
