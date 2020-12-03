@@ -1,0 +1,63 @@
+//ModalBottom.css
+/* MODAL */
+/* Background effect. It covers the entire site */
+.modal-bottom {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(255,255,255,0); /* Overlay effect: translucent background: black w/ partial opacity */
+    width: 81%; /* Full width */
+    height: 11%; /* Full height */
+    position: fixed; /* Fix position on the top-left corner*/
+    bottom: 0;
+    overflow: auto; /* Enable scroll if needed */
+    margin-left: 19px;
+    z-index: 1
+}
+/* Modal content */
+.modal-content-bottom {
+    background-color: white;
+    width: 87%; /* Width in proportion to its parent container*/
+    height: 64%; /* Height in proportion to its parent container */
+    margin: auto; /* Auto margin according to the element width */
+    padding: 10px;
+    margin-bottom: 40;
+    border: 1.5px solid #356ac4;
+    border-radius: 15px;
+    margin-top: 16px;
+    box-shadow: 1px 1px 11px -3px;
+}
+/* Close button */
+.close {
+   color: #232222;
+   float: right; /* Positioned to the right of the parent container whichever size it is */
+   font-size: 31px;
+   font-weight: bold;
+}
+.close:hover, 
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-bottom-map {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(255,255,255,0); /* Overlay effect: translucent background: black w/ partial opacity */
+    width: 85%; /* Full width */
+    height: 11%; /* Full height */
+    position: fixed; /* Fix position on the top-left corner*/
+    bottom: 0;
+    overflow: auto; /* Enable scroll if needed */
+    margin-left: 20px;
+    z-index: 1;
+}
+/* Modal content */
+.modal-content-bottom-map {
+    background-color: white;
+    width: 33%; /* Width in proportion to its parent container*/
+    height: 64%; /* Height in proportion to its parent container */
+    margin: auto; /* Auto margin according to the element width */
+    padding: 10px;
+    margin-bottom: 45;
+    border: 1.5px solid #356ac4;
+    border-radius: 15px;
+}

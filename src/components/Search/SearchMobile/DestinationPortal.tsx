@@ -2,8 +2,6 @@ import React, { FunctionComponent } from "react";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import Skeleton from "react-loading-skeleton";
-
 
 export interface DestinationPortalProps{
     destination:string;
@@ -27,7 +25,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-
 const DestinationPortal: FunctionComponent<DestinationPortalProps> = (props) => {
     const classes = useStyles();
     return (
@@ -35,7 +32,6 @@ const DestinationPortal: FunctionComponent<DestinationPortalProps> = (props) => 
             <Box>
                 <LocationOnIcon style={{ color:"aliceblue"}}/>
             </Box>
-
             <Box className={classes.destination2}>
                 {props.destination}
             </Box>

@@ -18,7 +18,7 @@ import SearchBar, { ViewType } from "../SearchBar/SearchBar";
 import SearchMap from "../SearchMap/SearchMap";
 import { useMediaQuery } from "@material-ui/core";
 import SearchBoxPortal from "./SearchMobile/SeachBoxPortal";
-
+import BottomOptions from "./SearchMobile/BottomOptions";
 
 export interface SearchProps {
   initialSearch: SearchBoxState;
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: 20,
     },
     counter: {
-      marginTop: 20,
+      marginTop: -10,
     },
     search: {
       marginTop: 20
@@ -189,20 +189,32 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
                 onChangePortal={onChangeDisplay}
                 loading={props.loading}
             /> 
-             <Box className={classes.filter}>
-              <FilterBox
-                filters={props.filters}
-                onChange={props.filtersOnChange}
-                loading={props.loading}
-                display={ xs? false : true }
-              />
-        </Box>        
         </Box>
+    );
+
+    const showSearchBar = (
+      <Grid item md={8} lg={9} xs={12}>
+        <Grid item xs={12} className={classes.counter}>
+            <BottomOptions displayModal={true}
+                filters={props.filters}
+                onChangeFilter={props.filtersOnChange}
+                loading={props.loading}
+                display={ xs? false : true}
+                title={counter()}
+                onChange={onChangeView}
+                showViewIcons={props.accommodations.length > 0}
+                sortFields={props.sortFields}
+                sort={props.sort}
+            />
+        </Grid>
+      {listView ? results : map}
+      </Grid>
     );
   
   return (
     <Grid container alignItems="flex-start" spacing={2} className={classes.container}>
       {xs ? showSearchBox :
+
       <Grid item md={4} lg={3} xs={12}>  
         <Box className={classes.search}>
               <SearchBox
@@ -226,6 +238,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
         </Box>       
       </Grid>
       }
+      { xs ? showSearchBar :
       <Grid item md={8} lg={9} xs={12}>
         <Grid item xs={12} className={classes.counter}>
           <SearchBar
@@ -238,6 +251,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
         </Grid>
         {listView ? results : map}
       </Grid>
+      }
     </Grid>
   );
 };

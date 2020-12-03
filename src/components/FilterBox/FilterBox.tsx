@@ -46,7 +46,8 @@ const useStyles = makeStyles((theme: Theme) =>
     filterBox: {
       width: "100%",
       [theme.breakpoints.down("xs")]:{
-        paddingBottom: "6px"
+        paddingBottom: "6px",
+        borderColor: "#c0c6d10a"
       }
     },
     filter: {

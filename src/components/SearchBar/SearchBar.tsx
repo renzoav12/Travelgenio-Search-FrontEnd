@@ -42,7 +42,11 @@ const useStyles = makeStyles((theme: Theme) =>
       "& .MuiSelect-select": {
         paddingTop: "7px",
         paddingBottom: "7px",
-      }
+      },
+      "& .MuiInputLabel-outlined": {
+        zIndex:0  
+      },
+      
     },    
     iconsSortContainer: {
       [theme.breakpoints.down("xs")]:{

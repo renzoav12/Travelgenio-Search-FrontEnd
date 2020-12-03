@@ -4,10 +4,8 @@ import { Box } from "@material-ui/core";
 import { SearchBoxState } from "@hotels/search-box";
 import CalendarIcon from "@material-ui/icons/CalendarToday";
 import { Moment } from "moment";
-import { Person, Face } from "@material-ui/icons";
+import { Person } from "@material-ui/icons";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@material-ui/icons";
-import Skeleton from "react-loading-skeleton";
-
 
 export interface DateOccupancyProps {
     init: SearchBoxState;
@@ -24,22 +22,22 @@ const useStyles = makeStyles((theme: Theme) =>
             color: theme.palette.primary.contrastText
         },
         occupancy: {
-            marginLeft: 0
+            marginLeft: 27
         },
         childs: {
             marginLeft: 0
         },
         occupancyCount: {
-            marginLeft: 5,
-            marginRight: 25
+
         },
         dates: {
             marginLeft: 5,
-            marginRight: 10
+            marginRight: -1,
+            width: "100%"
         },
         searchIcon: {
-            marginTop: -4,
-            marginLeft: 10
+            float: "right",
+            marginLeft: 27
         }
     })
 );
@@ -72,13 +70,9 @@ const DateOccupancy: FunctionComponent<DateOccupancyProps> = (props) => {
                 {props.init.occupancy.rooms.map((room) => room.adults)}
             </Box>
 
-            <Box className={classes.childs}>
-                <Face style={{ color: "aliceblue" }} />
-            </Box>
-          
-            <Box className={classes.searchIcon}>
+            <span className={classes.searchIcon}>
                 {arrow()}
-            </Box>
+            </span>
         </Box>
     );
 

@@ -5,6 +5,7 @@ import {
     SuggestionHint,
     SuggestionEntry,
   } from "@hotels/search-box/dist/Autocomplete/Autocomplete";
+import './App.scss';
 
 
 export interface ModalProps {
@@ -20,7 +21,6 @@ export interface ModalProps {
 }
 
 const ModalSearch: FunctionComponent<ModalProps> = (props) => {
-
     const divStyle = { 
         display: props.displayModal ? 'block' : 'none'
     };
@@ -29,16 +29,14 @@ const ModalSearch: FunctionComponent<ModalProps> = (props) => {
         e.stopPropagation()
         props.closeModal(false)
      }
-
+    
     return (
-       <div 
-         className="modal"
-         onClick={closeModal}
-         style={divStyle} >
-          <div 
-             className="modal-content"
-             onClick={ e => e.stopPropagation() } >
-             <Box>
+       <Box className={"modal-search"} onClick={closeModal} style={divStyle} >
+          <Box className={"modal-content-search"} onClick={ e => e.stopPropagation() } >
+          <span 
+                 className="close"
+                 onClick={ closeModal }>&times;
+           </span>
                 <SearchBox
                     init={props.init}
                     suggestionName={props.suggestionName}
@@ -49,9 +47,8 @@ const ModalSearch: FunctionComponent<ModalProps> = (props) => {
                     title={props.title}
                     locale={props.locale}
                 />
-            </Box>
-          </div>
-       </div> 
+          </Box>
+       </Box> 
     );
 
 }

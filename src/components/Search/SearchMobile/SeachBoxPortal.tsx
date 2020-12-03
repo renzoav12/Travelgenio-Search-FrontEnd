@@ -11,6 +11,8 @@ import {
     SuggestionHint,
     SuggestionEntry,
 } from "@hotels/search-box/dist/Autocomplete/Autocomplete";
+import ModalSearch from './ModalSearch';
+import './App.scss';
 
 export interface SearchBoxPortalProps {
     suggestionName: string;
@@ -58,44 +60,48 @@ const SearchBoxPortal: FunctionComponent<SearchBoxPortalProps> = (props) => {
     const classes = useStyles();
 
     const [display, setDisplay] = useState<boolean>(props.display);
-    
+
+    const [showModal, setModal] = useState<boolean>(false);
+
     const getSearchBoxPortal = () => {
         if (props.loading === true ){
+            setModal(!showModal);
             setDisplay(!display);
             return null;
         }
-        return (<Box className={classes.search}>
-            <SearchBox
-                init={props.init}
+        return (
+            <Box className={"App"}>
+            <ModalSearch 
+                displayModal={showModal}
+                closeModal={selectModal}
                 suggestionName={props.suggestionName}
+                init={props.init}
                 onChange={props.onChange}
                 onChangeSuggestionHint={props.onChangeSuggestionHint}
-                horizontal={false}
                 suggestions={props.suggestions}
                 title={props.title}
                 locale={props.locale}
             />
-        </Box>
-        );
+            </Box>
+        );  
     }
-
-    const handleSubmit = (): void => {
-        setDisplay(!display);
-    };
 
     useEffect(() => {
         setDisplay(props.display);
     }, [props.display]);
 
-    const getSearchBox = () => {
-        return display ? getSearchBoxPortal() : null;
+
+    const selectModal = () => {
+        setDisplay(!display);
+        setModal(!showModal);
     }
-
+    const getSearchBox = () => { 
+         return display ? getSearchBoxPortal() : null;
+    }
     return (
-
         <Paper className={classes.portal}>            
             <Grid container item md={4} xs={12} >
-                <Grid onClick={handleSubmit}>
+                <Grid onClick={selectModal}>
                     <Box className={classes.searchPortal}  >
                         <DestinationPortal destination={props.suggestionName}
                          loading={props.loading} />
