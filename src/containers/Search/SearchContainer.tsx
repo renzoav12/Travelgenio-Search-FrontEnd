@@ -15,7 +15,7 @@ import { SuggestionHint, SuggestionEntry } from '@hotels/search-box/dist/Autocom
 import { Pagination, SearchFilter, SortField } from '../../model/search';
 import { FilterBoxSelected } from '../../components/FilterBox/FilterBox';
 import { CardProps } from '../../components/Card/Card';
-import { initCobrand } from "@hotels/header-footer";
+import { initCobrand, isLocalHero } from "@hotels/header-footer";
 import config from "../../config";
 import { enableView } from "../../actions/map/map.action";
 import { thunkSort } from '../../actions/search/search.action';
@@ -56,7 +56,9 @@ const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
 
   useEffect(() => {
     props.loadI18n();
-    props.initCobrand && props.initCobrand(config.COBRAND, config.EMAIL_SUBSCRIPTION);
+    if(!isLocalHero()) {
+      props.initCobrand && props.initCobrand(config.COBRAND, config.EMAIL_SUBSCRIPTION);
+    }
   }, []);
 
   useEffect(() => {
