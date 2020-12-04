@@ -37,7 +37,8 @@ const useStyles = makeStyles((theme: Theme) =>
         iconBack: {
             height: 37,
             width: 32,
-            marginTop: 20
+            marginTop: 15,
+            marginLeft: 17
         }
     })
 );

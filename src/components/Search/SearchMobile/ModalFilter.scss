@@ -24,14 +24,12 @@
 /* Close button */
 .close-filter {
    color: #232222;
-   float: right; /* Positioned to the right of the parent container whichever size it is */
-   font-size: 31px;
-   font-weight: bold;
    width: 100%;
    background-color: rgb(255, 255, 255);
    z-index: 1;
-   overflow: "auto";
-   position: "fixed";
+   overflow: auto;
+   position: fixed;
+   margin-top: -11px;
 }
 .close:hover, 
 .close:focus {

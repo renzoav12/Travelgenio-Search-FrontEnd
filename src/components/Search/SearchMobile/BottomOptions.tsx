@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import { Box, Grid } from "@material-ui/core";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, createStyles, Theme, useTheme  } from "@material-ui/core/styles";
 import './ModalBottom.scss';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { ValueFilterProp } from '../../FilterBox/ValueFilter/ValueFilter';
@@ -16,6 +16,9 @@ import SwapVertIcon from '@material-ui/icons/SwapVert';
 import { ViewType } from '../../SearchBar/SearchBar';
 import { SortField } from '../../../model/search';
 import ViewListIcon from "@material-ui/icons/ViewList";
+import Translate from "@hotels/translation";
+import Keys from "@hotels/translation-keys";
+import { useMediaQuery } from "@material-ui/core";
 
 export interface ModalBottomProps {
     displayModal: boolean;
@@ -69,20 +72,36 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         listar: {
             paddingLeft: 6,
-            fontSize: "115%"
+            fontSize: "115%",
+            
+        },
+        nameBottom: {
+            fontSize: 12,
+            position: "relative",
+            [theme.breakpoints.down("xs")]: {
+                top: -3 
+            },
+            [theme.breakpoints.up("xs")]: {
+                top: -3
+            }
         }
     })
 );
 
 const BottomOptions: FunctionComponent<ModalBottomProps> = (props, context) => {
+    const theme = useTheme();
     const classes = useStyles();
+
+    const sm = useMediaQuery(theme.breakpoints.down("sm"));
+    const xs = useMediaQuery(theme.breakpoints.down("xs"));
+
     const [modalFilter, setModalFilter] = useState<boolean>(false);
     const [displayFilter, setDisplayFilter] = useState<boolean>(props.display);
-    
+
     const [modalSort, setModalSort] = useState<boolean>(false);
     const [displaySort, setDisplaySort] = useState<boolean>(props.display);
-    
-    
+
+
     const [listView, setListView] = useState(true);
     const [mapView, setMapView] = useState(false);
 
@@ -161,19 +180,17 @@ const BottomOptions: FunctionComponent<ModalBottomProps> = (props, context) => {
     }
 
     const icons: JSX.Element | null = (
-        <LocationOnIcon style={{ color: "#357dbb" }} onClick={() => {
-            selectModalMap(ViewType.Map);
-        }} />
+        <LocationOnIcon style={{ color: "#357dbb" }} />
     );
 
     const getModalListView = () => {
         return (
-            <Box className={"modal-bottom-map"}>
-                <Box className={"modal-content-bottom-map"} style={divStyle} >
+            <Box className={xs ? "modal-bottom-map" : "modal-bottom-map-sm"}>
+                <Box className={xs ? "modal-content-bottom-map" : "modal-content-bottom-map-sm"} style={divStyle} >
                     <Grid item xs={12} >
                         <Box className={classes.filter} onClick={() => { selectModalMap(ViewType.List); }}>
-                            <ViewListIcon style={{ color: "#357dbb" }} />
-                            <span className={classes.listar}>Listar</span>
+                            <ViewListIcon style={{ color: "#357dbb" }} />&nbsp;
+                            <span className={classes.nameBottom}><Translate tkey={Keys.search.see_list} /> </span>
                         </Box>
                     </Grid>
                 </Box>
@@ -182,23 +199,23 @@ const BottomOptions: FunctionComponent<ModalBottomProps> = (props, context) => {
     }
 
     const getModalBottom = () => {
-         return (
-                           
-                <Box className={"modal-bottom"} style={divStyle} >
-                    <Box className={"modal-content-bottom"}  >
-                        <Grid item xs={12} >
-                            <Box className={classes.filter}>
-                                <FilterListIcon style={{ color: "#357dbb" }} onClick={selectModalFilter} />
-                              <span >Filtrar | </span>  &nbsp;
+        return (
+
+            <Box className={ xs ? "modal-bottom" : "modal-bottom-sm"} style={divStyle} >
+                <Box className={xs ? "modal-content-bottom" : "modal-content-bottom-sm"}  >
+                    <Grid item xs={12} >
+                        <Box className={classes.filter}>
+                            <FilterListIcon style={{ color: "#357dbb" }} />
+                            <span className={classes.nameBottom} onClick={selectModalFilter}><Translate tkey={Keys.search.filter_by} /> |</span>
                             {icons}
-                              <span>Mapa  | </span> &nbsp;
-                        <SwapVertIcon style={{ color: "#357dbb" }} onClick={selectModalSort} />
-                            <span>Ordenar </span>
+                            <span className={classes.nameBottom} onClick={() => { selectModalMap(ViewType.Map); }}><Translate tkey={Keys.search.see_map} /> |</span>
+                            <SwapVertIcon style={{ color: "#357dbb" }} />
+                            <span className={classes.nameBottom} onClick={selectModalSort} ><Translate tkey={Keys.search.sort_by} /> </span>
                         </Box>
-                        </Grid>
-                    </Box>
+                    </Grid>
                 </Box>
-         );
+            </Box>
+        );
     }
 
     return (

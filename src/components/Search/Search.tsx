@@ -91,6 +91,8 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
   const theme = useTheme();
   const xs = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const bt = useMediaQuery(theme.breakpoints.between("sm","md"));
+
   useEffect(() => {
     props.enableView(false);
   }, []);
@@ -210,11 +212,12 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
       {listView ? results : map}
       </Grid>
     );
-  
+
+  console.log(xs);
+  console.log(bt);
   return (
     <Grid container alignItems="flex-start" spacing={2} className={classes.container}>
       {xs ? showSearchBox :
-
       <Grid item md={4} lg={3} xs={12}>  
         <Box className={classes.search}>
               <SearchBox

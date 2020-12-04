@@ -4,7 +4,6 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { SortField } from '../../../model/search';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import './ModalSort.scss';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
@@ -110,30 +109,44 @@ const useStyles = makeStyles((theme: Theme) =>
 const ModalSort: FunctionComponent<ModalProps> = (props) => {
     const classes = useStyles();
 
-    const [age, setAge] = React.useState<string | number>('');
-    const [open, setOpen] = React.useState(false);
+    const notSelectedValue = "empty";
+    const [selectedSortValue, setSelectedSortValue] = useState(notSelectedValue);
   
-    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-      setAge(event.target.value as number);
-    };
   
-    const handleClose = () => {
-      setOpen(false);
-    };
-  
-    const handleOpen = () => {
-      setOpen(true);
-    };
-
     const divStyle = { 
         display: props.displayModal ? 'block' : 'none'
     };
 
+    const getMenuItemValue = (sortField: SortField): string => {
+        return `${sortField.field}_${sortField.order}`;
+      }
+    
+      const getTranslationKey = (sortField: SortField): string => {
+        return Keys.search[`${sortField.field}_${sortField.order.toLocaleLowerCase()}`];
+      }
+
     function closeModal(e) {
         e.stopPropagation()
         props.closeModal(false)
-     }
+     };
+
+     const sortFields = props.sortFields.map((sortField, index) => {
+        return (
+          <MenuItem key={index} value={getMenuItemValue(sortField)}>
+            <Translate tkey={getTranslationKey(sortField)}/>
+          </MenuItem>
+        );
+      });
     
+
+     const sortChangeHandler = (event):void => {
+        if(selectedSortValue !== event.target.value) {
+          setSelectedSortValue(event.target.value);
+          const sortData = event.target.value.split("_");
+          props.sort(sortData[0], sortData[1]);
+        }
+      }
+        
     return (
         <Box className={"modal-filter"} onClick={closeModal} style={divStyle} >
         <Box className={"modal-content-filter"} onClick={ e => e.stopPropagation() } >
@@ -145,22 +158,17 @@ const ModalSort: FunctionComponent<ModalProps> = (props) => {
                 <h1> <Translate tkey={Keys.search.sort_by}/></h1>
             </Box>   
          <FormControl className={classes.formControl}>
-                <InputLabel id="demo-controlled-open-select-label">Age</InputLabel>
                 <Select
                         labelId="demo-controlled-open-select-label"
                         id="demo-controlled-open-select"
-                        open={open}
-                        onClose={handleClose}
-                        onOpen={handleOpen}
-                        value={age}
-                        onChange={handleChange}
+                        value={selectedSortValue}
+                        onChange={sortChangeHandler}
+                        className={classes.sort}
                 >
-                <MenuItem value="">
-                    <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={notSelectedValue}>
+                    <Translate tkey={Keys.search.recommended}/>
+            </MenuItem>
+            {sortFields}
                 </Select>
       </FormControl> 
           </Box>
