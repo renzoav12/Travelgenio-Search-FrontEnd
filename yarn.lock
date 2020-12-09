@@ -1280,8 +1280,8 @@
 
 "@hotels/header-footer@0.0.4":
   version "0.0.4"
-  resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/header-footer/-/header-footer-0.0.4.tgz#796cf4655dfda3e953291a9708d0da62a86c32d6"
-  integrity sha512-ZZpH+I12OhPS9Lr4sdUvTin7nWA57Bct373IertOxBPxaKX6DTtUHfxu4SnTAlzAJyYkAbFqXGqpUnF8YHMbXw==
+  resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/header-footer/-/header-footer-0.0.4.tgz#72db79a296d991cac53d4376e2f828b3e3c9636a"
+  integrity sha512-1sUyxaWigZbL2hf9Vy8qUK4ujDNut58MUwyfMU3fVNcCRr/DNM5HdpZgeWCRM72wsIAcPqx8M4LFWAhVdkoeZQ==
 
 "@hotels/map@0.0.7":
   version "0.0.7"
