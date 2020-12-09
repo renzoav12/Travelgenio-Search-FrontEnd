@@ -105,17 +105,11 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
   const xs_down = useMediaQuery(theme.breakpoints.down("sm"));
 
   
-  
-  
   const up_xs = useMediaQuery(theme.breakpoints.up("xs"));
   const sm = useMediaQuery(theme.breakpoints.only("sm"));
   const md = useMediaQuery("(min-heigth:1024px)");
   
   console.log("md" + md);
-
-
-  
-
   
   useEffect(() => {
     props.enableView(false);
