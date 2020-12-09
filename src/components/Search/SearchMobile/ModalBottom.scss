@@ -30,8 +30,8 @@
 .modal-bottom-sm {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(255,255,255,0); /* Overlay effect: translucent background: black w/ partial opacity */
-    width: 39%; /* Full width */
-    height: 22%; /* Full height */
+    width: 100%; /* Full width */
+    height: 14%; /* Full height */
     position: fixed; /* Fix position on the top-left corner*/
     bottom: 0;
     overflow: auto; /* Enable scroll if needed */
@@ -50,6 +50,8 @@
     border-radius: 15px;
     margin-top: 16px;
     box-shadow: 1px 1px 11px -3px;
+    justify-content: flex-end;
+    display: table-cell;
 }
 
 /* Close button */
@@ -98,17 +100,16 @@
     position: fixed; /* Fix position on the top-left corner*/
     bottom: 0;
     overflow: auto; /* Enable scroll if needed */
-    margin-left: 210px;
+    margin-left: 275px;
     z-index: 1;
 }
 /* Modal content */
 .modal-content-bottom-map-sm {
     background-color: white;
-    width: 33%; /* Width in proportion to its parent container*/
-    height: 64%; /* Height in proportion to its parent container */
     margin: auto; /* Auto margin according to the element width */
     padding: 10px;
     margin-bottom: 45;
     border: 1.5px solid #356ac4;
     border-radius: 15px;
+    position: absolute;
 }

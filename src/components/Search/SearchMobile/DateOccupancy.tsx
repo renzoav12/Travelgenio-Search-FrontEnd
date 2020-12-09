@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
             color: theme.palette.primary.contrastText
         },
         occupancy: {
-            marginLeft: 27
+            marginLeft: 0
         },
         childs: {
             marginLeft: 0
@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         searchIcon: {
             float: "right",
-            marginLeft: 27
         }
     })
 );

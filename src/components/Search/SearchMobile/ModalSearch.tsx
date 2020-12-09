@@ -48,7 +48,7 @@ const ModalSearch: FunctionComponent<ModalProps> = (props) => {
     return (
        <Box className={"modal-search"} onClick={closeModal} style={divStyle} >
           <Box className={"modal-content-search"} onClick={ e => e.stopPropagation() } >
-          <Box className={"close-filter"} onClick={ closeModal }>
+          <Box className={"close-search"} onClick={ closeModal }>
                 <KeyboardBackspaceIcon className={classes.iconBack} />
             </Box>
                 <SearchBox

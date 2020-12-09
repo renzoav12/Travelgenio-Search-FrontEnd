@@ -39,12 +39,11 @@ const useStyles = makeStyles((theme: Theme) =>
             width: "100%"
         },
         portal: {
-            width: "104.6%",
-            marginTop: "-9px",
+            width: "100%",
+            marginTop: "-10px",
             backgroundColor: "#235ec1e6",
             paddingBottom: "6px",
-            marginRight: 10,
-            marginLeft: -8
+            display: "flex"
         },
         search: {
             paddingTop: 20,

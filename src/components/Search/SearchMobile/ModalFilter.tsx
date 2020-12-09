@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme: Theme) =>
             height: 37,
             width: 32,
             marginTop: 15,
-            marginLeft: 17
+            marginLeft: 17,
+            cursor: "pointer"
         }
     })
 );
