@@ -1278,10 +1278,10 @@
   resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/category/-/category-0.0.1.tgz#eed780479334a4385b55e7f68ca62dcc7a131572"
   integrity sha512-5cHJxCdxTUYlb2vu37doZgMI/WVmtuIVs958xbeVXEsYPdTMBjfy7o5Yv1GtXhGCQkIi3BqumofFG25d233a/w==
 
-"@hotels/header-footer@0.0.4":
-  version "0.0.4"
-  resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/header-footer/-/header-footer-0.0.4.tgz#72db79a296d991cac53d4376e2f828b3e3c9636a"
-  integrity sha512-1sUyxaWigZbL2hf9Vy8qUK4ujDNut58MUwyfMU3fVNcCRr/DNM5HdpZgeWCRM72wsIAcPqx8M4LFWAhVdkoeZQ==
+"@hotels/header-footer@0.0.5":
+  version "0.0.5"
+  resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/header-footer/-/header-footer-0.0.5.tgz#8c317a7162dea0eefafe987094ba9e69f6b208d2"
+  integrity sha512-R9HwhpmRmvWfMBa1MJTagMTXX3IrFI/nsBlkZpgp+FwAi+FkpRJE6NcUbkf0v3DQqECRIBn8IApBXx35iK0beg==
 
 "@hotels/map@0.0.7":
   version "0.0.7"
@@ -1307,10 +1307,10 @@
     react-autosuggest "^9.4.3"
     react-dates "^21.8.0"
 
-"@hotels/styles@0.1.0":
-  version "0.1.0"
-  resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/styles/-/styles-0.1.0.tgz#05c60959a208874b68ab4b43bd00a402fb53db8e"
-  integrity sha512-Uzcd9EIwoFIKuTUxdkOerHu/mB4vfrw4K5wfWo/mwl8WUEzbkbxKonq5o9DkoH0eC7i9VEqWTs/xWdioF5XA9Q==
+"@hotels/styles@0.1.1":
+  version "0.1.1"
+  resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/styles/-/styles-0.1.1.tgz#2049d3cbc7bf3614c4d86e25f985c2f5618402f2"
+  integrity sha512-WbZjhMA9kv/p5z8iwnFdvWXUImnL80vYRjHUAsIuzL2UhHS1LKESSgHsq0k5Q01GoNcQ5gTYlRIgGVKmPVO0vQ==
 
 "@hotels/translation-keys@0.0.4":
   version "0.0.4"
