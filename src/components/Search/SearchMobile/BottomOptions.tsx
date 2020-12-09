@@ -19,6 +19,7 @@ import ViewListIcon from "@material-ui/icons/ViewList";
 import Translate from "@hotels/translation";
 import Keys from "@hotels/translation-keys";
 import { useMediaQuery } from "@material-ui/core";
+import Skeleton from "react-loading-skeleton";
 
 export interface ModalBottomProps {
     displayModal: boolean;
@@ -84,6 +85,9 @@ const useStyles = makeStyles((theme: Theme) =>
             [theme.breakpoints.up("xs")]: {
                 top: -3
             }
+        },
+        skeleton: {
+
         }
     })
 );
@@ -203,15 +207,16 @@ const BottomOptions: FunctionComponent<ModalBottomProps> = (props, context) => {
 
             <Box className={ xs ? "modal-bottom" : "modal-bottom-sm"} style={divStyle} >
                 <Box className={xs ? "modal-content-bottom" : "modal-content-bottom-sm"}  >
-                    <Grid item xs={12} >
+                    <Grid item xs={12} >                   
                         <Box className={classes.filter}>
                             <FilterListIcon style={{ color: "#357dbb" }} />
-                            <span className={classes.nameBottom} onClick={selectModalFilter}><Translate tkey={Keys.search.filter_by} /> |</span>
-                            {icons}
+                              <span className={classes.nameBottom} onClick={selectModalFilter}><Translate tkey={Keys.search.filter_by} /> |</span>
+                               {icons}
                             <span className={classes.nameBottom} onClick={() => { selectModalMap(ViewType.Map); }}><Translate tkey={Keys.search.see_map} /> |</span>
                             <SwapVertIcon style={{ color: "#357dbb" }} />
                             <span className={classes.nameBottom} onClick={selectModalSort} ><Translate tkey={Keys.search.sort_by} /> </span>
                         </Box>
+                        
                     </Grid>
                 </Box>
             </Box>
