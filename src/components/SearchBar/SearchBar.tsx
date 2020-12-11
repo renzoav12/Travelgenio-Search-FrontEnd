@@ -128,7 +128,7 @@ const SearchBar: FunctionComponent<Props> = (props) => {
           onClick={() => {
             handleClick(ViewType.Map);
           }}
-        >
+         >
           <LocationOnIcon />
         </Box>
       </Tooltip>

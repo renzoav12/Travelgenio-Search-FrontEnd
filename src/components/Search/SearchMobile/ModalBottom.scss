@@ -20,7 +20,7 @@
     margin: auto; /* Auto margin according to the element width */
     padding: 10px;
     margin-bottom: 40;
-    border: 1.5px solid #356ac4;
+    border: 1.5px solid;
     border-radius: 15px;
     margin-top: 16px;
     box-shadow: 1px 1px 11px -3px;
@@ -46,7 +46,7 @@
     margin: auto; /* Auto margin according to the element width */
     padding: 10px;
     margin-bottom: 40;
-    border: 1.5px solid #356ac4;
+    border: 1.5px solid;
     border-radius: 15px;
     margin-top: 16px;
     box-shadow: 1px 1px 11px -3px;
@@ -84,11 +84,10 @@
     background-color: white;
     width: 33%; /* Width in proportion to its parent container*/
     height: 59%; /* Height in proportion to its parent container */
-    margin: auto; /* Auto margin according to the element width */
     padding: 10px;
-    margin-bottom: 45;
-    border: 1.5px solid #356ac4;
+    border: 1.5px solid;
     border-radius: 15px;
+    margin: auto; /* Auto margin according to the element width */
 }
 
 
@@ -109,7 +108,7 @@
     margin: auto; /* Auto margin according to the element width */
     padding: 10px;
     margin-bottom: 45;
-    border: 1.5px solid #356ac4;
+    border: 1.5px solid;
     border-radius: 15px;
     position: absolute;
 }

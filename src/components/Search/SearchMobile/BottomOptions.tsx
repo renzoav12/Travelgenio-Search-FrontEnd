@@ -19,7 +19,6 @@ import ViewListIcon from "@material-ui/icons/ViewList";
 import Translate from "@hotels/translation";
 import Keys from "@hotels/translation-keys";
 import { useMediaQuery } from "@material-ui/core";
-import Skeleton from "react-loading-skeleton";
 
 export interface ModalBottomProps {
     displayModal: boolean;
@@ -88,6 +87,12 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         skeleton: {
 
+        },
+        ".modal-content-bottom": {
+            borderColor: theme.palette.primary.main
+        },
+        ".modal-content-bottom-sm": {
+            borderColor: theme.palette.primary.main
         }
     })
 );
@@ -184,7 +189,7 @@ const BottomOptions: FunctionComponent<ModalBottomProps> = (props, context) => {
     }
 
     const icons: JSX.Element | null = (
-        <LocationOnIcon style={{ color: "#357dbb" }} />
+        <LocationOnIcon style={{ color: theme.palette.primary.light }} />
     );
 
     const getModalListView = () => {
@@ -193,7 +198,7 @@ const BottomOptions: FunctionComponent<ModalBottomProps> = (props, context) => {
                 <Box className={xs ? "modal-content-bottom-map" : "modal-content-bottom-map-sm"} style={divStyle} >
                     <Grid item xs={12} >
                         <Box className={classes.filter} onClick={() => { selectModalMap(ViewType.List); }}>
-                            <ViewListIcon style={{ color: "#357dbb" }} />&nbsp;
+                            <ViewListIcon style={{ color: theme.palette.primary.light }} />&nbsp;
                             <span className={classes.nameBottom}><Translate tkey={Keys.search.see_list} /> </span>
                         </Box>
                     </Grid>
@@ -209,11 +214,11 @@ const BottomOptions: FunctionComponent<ModalBottomProps> = (props, context) => {
                 <Box className={xs ? "modal-content-bottom" : "modal-content-bottom-sm"}  >
                     <Grid item xs={12} >                   
                         <Box className={classes.filter}>
-                            <FilterListIcon style={{ color: "#357dbb" }} />
+                            <FilterListIcon style={{ color: theme.palette.primary.light }} />
                               <span className={classes.nameBottom} onClick={selectModalFilter}><Translate tkey={Keys.search.filter_by} /> |</span>
                                {icons}
                             <span className={classes.nameBottom} onClick={() => { selectModalMap(ViewType.Map); }}><Translate tkey={Keys.search.see_map} /> |</span>
-                            <SwapVertIcon style={{ color: "#357dbb" }} />
+                            <SwapVertIcon style={{ color: theme.palette.primary.light }} />
                             <span className={classes.nameBottom} onClick={selectModalSort} ><Translate tkey={Keys.search.sort_by} /> </span>
                         </Box>
                         

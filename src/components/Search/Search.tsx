@@ -17,8 +17,9 @@ import Translate, { translate } from "@hotels/translation";
 import SearchBar, { ViewType } from "../SearchBar/SearchBar";
 import SearchMap from "../SearchMap/SearchMap";
 import { useMediaQuery } from "@material-ui/core";
-import SearchBoxPortal from "./SearchMobile/SeachBoxPortal";
+import {SearchBoxPortal} from "@hotels/search-box";
 import BottomOptions from "./SearchMobile/BottomOptions";
+
 
 export interface SearchProps {
   initialSearch: SearchBoxState;
@@ -54,7 +55,10 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: 20,
     },
     counter: {
-      marginTop: -10,
+      marginTop: 20,
+    },
+    counter_mobile: {
+      marginTop: 0,
     },
     search: {
       marginTop: 20
@@ -188,25 +192,25 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
 
     const showSearchBox = (       
           <Box className={classes.searchPortal}>
-            <SearchBoxPortal
-                suggestionName={props.search.location.name === "init" ?
-                props.suggestionName : props.search.location.name}
-                init={props.search}
-                onChange={props.onChange}
-                onChangeSuggestionHint= {props.onChangeSuggestionHint}
-                suggestions={props.suggestions}
-                title={translate(context, Keys.common.change_your_destination)}
-                locale={props.code === null? "" : props.code}
-                display={display}
-                onChangePortal={onChangeDisplay}
-                loading={props.loading}
-            /> 
+             {SearchBoxPortal(
+                props.search.location.name === "init" ?
+                props.suggestionName : props.search.location.name,
+                props.search,
+                props.onChange,
+                props.onChangeSuggestionHint,
+                props.suggestions,
+                translate(context, Keys.common.change_your_destination),
+                props.code === null? "" : props.code,
+                display,
+                onChangeDisplay,
+                props.loading
+              )} 
         </Box>
     );
 
     const showSearchBar = (
       <Grid item md={8} lg={9} xs={12}>
-        <Grid item xs={12} className={classes.counter}>
+        <Grid item xs={12} className={classes.counter_mobile}>
             <BottomOptions displayModal={true}
                 filters={props.filters}
                 onChangeFilter={props.filtersOnChange}
@@ -224,7 +228,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
     );
 
   return (
-    <Grid container alignItems="flex-start" spacing={2} className={classes.container}>
+    <Grid container alignItems="flex-start" spacing={4} className={classes.container}>
       {xs_down ? showSearchBox :
       <Grid item md={4} lg={3} xs={12}>  
         <Box className={classes.search}>
