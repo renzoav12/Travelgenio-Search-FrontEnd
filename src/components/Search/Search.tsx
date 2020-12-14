@@ -9,7 +9,7 @@ import {
   SuggestionHint,
   SuggestionEntry,
 } from "@hotels/search-box/dist/Autocomplete/Autocomplete";
-import { makeStyles, createStyles, Theme, useTheme } from "@material-ui/core/styles";
+import { makeStyles, createStyles, Theme, useTheme, createMuiTheme } from "@material-ui/core/styles";
 
 import PropTypes from "prop-types";
 import Keys from "@hotels/translation-keys";
@@ -17,6 +17,9 @@ import Translate, { translate } from "@hotels/translation";
 import SearchBar, { ViewType } from "../SearchBar/SearchBar";
 import SearchMap from "../SearchMap/SearchMap";
 import { useMediaQuery } from "@material-ui/core";
+import {SearchBoxPortal} from "@hotels/search-box";
+import BottomOptions from "./SearchMobile/BottomOptions";
+
 
 export interface SearchProps {
   initialSearch: SearchBoxState;
@@ -43,6 +46,7 @@ export interface SearchProps {
 
   enableView: (listView: boolean) => void;
   code: string | null;
+  display: boolean;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -53,11 +57,20 @@ const useStyles = makeStyles((theme: Theme) =>
     counter: {
       marginTop: 20,
     },
+    counter_mobile: {
+      marginTop: 0,
+    },
     search: {
-      marginTop: 20,
+      marginTop: 20
     },
     filter: {
       marginTop: 20,
+    },
+    searchPortal: {
+      marginTop: 18,
+      width: "100%",
+      display: "flex",
+      justifyContent: "flex-end"
     },
     mapContainer: {
       marginTop: 20,
@@ -69,15 +82,31 @@ const useStyles = makeStyles((theme: Theme) =>
         width: "100%",
       }
     },
+    skeleton:{
+
+    }
   })
 );
 
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 760,
+      md: 1024,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+})
+
 const Search: FunctionComponent<SearchProps> = (props, context) => {
+
   const [listView, setListView] = useState(true);
+  const [display, setDisplay] = useState<boolean>(props.display);
 
-  const theme = useTheme();
-  const sm = useMediaQuery(theme.breakpoints.down("sm"));
-
+  const xs_down = useMediaQuery(theme.breakpoints.down("sm"));
+  
   useEffect(() => {
     props.enableView(false);
   }, []);
@@ -138,7 +167,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
     );
   };
 
-  const results = (
+  const results = (  
     <Result
       accommodations={props.accommodations}
       loadNextPage={props.loadNextPage}
@@ -156,30 +185,75 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
       loading={props.loadingMap}
     />
   );
+
+  const onChangeDisplay = () => {
+        setDisplay(!display);
+  }
+
+    const showSearchBox = (       
+          <Box className={classes.searchPortal}>
+             {SearchBoxPortal(
+                props.search.location.name === "init" ?
+                props.suggestionName : props.search.location.name,
+                props.search,
+                props.onChange,
+                props.onChangeSuggestionHint,
+                props.suggestions,
+                translate(context, Keys.common.change_your_destination),
+                props.code === null? "" : props.code,
+                display,
+                onChangeDisplay,
+                props.loading
+              )} 
+        </Box>
+    );
+
+    const showSearchBar = (
+      <Grid item md={8} lg={9} xs={12}>
+        <Grid item xs={12} className={classes.counter_mobile}>
+            <BottomOptions displayModal={true}
+                filters={props.filters}
+                onChangeFilter={props.filtersOnChange}
+                loading={props.loading}
+                display={ xs_down? false : true}
+                title={counter()}
+                onChange={onChangeView}
+                showViewIcons={props.accommodations.length > 0}
+                sortFields={props.sortFields}
+                sort={props.sort}
+            />
+        </Grid>
+      {listView ? results : map}
+      </Grid>
+    );
+
   return (
-    <Grid container alignItems="flex-start" spacing={2} className={classes.container}>
-      <Grid item md={4} lg={3}>
+    <Grid container alignItems="flex-start" spacing={4} className={classes.container}>
+      {xs_down ? showSearchBox :
+      <Grid item md={4} lg={3} xs={12}>  
         <Box className={classes.search}>
-          <SearchBox
-            init={props.initialSearch}
-            suggestionName={props.suggestionName}
-            onChange={props.onChange}
-            onChangeSuggestionHint={props.onChangeSuggestionHint}
-            horizontal={false}
-            suggestions={props.suggestions}
-            title={translate(context, Keys.common.change_your_destination)}
-            locale={props.code === null? "" : props.code}
-          />
+              <SearchBox
+                init={props.initialSearch}
+                suggestionName={props.suggestionName}
+                onChange={props.onChange}
+                onChangeSuggestionHint={props.onChangeSuggestionHint}
+                horizontal={false}
+                suggestions={props.suggestions}
+                title={translate(context, Keys.common.change_your_destination)}
+                locale={props.code === null? "" : props.code}
+              />
         </Box>
         <Box className={classes.filter}>
           <FilterBox
             filters={props.filters}
             onChange={props.filtersOnChange}
             loading={props.loading}
-            display={sm === true ? false : true}
+            display={ xs_down? false : true }
           />
-        </Box>
+        </Box>       
       </Grid>
+      }
+      { xs_down ? showSearchBar :
       <Grid item md={8} lg={9} xs={12}>
         <Grid item xs={12} className={classes.counter}>
           <SearchBar
@@ -192,6 +266,7 @@ const Search: FunctionComponent<SearchProps> = (props, context) => {
         </Grid>
         {listView ? results : map}
       </Grid>
+      }
     </Grid>
   );
 };

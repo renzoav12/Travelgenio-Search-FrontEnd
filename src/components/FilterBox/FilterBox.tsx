@@ -14,7 +14,6 @@ import Keys from "@hotels/translation-keys";
 import { translate } from "@hotels/translation";
 import PropTypes from "prop-types";
 import FilterHeader from "./FilterHeader/FilterHeader";
-import { useMediaQuery } from "@material-ui/core";
 
 export interface FilterBoxSelected {
   type: FilterType;
@@ -46,8 +45,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     filterBox: {
       width: "100%",
-      [theme.breakpoints.down("xs")]:{
-        paddingBottom: "6px"
+      [theme.breakpoints.down("md")]:{
+        paddingBottom: "6px",
+        borderColor: "#c0c6d10a"
       }
     },
     filter: {
@@ -62,7 +62,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const FilterBox: FunctionComponent<FilterBoxProps> = (props, context) => {
   const classes = useStyles()
-  const theme = useTheme();
 
   const [display, setDisplay] = useState<boolean>(props.display);
 
@@ -219,16 +218,16 @@ const FilterBox: FunctionComponent<FilterBoxProps> = (props, context) => {
    <Paper className={classes.filterBox}>
       <Grid container item>
 
-      <Grid item xs={12}>
-        <FilterHeader
-          label={translate(context, Keys.search.filter_by)}
-          onChange={onChangeDisplay}
-          display={props.display}>
-        </FilterHeader>
-        </Grid>
-        <Grid item xs={12}>
-          {filterBody()}
-        </Grid>
+          <Grid item xs={12}>
+            <FilterHeader
+              label={translate(context, Keys.search.filter_by)}
+              onChange={onChangeDisplay}
+              display={props.display}>
+            </FilterHeader>
+          </Grid>
+          <Grid item xs={12}>
+              {filterBody()}
+          </Grid>
       </Grid>
     </Paper>
   ) : null;
