@@ -6,7 +6,6 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Keys from "@hotels/translation-keys";
 import { translate } from "@hotels/translation";
-import { useMediaQuery } from "@material-ui/core";
 
 interface Props {
   label: string;
@@ -24,6 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
+
 
 const FilterHeader: FunctionComponent<Props> = (props, context) => {
 
