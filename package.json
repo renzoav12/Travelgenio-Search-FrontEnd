@@ -8,7 +8,8 @@
     "@hotels/header-footer": "0.0.7",
     "@hotels/map": "0.0.7",
     "@hotels/mealplan": "0.0.6",
-    "@hotels/search-box": "0.0.22",
+
+    "@hotels/search-box": "0.0.23",
     "@hotels/styles": "0.1.1",
     "@hotels/translation": "^0.0.8",
     "@hotels/translation-keys": "0.0.5",

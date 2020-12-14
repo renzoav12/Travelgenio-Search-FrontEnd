@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from "react";
-import { Paper, Box, Select, MenuItem, useMediaQuery, Tooltip, FormControl, InputLabel } from "@material-ui/core";
-import { makeStyles, createStyles, Theme, useTheme } from "@material-ui/core/styles";
+import { Paper, Box, Select, MenuItem, Tooltip, FormControl, InputLabel } from "@material-ui/core";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import classnames from "classnames";
@@ -42,7 +42,11 @@ const useStyles = makeStyles((theme: Theme) =>
       "& .MuiSelect-select": {
         paddingTop: "7px",
         paddingBottom: "7px",
-      }
+      },
+      "& .MuiInputLabel-outlined": {
+        zIndex:0  
+      },
+      
     },    
     iconsSortContainer: {
       [theme.breakpoints.down("xs")]:{
@@ -124,7 +128,7 @@ const SearchBar: FunctionComponent<Props> = (props) => {
           onClick={() => {
             handleClick(ViewType.Map);
           }}
-        >
+         >
           <LocationOnIcon />
         </Box>
       </Tooltip>

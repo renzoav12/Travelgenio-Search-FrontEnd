@@ -89,6 +89,7 @@ const SearchContainer: FunctionComponent<SearchContainerProps> = props => {
       enableView = {props.enableView}
       loadingMap = {props.loadingMap}
       code = {props.locale.code}
+      display={false}
     />
   </Container>
 }
@@ -117,7 +118,8 @@ const createSearchFromParams = (params: any): SearchBoxState => {
     stay: parseStay(params.stayFrom, params.stayTo),
     location: {
       type: params.locationType,
-      code: params.locationCode
+      code: params.locationCode,
+      name: "init"
     },
     occupancy: parseOccupancy(params.occupancy)
   };
