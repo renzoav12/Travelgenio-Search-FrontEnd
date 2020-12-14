@@ -1275,10 +1275,10 @@
   resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/category/-/category-0.0.1.tgz#eed780479334a4385b55e7f68ca62dcc7a131572"
   integrity sha512-5cHJxCdxTUYlb2vu37doZgMI/WVmtuIVs958xbeVXEsYPdTMBjfy7o5Yv1GtXhGCQkIi3BqumofFG25d233a/w==
 
-"@hotels/header-footer@0.0.6":
-  version "0.0.6"
-  resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/header-footer/-/header-footer-0.0.6.tgz#9b73290d4c099fe7d8a272e731ac1457e91d0d5a"
-  integrity sha512-7LhRkkk2V7TVBYpOSWg4tbUPlP747vayhJv3PfOnSc+9ZUbfdAMX8S6p4SorO+U59ujUUV2FtnmVwg6TVLMzhg==
+"@hotels/header-footer@0.0.7":
+  version "0.0.7"
+  resolved "https://nexus-k8s.travelgenio.com/repository/travelgenio-npm/@hotels/header-footer/-/header-footer-0.0.7.tgz#851490e9a893b70b6f2d64b7386ec0a878d8242e"
+  integrity sha512-de4U7f7IUchADincyaFobg+Q8d7P9lFAy32y+fa/mh+P5aeNg2GisA48JePUb15gugnFjni8iAThbVbBzwn5ag==
 
 "@hotels/map@0.0.7":
   version "0.0.7"
