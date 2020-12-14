@@ -4,13 +4,17 @@
 .modal-bottom {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(255,255,255,0); /* Overlay effect: translucent background: black w/ partial opacity */
-    width: 81%; /* Full width */
+    width: 100%; /* Full width */
     height: 11%; /* Full height */
     position: fixed; /* Fix position on the top-left corner*/
     bottom: 0;
     overflow: auto; /* Enable scroll if needed */
     margin-left: 19px;
-    z-index: 1
+    z-index: 1;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 17px;
+    border-bottom-left-radius: 17px;
 }
 /* Modal content */
 .modal-content-bottom {
@@ -23,7 +27,9 @@
     border: 1.5px solid;
     border-radius: 15px;
     margin-top: 16px;
-    box-shadow: 1px 1px 11px -3px;
+    box-shadow: 0px 2px 7px 0px;
+    justify-content: flex-end;
+    display: table-cell;
 }
 
 
@@ -35,8 +41,8 @@
     position: fixed; /* Fix position on the top-left corner*/
     bottom: 0;
     overflow: auto; /* Enable scroll if needed */
-    margin-left: 195px;
-    z-index: 1
+    margin-left: 33%;
+    z-index: 1;
 }
 /* Modal content */
 .modal-content-bottom-sm {
