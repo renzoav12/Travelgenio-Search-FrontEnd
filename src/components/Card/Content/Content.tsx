@@ -8,6 +8,7 @@ import MealPlan, { MealPlanProps } from "@hotels/mealplan";
 import Map from "./Map/Map";
 import Category from "@hotels/category";
 import Distance, { DistanceProps } from "./Distance/Distance";
+import RatingGuest from "./Rating/RatingGuest";
 
 export interface Props {
   content: ContentProps;
@@ -21,6 +22,12 @@ export interface ContentProps {
   amenities: Amenity[];
   images: ImageProps;
   distance: DistanceProps;
+  guestRating: RatingProps;
+}
+
+export interface RatingProps {
+   value: number;
+   count: number;
 }
 
 interface CategoryProps {
@@ -77,6 +84,9 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       marginTop: 5,
     },
+    ratingGuest: {
+      marginRight: 5
+    }
   })
 );
 
@@ -90,6 +100,10 @@ const Content: FunctionComponent<Props> = (props) => {
       <Grid item xs={12} md={8} className={classes.info}>
         <Box className={classes.title}>{props.content.name}</Box>
         <Box className={classes.categoryMap}>
+          <Box className={classes.ratingGuest}> 
+             {props.content.guestRating ? <RatingGuest ratingGuest={props.content.guestRating}/>
+                                        : null} 
+          </Box> 
           <Box className={classes.category}>
             <Category stars={parseInt(props.content.category.code)} />
           </Box>
@@ -102,7 +116,8 @@ const Content: FunctionComponent<Props> = (props) => {
           <Location location={props.content.location} />
         </Box>
         <Box className={classes.distance}>
-          <Distance distance={props.content.distance} />
+          <Distance distance={props.content.distance} />e parece buena opción el Fiesta. Creo está en precio razonable y no tiene muchos km
+
         </Box>
         <Box className={classes.amenities}>
           <AmenityIcons {...props.content} />
