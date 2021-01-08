@@ -116,8 +116,7 @@ const Content: FunctionComponent<Props> = (props) => {
           <Location location={props.content.location} />
         </Box>
         <Box className={classes.distance}>
-          <Distance distance={props.content.distance} />e parece buena opción el Fiesta. Creo está en precio razonable y no tiene muchos km
-
+          <Distance distance={props.content.distance} />
         </Box>
         <Box className={classes.amenities}>
           <AmenityIcons {...props.content} />
