@@ -51,14 +51,14 @@ const RatingGuest: FunctionComponent<RatingGuestProps> = (props, context) => {
     const title = () => {
         return (<Translate tkey={Keys.search.accommodation_guests_ranking_based} 
             values={{
-                n: props.ratingGuest.count
+                n: props.ratingGuest.votes
               }}> </Translate>)
     }
     return (
         <LightTooltip title={title()}>
            <span className={classes.rating}>
             <Box className={classes.guest}>
-                <span className={classes.value}>{props.ratingGuest.count}</span>
+                <span className={classes.value}>{props.ratingGuest.rating}</span>
             </Box>
             
           </span>

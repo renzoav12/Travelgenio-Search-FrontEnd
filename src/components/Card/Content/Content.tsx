@@ -26,8 +26,8 @@ export interface ContentProps {
 }
 
 export interface RatingProps {
-   value: number;
-   count: number;
+   rating: number;
+   votes: number;
 }
 
 interface CategoryProps {
